@@ -1,0 +1,59 @@
+#include "PoweredByJadeEngineScene.h"
+
+#include "EngineConstants.h"
+#include "EngineTime.h"
+#include "Game.h"
+#include "Text.h"
+#include "TextSprite.h"
+#include "Utils.h"
+
+namespace JadeEngine
+{
+  const auto kAppearDuration = 1.5f;
+
+  PoweredByJadeEngineScene::PoweredByJadeEngineScene()
+    : _text(nullptr)
+  {
+  }
+
+  void PoweredByJadeEngineScene::Start()
+  {
+    TextParams textParams;
+    textParams.layer = kObjectLayer_ui;
+    textParams.font = nullptr;
+    textParams.fontName = kVeraFontBold;
+    textParams.fontSize = 32;
+    textParams.text = "Powered by Jade Engine";
+    textParams.color = kJadeGreenColor;
+    textParams.color.a = 0;
+    textParams.z = 0;
+
+    _text = GGame.Create<Text>(textParams);
+    _text->SetHorizontalAlign(kHorizontalAlignment_Center);
+    _text->SetVerticalAlign(kVerticalAlignment_Bottom);
+    _text->SetPosition(GGame.GetHalfWidth(), GGame.GetHeight() - 50);
+
+    TextSpriteParams textSpriteParams;
+    textSpriteParams.layer = kObjectLayer_ui;
+    textSpriteParams.textureName = kJadeEngineLogoTexture;
+    textSpriteParams.z = 0;
+    textSpriteParams.spriteSheet = false;
+    textSpriteParams.spriteSheetName = "";
+    textSpriteParams.fontName = kVeraFont;
+    textSpriteParams.fontSize = 16;
+    textSpriteParams.text = "JadeEngine";
+
+    _logo = GGame.Create<TextSprite>(textSpriteParams);
+    _logo->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
+  }
+
+  void PoweredByJadeEngineScene::Update()
+  {
+    auto color = _text->GetColor();
+    if (color.a < 255)
+    {
+      color.a = static_cast<uint8_t>(Clamp(color.a + (255.0f / kAppearDuration) * GTime.deltaTime, 0.0f, 255.0f));
+      _text->SetColor(color);
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{"frames": [
+
+{
+	"filename": "blue_boxCheckmark.png",
+	"frame": {"x":38,"y":10,"w":38,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":36},
+	"sourceSize": {"w":38,"h":36}
+},
+{
+	"filename": "blue_button06.png",
+	"frame": {"x":49,"y":55,"w":49,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":49},
+	"sourceSize": {"w":49,"h":49}
+},
+{
+	"filename": "blue_button09.png",
+	"frame": {"x":196,"y":55,"w":49,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":49},
+	"sourceSize": {"w":49,"h":49}
+},
+{
+	"filename": "blue_button10.png",
+	"frame": {"x":140,"y":10,"w":49,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":45},
+	"sourceSize": {"w":49,"h":45}
+},
+{
+	"filename": "blue_panel.png",
+	"frame": {"x":0,"y":104,"w":100,"h":100},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
+	"sourceSize": {"w":100,"h":100}
+},
+{
+	"filename": "dropdown_button.png",
+	"frame": {"x":76,"y":10,"w":36,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":36,"h":36},
+	"sourceSize": {"w":36,"h":36}
+},
+{
+	"filename": "green_button09.png",
+	"frame": {"x":98,"y":55,"w":49,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":49},
+	"sourceSize": {"w":49,"h":49}
+},
+{
+	"filename": "green_button10.png",
+	"frame": {"x":0,"y":55,"w":49,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":45},
+	"sourceSize": {"w":49,"h":45}
+},
+{
+	"filename": "grey_arrowDownGrey.png",
+	"frame": {"x":190,"y":0,"w":15,"h":10},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":10},
+	"sourceSize": {"w":15,"h":10}
+},
+{
+	"filename": "grey_arrowUpGrey.png",
+	"frame": {"x":213,"y":0,"w":15,"h":10},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":10},
+	"sourceSize": {"w":15,"h":10}
+},
+{
+	"filename": "grey_box.png",
+	"frame": {"x":0,"y":10,"w":38,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":36},
+	"sourceSize": {"w":38,"h":36}
+},
+{
+	"filename": "grey_button10.png",
+	"frame": {"x":147,"y":55,"w":49,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":49},
+	"sourceSize": {"w":49,"h":49}
+},
+{
+	"filename": "grey_button11.png",
+	"frame": {"x":189,"y":10,"w":49,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":45},
+	"sourceSize": {"w":49,"h":45}
+},
+{
+	"filename": "grey_panel.png",
+	"frame": {"x":100,"y":104,"w":100,"h":100},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
+	"sourceSize": {"w":100,"h":100}
+},
+{
+	"filename": "grey_sliderDown.png",
+	"frame": {"x":112,"y":10,"w":28,"h":42},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":42},
+	"sourceSize": {"w":28,"h":42}
+},
+{
+	"filename": "grey_sliderEnd.png",
+	"frame": {"x":205,"y":0,"w":8,"h":10},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":10},
+	"sourceSize": {"w":8,"h":10}
+},
+{
+	"filename": "grey_sliderHorizontal.png",
+	"frame": {"x":0,"y":0,"w":190,"h":4},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":190,"h":4},
+	"sourceSize": {"w":190,"h":4}
+},
+{
+	"filename": "grey_sliderVertical.png",
+	"frame": {"x":200,"y":104,"w":4,"h":100},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":100},
+	"sourceSize": {"w":4,"h":100}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "engineUI.png",
+	"format": "RGBA8888",
+	"size": {"w":245,"h":204},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:db2688746c3930bf37bf64a1cea2e147:1a33d5b1135d5461d67ad5970d7f9f91:b7b2b8d77d6e06e5da5edbec08339ec2$"
+}
+}

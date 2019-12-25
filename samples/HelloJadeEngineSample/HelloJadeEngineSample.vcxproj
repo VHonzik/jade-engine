@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{B1494A61-2C93-419A-BCD4-E76C30E0EEA5}</ProjectGuid>
+    <RootNamespace>HelloJadeEngineSample</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\JadeEngineDebug.props" />
+    <Import Project="..\JadeEngineLocationSamples.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\JadeEngineRelease.props" />
+    <Import Project="..\JadeEngineLocationSamples.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\AlignedGroup.cpp" />
+    <ClCompile Include="..\..\source\Audio.cpp" />
+    <ClCompile Include="..\..\source\BoxSprite.cpp" />
+    <ClCompile Include="..\..\source\Button.cpp" />
+    <ClCompile Include="..\..\source\Camera.cpp" />
+    <ClCompile Include="..\..\source\Checkbox.cpp" />
+    <ClCompile Include="..\..\source\Dropdown.cpp" />
+    <ClCompile Include="..\..\source\EngineTime.cpp" />
+    <ClCompile Include="..\..\source\FTC.cpp" />
+    <ClCompile Include="..\..\source\Game.cpp" />
+    <ClCompile Include="..\..\source\Grid.cpp" />
+    <ClCompile Include="..\..\source\ICompositeObject.cpp" />
+    <ClCompile Include="..\..\source\Input.cpp" />
+    <ClCompile Include="..\..\source\ITextObject.cpp" />
+    <ClCompile Include="..\..\source\LineBox.cpp" />
+    <ClCompile Include="..\..\source\LineGrid.cpp" />
+    <ClCompile Include="..\..\source\LineStrip.cpp" />
+    <ClCompile Include="..\..\source\MainMenuScene.cpp" />
+    <ClCompile Include="..\..\source\OptionsMenuScene.cpp" />
+    <ClCompile Include="..\..\source\PoweredByJadeEngineScene.cpp" />
+    <ClCompile Include="..\..\source\ProgressBar.cpp" />
+    <ClCompile Include="..\..\source\Renderable.cpp" />
+    <ClCompile Include="..\..\source\Settings.cpp" />
+    <ClCompile Include="..\..\source\Slider.cpp" />
+    <ClCompile Include="..\..\source\Sprite.cpp" />
+    <ClCompile Include="..\..\source\Text.cpp" />
+    <ClCompile Include="..\..\source\TextBox.cpp" />
+    <ClCompile Include="..\..\source\TextSprite.cpp" />
+    <ClCompile Include="..\..\source\Tooltip.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Aligment.h" />
+    <ClInclude Include="..\..\include\AlignedGrid.h" />
+    <ClInclude Include="..\..\include\AlignedGroup.h" />
+    <ClInclude Include="..\..\include\Audio.h" />
+    <ClInclude Include="..\..\include\BoxSprite.h" />
+    <ClInclude Include="..\..\include\Button.h" />
+    <ClInclude Include="..\..\include\Camera.h" />
+    <ClInclude Include="..\..\include\Checkbox.h" />
+    <ClInclude Include="..\..\include\DisplayModeInfo.h" />
+    <ClInclude Include="..\..\include\Dropdown.h" />
+    <ClInclude Include="..\..\include\EngineConstants.h" />
+    <ClInclude Include="..\..\include\EngineDataTypes.h" />
+    <ClInclude Include="..\..\include\EngineSettings.h" />
+    <ClInclude Include="..\..\include\EngineStyles.h" />
+    <ClInclude Include="..\..\include\EngineTemplateParams.h" />
+    <ClInclude Include="..\..\include\EngineTime.h" />
+    <ClInclude Include="..\..\include\FTC.h" />
+    <ClInclude Include="..\..\include\Game.h" />
+    <ClInclude Include="..\..\include\ICompositeObject.h" />
+    <ClInclude Include="..\..\include\Input.h" />
+    <ClInclude Include="..\..\include\IScene.h" />
+    <ClInclude Include="..\..\include\ITextObject.h" />
+    <ClInclude Include="..\..\include\LineBox.h" />
+    <ClInclude Include="..\..\include\LineGrid.h" />
+    <ClInclude Include="..\..\include\LineStrip.h" />
+    <ClInclude Include="..\..\include\MainMenuScene.h" />
+    <ClInclude Include="..\..\include\ObjectLayer.h" />
+    <ClInclude Include="..\..\include\OptionsMenuScene.h" />
+    <ClInclude Include="..\..\include\PoweredByJadeEngineScene.h" />
+    <ClInclude Include="..\..\include\ProgressBar.h" />
+    <ClInclude Include="..\..\include\Renderable.h" />
+    <ClInclude Include="..\..\include\Settings.h" />
+    <ClInclude Include="..\..\include\SettingsFile.h" />
+    <ClInclude Include="..\..\include\Slider.h" />
+    <ClInclude Include="..\..\include\Sprite.h" />
+    <ClInclude Include="..\..\include\Style.h" />
+    <ClInclude Include="..\..\include\Text.h" />
+    <ClInclude Include="..\..\include\TextBox.h" />
+    <ClInclude Include="..\..\include\TextSprite.h" />
+    <ClInclude Include="..\..\include\Texture.h" />
+    <ClInclude Include="..\..\include\Tooltip.h" />
+    <ClInclude Include="..\..\include\Utils.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="GameStyles.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
