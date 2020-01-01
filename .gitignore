@@ -15,6 +15,7 @@
 *.so
 *.dylib
 *.dll
+!**/lib/x64/*.dll
 
 # Fortran module files
 *.mod
@@ -25,6 +26,7 @@
 *.la
 *.a
 *.lib
+!**/lib/x64/*.lib
 
 # Executables
 *.exe
@@ -37,6 +39,7 @@
 [Rr]elease/
 [Rr]eleases/
 x64/
+!**/lib/x64/
 x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
