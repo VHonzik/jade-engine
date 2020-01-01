@@ -49,6 +49,8 @@ namespace JadeEngine
     int32_t     defaultKey;
   };
 
+
+
   struct Style
   {
     uint32_t nativeResolutionWidth;

@@ -38,4 +38,6 @@ namespace JadeEngine
 
   const char kJadeEngineLogoTexture[] = "jadeenginelogo";
   const char kJadeEngineUISpritesheet[] = "engineUI";
+
+  const int32_t kDefaultMaxResolutionFraction = 8;
 }

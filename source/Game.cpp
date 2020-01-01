@@ -49,7 +49,7 @@ namespace JadeEngine
   {
   }
 
-  bool Game::Initialize(const std::vector<std::reference_wrapper<const Style>>& styles)
+  bool Game::Initialize(const GameInitParams& initParams)
   {
     InitializeSettings(styles);
 

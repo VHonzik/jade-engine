@@ -19,31 +19,101 @@
 
 namespace JadeEngine
 {
-  class IScene;
-  class Text;
-  class FTC;
-  class Button;
-
-  struct Style;
+  class   Button;
+  class   IScene;
+  struct  GameInitParams;
+  class   FTC;
+  class   Text;
 
   class Game
   {
   public:
+    /**
+    Default ctor for Game class.
+    @warning GGame global static variable was already constructed for you, hence you shouldn't construct new instances of this class.
+    */
     Game();
-    bool Initialize(const std::vector<std::reference_wrapper<const Style>>& styles);
+
+    /**
+    Initialize a new game.
+
+    @warning Should be a first operation on GGame in the program life cycle.
+    @return Whether the initialization was successful. Reasons for failing are generally non-recoverable internal SDL2 libraries failing. Debugging recommended.
+    @see GameInitParams
+    @mainpage
+
+    @code
+    #include "Game.h"
+    #include "GameInitParams.h"
+
+    // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
+    auto& game = GGame;
+    if (game.Initialize(kGameInitParams))
+    {
+      // Add scenes, play one, Start(), etc.
+    }
+    game.CleanUp();
+    @endcode
+    */
+    bool Initialize(const GameInitParams& initParams);
+
+    /**
+    Destroy all loaded assets, close any outstanding handles, "quit" internal SDL2 systems.
+
+    Should be last operation on GGame before exiting the program.
+
+    @code
+    #include "Game.h"
+    #include "GameInitParams.h"
+
+    int32_t main(int32_t argc, char* argv[])
+    {
+      auto& game = GGame;
+
+      // Initialize the game and start it, see Game::Initialize
+
+      game.CleanUp();
+      return 0;
+    }
+    @endcode
+    */
     void CleanUp();
+
+    /*
+      Enter a blocking game-loop and start the game.
+
+      In order to exit the loop call Game::End.
+      Will also start GTime ticking.
+
+      @see Game::End
+      @pre Game::Initialize was called and was successful.
+      @mainpage
+
+      @code
+      #include "Game.h"
+      #include "GameInitParams.h"
+
+      // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
+      auto& game = GGame;
+      if (game.Initialize(kGameInitParams))
+      {
+        // Add scenes, play one
+        game.Start();
+      }
+      game.CleanUp();
+      @endcode
+
+    */
     void Start();
 
-    bool LoadFont(const Style& style, const char* assetName, const char* fontFile);
-    TTF_Font* FindFont(const std::string& fontName, const uint32_t size) const;
-
-    bool LoadTexture(const char* assetName, const char* textureFile, bool hitsRequired);
-    std::shared_ptr<Texture> FindTexture(const std::string& textureName) const;
-    std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc);
-
-    bool LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY);
-
-    bool LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile);
+    /**
+      Copying not-allowed, use GGame global variable as the single Game instance.
+    */
+    Game(const Game&) = delete;
+    /**
+      Copying not-allowed, use GGame global variable as the single Game instance.
+    */
+    Game& operator=(const Game&) = delete;
 
     void AddScene(const std::string& name, const std::shared_ptr<IScene>& scene);
     void PlayScene(std::shared_ptr<IScene>& scene);
@@ -144,8 +214,48 @@ namespace JadeEngine
 
     uint32_t GetNativeTextureFormats() const { return _nativeTextureFormats; };
 
+    /**
+    Find underlying SDL2 TTF font instance given a font name and a size.
+    @param fontName The font identification string as defined in GameInitParamsFontEntry when initializing the game.
+      For fonts included in Jade Engine see EngineDefaultInitParams.h : kDefaultFonts.
+    @param size The font size as listed in GameInitParams::fontSizes when initializing the game.
+      For font sizes for fonts included in Jade Engine see EngineDefaultInitParams.h : kDefaultFontSizes.
+    @returns Found underlying SDL2 TTF_Font opaque pointer or nullptr if not found.
+    @pre GGame was Initialize() with the wanted font or in is part of default assets.
+    @see GameInitParamsFontEntry, GameInitParams, Text
+    @warning Only useful when creating a complex custom text-based game objects and should be seldom used. For usage see existing text objects such as Text.
+    */
+    TTF_Font* FindFont(const std::string& fontName, const uint32_t size) const;
+
+    /**
+    Find Texture instance given a texture name.
+    @param textureName The texture identification string as defined in GameInitParamsTextureEntry when initializing the game.
+    @returns Found Texture instance or nullptr if not found.
+    @pre GGame was Initialize() with the wanted texture.
+    @see GameInitParamsFontEntry, GameInitParams, Sprite
+    @warning Only useful when creating a complex custom texture-based game objects and should be seldom used. For usage see Sprite.
+    */
+    std::shared_ptr<Texture> FindTexture(const std::string& textureName) const;
+
+    /**
+    Create a new deep copy of Texture. Note that it is not possible to look-up this new texture later hence the return value should be captured.
+
+    Used for tinting and setting transparency of sprites as an unique instance is necessary otherwise such operations would change all sprites using this texture.
+    @param textureDesc Existing texture that can be obtained with Game::FindTexture.
+    @returns A new texture, deep copy of the passed texture.
+    @see FindTexture
+    @warning Potentially expensive operation including render targets.
+    @warning Instead of working with textures it is recommend to use existing Sprite-based classes. Should be seldom used.
+    */
+    std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc);
+
   private:
-    bool LoadAssets(const std::vector<std::reference_wrapper<const Style>>& styles);
+    bool LoadAssets(const GameInitParams& initParams);
+    bool LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY);
+    bool LoadFont(const Style& style, const char* assetName, const char* fontFile);
+    bool LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile);
+    bool LoadTexture(const char* assetName, const char* textureFile, bool hitsRequired);
+
     void InitializeSettings(const std::vector<std::reference_wrapper<const Style>>& styles);
 
     void UpdateKeybindings();
