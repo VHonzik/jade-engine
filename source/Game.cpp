@@ -6,10 +6,11 @@
 #include "Button.h"
 #include "Camera.h"
 #include "Dropdown.h"
+#include "EngineDefaultInitParams.h"
 #include "EngineSettings.h"
-#include "EngineStyles.h"
 #include "EngineTime.h"
 #include "FTC.h"
+#include "GameInitParams.h"
 #include "IScene.h"
 #include "Input.h"
 #include "Settings.h"
@@ -51,26 +52,25 @@ namespace JadeEngine
 
   bool Game::Initialize(const GameInitParams& initParams)
   {
-    InitializeSettings(styles);
+    InitializeSettings(initParams);
 
-    const auto& lastStyle = styles[styles.size() - 1].get();
-    _renderResolutionWidth  = lastStyle.nativeResolutionWidth;
-    _renderResolutionHeight = lastStyle.nativeResolutionHeight;
+    _renderResolutionWidth  = initParams.renderingResolutionWidth;
+    _renderResolutionHeight = initParams.renderingResolutionHeight;
     _scaledBufferRect = { 0, 0, _renderResolutionWidth, _renderResolutionHeight };
     _windowBufferRect = { 0, 0, _renderResolutionWidth, _renderResolutionHeight };
 
-    _majorVersion = lastStyle.majorVersion;
-    _minorVersion = lastStyle.minorVersion;
-    _hashVersion = lastStyle.hashVersion;
-    _author = lastStyle.author;
-    _copyrightYear = lastStyle.copyrightYear;
+    _majorVersion = initParams.majorVersion;
+    _minorVersion = initParams.minorVersion;
+    _hashVersion = initParams.hashVersion;
+    _author = initParams.author;
+    _copyrightYear = initParams.copyrightYear;
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
     {
       return false;
     }
 
-    _window = SDL_CreateWindow(lastStyle.windowName.c_str(), 50, 50, _windowBufferRect.w, _windowBufferRect.h, SDL_WINDOW_SHOWN);
+    _window = SDL_CreateWindow(initParams.windowName.c_str(), 50, 50, _windowBufferRect.w, _windowBufferRect.h, SDL_WINDOW_SHOWN);
 
     if (_window == nullptr)
     {
@@ -101,7 +101,7 @@ namespace JadeEngine
       return false;
     }
 
-    CollectDisplayModes(lastStyle);
+    CollectDisplayModes();
 
     if (TTF_Init() == -1)
     {
@@ -134,7 +134,7 @@ namespace JadeEngine
       _textures[kDefaultTextureName] = std::make_shared<Texture>(texture);
     }
 
-    if (!GSettings.Init(lastStyle.appName))
+    if (!GSettings.Init(initParams.appName))
     {
       return false;
     }
@@ -149,58 +149,75 @@ namespace JadeEngine
       return false;
     }
 
-    LoadAssets(styles);
+    LoadAssets(initParams);
 
     _persistentScene = std::make_shared<IScene>();
     _currentScene = _persistentScene;
 
-    _fpsText = Create<FTC>(lastStyle.fpsStyle);
+    _fpsText = Create<FTC>(kDefaultFPSFTCParams);
     _fpsText->SetPositon(5, 5);
     _fpsText->SetIntValue(0, 0);
 
-    _clearColor = lastStyle.backgroundColor;
+    _clearColor = initParams.backgroundColor;
 
     return true;
   }
 
-  bool Game::LoadAssets(const std::vector<std::reference_wrapper<const Style>>& styles)
+  bool Game::LoadAssets(const GameInitParams& initParams)
   {
     bool result = true;
-    for (const auto& styleReference : styles)
+
+    for (const auto& texture : initParams.textures)
     {
-      const auto& style = styleReference.get();
-      for (const auto& texture : style.textures)
-      {
-        result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap);
-      }
+      result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap);
+    }
+    for (const auto& texture : kDefaultTextures)
+    {
+      result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap);
+    }
 
-      for (const auto& font : style.fonts)
-      {
-        result &= LoadFont(style, font.assetName.c_str(), font.fileLocation.c_str());
-      }
+    for (const auto& font : initParams.fonts)
+    {
+      result &= LoadFont(initParams.fontSizes, font.assetName.c_str(), font.fileLocation.c_str());
+    }
+    for (const auto& font : kDefaultFonts)
+    {
+      result &= LoadFont(kDefaultFontSizes, font.assetName.c_str(), font.fileLocation.c_str());
+    }
 
-      for (const auto& sound : style.sounds)
-      {
-        result &= GAudio.LoadSound(sound.assetName.c_str(), sound.fileLocation.c_str());
-      }
+    for (const auto& sound : initParams.sounds)
+    {
+      result &= GAudio.LoadSound(sound.assetName.c_str(), sound.fileLocation.c_str());
+    }
+    for (const auto& sound : kDefaultSounds)
+    {
+      result &= GAudio.LoadSound(sound.assetName.c_str(), sound.fileLocation.c_str());
+    }
 
-      for (const auto& cursor : style.cursors)
-      {
-        result &= LoadCursor(cursor.assetName.c_str(), cursor.fileLocation.c_str(), cursor.centerX, cursor.centerY);
-      }
+    for (const auto& cursor : initParams.cursors)
+    {
+      result &= LoadCursor(cursor.assetName.c_str(), cursor.fileLocation.c_str(), cursor.centerX, cursor.centerY);
+    }
+    for (const auto& cursor : kDefaultCursors)
+    {
+      result &= LoadCursor(cursor.assetName.c_str(), cursor.fileLocation.c_str(), cursor.centerX, cursor.centerY);
+    }
 
-      for (const auto& spritesheet : style.spritesheets)
-      {
-        result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str());
-      }
+    for (const auto& spritesheet : initParams.spritesheets)
+    {
+      result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str());
+    }
+    for (const auto& spritesheet : kDefaultSpritesheets)
+    {
+      result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str());
     }
 
     return result;
   }
 
-  bool Game::LoadFont(const Style& style, const char* assetName, const char* fontFile)
+  bool Game::LoadFont(const std::vector<uint32_t>& sizes, const char* assetName, const char* fontFile)
   {
-    for (const auto size : style.fontSizes)
+    for (const auto size : sizes)
     {
       const auto key = assetName + std::to_string(size);
       const auto ttfFont = TTF_OpenFont(fontFile, size);
@@ -488,9 +505,9 @@ namespace JadeEngine
     renderables.erase(renderablesToRemove, std::end(renderables));
   }
 
-  void Game::AddScene(const std::string& name, const std::shared_ptr<IScene>& scene)
+  void Game::AddScene(const int32_t id, const std::shared_ptr<IScene>& scene)
   {
-    auto& sceneResult = _scenes[name];
+    auto& sceneResult = _scenes[id];
     sceneResult = scene;
   }
 
@@ -504,12 +521,12 @@ namespace JadeEngine
     }
   }
 
-  void Game::PlayScene(const std::string& name)
+  void Game::PlayScene(const int32_t id)
   {
     _possibleSprites.clear();
     _hoveredSprite = nullptr;
 
-    auto found = _scenes.find(name);
+    auto found = _scenes.find(id);
     if (found != _scenes.end())
     {
       PlayScene(found->second);
@@ -751,7 +768,7 @@ namespace JadeEngine
     return uniform_dist(_re);
   }
 
-  float Game::RandomNumber()
+  float Game::RandomNumber01()
   {
     std::uniform_real_distribution<float> uniform_dist(0.0f, 1.0f);
     return uniform_dist(_re);
@@ -771,7 +788,7 @@ namespace JadeEngine
     }
   }
 
-  void Game::CollectDisplayModes(const Style& style)
+  void Game::CollectDisplayModes()
   {
     std::unordered_map<DisplayModeInfoKey, DisplayModeInfo> displayModes;
 
@@ -815,8 +832,8 @@ namespace JadeEngine
       }
     }
 
-    int32_t stepWidth = _renderResolutionWidth / style.maxResolutionFraction;
-    int32_t stepHeight = _renderResolutionHeight / style.maxResolutionFraction;
+    int32_t stepWidth = _renderResolutionWidth / kDefaultMaxResolutionFraction;
+    int32_t stepHeight = _renderResolutionHeight / kDefaultMaxResolutionFraction;
 
     int32_t lowestResolutionWidth = _renderResolutionWidth;
     int32_t lowestResolutionHeight = _renderResolutionHeight;
@@ -987,25 +1004,32 @@ namespace JadeEngine
     }
   }
 
-  void Game::InitializeSettings(const std::vector<std::reference_wrapper<const Style>>& styles)
+  void Game::InitializeSettings(const GameInitParams& initParams)
   {
     GSettings.RegisterAll(std::begin(kEngineSettings), std::end(kEngineSettings));
 
     std::vector<SettingsEntry> keybindingsSettings;
-    for (const auto& styleReference : styles)
+
+    for (const auto& keybinding : initParams.keybindings)
     {
-      const auto& style = styleReference.get();
+      keybindingsSettings.emplace_back(SettingsEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsDescription));
 
-      for (const auto& keybinding : style.keybindings)
-      {
-        keybindingsSettings.emplace_back(SettingsEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsDescription));
+      KeyBindingDescription keybindDescription;
+      keybindDescription.uiDescription = keybinding.uiDescription;
+      keybindDescription.key = keybinding.defaultKey;
 
-        KeyBindingDescription keybindDescription;
-        keybindDescription.uiDescription = keybinding.uiDescription;
-        keybindDescription.key = keybinding.defaultKey;
+      _keybindings[keybinding.settingsId] = keybindDescription;
+    }
 
-        _keybindings[keybinding.settingsId] = keybindDescription;
-      }
+    for (const auto& keybinding : kDefaultKeybindings)
+    {
+      keybindingsSettings.emplace_back(SettingsEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsDescription));
+
+      KeyBindingDescription keybindDescription;
+      keybindDescription.uiDescription = keybinding.uiDescription;
+      keybindDescription.key = keybinding.defaultKey;
+
+      _keybindings[keybinding.settingsId] = keybindDescription;
     }
 
     GSettings.RegisterAll(std::begin(keybindingsSettings), std::end(keybindingsSettings));

@@ -43,7 +43,7 @@ namespace JadeEngine
 
     @see Sprite::HitTest
     */
-    bool        generateHitMap;
+    bool generateHitMap;
   };
 
   /**
@@ -204,48 +204,48 @@ namespace JadeEngine
 
   Template:
   @code
-const GameInitParams kGameInitParams = {
-  // uint32_t renderingResolutionWidth;
-  1280,
-  uint32_t renderingResolutionHeight;
-  720,
-  //std::string windowName;
-  "JadeEngineGame v0.1",
-  //std::string appName;
-  "JadeEngineGame",
-  //std::vector<uint32_t> fontSizes;
-  {24, 32},
-  //SDL_Color backgroundColor;
-  { 12, 16, 24, 32 },
-  //std::vector<GameInitParamsTextureEntry> textures;
-  {
-    { kSomeTextureID,     "assets/someTexture.png", false},
-  },
-  //std::vector<GameInitParamsFontEntry> fonts;
-  {
-    { kSomeFontID,        "assets/someFont.ttf" },
-  },
-  //std::vector<GameInitParamsSoundEntry> sounds;
-  {
-    { kSomeSoundID,       "assets/someSound.wav"},
-  },
-  //std::vector<GameInitParamsCursorEntry> cursors;
-  {
-    { kSomeCursorID,      "assets/someCursor.png", 9, 9 },
-  },
-  //std::vector<GameInitParamsSpriteSheetEntry> spritesheets;
-  {
-    { kSomeSpritesheetID, "assets/someSpriteSheet.png", "assets/someSpriteSheet.json" },
-  },
-  //std::vector<GameInitParamsKeyBindingEntry> keybindings;
-  {
-    { "Keybinding 1", kCustomSettingsEnum_Keybinding1, "Keybinding for X. Uses internal engine key identifier, see https://wiki.libsdl.org/SDL_Keycode.", SDLK_v},
-  },
-  //std::string author;
-  "Vaclav Honzik",
-  //int32_t copyrightYear;
-  2019,
-};
+  const GameInitParams kGameInitParams = {
+    // uint32_t renderingResolutionWidth;
+    1280,
+    //uint32_t renderingResolutionHeight;
+    720,
+    //std::string windowName;
+    "JadeEngineGame v0.1",
+    //std::string appName;
+    "JadeEngineGame",
+    //std::vector<uint32_t> fontSizes;
+    {24, 32},
+    //SDL_Color backgroundColor;
+    { 12, 16, 24, 32 },
+    //std::vector<GameInitParamsTextureEntry> textures;
+    {
+      { kSomeTextureID,     "assets/someTexture.png", false},
+    },
+    //std::vector<GameInitParamsFontEntry> fonts;
+    {
+      { kSomeFontID,        "assets/someFont.ttf" },
+    },
+    //std::vector<GameInitParamsSoundEntry> sounds;
+    {
+      { kSomeSoundID,       "assets/someSound.wav"},
+    },
+    //std::vector<GameInitParamsCursorEntry> cursors;
+    {
+      { kSomeCursorID,      "assets/someCursor.png", 9, 9 },
+    },
+    //std::vector<GameInitParamsSpriteSheetEntry> spritesheets;
+    {
+      { kSomeSpritesheetID, "assets/someSpriteSheet.png", "assets/someSpriteSheet.json" },
+    },
+    //std::vector<GameInitParamsKeyBindingEntry> keybindings;
+    {
+      { "Keybinding 1", kCustomSettingsEnum_Keybinding1, "Keybinding for X. Uses internal engine key identifier, see https://wiki.libsdl.org/SDL_Keycode.", SDLK_v},
+    },
+    //std::string author;
+    "Vaclav Honzik",
+    //int32_t copyrightYear;
+    2019,
+  };
   @endcode
   */
   struct GameInitParams
@@ -368,5 +368,36 @@ const GameInitParams kGameInitParams = {
     Year for copyright text displayed in MainMenuScene.
     */
     int32_t copyrightYear;
+
+    /**
+    Major version of the game.
+
+    Used together with minor version in settings file to determine whether the settings is compatible.
+    Both majorVersion and minorVersion stored in the settings file have to be equal to those passed in GameInitParams otherwise the settings file we be recreated.
+    Displayed in the in MainMenuScene.
+
+    @see minorVersion
+    */
+    int32_t majorVersion;
+
+    /**
+    Minor version of the game.
+
+    Used together with major version in settings file to determine whether the settings is compatible.
+    Both majorVersion and minorVersion stored in the settings file have to be equal to those passed in GameInitParams otherwise the settings file we be recreated.
+    Displayed in the in MainMenuScene.
+
+    @see majorVersion
+    */
+    int32_t minorVersion;
+
+    /**
+    Hash version of the game.
+
+    Displayed in the in MainMenuScene.
+
+    @see majorVersion, minorVersion
+    */
+    std::string hashVersion;
   };
 }

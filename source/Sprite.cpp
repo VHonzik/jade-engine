@@ -1,13 +1,12 @@
 #include "Sprite.h"
 
-#include "EngineStyles.h"
 #include "Camera.h"
+#include "EngineConstants.h"
 #include "Game.h"
 #include "Texture.h"
 #include "Utils.h"
 
 #include <cassert>
-
 #include <SDL.h>
 
 namespace JadeEngine

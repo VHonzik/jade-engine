@@ -121,6 +121,7 @@
     <ClInclude Include="..\..\include\EngineTime.h" />
     <ClInclude Include="..\..\include\FTC.h" />
     <ClInclude Include="..\..\include\Game.h" />
+    <ClInclude Include="..\..\include\GameInitParams.h" />
     <ClInclude Include="..\..\include\ICompositeObject.h" />
     <ClInclude Include="..\..\include\Input.h" />
     <ClInclude Include="..\..\include\IScene.h" />
@@ -145,8 +146,8 @@
     <ClInclude Include="..\..\include\Texture.h" />
     <ClInclude Include="..\..\include\Tooltip.h" />
     <ClInclude Include="..\..\include\Utils.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="GameStyles.h" />
+    <ClInclude Include="SampleGameScene.h" />
+    <ClInclude Include="SampleInitParams.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

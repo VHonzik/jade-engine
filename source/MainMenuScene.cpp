@@ -4,8 +4,9 @@
 #include "Audio.h"
 #include "BoxSprite.h"
 #include "Button.h"
+#include "EngineConstants.h"
 #include "EngineSettings.h"
-#include "EngineStyles.h"
+#include "EngineTemplateParams.h"
 #include "Game.h"
 #include "Settings.h"
 
@@ -82,12 +83,12 @@ namespace JadeEngine
 
     if (_optionsButton->Released())
     {
-      GGame.PlayScene(kOptionsMenuScene);
+      GGame.PlayScene(kScene_OptionsMenu);
     }
 
     if (_playButton->Released())
     {
-      GGame.PlayScene(_gameSceneName);
+      GGame.PlayScene(_playSceneId);
     }
   }
 }

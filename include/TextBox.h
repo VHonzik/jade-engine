@@ -1,7 +1,7 @@
 #pragma once
 
-#include "EngineStyles.h"
 #include "ITextObject.h"
+#include "ObjectLayer.h"
 
 #include <SDL_ttf.h>
 

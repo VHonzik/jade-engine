@@ -14,7 +14,7 @@ namespace JadeEngine
     void Start() override;
     void Update() override;
 
-    void SetGameScene(const std::string& gameSceneName) { _gameSceneName = gameSceneName; }
+    void SetGameScene(const int32_t playSceneId) { _playSceneId = playSceneId; }
   private:
     void ApplyDisplayModeFromSettings();
 
@@ -22,6 +22,6 @@ namespace JadeEngine
     Button* _optionsButton;
     Button* _quitButton;
 
-    std::string _gameSceneName;
+    int32_t _playSceneId;
   };
 }

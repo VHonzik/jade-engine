@@ -7,11 +7,15 @@ namespace JadeEngine
 {
   const char kBuildSeperator = '.';
 
-  const char kPoweredByJadeEngineScene[] = "PoweredByJadeEngineScene";
-  const char kMainMenuScene[] = "MainMenuScene";
-  const char kOptionsMenuScene[] = "OptionsMenuScene";
-
   const char kDefaultTextureName[] = "default";
+
+  enum Scene
+  {
+    kScene_PoweredByJadeEngine,
+    kScene_MainMenu,
+    kScene_OptionsMenu,
+    kScene_JadeEngineScenesEnd
+  };
 
   const SDL_Color k50GreyColor = { 153, 153, 153, 255 };
   const SDL_Color kAzureColor = { 135, 206, 250, 255 };

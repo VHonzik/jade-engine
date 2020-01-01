@@ -1,14 +1,14 @@
 #include "OptionsMenuScene.h"
 
-#include "Game.h"
-#include "Input.h"
-#include "Slider.h"
 #include "Audio.h"
 #include "Button.h"
-#include "Settings.h"
-#include "EngineSettings.h"
 #include "Dropdown.h"
-#include "EngineStyles.h"
+#include "EngineTemplateParams.h"
+#include "EngineSettings.h"
+#include "Game.h"
+#include "Input.h"
+#include "Settings.h"
+#include "Slider.h"
 
 #include <sstream>
 
@@ -200,7 +200,7 @@ namespace JadeEngine
     {
       GSettings.Set(kSettingsIDs_musicVolume, _musicVolume->GetValue());
       GSettings.Set(kSettingsIDs_soundVolume, _soundVolume->GetValue());
-      GGame.PlayScene(kMainMenuScene);
+      GGame.PlayScene(kScene_MainMenu);
     }
 
     for (int32_t i = 0; i < _sectionTitles.size(); i++)
