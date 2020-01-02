@@ -40,7 +40,6 @@ namespace JadeEngine
     @warning Should be a first operation on GGame in the program life cycle.
     @return Whether the initialization was successful. Reasons for failing are generally non-recoverable internal SDL2 libraries failing. Debugging recommended.
     @see GameInitParams
-    @mainpage
 
     @code
     #include "Game.h"
@@ -87,7 +86,6 @@ namespace JadeEngine
 
       @see Game::End
       @pre Game::Initialize was called and was successful.
-      @mainpage
 
       @code
       #include "Game.h"
