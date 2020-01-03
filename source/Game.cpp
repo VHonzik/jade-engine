@@ -25,6 +25,7 @@
 #include <sstream>
 #include <string>
 #include <unordered_map>
+#include <filesystem>
 
 namespace
 {
@@ -50,8 +51,10 @@ namespace JadeEngine
   {
   }
 
-  bool Game::Initialize(const GameInitParams& initParams)
+  bool Game::Initialize(const GameInitParams& initParams, char* argv[])
   {
+    _executablePath = std::filesystem::weakly_canonical(std::filesystem::path(argv[0])).parent_path();
+
     InitializeSettings(initParams);
 
     _renderResolutionWidth  = initParams.renderingResolutionWidth;
@@ -220,7 +223,7 @@ namespace JadeEngine
     for (const auto size : sizes)
     {
       const auto key = assetName + std::to_string(size);
-      const auto ttfFont = TTF_OpenFont(fontFile, size);
+      const auto ttfFont = TTF_OpenFont(AssetPathToAbsolute(fontFile).c_str(), size);
 
       if (ttfFont == nullptr)
       {
@@ -316,7 +319,7 @@ namespace JadeEngine
 
   bool Game::LoadTexture(const char* assetName, const char* textureFile, bool hitsRequired)
   {
-    auto imageSurface = IMG_Load(textureFile);
+    auto imageSurface = IMG_Load(AssetPathToAbsolute(textureFile).c_str());
 
     if (imageSurface == nullptr)
     {
@@ -350,8 +353,7 @@ namespace JadeEngine
   {
     std::shared_ptr<Texture> result = std::make_shared<Texture>(*textureDesc);
     result->isCopy = true;
-    result->texture = SDL_CreateTexture(_renderer, textureDesc->format, SDL_TEXTUREACCESS_TARGET,
-      textureDesc->width, textureDesc->height);
+    result->texture = SDL_CreateTexture(_renderer, textureDesc->format, SDL_TEXTUREACCESS_TARGET, textureDesc->width, textureDesc->height);
 
     SDL_BlendMode mode;
     SDL_GetTextureBlendMode(textureDesc->texture, &mode);
@@ -929,7 +931,7 @@ namespace JadeEngine
 
   bool Game::LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY)
   {
-    auto imageSurface = IMG_Load(textureFile);
+    auto imageSurface = IMG_Load(AssetPathToAbsolute(textureFile).c_str());
 
     if (imageSurface == nullptr)
     {
@@ -950,7 +952,7 @@ namespace JadeEngine
 
   bool Game::LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile)
   {
-    std::ifstream sheetF(sheetFile);
+    std::ifstream sheetF(AssetPathToAbsolute(sheetFile).c_str());
     if (sheetF.fail())
     {
       return false;
@@ -1069,5 +1071,11 @@ namespace JadeEngine
   void Game::SetAuthor(const std::string& author)
   {
     _author = author;
+  }
+
+  std::string Game::AssetPathToAbsolute(const char* assetName)
+  {
+    const auto fullPath = std::filesystem::canonical(_executablePath / assetName);
+    return fullPath.string();
   }
 }

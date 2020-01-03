@@ -10,6 +10,7 @@
 #include "Texture.h"
 
 #include <array>
+#include <filesystem>
 #include <memory>
 #include <random>
 #include <SDL.h>
@@ -37,6 +38,8 @@ namespace JadeEngine
     /**
     Initialize a new game.
 
+    @param initParams Parameters required to initialize the game.
+    @param argv Argument vector as passed to the main function.
     @warning Should be a first operation on GGame in the program life cycle.
     @return Whether the initialization was successful. Reasons for failing are generally non-recoverable internal SDL2 libraries failing. Debugging recommended.
     @see GameInitParams
@@ -45,16 +48,22 @@ namespace JadeEngine
     #include "Game.h"
     #include "GameInitParams.h"
 
-    // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
-    auto& game = GGame;
-    if (game.Initialize(kGameInitParams))
+    using namespace JadeEngine;
+
+    int32_t main(int32_t argc, char* argv[])
     {
-      // Add scenes, play one, Start(), etc.
+      // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
+      auto& game = GGame;
+      if (game.Initialize(kGameInitParams, argv))
+      {
+        // Add scenes, play one, Start(), etc.
+      }
+      game.CleanUp();
     }
-    game.CleanUp();
+
     @endcode
     */
-    bool Initialize(const GameInitParams& initParams);
+    bool Initialize(const GameInitParams& initParams, char* argv[]);
 
     /**
     Destroy all loaded assets, close any outstanding handles, "quit" internal SDL2 systems.
@@ -78,7 +87,7 @@ namespace JadeEngine
     */
     void CleanUp();
 
-    /*
+    /**
       Enter a blocking game-loop and start the game.
 
       In order to exit the loop call Game::End.
@@ -93,7 +102,7 @@ namespace JadeEngine
 
       // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
       auto& game = GGame;
-      if (game.Initialize(kGameInitParams))
+      if (game.Initialize(kGameInitParams, argv))
       {
         // Add scenes, play one
         game.Start();
@@ -131,7 +140,7 @@ namespace JadeEngine
 
       // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
       auto& game = GGame;
-      if (game.Initialize(kGameInitParams))
+      if (game.Initialize(kGameInitParams, argv))
       {
         game.AddScene(kScene_PoweredByJadeEngine, std::make_shared<PoweredByJadeEngineScene>());
         game.PlayScene(kScene_PoweredByJadeEngine);
@@ -159,7 +168,7 @@ namespace JadeEngine
 
       // Assuming we have filled GameInitParams variable kGameInitParams, see GameInitParams for a template
       auto& game = GGame;
-      if (game.Initialize(kGameInitParams))
+      if (game.Initialize(kGameInitParams, argv))
       {
         game.AddScene(kScene_PoweredByJadeEngine, std::make_shared<PoweredByJadeEngineScene>());
         game.PlayScene(kScene_PoweredByJadeEngine);
@@ -382,6 +391,7 @@ namespace JadeEngine
     void Update();
     void UpdateKeybindings();
     void UpdateTextObject(std::unique_ptr<ITextObject> & textObject);
+    std::string AssetPathToAbsolute(const char* assetName);
 
     SDL_Window* _window;
     SDL_Renderer* _renderer;
@@ -440,6 +450,8 @@ namespace JadeEngine
 
     std::string _author;
     int32_t     _copyrightYear;
+
+    std::filesystem::path _executablePath;
   };
 
   extern Game GGame;
