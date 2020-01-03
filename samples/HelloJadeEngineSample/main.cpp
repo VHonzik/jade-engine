@@ -12,7 +12,7 @@ using namespace HelloJadeEngine;
 int32_t main(int32_t argc, char* argv[])
 {
   auto& game = GGame;
-  if (game.Initialize(kSampleInitParams))
+  if (game.Initialize(kSampleInitParams, argv))
   {
     game.AddScene(kSampleScene_GameScene, std::make_shared<GameScene>());
     game.AddScene(kScene_PoweredByJadeEngine, std::make_shared<PoweredByJadeEngineScene>());
