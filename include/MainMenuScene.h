@@ -11,10 +11,11 @@ namespace JadeEngine
   class MainMenuScene : public IScene
   {
   public:
+    MainMenuScene();
     void Start() override;
     void Update() override;
 
-    void SetGameScene(const int32_t playSceneId) { _playSceneId = playSceneId; }
+    void SetPlayButtonScene(const int32_t playSceneId) { _playSceneId = playSceneId; }
   private:
     void ApplyDisplayModeFromSettings();
 

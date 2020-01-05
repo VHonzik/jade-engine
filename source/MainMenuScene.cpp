@@ -14,6 +14,14 @@
 
 namespace JadeEngine
 {
+  MainMenuScene::MainMenuScene()
+    : _playSceneId(kScene_JadeEngineScenesEnd) // Used to represent an invalid scene
+    , _playButton(nullptr)
+    , _optionsButton(nullptr)
+    , _quitButton(nullptr)
+  {
+  }
+
   void MainMenuScene::ApplyDisplayModeFromSettings()
   {
     auto width = GSettings.Get<int32_t>(kSettingsIDs_resolutionWidth);
@@ -86,7 +94,7 @@ namespace JadeEngine
       GGame.PlayScene(kScene_OptionsMenu);
     }
 
-    if (_playButton->Released())
+    if (_playSceneId != kScene_JadeEngineScenesEnd && _playButton->Released())
     {
       GGame.PlayScene(_playSceneId);
     }

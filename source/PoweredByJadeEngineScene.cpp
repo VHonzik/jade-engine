@@ -10,10 +10,18 @@
 namespace JadeEngine
 {
   const auto kAppearDuration = 1.5f;
+  const auto kStayDurection = 2.0f;
 
   PoweredByJadeEngineScene::PoweredByJadeEngineScene()
     : _text(nullptr)
+    , _nextSceneId(kScene_MainMenu)
+    , _nextSceneTimer(kAppearDuration + kStayDurection)
   {
+  }
+
+  void PoweredByJadeEngineScene::SetNextScene(const int32_t nextScene)
+  {
+    _nextSceneId = nextScene;
   }
 
   void PoweredByJadeEngineScene::Start()
@@ -54,6 +62,12 @@ namespace JadeEngine
     {
       color.a = static_cast<uint8_t>(Clamp(color.a + (255.0f / kAppearDuration) * GTime.deltaTime, 0.0f, 255.0f));
       _text->SetColor(color);
+    }
+
+    _nextSceneTimer -= GTime.deltaTime;
+    if (_nextSceneTimer < 0.0f)
+    {
+      GGame.PlayScene(_nextSceneId);
     }
   }
 }
