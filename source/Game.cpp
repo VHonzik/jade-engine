@@ -222,14 +222,20 @@ namespace JadeEngine
   {
     for (const auto size : sizes)
     {
-      const auto key = assetName + std::to_string(size);
-      const auto ttfFont = TTF_OpenFont(AssetPathToAbsolute(fontFile).c_str(), size);
+      const auto fullPath = AssetPathToAbsolute(fontFile);
+      if (fullPath.empty())
+      {
+        return false;
+      }
+
+      const auto ttfFont = TTF_OpenFont(fullPath.c_str(), size);
 
       if (ttfFont == nullptr)
       {
         return false;
       }
 
+      const auto key = assetName + std::to_string(size);
       _fonts[key] = { assetName, ttfFont, size };
     }
 
@@ -319,7 +325,13 @@ namespace JadeEngine
 
   bool Game::LoadTexture(const char* assetName, const char* textureFile, bool hitsRequired)
   {
-    auto imageSurface = IMG_Load(AssetPathToAbsolute(textureFile).c_str());
+    const auto fullPath = AssetPathToAbsolute(textureFile);
+    if (fullPath.empty())
+    {
+      return false;
+    }
+
+    auto imageSurface = IMG_Load(fullPath.c_str());
 
     if (imageSurface == nullptr)
     {
@@ -931,7 +943,13 @@ namespace JadeEngine
 
   bool Game::LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY)
   {
-    auto imageSurface = IMG_Load(AssetPathToAbsolute(textureFile).c_str());
+    const auto fullPath = AssetPathToAbsolute(textureFile);
+    if (fullPath.empty())
+    {
+      return false;
+    }
+
+    auto imageSurface = IMG_Load(fullPath.c_str());
 
     if (imageSurface == nullptr)
     {
@@ -952,7 +970,13 @@ namespace JadeEngine
 
   bool Game::LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile)
   {
-    std::ifstream sheetF(AssetPathToAbsolute(sheetFile).c_str());
+    const auto fullPath = AssetPathToAbsolute(sheetFile);
+    if (fullPath.empty())
+    {
+      return false;
+    }
+
+    std::ifstream sheetF(fullPath.c_str());
     if (sheetF.fail())
     {
       return false;
@@ -1075,7 +1099,15 @@ namespace JadeEngine
 
   std::string Game::AssetPathToAbsolute(const char* assetName)
   {
-    const auto fullPath = std::filesystem::canonical(_executablePath / assetName);
-    return fullPath.string();
+    auto fullPath = _executablePath / assetName;
+    if (std::filesystem::exists(fullPath))
+    {
+      fullPath = std::filesystem::canonical(_executablePath / assetName);
+      return fullPath.string();
+    }
+    else
+    {
+      return {};
+    }
   }
 }

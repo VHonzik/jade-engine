@@ -15,10 +15,11 @@
 namespace JadeEngine
 {
   MainMenuScene::MainMenuScene()
-    : _playSceneId(kScene_JadeEngineScenesEnd) // Used to represent an invalid scene
+    : _playSceneId(0)
     , _playButton(nullptr)
     , _optionsButton(nullptr)
     , _quitButton(nullptr)
+    , _playSceneSet(false)
   {
   }
 
@@ -94,9 +95,15 @@ namespace JadeEngine
       GGame.PlayScene(kScene_OptionsMenu);
     }
 
-    if (_playSceneId != kScene_JadeEngineScenesEnd && _playButton->Released())
+    if (_playSceneSet && _playButton->Released())
     {
       GGame.PlayScene(_playSceneId);
     }
+  }
+
+  void MainMenuScene::SetPlayButtonScene(const int32_t playSceneId)
+  {
+    _playSceneId = playSceneId;
+    _playSceneSet = true;
   }
 }

@@ -11,6 +11,13 @@
 
 namespace JadeEngine
 {
+  const std::string kScalingSDLHintNames[3] =
+  {
+    "nearest",
+    "linear",
+    "best",
+  };
+
   Sprite::Sprite(const SpriteParams& params)
     : _preloaded(false)
     , _shown(true)
@@ -20,6 +27,7 @@ namespace JadeEngine
     , _layer(params.layer)
     , _rotated(false)
     , _rotationAngle(0)
+    , _scaling(kSpriteScaling_anisotropic)
   {
     if (params.texture)
     {
@@ -211,5 +219,16 @@ namespace JadeEngine
   {
     _rotated = true;
     _rotationAngle = angle;
+  }
+
+  void Sprite::SetScaling(const SpriteScaling scaling)
+  {
+    if (_scaling != scaling)
+    {
+      _scaling = scaling;
+      SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, kScalingSDLHintNames[_scaling].c_str());
+      _textureDescription = GGame.CopyTexture(_textureDescription);
+      _texture = _textureDescription->texture;
+    }
   }
 }

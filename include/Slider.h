@@ -40,7 +40,7 @@ namespace JadeEngine
     void SetPosition(uint32_t x, uint32_t y);
     void SetCenterPosition(uint32_t x, uint32_t y);
 
-    void Show(bool shown) override;
+    void Show(const bool shown) override;
 
     int32_t GetX() const;
     int32_t GetY() const;

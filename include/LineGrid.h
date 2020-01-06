@@ -28,7 +28,7 @@ namespace JadeEngine
   public:
     LineGrid(const LineGridParams& params);
     virtual void Update() override;
-    virtual void Show(bool shown) override;
+    virtual void Show(const bool shown) override;
 
     void SetPosition(int32_t x, int32_t y);
     void SetCenterPosition(int32_t x, int32_t y);

@@ -11,6 +11,13 @@ namespace JadeEngine
   struct Texture;
   struct SpriteSheetDescription;
 
+  enum SpriteScaling
+  {
+    kSpriteScaling_neareast,
+    kSpriteScaling_linear,
+    kSpriteScaling_anisotropic
+  };
+
   struct SpriteParams
   {
     ObjectLayer               layer;
@@ -45,7 +52,7 @@ namespace JadeEngine
     void Preload(SDL_Renderer* renderer);
     void Render(SDL_Renderer* renderer);
 
-    void Show(bool shown);
+    void Show(const bool shown);
     bool IsShown() const { return _shown; }
 
     void SetPosition(uint32_t x, uint32_t y);
@@ -72,6 +79,7 @@ namespace JadeEngine
     const SDL_Rect& GetTransform() const { return _transform; }
     const std::string& GetTextureName() const;
     const std::shared_ptr<Texture>& GetTextureDescription() const { return _textureDescription; }
+    void SetScaling(const SpriteScaling scaling);
 
   protected:
     std::shared_ptr<Texture> _textureDescription;
@@ -95,5 +103,6 @@ namespace JadeEngine
     double _rotationAngle;
 
     ObjectLayer _layer;
+    SpriteScaling _scaling;
   };
 }

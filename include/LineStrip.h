@@ -27,7 +27,7 @@ namespace JadeEngine
 
     void SetPoints(const std::vector<SDL_Point>& points);
 
-    void Show(bool shown) { _shown = shown; }
+    void Show(const bool shown) { _shown = shown; }
     bool IsShown() const { return _shown; }
 
     int GetZ() const { return _z; }

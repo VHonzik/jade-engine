@@ -52,7 +52,7 @@ namespace JadeEngine
     ProgressBar(const ProgressBarParams& params);
 
     void Update() override;
-    void Show(bool shown) override;
+    void Show(const bool shown) override;
 
     void SetPosition(int32_t x, int32_t y);
     void SetCenterPosition(int32_t x, int32_t y);

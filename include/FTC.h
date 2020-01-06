@@ -26,7 +26,7 @@ namespace JadeEngine
     FTC(const FTCParams& params);
 
     void Update() override;
-    void Show(bool shown) override;
+    void Show(const bool shown) override;
     void SetHorizontalAlign(const HorizontalAlignment align) override;
     void SetVerticalAlign(const VerticalAlignment align) override;
 

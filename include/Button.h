@@ -44,7 +44,7 @@ namespace JadeEngine
     void Disable(bool disabled);
     bool Disabled() const { return _disabled; };
 
-    void Show(bool shown) override;
+    void Show(const bool shown) override;
 
     void Update() override;
 

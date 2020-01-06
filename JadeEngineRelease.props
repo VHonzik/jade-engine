@@ -17,6 +17,9 @@
       <AdditionalIncludeDirectories>$(JadeEngineDirectory)\include;$(JadeEngineDirectory)\thirdparty\SDL2-2.0.8\include;$(JadeEngineDirectory)\thirdparty\SDL2_ttf-2.0.14\include;$(JadeEngineDirectory)\thirdparty\SDL2_image-2.0.3\include;$(JadeEngineDirectory)\thirdparty\SDL2_mixer-2.0.4\include;$(JadeEngineDirectory)\thirdparty\nlohmann\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>powershell.exe $(JadeEngineDirectory)\scripts\CopyDependencies.ps1 -JadeEngineDirectory "$(JadeEngineDirectory)" -OutputFolder "$(SolutionDir)$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="JadeEngineDirectory">

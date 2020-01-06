@@ -15,7 +15,7 @@ namespace JadeEngine
     void Start() override;
     void Update() override;
 
-    void SetPlayButtonScene(const int32_t playSceneId) { _playSceneId = playSceneId; }
+    void SetPlayButtonScene(const int32_t playSceneId);
   private:
     void ApplyDisplayModeFromSettings();
 
@@ -24,5 +24,6 @@ namespace JadeEngine
     Button* _quitButton;
 
     int32_t _playSceneId;
+    bool    _playSceneSet;
   };
 }

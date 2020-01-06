@@ -21,7 +21,7 @@ namespace JadeEngine
     void Preload(SDL_Renderer* renderer);
     void Render(SDL_Renderer* renderer);
 
-    virtual void Show(bool shown) { _shown = shown; }
+    virtual void Show(const bool shown) { _shown = shown; }
     bool IsShown() const { return _shown; }
 
     virtual void SetHorizontalAlign(const HorizontalAlignment align) { _textHorizontalAlign = align; }

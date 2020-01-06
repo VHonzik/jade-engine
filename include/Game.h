@@ -59,6 +59,8 @@ namespace JadeEngine
         // Add scenes, play one, Start(), etc.
       }
       game.CleanUp();
+
+      return 0;
     }
 
     @endcode
@@ -91,7 +93,8 @@ namespace JadeEngine
       Enter a blocking game-loop and start the game.
 
       In order to exit the loop call Game::End.
-      Will also start GTime ticking.
+
+      It will also start GTime ticking.
 
       @see Game::End
       @pre Game::Initialize was called and was successful.
@@ -127,8 +130,7 @@ namespace JadeEngine
 
     Adding scene should generally be done after successful Initialize() and before Start() call.
 
-    @param id Identification of the scene that will serve as a key in the map of scenes. For built-in scene use Scene enum in EngineConstants.h.
-    For new scenes it is recommended to create new enum starting with kScene_JadeEngineScenesEnd to guarantee uniqueness.
+    @param id Identification of the scene that will serve as a key in the map of scenes. For built-in scene use Scene enum in EngineConstants.h. For new scenes it is recommended to create new enum starting with kScene_JadeEngineScenesEnd to guarantee uniqueness.
     @param scene Scene instance. Game class will make a copy of this shared_ptr so it's not necessary to hold onto it and can be constructed in place.
     @see Game::PlayScene, IScene
 
@@ -154,7 +156,9 @@ namespace JadeEngine
     Play a previously added scene, making it the current scene.
 
     Among other things, the current scene receives Update() callbacks and all game objects created during this scene are rendered.
+
     If the scene is being played for the first time its Start() callback is triggered.
+
     Nothing happens if a scene that was not previously added is played.
 
     @param name Scene identification number as specified in Game::AddScene.
@@ -181,8 +185,7 @@ namespace JadeEngine
     /**
     Request the game loop to finish and stop updating. Typically used when exiting the game.
 
-    The game loop will exit at the beginning of the next tick. All updates and rendering will stop.
-    However nothing gets cleaned up for that use Game::CleanUp.
+    The game loop will exit at the beginning of the next tick. All updates and rendering will stop. However nothing gets cleaned up for that use Game::CleanUp.
 
     @see Game::Start, Game::CleanUp
     @code
@@ -198,8 +201,7 @@ namespace JadeEngine
     /**
     Signal the game to switch to fullscreen or windowed mode.
 
-    It is advised to also update kSettingsIDs_fullScreen settings value if this change is meant to persist across sessions.
-    The actually change happens as the very first thing next game loop tick.
+    It is advised to also update kSettingsIDs_fullScreen settings value if this change is meant to persist across sessions. The actually change happens as the very first thing next game loop tick.
 
     @param fullscreen Whether the game should be in fullscreen mode or not. Nothing happens if it's currently already in the desired mode.
     @code
@@ -273,8 +275,33 @@ namespace JadeEngine
     const int32_t GetCurrentDisplayMode() const { return _currentMode; }
     const std::vector<DisplayModeInfo>& GetDisplayModes() const { return _displayModes; }
 
+    template <typename  Class>
+    using EnableOnlyForITextObjectAndDerivedClasses = std::enable_if_t<std::is_base_of_v<ITextObject, Class>, std::add_pointer_t<Class>>;
+    template <typename  Class>
+    using EnableOnlyForICompositeObjectAndDerivedClasses = std::enable_if_t<std::is_base_of_v<ICompositeObject, Class>, std::add_pointer_t<Class>>;
+    template <typename  Class>
+    using EnableOnlyForSpriteAndDerivedClasses = std::enable_if_t<std::is_base_of_v<Sprite, Class>, std::add_pointer_t<Class>>;
+    template <typename  Class>
+    using EnableOnlyForLineStripAndDerivedClasses = std::enable_if_t<std::is_base_of_v<LineStrip, Class>, std::add_pointer_t<Class>>;
+
+    /**
+    Create a text based game object.
+
+    The object must inherit from ITextObject interface. The object will belong to the current scene unless kObjectLayer_persitant_ui is specified.
+
+    When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
+
+    @param params Creation structure. For the actual type and its description see the class's constructor or header.
+    @returns Pointer to the newly created object. Game instance owns the object but it might not possible to look it up later. Storing the pointer is advised.
+    @see ITextObject, Text, TextParams, FTC, FTCParams
+    @code
+    // Assuming we have filled `TextParams textParams` variable
+    Text* text = GGame.Create<Text>(textParams);
+    text->SetPosition(50, 50);
+    @endcode
+    */
     template<typename Class, typename CreationStruct>
-    std::enable_if_t<std::is_base_of_v<ITextObject, Class>, std::add_pointer_t<Class>> Create(const CreationStruct& params)
+    EnableOnlyForITextObjectAndDerivedClasses<Class> Create(const CreationStruct& params)
     {
       const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
       auto result = _textObjects[scene].emplace_back(std::make_unique<Class>(params)).get();
@@ -284,16 +311,48 @@ namespace JadeEngine
       return static_cast<std::add_pointer_t<Class>>(result);
     }
 
+    /**
+    Create a composite game object.
+
+    The object must inherit from ICompositeObject interface. The object will belong to the current scene unless kObjectLayer_persitant_ui is specified.
+
+    When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
+
+    @param params Creation structure. For the actual type and its description see the class's constructor or header.
+    @returns Pointer to the newly created object. Game instance owns the object but it might not possible to look it up later. Storing the pointer is advised.
+    @see ICompositeObject, Button, ButtonParams, Checkbox, CheckboxParams, Dropdown, DropdownParams, Slider, SliderParams
+    @code
+    // Assuming we have filled `ButtonParams buttonParams` variable
+    Button* button = GGame.Create<Button>(buttonParams);
+    button->SetPosition(50, 50);
+    @endcode
+    */
     template<typename Class, typename CreationStruct>
-    std::enable_if_t<std::is_base_of_v<ICompositeObject, Class>, std::add_pointer_t<Class>> Create(const CreationStruct& params)
+    EnableOnlyForICompositeObjectAndDerivedClasses<Class> Create(const CreationStruct& params)
     {
       const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
       auto& result = _compositeObjects[scene].emplace_back(std::make_unique<Class>(params));
       return static_cast<std::add_pointer_t<Class>>(result.get());
     }
 
+    /**
+    Create a sprite based game object.
+
+    The object must inherit from Sprite class. The object will belong to the current scene unless kObjectLayer_persitant_ui is specified.
+
+    When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
+
+    @param params Creation structure. For the actual type and its description see the class's constructor or header.
+    @returns Pointer to the newly created object. Game instance owns the object but it might not possible to look it up later. Storing the pointer is advised.
+    @see Sprite, SpriteParams, BoxSprite, BoxSpriteParams
+    @code
+    // Assuming we have filled `SpriteParams spriteParams` variable
+    Sprite* sprite = GGame.Create<Sprite>(spriteParams);
+    sprite->SetPosition(50, 50);
+    @endcode
+    */
     template<typename Class, typename CreationStruct>
-    std::enable_if_t<std::is_base_of_v<Sprite, Class>, std::add_pointer_t<Class>> Create(const CreationStruct& params)
+    EnableOnlyForSpriteAndDerivedClasses<Class> Create(const CreationStruct& params)
     {
       const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
       auto result = _sprites[scene].emplace_back(std::make_unique<Class>(params)).get();
@@ -303,7 +362,7 @@ namespace JadeEngine
     }
 
     template<typename Class, typename CreationStruct>
-    std::enable_if_t<std::is_base_of_v<LineStrip, Class>, std::add_pointer_t<Class>> Create(const CreationStruct& params)
+    EnableOnlyForLineStripAndDerivedClasses<Class> Create(const CreationStruct& params)
     {
       const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
       auto result = _lineStrips[scene].emplace_back(std::make_unique<Class>(params)).get();
@@ -340,10 +399,8 @@ namespace JadeEngine
 
     /**
     Find underlying SDL2 TTF font instance given a font name and a size.
-    @param fontName The font identification string as defined in GameInitParamsFontEntry when initializing the game.
-      For fonts included in Jade Engine see EngineDefaultInitParams.h : kDefaultFonts.
-    @param size The font size as listed in GameInitParams::fontSizes when initializing the game.
-      For font sizes for fonts included in Jade Engine see EngineDefaultInitParams.h : kDefaultFontSizes.
+    @param fontName The font identification string as defined in GameInitParamsFontEntry when initializing the game. For fonts included in Jade Engine see EngineDefaultInitParams.h : kDefaultFonts.
+    @param size The font size as listed in GameInitParams::fontSizes when initializing the game. For font sizes for fonts included in Jade Engine see EngineDefaultInitParams.h : kDefaultFontSizes.
     @returns Found underlying SDL2 TTF_Font opaque pointer or nullptr if not found.
     @pre GGame was Initialize() with the wanted font or in is part of default assets.
     @see GameInitParamsFontEntry, GameInitParams, Text
@@ -365,6 +422,7 @@ namespace JadeEngine
     Create a new deep copy of Texture. Note that it is not possible to look-up this new texture later hence the return value should be captured.
 
     Used for tinting and setting transparency of sprites as an unique instance is necessary otherwise such operations would change all sprites using this texture.
+
     @param textureDesc Existing texture that can be obtained with Game::FindTexture.
     @returns A new texture, deep copy of the passed texture.
     @see FindTexture

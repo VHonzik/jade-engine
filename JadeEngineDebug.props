@@ -16,7 +16,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <PostBuildEvent>
-      <Command>powershell.exe $(JadeEngineDirectory)\scripts\CopyDependencies.ps1 -JadeEngineDirectory "$(JadeEngineDirectory)" -OutputFolder "$(SolutionDir)$(Platform)\$(Configuration)" -Debug</Command>
+      <Command>powershell.exe $(JadeEngineDirectory)\scripts\CopyDependencies.ps1 -JadeEngineDirectory "$(JadeEngineDirectory)" -OutputFolder "$(SolutionDir)$(Platform)\$(Configuration)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
