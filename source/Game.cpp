@@ -30,6 +30,13 @@
 namespace
 {
   const int32_t kDefaultTextureSize = 100;
+
+  const std::string kScalingSDLHintNames[3] =
+  {
+    "nearest", // kTextureSampling_neareast
+    "linear", // kTextureSampling_linear
+    "best", // kTextureSampling_anisotropic
+  };
 }
 
 using namespace nlohmann;
@@ -131,7 +138,8 @@ namespace JadeEngine
         {},
         kDefaultTextureName,
         format,
-        false
+        false,
+        kTextureSampling_anisotropic
       };
 
       _textures[kDefaultTextureName] = std::make_shared<Texture>(texture);
@@ -172,11 +180,11 @@ namespace JadeEngine
 
     for (const auto& texture : initParams.textures)
     {
-      result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap);
+      result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap, texture.sampling);
     }
     for (const auto& texture : kDefaultTextures)
     {
-      result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap);
+      result &= LoadTexture(texture.assetName.c_str(), texture.fileLocation.c_str(), texture.generateHitMap, texture.sampling);
     }
 
     for (const auto& font : initParams.fonts)
@@ -208,11 +216,11 @@ namespace JadeEngine
 
     for (const auto& spritesheet : initParams.spritesheets)
     {
-      result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str());
+      result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str(), spritesheet.sampling);
     }
     for (const auto& spritesheet : kDefaultSpritesheets)
     {
-      result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str());
+      result &= LoadSpritesheet(spritesheet.assetName.c_str(), spritesheet.textureFileLocation.c_str(), spritesheet.sheetJSONFileLocation.c_str(), spritesheet.sampling);
     }
 
     return result;
@@ -323,7 +331,7 @@ namespace JadeEngine
     }
   }
 
-  bool Game::LoadTexture(const char* assetName, const char* textureFile, bool hitsRequired)
+  bool Game::LoadTexture(const char* assetName, const char* textureFile, const bool hitsRequired, const TextureSampling sampling)
   {
     const auto fullPath = AssetPathToAbsolute(textureFile);
     if (fullPath.empty())
@@ -345,6 +353,8 @@ namespace JadeEngine
     std::vector<bool> hitArray;
     GetBoundingBoxAndHitArray(imageSurface, boundingBox, hitArray, hitsRequired);
 
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, kScalingSDLHintNames[sampling].c_str());
+
     auto imageTexture = SDL_CreateTextureFromSurface(_renderer, imageSurface);
 
     SDL_FreeSurface(imageSurface);
@@ -354,16 +364,17 @@ namespace JadeEngine
       return false;
     }
 
-    _textures[assetName] = std::make_shared<Texture>(
-      imageTexture, width, height, boundingBox, hitArray, assetName, format, false
-     );
+    _textures[assetName] = std::make_shared<Texture>(imageTexture, width, height, boundingBox, hitArray, assetName, format, false, sampling);
 
     return true;
   }
 
-  std::shared_ptr<Texture> Game::CopyTexture(const std::shared_ptr<Texture>& textureDesc)
+  std::shared_ptr<Texture> Game::CopyTexture(const std::shared_ptr<Texture>& textureDesc, const TextureSampling sampling)
   {
     std::shared_ptr<Texture> result = std::make_shared<Texture>(*textureDesc);
+
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, kScalingSDLHintNames[sampling].c_str());
+
     result->isCopy = true;
     result->texture = SDL_CreateTexture(_renderer, textureDesc->format, SDL_TEXTUREACCESS_TARGET, textureDesc->width, textureDesc->height);
 
@@ -409,7 +420,8 @@ namespace JadeEngine
       std::vector<bool>{},
       name,
       format,
-      false
+      false,
+      kTextureSampling_neareast
     );
 
     return true;
@@ -968,7 +980,7 @@ namespace JadeEngine
     return true;
   }
 
-  bool Game::LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile)
+  bool Game::LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile, const TextureSampling sampling)
   {
     const auto fullPath = AssetPathToAbsolute(sheetFile);
     if (fullPath.empty())
@@ -1004,7 +1016,7 @@ namespace JadeEngine
       _spriteSheets[assetName].sprites[name].rect = rect;
     }
 
-    return LoadTexture(assetName, textureFile, false);
+    return LoadTexture(assetName, textureFile, false, sampling);
   }
 
   void Game::SetCursor(const std::string& name)

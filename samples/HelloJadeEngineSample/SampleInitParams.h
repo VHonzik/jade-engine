@@ -22,7 +22,7 @@ namespace HelloJadeEngine
     //std::string appName;
     "HelloJadeEngineSample",
     //std::vector<uint32_t> fontSizes;
-    { 64 },
+    { },
     //SDL_Color backgroundColor;
     kDarkGreyColor,
     //std::vector<GameInitParamsTextureEntry> textures;

@@ -15,7 +15,11 @@ int32_t main(int32_t argc, char* argv[])
   if (game.Initialize(kSampleInitParams, argv))
   {
     game.AddScene(kSampleScene_GameScene, std::make_shared<GameScene>());
-    game.AddScene(kScene_PoweredByJadeEngine, std::make_shared<PoweredByJadeEngineScene>());
+
+    const auto poweredByJadeEngineScene = std::make_shared<PoweredByJadeEngineScene>();
+    poweredByJadeEngineScene->SetNextScene(kSampleScene_GameScene);
+    game.AddScene(kScene_PoweredByJadeEngine, poweredByJadeEngineScene);
+
     game.PlayScene(kScene_PoweredByJadeEngine);
     game.Start();
   }

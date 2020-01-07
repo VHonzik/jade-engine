@@ -1,5 +1,7 @@
 #pragma once
 
+#include "TextureSampling.h"
+
 #include <vector>
 #include <SDL.h>
 
@@ -7,14 +9,7 @@ namespace JadeEngine
 {
   struct Texture
   {
-    Texture(SDL_Texture* itexture,
-    int32_t iwidth,
-    int32_t iheight,
-    const SDL_Rect& iboundingBox,
-    const std::vector<bool>& ihitArray,
-    const std::string& iname,
-    uint32_t iformat,
-    bool iisCopy)
+    Texture(SDL_Texture* itexture, int32_t iwidth, int32_t iheight, const SDL_Rect& iboundingBox, const std::vector<bool>& ihitArray, const std::string& iname, uint32_t iformat, bool iisCopy, const TextureSampling isampling)
       : texture(itexture)
       , width(iwidth)
       , height(iheight)
@@ -23,6 +18,7 @@ namespace JadeEngine
       , name(iname)
       , format(iformat)
       , isCopy(iisCopy)
+      , sampling(isampling)
     {}
 
     Texture(const Texture& other)
@@ -34,6 +30,7 @@ namespace JadeEngine
       , name(other.name)
       , format(other.format)
       , isCopy(other.isCopy)
+      , sampling(other.sampling)
     {}
 
     SDL_Texture* texture;
@@ -44,6 +41,7 @@ namespace JadeEngine
     std::string name;
     uint32_t format;
     bool isCopy;
+    TextureSampling sampling;
   };
 }
 

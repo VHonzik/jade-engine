@@ -5,6 +5,7 @@
 #include "GameInitParams.h"
 #include "ObjectLayer.h"
 #include "Style.h"
+#include "TextureSampling.h"
 
 namespace JadeEngine
 {
@@ -23,10 +24,10 @@ namespace JadeEngine
     kLightGreyColor,
   };
 
-  const auto kDefaultFontSizes = decltype(GameInitParams::fontSizes){ 12, 16, 24, 32 };
+  const auto kDefaultFontSizes = decltype(GameInitParams::fontSizes){ 12, 16, 24, 32, 64 };
 
   const auto kDefaultTextures = decltype(GameInitParams::textures){
-    { kJadeEngineLogoTexture, "assets/jadeEngineLogo.png", false},
+    { kJadeEngineLogoTexture, "assets/jadeEngineLogo.png", false, kTextureSampling_anisotropic},
   };
 
   const auto kDefaultFonts = decltype(GameInitParams::fonts){
@@ -44,7 +45,7 @@ namespace JadeEngine
   };
 
   const auto kDefaultSpritesheets = decltype(GameInitParams::spritesheets){
-    { kJadeEngineUISpritesheet, "assets/engineUI.png", "assets/engineUI.json" },
+    { kJadeEngineUISpritesheet, "assets/engineUI.png", "assets/engineUI.json", kTextureSampling_anisotropic },
   };
 
   const auto kDefaultKeybindings = decltype(GameInitParams::keybindings){

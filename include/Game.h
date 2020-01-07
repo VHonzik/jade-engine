@@ -424,12 +424,13 @@ namespace JadeEngine
     Used for tinting and setting transparency of sprites as an unique instance is necessary otherwise such operations would change all sprites using this texture.
 
     @param textureDesc Existing texture that can be obtained with Game::FindTexture.
+    @param sampling Wanted texture sampling for the new texture.
     @returns A new texture, deep copy of the passed texture.
-    @see FindTexture
+    @see FindTexture, TextureSampling
     @warning Potentially expensive operation including render targets.
     @warning Instead of working with textures it is recommend to use existing Sprite-based classes. Should be seldom used.
     */
-    std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc);
+    std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc, const TextureSampling sampling);
 
   private:
     void CollectDisplayModes();
@@ -441,8 +442,8 @@ namespace JadeEngine
     bool LoadAssets(const GameInitParams& initParams);
     bool LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY);
     bool LoadFont(const std::vector<uint32_t>& sizes, const char* assetName, const char* fontFile);
-    bool LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile);
-    bool LoadTexture(const char* assetName, const char* textureFile, bool hitsRequired);
+    bool LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile, const TextureSampling sampling);
+    bool LoadTexture(const char* assetName, const char* textureFile, const bool hitsRequired, const TextureSampling sampling);
     void PlayScene(std::shared_ptr<IScene>& scene);
     void SetHoveredSprite(Sprite* sprite);
     void SortRenderables(const std::shared_ptr<IScene>& scene);

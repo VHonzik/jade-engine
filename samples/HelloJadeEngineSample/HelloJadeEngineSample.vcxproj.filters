@@ -161,9 +161,6 @@
     <ClInclude Include="..\..\include\EngineSettings.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\EngineStyles.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\EngineTemplateParams.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -256,6 +253,12 @@
     </ClInclude>
     <ClInclude Include="SampleInitParams.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\TextureSampling.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\EngineDefaultInitParams.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

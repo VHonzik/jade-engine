@@ -27,7 +27,6 @@ namespace JadeEngine
     , _layer(params.layer)
     , _rotated(false)
     , _rotationAngle(0)
-    , _scaling(kSpriteScaling_anisotropic)
   {
     if (params.texture)
     {
@@ -136,7 +135,7 @@ namespace JadeEngine
   {
     if (!_textureDescription->isCopy)
     {
-      _textureDescription = GGame.CopyTexture(_textureDescription);
+      _textureDescription = GGame.CopyTexture(_textureDescription, _textureDescription->sampling);
       _texture = _textureDescription->texture;
     }
 
@@ -195,7 +194,7 @@ namespace JadeEngine
     {
       if (!_textureDescription->isCopy)
       {
-        _textureDescription = GGame.CopyTexture(_textureDescription);
+        _textureDescription = GGame.CopyTexture(_textureDescription, _textureDescription->sampling);
         _texture = _textureDescription->texture;
       }
 
@@ -221,13 +220,11 @@ namespace JadeEngine
     _rotationAngle = angle;
   }
 
-  void Sprite::SetScaling(const SpriteScaling scaling)
+  void Sprite::SetSampling(const TextureSampling sampling)
   {
-    if (_scaling != scaling)
+    if (_textureDescription->sampling != sampling)
     {
-      _scaling = scaling;
-      SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, kScalingSDLHintNames[_scaling].c_str());
-      _textureDescription = GGame.CopyTexture(_textureDescription);
+      _textureDescription = GGame.CopyTexture(_textureDescription, sampling);
       _texture = _textureDescription->texture;
     }
   }

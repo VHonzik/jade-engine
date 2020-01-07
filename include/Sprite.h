@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ObjectLayer.h"
+#include "TextureSampling.h"
 
 #include <memory>
 #include <SDL.h>
@@ -10,13 +11,6 @@ namespace JadeEngine
 {
   struct Texture;
   struct SpriteSheetDescription;
-
-  enum SpriteScaling
-  {
-    kSpriteScaling_neareast,
-    kSpriteScaling_linear,
-    kSpriteScaling_anisotropic
-  };
 
   struct SpriteParams
   {
@@ -79,7 +73,7 @@ namespace JadeEngine
     const SDL_Rect& GetTransform() const { return _transform; }
     const std::string& GetTextureName() const;
     const std::shared_ptr<Texture>& GetTextureDescription() const { return _textureDescription; }
-    void SetScaling(const SpriteScaling scaling);
+    void SetSampling(const TextureSampling sampling);
 
   protected:
     std::shared_ptr<Texture> _textureDescription;
@@ -103,6 +97,5 @@ namespace JadeEngine
     double _rotationAngle;
 
     ObjectLayer _layer;
-    SpriteScaling _scaling;
   };
 }

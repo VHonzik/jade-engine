@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "TextureSampling.h"
+
 #include <cstdint>
 #include <SDL_pixels.h>
 #include <string>
@@ -44,6 +46,15 @@ namespace JadeEngine
     @see Sprite::HitTest
     */
     bool generateHitMap;
+
+    /**
+    How will the texture be sampled when rendering it in a different scale then 100%.
+
+    It is possible to overwrite this per Sprite at the cost of texture copy.
+
+    @see TextureSampling, Sprite::SetSampling
+    */
+    TextureSampling sampling;
   };
 
   /**
@@ -147,6 +158,17 @@ namespace JadeEngine
     For example "assets/engineUI.json".
     */
     std::string sheetJSONFileLocation;
+
+    /**
+    How will the texture be sampled when rendering it in a different scale then 100%.
+
+    This will be applied to all sprites created from this sprite-sheet.
+
+    It is possible to overwrite this per Sprite at the cost of texture copy.
+
+    @see TextureSampling, Sprite::SetSampling
+    */
+    TextureSampling sampling;
   };
 
   /**

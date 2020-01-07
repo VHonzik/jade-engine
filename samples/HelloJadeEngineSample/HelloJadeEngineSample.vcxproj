@@ -115,8 +115,8 @@
     <ClInclude Include="..\..\include\Dropdown.h" />
     <ClInclude Include="..\..\include\EngineConstants.h" />
     <ClInclude Include="..\..\include\EngineDataTypes.h" />
+    <ClInclude Include="..\..\include\EngineDefaultInitParams.h" />
     <ClInclude Include="..\..\include\EngineSettings.h" />
-    <ClInclude Include="..\..\include\EngineStyles.h" />
     <ClInclude Include="..\..\include\EngineTemplateParams.h" />
     <ClInclude Include="..\..\include\EngineTime.h" />
     <ClInclude Include="..\..\include\FTC.h" />
@@ -144,6 +144,7 @@
     <ClInclude Include="..\..\include\TextBox.h" />
     <ClInclude Include="..\..\include\TextSprite.h" />
     <ClInclude Include="..\..\include\Texture.h" />
+    <ClInclude Include="..\..\include\TextureSampling.h" />
     <ClInclude Include="..\..\include\Tooltip.h" />
     <ClInclude Include="..\..\include\Utils.h" />
     <ClInclude Include="SampleGameScene.h" />
