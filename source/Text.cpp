@@ -15,14 +15,7 @@ namespace JadeEngine
     , _y(0)
   {
     _z = params.z;
-    if (params.font == nullptr)
-    {
-      _font = GGame.FindFont(params.fontName, params.fontSize);
-    }
-    else
-    {
-      _font = params.font;
-    }
+    _font = GGame.FindFont(params.fontName, params.fontSize);
 
     assert(_font != nullptr);
 

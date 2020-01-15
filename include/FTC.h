@@ -12,7 +12,6 @@ namespace JadeEngine
   struct FTCParams
   {
     ObjectLayer   layer;
-    TTF_Font*     font;
     std::string   fontName;
     uint32_t      fontSize;
     std::string   format;

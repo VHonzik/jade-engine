@@ -2,6 +2,8 @@
 
 #include "Game.h"
 
+#include <cassert>
+
 namespace JadeEngine
 {
   TextBox::TextBox(const TextBoxParams& params)
@@ -14,14 +16,8 @@ namespace JadeEngine
     , _y(0)
   {
     _z = params.z;
-    if (params.font == nullptr)
-    {
-      _font = GGame.FindFont(params.fontName, params.fontSize);
-    }
-    else
-    {
-      _font = params.font;
-    }
+    _font = GGame.FindFont(params.fontName, params.fontSize);
+    assert(_font != nullptr);
   }
 
   bool TextBox::DoPreload(SDL_Renderer* renderer)

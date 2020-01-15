@@ -16,7 +16,6 @@ namespace JadeEngine
   {
     ObjectLayer               layer;
     std::string               textureName;
-    std::shared_ptr<Texture>  texture;
     int32_t                   z;
     bool                      spriteSheet;
     std::string               spriteSheetName;
@@ -26,6 +25,7 @@ namespace JadeEngine
   {
   public:
     Sprite(const SpriteParams& params);
+    Sprite(const ObjectLayer layer, std::shared_ptr<Texture> texture, const int32_t z);
     virtual void DoRender(SDL_Renderer* renderer);
     virtual bool DoPreload(SDL_Renderer* renderer) { return true; };
     virtual void Update() {};

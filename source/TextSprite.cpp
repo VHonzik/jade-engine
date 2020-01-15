@@ -15,8 +15,6 @@ namespace JadeEngine
         params.layer,
         //std::string               textureName;
         params.textureName,
-        //std::shared_ptr<Texture>  texture;
-        nullptr,
         //int32_t                   z;
         params.z,
         //bool                      spriteSheet;

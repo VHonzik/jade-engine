@@ -17,7 +17,6 @@ namespace JadeEngine
   {
     TextParams textParams;
     textParams.layer = params.layer;
-    textParams.font = nullptr;
     textParams.fontName = params.font;
     textParams.fontSize = params.fontSize;
     textParams.text = params.minTitle;
@@ -36,7 +35,6 @@ namespace JadeEngine
     SpriteParams spriteParams;
     spriteParams.layer = params.layer;
     spriteParams.textureName = params.axisTexture;
-    spriteParams.texture = nullptr;
     spriteParams.z = params.z;
     spriteParams.spriteSheet = params.spriteSheet;
     spriteParams.spriteSheetName = params.spriteSheetName;

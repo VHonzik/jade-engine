@@ -14,8 +14,6 @@ namespace JadeEngine
   {
     //ObjectLayer layer;
     kObjectLayer_ui,
-    //TTF_Font* font;
-    nullptr,
     //std::string fontName;
     kVeraFont,
     //uint32_t fontSize;
@@ -32,8 +30,6 @@ namespace JadeEngine
   {
     //ObjectLayer layer;
     kObjectLayer_ui,
-    //TTF_Font* font;
-    nullptr,
     //std::string fontName;
     kVeraFont,
     //uint32_t fontSize;
@@ -50,8 +46,6 @@ namespace JadeEngine
   {
     //ObjectLayer layer;
     kObjectLayer_ui,
-    //TTF_Font* font;
-    nullptr,
     //std::string fontName;
     kVeraFontBold,
     //uint32_t fontSize;
@@ -68,8 +62,6 @@ namespace JadeEngine
   {
     //ObjectLayer layer;
     kObjectLayer_ui,
-    //TTF_Font* font;
-    nullptr,
     //std::string fontName;
     kVeraFontBold,
     //uint32_t fontSize;
@@ -128,8 +120,6 @@ namespace JadeEngine
       kObjectLayer_ui,
       //std::string textureName;
       "grey_panel.png",
-      //std::shared_ptr<Texture> texture;
-      nullptr,
       //int32_t z;
       0,
       //bool spriteSheet;

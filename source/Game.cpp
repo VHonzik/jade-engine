@@ -469,15 +469,7 @@ namespace JadeEngine
 
     auto& textureDesc = textureFound->second;
 
-    SpriteParams params;
-    params.layer = layer;
-    params.textureName = "";
-    params.texture = textureDesc;
-    params.z = z;
-    params.spriteSheet = false;
-    params.spriteSheetName = "";
-
-    auto result = sprites.emplace_back(std::make_unique<Sprite>(params)).get();
+    auto result = sprites.emplace_back(std::make_unique<Sprite>(layer, textureDesc, z)).get();
 
     _renderables[_currentScene].push_back(make_renderable<Sprite>(result));
     SortRenderables(_currentScene);

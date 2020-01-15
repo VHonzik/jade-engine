@@ -28,7 +28,6 @@ namespace JadeEngine
   {
     TextParams textParams;
     textParams.layer = kObjectLayer_ui;
-    textParams.font = nullptr;
     textParams.fontName = kVeraFontBold;
     textParams.fontSize = 32;
     textParams.text = "Powered by Jade Engine";

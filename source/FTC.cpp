@@ -17,17 +17,9 @@ namespace JadeEngine
     , _align(kHorizontalAlignment_Left)
   {
     _z = params.z;
-    if (params.font == nullptr)
-    {
-      _font = GGame.FindFont(params.fontName, params.fontSize);
-    }
-    else
-    {
-      _font = params.font;
-    }
+    _font = GGame.FindFont(params.fontName, params.fontSize);
 
     _subParams.color = _defaultColor;
-    _subParams.font = _font;
     _subParams.fontName = params.fontName;
     _subParams.fontSize = params.fontSize;
     _subParams.layer = _layer;

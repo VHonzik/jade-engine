@@ -14,7 +14,6 @@ namespace JadeEngine
     textParams.layer = params.layer;
     textParams.fontSize = params.fontSize;
     textParams.fontName = params.fontName;
-    textParams.font = nullptr;
     textParams.text = params.text;
     textParams.width = params.width;
     textParams.color = params.textColor;
@@ -25,7 +24,6 @@ namespace JadeEngine
     BoxSpriteParams boxParams;
     boxParams.layer = params.layer;
     boxParams.textureName = params.textureName;
-    boxParams.texture = nullptr;
     boxParams.z = params.z - 1;
     boxParams.spriteSheet = false;
     boxParams.spriteSheetName = "";

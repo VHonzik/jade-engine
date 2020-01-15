@@ -19,20 +19,16 @@ namespace JadeEngine
   };
 
   Sprite::Sprite(const SpriteParams& params)
-    : _preloaded(false)
-    , _shown(true)
-    , _z(params.z)
-    , _alpha(1.0f)
-    , _spriteSheetDescription(nullptr)
+    : _alpha(1.0f)
     , _layer(params.layer)
+    , _preloaded(false)
     , _rotated(false)
     , _rotationAngle(0)
+    , _shown(true)
+    , _spriteSheetDescription(nullptr)
+    , _z(params.z)
   {
-    if (params.texture)
-    {
-      _textureDescription = params.texture;
-    }
-    else if (params.spriteSheet)
+    if (params.spriteSheet)
     {
       _spriteSheetDescription = GGame.GetSpriteSheetDescription(params.spriteSheetName);
       if (_spriteSheetDescription != nullptr && _spriteSheetDescription->sprites.count(params.textureName) > 0)
@@ -66,6 +62,24 @@ namespace JadeEngine
       _transform = { 0, 0, _textureDescription->width, _textureDescription->height };
       _boundingBox = _textureDescription->boundingBox;
     }
+  }
+
+  Sprite::Sprite(const ObjectLayer layer, std::shared_ptr<Texture> texture, const int32_t z)
+    : _alpha(1.0f)
+    , _boundingBox(texture->boundingBox)
+    , _layer(layer)
+    , _preloaded(false)
+    , _rotated(false)
+    , _rotationAngle(0)
+    , _shown(true)
+    , _spriteSheetDescription(nullptr)
+    , _texture(texture->texture)
+    , _textureDescription(texture)
+    , _textureName(texture->name)
+    , _transform{0, 0, texture->width, texture->height}
+    , _z(z)
+  {
+    assert(_textureDescription);
   }
 
   void Sprite::Preload(SDL_Renderer* renderer)

@@ -20,7 +20,6 @@ namespace JadeEngine
   {
     TextParams textParams;
     textParams.layer = params.layer;
-    textParams.font = nullptr;
     textParams.fontName = params.fontName;
     textParams.fontSize = params.fontSize;
     textParams.text = params.text;

@@ -11,7 +11,6 @@ namespace HelloJadeEngine
   {
     TextParams params;
     params.layer = kObjectLayer_ui;
-    params.font = nullptr;
     params.fontName = kVeraFont;
     params.fontSize = 64;
     params.text = "Hello Jade Engine!";

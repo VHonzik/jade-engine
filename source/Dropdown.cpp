@@ -27,7 +27,6 @@ namespace JadeEngine
     BoxSpriteParams boxParams;
     boxParams.layer = params.layer;
     boxParams.textureName = params.boxTexture;
-    boxParams.texture = nullptr;
     boxParams.z = params.z - 1;
     boxParams.spriteSheet = params.spriteSheet;
     boxParams.spriteSheetName = params.spriteSheetName;
@@ -40,7 +39,6 @@ namespace JadeEngine
     SpriteParams spriteParams;
     spriteParams.layer = params.layer;
     spriteParams.textureName = params.expandArrowTexture;
-    spriteParams.texture = nullptr;
     spriteParams.z = params.z - 1;
     spriteParams.spriteSheet = params.spriteSheet;
     spriteParams.spriteSheetName = params.spriteSheetName;
@@ -61,7 +59,6 @@ namespace JadeEngine
 
     TextParams textParams;
     textParams.layer = params.layer;
-    textParams.font = nullptr;
     textParams.fontName = _fontName;
     textParams.fontSize = _fontSize;
     textParams.text = "";
@@ -83,7 +80,6 @@ namespace JadeEngine
     {
       TextParams textParams;
       textParams.layer = _layer;
-      textParams.font = nullptr;
       textParams.fontName = _fontName;
       textParams.fontSize = _fontSize;
       textParams.text = text;

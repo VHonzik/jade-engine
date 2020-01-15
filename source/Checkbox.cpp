@@ -14,7 +14,6 @@ namespace JadeEngine
     SpriteParams spriteParams;
     spriteParams.layer = params.layer;
     spriteParams.textureName = params.checkedTexture;
-    spriteParams.texture = nullptr;
     spriteParams.z = params.z;
     spriteParams.spriteSheet = params.spriteSheet;
     spriteParams.spriteSheetName = params.spriteSheetName;
