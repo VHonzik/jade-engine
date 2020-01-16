@@ -26,8 +26,8 @@ namespace JadeEngine
   {
   public:
     TextSprite(const TextSpriteParams& params);
-    bool DoPreload(SDL_Renderer* renderer) override;
-    void DoRender(SDL_Renderer* renderer) override;
+    LoadState Load(SDL_Renderer* renderer) override;
+    void Render(SDL_Renderer* renderer) override;
   private:
     std::string _text;
     TTF_Font* _font;

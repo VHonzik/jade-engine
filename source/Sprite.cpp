@@ -21,13 +21,11 @@ namespace JadeEngine
   Sprite::Sprite(const SpriteParams& params)
     : _alpha(1.0f)
     , _layer(params.layer)
-    , _preloaded(false)
     , _rotated(false)
     , _rotationAngle(0)
-    , _shown(true)
     , _spriteSheetDescription(nullptr)
-    , _z(params.z)
   {
+    _z = params.z;
     if (params.spriteSheet)
     {
       _spriteSheetDescription = GGame.GetSpriteSheetDescription(params.spriteSheetName);
@@ -68,34 +66,20 @@ namespace JadeEngine
     : _alpha(1.0f)
     , _boundingBox(texture->boundingBox)
     , _layer(layer)
-    , _preloaded(false)
     , _rotated(false)
     , _rotationAngle(0)
-    , _shown(true)
     , _spriteSheetDescription(nullptr)
     , _texture(texture->texture)
     , _textureDescription(texture)
     , _textureName(texture->name)
     , _transform{0, 0, texture->width, texture->height}
-    , _z(z)
   {
+    _z = z;
+    SetLoadState(kLoadState_done);
     assert(_textureDescription);
   }
 
-  void Sprite::Preload(SDL_Renderer* renderer)
-  {
-    _preloaded = DoPreload(renderer);
-  }
-
   void Sprite::Render(SDL_Renderer* renderer)
-  {
-    if (_shown)
-    {
-      DoRender(renderer);
-    }
-  }
-
-  void Sprite::DoRender(SDL_Renderer* renderer)
   {
     SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(_transform) : _transform;
     SDL_Rect* source = _spriteSheetMasked ? &_spriteSheetMask : nullptr;
@@ -154,10 +138,6 @@ namespace JadeEngine
     }
 
     SDL_SetTextureColorMod(_texture, tintColor.r, tintColor.g, tintColor.b);
-  }
-
-  void Sprite::Clean()
-  {
   }
 
   bool Sprite::HasHitTest() const
@@ -221,11 +201,6 @@ namespace JadeEngine
   float Sprite::GetAlpha() const
   {
     return _alpha;
-  }
-
-  void Sprite::Show(bool shown)
-  {
-    _shown = shown;
   }
 
   void Sprite::SetRotation(const double angle)

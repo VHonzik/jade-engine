@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICompositeObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <cstdint>
@@ -36,7 +36,7 @@ namespace JadeEngine
     SDL_Color       textColor;
   };
 
-  class Dropdown : public ICompositeObject
+  class Dropdown : public IGameObject
   {
   public:
     Dropdown(const DropdownParams& params);

@@ -11,7 +11,7 @@ namespace JadeEngine
 {
   const FTCParams kDefaultFPSFTCParams = {
     //ObjectLayer layer;
-    kObjectLayer_persitant_ui,
+    kObjectLayer_persistent_ui,
     //std::string fontName;
     kKennyFontSquare,
     //uint32_t fontSize;

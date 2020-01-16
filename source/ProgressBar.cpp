@@ -149,13 +149,14 @@ namespace JadeEngine
 
   void ProgressBar::Show(bool shown)
   {
-    _shown = shown;
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
 
     UpdateForegroundsVisibility();
 
-    _backgroundLeft->Show(shown);
-    _backgroundMiddle->Show(shown);
-    _backgroundRight->Show(shown);
+    _backgroundLeft->Show(isShown);
+    _backgroundMiddle->Show(isShown);
+    _backgroundRight->Show(isShown);
   }
 
   void ProgressBar::SetT(const float value)

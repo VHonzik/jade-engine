@@ -150,14 +150,16 @@ namespace JadeEngine
 
   void Slider::Show(bool shown)
   {
-    _shown = shown;
-    _pointer->Show(shown);
-    _axis->Show(shown);
-    _axisLEnd->Show(shown);
-    _axisREnd->Show(shown);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
 
-    _minTitle->Show(shown);
-    _maxTitle->Show(shown);
+    _pointer->Show(isShown);
+    _axis->Show(isShown);
+    _axisLEnd->Show(isShown);
+    _axisREnd->Show(isShown);
+
+    _minTitle->Show(isShown);
+    _maxTitle->Show(isShown);
   }
 
 }

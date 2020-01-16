@@ -427,10 +427,15 @@ namespace JadeEngine
     return true;
   }
 
-  void Game::SortRenderables(const std::shared_ptr<IScene>& scene)
+  static bool CompareGameObjectZ(const std::unique_ptr<IGameObject>& a, const std::unique_ptr<IGameObject>& b)
   {
-    auto& renderables = _renderables[scene];
-    std::sort(std::begin(renderables), std::end(renderables), Renderable::Compare);
+    return a->GetZ() < b->GetZ();
+  }
+
+  void Game::SortGameObjectsRendering(const std::shared_ptr<IScene>& scene)
+  {
+    auto& gameObjects = _gameObjects[scene];
+    std::sort(std::begin(gameObjects), std::end(gameObjects), CompareGameObjectZ);
   }
 
   std::string Game::HashSolidColorTexture(const uint32_t width, const uint32_t height,
@@ -450,7 +455,7 @@ namespace JadeEngine
       return nullptr;
     }
 
-    auto& sprites = _sprites[_currentScene];
+    auto& gameObjects = _gameObjects[_currentScene];
 
     const auto& key = HashSolidColorTexture(width, height, color);
 
@@ -469,58 +474,47 @@ namespace JadeEngine
 
     auto& textureDesc = textureFound->second;
 
-    auto result = sprites.emplace_back(std::make_unique<Sprite>(layer, textureDesc, z)).get();
+    auto result = gameObjects.emplace_back(std::make_unique<Sprite>(layer, textureDesc, z)).get();
+    SortGameObjectsRendering(_currentScene);
 
-    _renderables[_currentScene].push_back(make_renderable<Sprite>(result));
-    SortRenderables(_currentScene);
-
-    return result;
+    return static_cast<std::add_pointer_t<Sprite>>(result);
   }
 
-  void Game::DestroySprite(Sprite* sprite)
+  void Game::DestroyGameObjects()
   {
-    if (!_currentScene)
+    for (auto& gameObjectsPair : _gameObjects)
     {
-      return;
-    }
+      auto& gameObjects = gameObjectsPair.second;
 
-    auto& sprites = _sprites[_currentScene];
-
-    if (sprite->GetTextureDescription()->isCopy)
-    {
-      auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies),
-        [&](const std::shared_ptr<Texture>& element)
+      auto gameObjectsToRemove = std::remove_if(std::begin(gameObjects), std::end(gameObjects),[&](const std::unique_ptr<IGameObject>& element)
       {
-        return element->texture == sprite->GetTextureDescription()->texture;
+        return element->DestructionWanted();
       });
 
-      for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
+      for (auto it = gameObjectsToRemove; it != std::end(gameObjects);)
       {
-        SDL_DestroyTexture((*iter)->texture);
+        auto& gameObject = *it;
+        gameObject->Clean();
+
+        // TODO clean-up texture description
+        //if (sprite->GetTextureDescription()->isCopy)
+        //{
+        //  auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+        //  {
+        //    return element->texture == sprite->GetTextureDescription()->texture;
+
+        //  });
+
+        //  for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
+        //  {
+        //    SDL_DestroyTexture((*iter)->texture);
+        //  }
+        //  _textureCopies.erase(elementToRemove, std::end(_textureCopies));
+        //}
       }
 
-      _textureCopies.erase(elementToRemove, std::end(_textureCopies));
+      gameObjects.erase(gameObjectsToRemove, std::end(gameObjects));
     }
-
-    sprite->Clean();
-
-    auto spritesToRemove = std::remove_if(std::begin(sprites), std::end(sprites),
-      [&](const std::unique_ptr<Sprite>& element)
-    {
-      return element.get() == sprite;
-    });
-
-    sprites.erase(spritesToRemove, std::end(sprites));
-
-    auto& renderables = _renderables[_currentScene];
-
-    auto renderablesToRemove = std::remove_if(std::begin(renderables), std::end(renderables),
-      [&](const Renderable& element)
-    {
-      return element.data == sprite;
-    });
-
-    renderables.erase(renderablesToRemove, std::end(renderables));
   }
 
   void Game::AddScene(const int32_t id, const std::shared_ptr<IScene>& scene)
@@ -555,19 +549,11 @@ namespace JadeEngine
   {
     for (auto& scene : _scenes)
     {
-      for (auto& textObject : _textObjects[scene.second])
+      for (auto& textObject : _gameObjects[scene.second])
       {
         textObject->Clean();
       }
-      _textObjects[scene.second].clear();
-
-      for (auto& sprite : _sprites[scene.second])
-      {
-        sprite->Clean();
-      }
-      _sprites[scene.second].clear();
-      _lineStrips[scene.second].clear();
-      _renderables[scene.second].clear();
+      _gameObjects[scene.second].clear();
     }
 
     for (auto& texture : _textures)
@@ -623,6 +609,38 @@ namespace JadeEngine
     _hoveredSprite = sprite;
   }
 
+  void Game::UpdateGameObjects(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[_currentScene])
+    {
+      if (gameObject->GetLoadState() == kLoadState_wanted)
+      {
+        gameObject->SetLoadState(gameObject->Load(_renderer));
+      }
+
+      if (gameObject->GetLoadState() == kLoadState_done)
+      {
+        gameObject->Update();
+        // TODO possibleSprites
+        //if (gameObject->IsShown() && GUICamera.IsMouseInside(sprite.get(), false) && GUICamera.IsMouseInside(sprite.get(), true))
+        //{
+        //  _possibleSprites.push_back(sprite.get());
+        //}
+      }
+    }
+  }
+
+  void Game::RenderGameObjects(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[_currentScene])
+    {
+      if (gameObject->IsShown())
+      {
+        gameObject->Render(_renderer);
+      }
+    }
+  }
+
   void Game::Update()
   {
     if (_fullscreenChangedWanted)
@@ -659,12 +677,6 @@ namespace JadeEngine
       }
     }
 
-    // TODO display menu dialog instead
-    //if (GInput.KeyPressed(SDLK_ESCAPE))
-    //{
-    //  End();
-    //}
-
     SDL_SetRenderDrawColor(_renderer, _clearColor.r, _clearColor.g, _clearColor.b, 255);
     SDL_RenderClear(_renderer);
 
@@ -676,22 +688,14 @@ namespace JadeEngine
     SDL_SetRenderTarget(_renderer, _nativeRenderBuffer);
     SDL_RenderClear(_renderer);
 
-    _possibleSprites.clear();
-    for (auto& sprite : _sprites[_currentScene])
-    {
-      if (sprite->RequiresPreload())
-      {
-        sprite->Preload(_renderer);
-      }
+    DestroyGameObjects();
 
-      if (!sprite->RequiresPreload())
-      {
-        sprite->Update();
-        if (sprite->IsShown() && GUICamera.IsMouseInside(sprite.get(), false) && GUICamera.IsMouseInside(sprite.get(), true))
-        {
-          _possibleSprites.push_back(sprite.get());
-        }
-      }
+    _possibleSprites.clear();
+
+    UpdateGameObjects(_currentScene);
+    if (_currentScene != _persistentScene)
+    {
+      UpdateGameObjects(_persistentScene);
     }
 
     if (_possibleSprites.size() > 0)
@@ -706,33 +710,8 @@ namespace JadeEngine
       SetHoveredSprite(nullptr);
     }
 
-    for (auto& textObject : _textObjects[_currentScene])
-    {
-      UpdateTextObject(textObject);
-    }
-
-    if (_currentScene != _persistentScene)
-    {
-      for (auto& textObject : _textObjects[_persistentScene])
-      {
-        UpdateTextObject(textObject);
-      }
-    }
-
-    for (auto& compositeObject : _compositeObjects[_currentScene])
-    {
-      compositeObject->Update();
-    }
-
-    for (const auto& renderable : _renderables[_persistentScene])
-    {
-      renderable.render(renderable.data, _renderer);
-    }
-
-    for (const auto& renderable : _renderables[_currentScene])
-    {
-      renderable.render(renderable.data, _renderer);
-    }
+    RenderGameObjects(_currentScene);
+    RenderGameObjects(_persistentScene);
 
     SDL_SetRenderTarget(_renderer, nullptr);
 
@@ -748,19 +727,6 @@ namespace JadeEngine
     SDL_RenderPresent(_renderer);
 
     GInput.AfterUpdate();
-  }
-
-  void Game::UpdateTextObject(std::unique_ptr<ITextObject>& textObject)
-  {
-    if (textObject->RequiresPreload())
-    {
-      textObject->Preload(_renderer);
-    }
-
-    if (!textObject->RequiresPreload())
-    {
-      textObject->Update();
-    }
   }
 
   void Game::Start()
@@ -1023,7 +989,7 @@ namespace JadeEngine
   void Game::EndBatchCreate()
   {
     _batchCreate = false;
-    SortRenderables(_currentScene);
+    SortGameObjectsRendering(_currentScene);
   }
 
   void Game::UpdateKeybindings()

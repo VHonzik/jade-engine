@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICompositeObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <SDL.h>
@@ -30,7 +30,7 @@ namespace JadeEngine
     float         initialValue;
   };
 
-  class Slider : public ICompositeObject
+  class Slider : public IGameObject
   {
   public:
     Slider(const SliderParams& params);

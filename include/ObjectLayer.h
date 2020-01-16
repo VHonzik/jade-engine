@@ -6,6 +6,6 @@ namespace JadeEngine
   {
     kObjectLayer_ui,
     kObjectLayer_world,
-    kObjectLayer_persitant_ui,
+    kObjectLayer_persistent_ui,
   };
 }

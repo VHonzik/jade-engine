@@ -15,20 +15,19 @@ namespace JadeEngine
     , _y(0)
   {
     _z = params.z;
+    SetLoadState(kLoadState_wanted);
     _font = GGame.FindFont(params.fontName, params.fontSize);
 
     assert(_font != nullptr);
-
-    Preload(GGame.GetRenderer());
   }
 
-  bool Text::DoPreload(SDL_Renderer* renderer)
+  LoadState Text::Load(SDL_Renderer* renderer)
   {
     if (_text.size() == 0)
     {
       _width = 0;
       _height = 0;
-      return true;
+      return kLoadState_done;
     }
 
     auto surface = TTF_RenderText_Blended(_font, _text.c_str(), _color);
@@ -45,13 +44,13 @@ namespace JadeEngine
       _cachedTexture = SDL_CreateTextureFromSurface(renderer, surface);
       SDL_FreeSurface(surface);
 
-      return _cachedTexture != nullptr;
+      return _cachedTexture != nullptr ? kLoadState_done : kLoadState_abandoned;
     }
     else
     {
       _width = 0;
       _height = 0;
-      return false;
+      return kLoadState_abandoned;
     }
   }
 
@@ -67,7 +66,7 @@ namespace JadeEngine
     _y = y;
   }
 
-  void Text::DoRender(SDL_Renderer* renderer)
+  void Text::Render(SDL_Renderer* renderer)
   {
     if (_cachedTexture != nullptr)
     {
@@ -139,7 +138,7 @@ namespace JadeEngine
   {
     SDL_DestroyTexture(_cachedTexture);
     _cachedTexture = nullptr;
-    _preloaded = false;
+    SetLoadState(kLoadState_wanted);
   }
 
   void Text::Clean()

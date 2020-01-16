@@ -81,9 +81,7 @@
     <ClCompile Include="..\..\source\FTC.cpp" />
     <ClCompile Include="..\..\source\Game.cpp" />
     <ClCompile Include="..\..\source\Grid.cpp" />
-    <ClCompile Include="..\..\source\ICompositeObject.cpp" />
     <ClCompile Include="..\..\source\Input.cpp" />
-    <ClCompile Include="..\..\source\ITextObject.cpp" />
     <ClCompile Include="..\..\source\LineBox.cpp" />
     <ClCompile Include="..\..\source\LineGrid.cpp" />
     <ClCompile Include="..\..\source\LineStrip.cpp" />
@@ -91,7 +89,6 @@
     <ClCompile Include="..\..\source\OptionsMenuScene.cpp" />
     <ClCompile Include="..\..\source\PoweredByJadeEngineScene.cpp" />
     <ClCompile Include="..\..\source\ProgressBar.cpp" />
-    <ClCompile Include="..\..\source\Renderable.cpp" />
     <ClCompile Include="..\..\source\Settings.cpp" />
     <ClCompile Include="..\..\source\Slider.cpp" />
     <ClCompile Include="..\..\source\Sprite.cpp" />
@@ -122,10 +119,9 @@
     <ClInclude Include="..\..\include\FTC.h" />
     <ClInclude Include="..\..\include\Game.h" />
     <ClInclude Include="..\..\include\GameInitParams.h" />
-    <ClInclude Include="..\..\include\ICompositeObject.h" />
+    <ClInclude Include="..\..\include\IGameObject.h" />
     <ClInclude Include="..\..\include\Input.h" />
     <ClInclude Include="..\..\include\IScene.h" />
-    <ClInclude Include="..\..\include\ITextObject.h" />
     <ClInclude Include="..\..\include\LineBox.h" />
     <ClInclude Include="..\..\include\LineGrid.h" />
     <ClInclude Include="..\..\include\LineStrip.h" />
@@ -134,7 +130,6 @@
     <ClInclude Include="..\..\include\OptionsMenuScene.h" />
     <ClInclude Include="..\..\include\PoweredByJadeEngineScene.h" />
     <ClInclude Include="..\..\include\ProgressBar.h" />
-    <ClInclude Include="..\..\include\Renderable.h" />
     <ClInclude Include="..\..\include\Settings.h" />
     <ClInclude Include="..\..\include\SettingsFile.h" />
     <ClInclude Include="..\..\include\Slider.h" />

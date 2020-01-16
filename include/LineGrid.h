@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Aligment.h"
-#include "ICompositeObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <SDL_pixels.h>
@@ -23,7 +23,7 @@ namespace JadeEngine
     int32_t               z;
   };
 
-  class LineGrid : public ICompositeObject
+  class LineGrid : public IGameObject
   {
   public:
     LineGrid(const LineGridParams& params);

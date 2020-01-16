@@ -115,6 +115,7 @@ namespace JadeEngine
     {
       _released = false;
     }
+
     const auto hoveredSprite = GGame.GetHoveredSprite();
     if (!_disabled && !_down && hoveredSprite == _normalSprite
       && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
@@ -168,10 +169,12 @@ namespace JadeEngine
 
   void Button::Show(bool shown)
   {
-    _shown = shown;
-    _text->Show(shown);
-    _normalSprite->Show(shown);
-    _pressedSprite->Show(shown);
-    _disabledSprite->Show(shown);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
+
+    _text->Show(isShown);
+    _normalSprite->Show(isShown);
+    _pressedSprite->Show(isShown);
+    _disabledSprite->Show(isShown);
   }
 }

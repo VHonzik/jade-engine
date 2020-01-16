@@ -39,7 +39,7 @@ namespace JadeEngine
 
   void Tooltip::Update()
   {
-    if (!_textPreloaded && !_textBox->RequiresPreload())
+    if (!_textPreloaded && _textBox->GetLoadState() == kLoadState_done)
     {
       _textPreloaded = true;
       const auto previousHeight = _boxSprite->GetHeight();
@@ -62,10 +62,11 @@ namespace JadeEngine
 
   void Tooltip::Show(bool shown)
   {
-    ICompositeObject::Show(shown);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
 
-    _boxSprite->Show(IsShown());
-    _textBox->Show(IsShown());
+    _boxSprite->Show(isShown);
+    _textBox->Show(isShown);
   }
 
   int32_t Tooltip::GetX() const { return _boxSprite->GetX(); }

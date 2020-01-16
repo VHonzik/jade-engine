@@ -1,8 +1,10 @@
 #include "FTC.h"
 
-#include "Text.h"
 #include "Game.h"
+#include "Text.h"
+
 #include <numeric>
+#include <cassert>
 
 namespace JadeEngine
 {
@@ -15,9 +17,13 @@ namespace JadeEngine
     , _y(0)
     , _layer(params.layer)
     , _align(kHorizontalAlignment_Left)
+    , _recalculateSizeWanted(false)
   {
     _z = params.z;
+
     _font = GGame.FindFont(params.fontName, params.fontSize);
+
+    assert(_font != nullptr);
 
     _subParams.color = _defaultColor;
     _subParams.fontName = params.fontName;
@@ -27,7 +33,6 @@ namespace JadeEngine
     _subParams.z = params.z;
 
     Rebuild();
-    _preloaded = true;
   }
 
   void FTC::Rebuild()
@@ -39,7 +44,6 @@ namespace JadeEngine
 
     _valueColors.clear();
     _texts.clear();
-
 
     uint32_t start = 0;
     for (uint32_t i = 0; i < _format.size(); i++)
@@ -74,18 +78,15 @@ namespace JadeEngine
 
       _texts.push_back(GGame.Create<Text>(params));
     }
+
+    _recalculateSizeWanted = true;
   }
 
   void FTC::Update()
   {
-    Width = 0;
-    Height = 0;
-    for (uint32_t i = 0; i < _texts.size(); i++)
+    if (_recalculateSizeWanted)
     {
-      auto& text = _texts[i];
-      text->SetPosition(i == 0 ? _x : _texts[i - 1]->GetX() + _texts[i - 1]->GetWidth(), _y);
-      Width += text->GetWidth();
-      Height = std::max(Height, text->GetHeight());
+      RecalculateSize();
     }
   }
 
@@ -93,32 +94,38 @@ namespace JadeEngine
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetText(std::to_string(value));
+    _recalculateSizeWanted = true;
   }
 
   void FTC::SetStringValue(const uint32_t index, const std::string& value)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetText(value);
+    _recalculateSizeWanted = true;
   }
 
   void FTC::SetFloatValue(const uint32_t index, const float value)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetText(std::to_string(value));
+    _recalculateSizeWanted = true;
   }
 
   void FTC::SetValueColor(const uint32_t index, const SDL_Color& color)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetColor(color);
+    _recalculateSizeWanted = true;
   }
 
   void FTC::Show(bool shown)
   {
-    ITextObject::Show(shown);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
+
     for (auto& text : _texts)
     {
-      text->Show(shown);
+      text->Show(isShown);
     }
   }
 
@@ -142,5 +149,21 @@ namespace JadeEngine
   {
     _x = x;
     _y = y;
+  }
+
+  void FTC::RecalculateSize()
+  {
+    Width = 0;
+    Height = 0;
+
+    for (uint32_t i = 0; i < _texts.size(); i++)
+    {
+      auto& text = _texts[i];
+      text->SetPosition(i == 0 ? _x : _texts[i - 1]->GetX() + _texts[i - 1]->GetWidth(), _y);
+      Width += text->GetWidth();
+      Height = std::max(Height, text->GetHeight());
+    }
+
+    _recalculateSizeWanted = false;
   }
 }

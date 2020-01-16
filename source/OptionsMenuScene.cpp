@@ -2,6 +2,7 @@
 
 #include "Audio.h"
 #include "Button.h"
+#include "Checkbox.h"
 #include "Dropdown.h"
 #include "EngineTemplateParams.h"
 #include "EngineSettings.h"

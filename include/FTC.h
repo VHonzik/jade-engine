@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ITextObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 #include "Text.h"
 
@@ -19,15 +19,16 @@ namespace JadeEngine
     int32_t       z;
   };
 
-  class FTC : public ITextObject
+  class FTC : public IGameObject
   {
   public:
     FTC(const FTCParams& params);
 
     void Update() override;
     void Show(const bool shown) override;
-    void SetHorizontalAlign(const HorizontalAlignment align) override;
-    void SetVerticalAlign(const VerticalAlignment align) override;
+
+    void SetHorizontalAlign(const HorizontalAlignment align);
+    void SetVerticalAlign(const VerticalAlignment align);
 
     void SetIntValue(const uint32_t index, const int32_t value);
     void SetStringValue(const uint32_t index, const std::string& value);
@@ -48,6 +49,7 @@ namespace JadeEngine
     int32_t Height;
   private:
     void Rebuild();
+    void RecalculateSize();
 
     TTF_Font* _font;
     std::string _format;
@@ -66,5 +68,7 @@ namespace JadeEngine
     int32_t _y;
 
     ObjectLayer _layer;
+
+    bool _recalculateSizeWanted;
   };
 }

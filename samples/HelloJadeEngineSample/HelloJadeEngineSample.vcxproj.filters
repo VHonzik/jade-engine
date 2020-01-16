@@ -66,13 +66,7 @@
     <ClCompile Include="..\..\source\Grid.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\ICompositeObject.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Input.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\ITextObject.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\LineBox.cpp">
@@ -91,9 +85,6 @@
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\ProgressBar.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Renderable.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Settings.cpp">
@@ -173,16 +164,10 @@
     <ClInclude Include="..\..\include\Game.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ICompositeObject.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Input.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\IScene.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\ITextObject.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\LineBox.h">
@@ -204,9 +189,6 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ProgressBar.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Renderable.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Settings.h">
@@ -258,6 +240,9 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\EngineDefaultInitParams.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\IGameObject.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
