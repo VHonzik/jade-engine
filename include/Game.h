@@ -13,6 +13,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace JadeEngine
@@ -300,6 +301,11 @@ namespace JadeEngine
         result->SetLoadState(result->Load(_renderer));
       }
 
+      if constexpr (std::is_base_of_v<Sprite, Class>)
+      {
+        _sprites.insert(result);
+      }
+
       if (!_batchCreate) SortGameObjectsRendering(scene);
       return static_cast<std::add_pointer_t<Class>>(result);
     }
@@ -374,6 +380,7 @@ namespace JadeEngine
     uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);
     std::string HashSolidColorTexture(const uint32_t width, const uint32_t height, const SDL_Color& color);
     void InitializeSettings(const GameInitParams& initParams);
+    Sprite* GameObjectToSprite(IGameObject* gameObject);
     bool LoadAssets(const GameInitParams& initParams);
     bool LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY);
     bool LoadFont(const std::vector<uint32_t>& sizes, const char* assetName, const char* fontFile);
@@ -397,6 +404,7 @@ namespace JadeEngine
     std::unordered_map<int32_t, std::shared_ptr<IScene>> _scenes;
 
     std::unordered_map<std::shared_ptr<IScene>, std::vector<std::unique_ptr<IGameObject>>> _gameObjects;
+    std::unordered_set<IGameObject*> _sprites;
 
     std::unordered_map<std::string, FontDescription> _fonts;
     std::unordered_map<std::string, std::shared_ptr<Texture>> _textures;

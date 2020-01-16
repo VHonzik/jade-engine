@@ -496,21 +496,22 @@ namespace JadeEngine
         auto& gameObject = *it;
         gameObject->Clean();
 
-        // TODO clean-up texture description
-        //if (sprite->GetTextureDescription()->isCopy)
-        //{
-        //  auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
-        //  {
-        //    return element->texture == sprite->GetTextureDescription()->texture;
+        _sprites.erase(gameObject.get());
 
-        //  });
+        auto sprite = GameObjectToSprite(gameObject.get());
+        if (sprite != nullptr && sprite->GetTextureDescription()->isCopy)
+        {
+          auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+          {
+            return element->texture == sprite->GetTextureDescription()->texture;
+          });
 
-        //  for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
-        //  {
-        //    SDL_DestroyTexture((*iter)->texture);
-        //  }
-        //  _textureCopies.erase(elementToRemove, std::end(_textureCopies));
-        //}
+          for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
+          {
+            SDL_DestroyTexture((*iter)->texture);
+          }
+          _textureCopies.erase(elementToRemove, std::end(_textureCopies));
+        }
       }
 
       gameObjects.erase(gameObjectsToRemove, std::end(gameObjects));
@@ -621,11 +622,11 @@ namespace JadeEngine
       if (gameObject->GetLoadState() == kLoadState_done)
       {
         gameObject->Update();
-        // TODO possibleSprites
-        //if (gameObject->IsShown() && GUICamera.IsMouseInside(sprite.get(), false) && GUICamera.IsMouseInside(sprite.get(), true))
-        //{
-        //  _possibleSprites.push_back(sprite.get());
-        //}
+        const auto sprite = GameObjectToSprite(gameObject.get());
+        if (sprite != nullptr && sprite->IsShown() && GUICamera.IsMouseInside(sprite, false) && GUICamera.IsMouseInside(sprite, true))
+        {
+          _possibleSprites.push_back(sprite);
+        }
       }
     }
   }
@@ -1079,5 +1080,15 @@ namespace JadeEngine
     {
       return {};
     }
+  }
+
+  Sprite* Game::GameObjectToSprite(IGameObject* gameObject)
+  {
+    if (_sprites.count(gameObject) > 0U)
+    {
+      return static_cast<Sprite*>(gameObject);
+    }
+
+    return nullptr;
   }
 }
