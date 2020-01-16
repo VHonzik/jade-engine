@@ -101,6 +101,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a74b0fec5d2ca6d594f730ae7a6999ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8216b165f4f29ebfe9262e0b1202bf6e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params_texture_entry.html#a8216b165f4f29ebfe9262e0b1202bf6e">generateHitMap</a></td></tr>
 <tr class="separator:a8216b165f4f29ebfe9262e0b1202bf6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10d0f0f7e925633f74e683daf9cf61ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params_texture_entry.html#a10d0f0f7e925633f74e683daf9cf61ae">sampling</a></td></tr>
+<tr class="separator:a10d0f0f7e925633f74e683daf9cf61ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parameters for loading a texture. </p>
@@ -152,6 +154,23 @@ Public Attributes</h2></td></tr>
 <p>Hit map simply remembers for each pixel of the texture whether it is opaque (alpha &gt; 0). This is then be used in Sprite::HitTest method, for example when more precise action of clicking on an object is necessary.</p>
 <p>Note that this processing can be expensive and has significant memory footprint per texture.</p>
 <dl class="section see"><dt>See also</dt><dd>Sprite::HitTest </dd></dl>
+
+</div>
+</div>
+<a id="a10d0f0f7e925633f74e683daf9cf61ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10d0f0f7e925633f74e683daf9cf61ae">&#9670;&nbsp;</a></span>sampling</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a> JadeEngine::GameInitParamsTextureEntry::sampling</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>How will the texture be sampled when rendering it in a different scale then 100%.</p>
+<p>It is possible to overwrite this per <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> at the cost of texture copy.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a>, Sprite::SetSampling </dd></dl>
 
 </div>
 </div>

@@ -94,66 +94,66 @@ $(document).ready(function(){initNavTree('_engine_default_init_params_8h_source.
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_game_init_params_8h.html">GameInitParams.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;ObjectLayer.h&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;Style.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <span class="keyword">const</span> FTCParams kDefaultFPSFTCParams = {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="comment">//ObjectLayer layer;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    kObjectLayer_persitant_ui,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">//TTF_Font* font;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">nullptr</span>,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">//std::string fontName;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    kKennyFontSquare,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">//uint32_t fontSize;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    12,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">//std::string format;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="stringliteral">&quot;FPS: #&quot;</span>,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">//SDL_Color defaultColor;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    kLightGreyColor,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  };</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultFontSizes = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#aee8c7260e260a3eed7183946a3d5f82d">GameInitParams::fontSizes</a>){ 12, 16, 24, 32 };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultTextures = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#acb625092c03e92eece2d539b0c97fc2f">GameInitParams::textures</a>){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    { kJadeEngineLogoTexture, <span class="stringliteral">&quot;assets/jadeEngineLogo.png&quot;</span>, <span class="keyword">false</span>},</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  };</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultFonts = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a558886d8d131ce5a3df042cbc0f0b661">GameInitParams::fonts</a>){</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    { kKennyFontSquare,  <span class="stringliteral">&quot;assets/KenneyPixelSquare.ttf&quot;</span>},</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    { kVeraFontBold,     <span class="stringliteral">&quot;assets/VeraBd.ttf&quot;</span> },</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    { kVeraFont,         <span class="stringliteral">&quot;assets/Vera.ttf&quot;</span> },</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  };</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultSounds = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a3a09c60d9bbab34e20aa926e2b1a8de1">GameInitParams::sounds</a>){</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      { <span class="stringliteral">&quot;uiBeep&quot;</span>,         <span class="stringliteral">&quot;assets/UIBeepDoubleQuickDeepMuffledstereo.wav&quot;</span>},</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;      { <span class="stringliteral">&quot;uiClick&quot;</span>,        <span class="stringliteral">&quot;assets/UIClickDistinctShortmono.wav&quot;</span>},</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  };</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultCursors = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a9f6f45c4136f81698e2bdaee069a75e1">GameInitParams::cursors</a>){</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  };</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultSpritesheets = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#acf3b37f4e81c01b53b51aca19228da6b">GameInitParams::spritesheets</a>){</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    { kJadeEngineUISpritesheet, <span class="stringliteral">&quot;assets/engineUI.png&quot;</span>, <span class="stringliteral">&quot;assets/engineUI.json&quot;</span> },</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultKeybindings = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">GameInitParams::keybindings</a>){</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  };</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;TextureSampling.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">const</span> FTCParams kDefaultFPSFTCParams = {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">//ObjectLayer layer;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    kObjectLayer_persistent_ui,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">//std::string fontName;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    kKennyFontSquare,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">//uint32_t fontSize;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    12,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">//std::string format;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="stringliteral">&quot;FPS: #&quot;</span>,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">//SDL_Color defaultColor;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    kLightGreyColor,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultFontSizes = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#aee8c7260e260a3eed7183946a3d5f82d">GameInitParams::fontSizes</a>){ 12, 16, 24, 32, 64 };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultTextures = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#acb625092c03e92eece2d539b0c97fc2f">GameInitParams::textures</a>){</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    { kJadeEngineLogoTexture, <span class="stringliteral">&quot;assets/jadeEngineLogo.png&quot;</span>, <span class="keyword">false</span>, <a class="code" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7">kTextureSampling_anisotropic</a>},</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultFonts = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a558886d8d131ce5a3df042cbc0f0b661">GameInitParams::fonts</a>){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    { kKennyFontSquare,  <span class="stringliteral">&quot;assets/KenneyPixelSquare.ttf&quot;</span>},</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    { kVeraFontBold,     <span class="stringliteral">&quot;assets/VeraBd.ttf&quot;</span> },</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    { kVeraFont,         <span class="stringliteral">&quot;assets/Vera.ttf&quot;</span> },</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultSounds = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a3a09c60d9bbab34e20aa926e2b1a8de1">GameInitParams::sounds</a>){</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      { <span class="stringliteral">&quot;uiBeep&quot;</span>,         <span class="stringliteral">&quot;assets/UIBeepDoubleQuickDeepMuffledstereo.wav&quot;</span>},</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      { <span class="stringliteral">&quot;uiClick&quot;</span>,        <span class="stringliteral">&quot;assets/UIClickDistinctShortmono.wav&quot;</span>},</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultCursors = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a9f6f45c4136f81698e2bdaee069a75e1">GameInitParams::cursors</a>){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  };</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultSpritesheets = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#acf3b37f4e81c01b53b51aca19228da6b">GameInitParams::spritesheets</a>){</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    { kJadeEngineUISpritesheet, <span class="stringliteral">&quot;assets/engineUI.png&quot;</span>, <span class="stringliteral">&quot;assets/engineUI.json&quot;</span>, <a class="code" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7">kTextureSampling_anisotropic</a> },</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  };</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> kDefaultKeybindings = decltype(<a class="code" href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">GameInitParams::keybindings</a>){</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  };</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_game_init_params_8h_html"><div class="ttname"><a href="_game_init_params_8h.html">GameInitParams.h</a></div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a558886d8d131ce5a3df042cbc0f0b661"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a558886d8d131ce5a3df042cbc0f0b661">JadeEngine::GameInitParams::fonts</a></div><div class="ttdeci">std::vector&lt; GameInitParamsFontEntry &gt; fonts</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:319</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a9f6f45c4136f81698e2bdaee069a75e1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a9f6f45c4136f81698e2bdaee069a75e1">JadeEngine::GameInitParams::cursors</a></div><div class="ttdeci">std::vector&lt; GameInitParamsCursorEntry &gt; cursors</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:337</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a25041f3e6cd6d3293c0efdfc4931e774"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">JadeEngine::GameInitParams::keybindings</a></div><div class="ttdeci">std::vector&lt; GameInitParamsKeyBindingEntry &gt; keybindings</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:358</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a3a09c60d9bbab34e20aa926e2b1a8de1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a3a09c60d9bbab34e20aa926e2b1a8de1">JadeEngine::GameInitParams::sounds</a></div><div class="ttdeci">std::vector&lt; GameInitParamsSoundEntry &gt; sounds</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:328</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a558886d8d131ce5a3df042cbc0f0b661"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a558886d8d131ce5a3df042cbc0f0b661">JadeEngine::GameInitParams::fonts</a></div><div class="ttdeci">std::vector&lt; GameInitParamsFontEntry &gt; fonts</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:347</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a9f6f45c4136f81698e2bdaee069a75e1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a9f6f45c4136f81698e2bdaee069a75e1">JadeEngine::GameInitParams::cursors</a></div><div class="ttdeci">std::vector&lt; GameInitParamsCursorEntry &gt; cursors</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:365</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a25041f3e6cd6d3293c0efdfc4931e774"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">JadeEngine::GameInitParams::keybindings</a></div><div class="ttdeci">std::vector&lt; GameInitParamsKeyBindingEntry &gt; keybindings</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:386</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a3a09c60d9bbab34e20aa926e2b1a8de1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a3a09c60d9bbab34e20aa926e2b1a8de1">JadeEngine::GameInitParams::sounds</a></div><div class="ttdeci">std::vector&lt; GameInitParamsSoundEntry &gt; sounds</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:356</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_aee8c7260e260a3eed7183946a3d5f82d"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#aee8c7260e260a3eed7183946a3d5f82d">JadeEngine::GameInitParams::fontSizes</a></div><div class="ttdeci">std::vector&lt; uint32_t &gt; fontSizes</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:290</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_acf3b37f4e81c01b53b51aca19228da6b"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#acf3b37f4e81c01b53b51aca19228da6b">JadeEngine::GameInitParams::spritesheets</a></div><div class="ttdeci">std::vector&lt; GameInitParamsSpriteSheetEntry &gt; spritesheets</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:349</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_acb625092c03e92eece2d539b0c97fc2f"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#acb625092c03e92eece2d539b0c97fc2f">JadeEngine::GameInitParams::textures</a></div><div class="ttdeci">std::vector&lt; GameInitParamsTextureEntry &gt; textures</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:307</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_aee8c7260e260a3eed7183946a3d5f82d"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#aee8c7260e260a3eed7183946a3d5f82d">JadeEngine::GameInitParams::fontSizes</a></div><div class="ttdeci">std::vector&lt; uint32_t &gt; fontSizes</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:318</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_acf3b37f4e81c01b53b51aca19228da6b"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#acf3b37f4e81c01b53b51aca19228da6b">JadeEngine::GameInitParams::spritesheets</a></div><div class="ttdeci">std::vector&lt; GameInitParamsSpriteSheetEntry &gt; spritesheets</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:377</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7"><div class="ttname"><a href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7">JadeEngine::kTextureSampling_anisotropic</a></div><div class="ttdeci">@ kTextureSampling_anisotropic</div><div class="ttdef"><b>Definition:</b> TextureSampling.h:21</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_acb625092c03e92eece2d539b0c97fc2f"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#acb625092c03e92eece2d539b0c97fc2f">JadeEngine::GameInitParams::textures</a></div><div class="ttdeci">std::vector&lt; GameInitParamsTextureEntry &gt; textures</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:335</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>EngineDefaultInitParams.h</b></li>
+    <li class="navelem"><a class="el" href="dir_809e01ca1bf6c11f87e25db515443ccb.html">include</a></li><li class="navelem"><b>EngineDefaultInitParams.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

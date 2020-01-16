@@ -24,7 +24,13 @@ var NAVTREE =
 [
   [ "jade-engine", "index.html", [
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -45,9 +51,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"class_jade_engine_1_1_input.html#aa5902583a4d0800f202cf9117da291c7",
-"struct_jade_engine_1_1_button_params.html#a8b2bb478958e15e8f2588ba7d69d6db2",
-"struct_jade_engine_1_1_texture.html"
+"class_jade_engine_1_1_line_box.html#afface9a36e507810b18716a097b02979",
+"struct_jade_engine_1_1_cursor_style_entry.html#a0e9625438f86fcadb167bd8c83f047ed"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

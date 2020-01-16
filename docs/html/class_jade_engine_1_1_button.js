@@ -15,6 +15,6 @@ var class_jade_engine_1_1_button =
     [ "SetCenterPosition", "class_jade_engine_1_1_button.html#a09ff7a631ad86e0fc73b524abb24e5b3", null ],
     [ "SetPosition", "class_jade_engine_1_1_button.html#a2bc87dd1ec253dec5af4e9679099a8ea", null ],
     [ "SetText", "class_jade_engine_1_1_button.html#a1e128d10f26bca79d76d0640eea79263", null ],
-    [ "Show", "class_jade_engine_1_1_button.html#a0ef57d2b1ce1a22363bfb0247b8819ca", null ],
+    [ "Show", "class_jade_engine_1_1_button.html#a60df2a6e4f748d1993a8659e9a1efef0", null ],
     [ "Update", "class_jade_engine_1_1_button.html#a9bf813aa2cd30c9853d8893dc5ab3183", null ]
 ];

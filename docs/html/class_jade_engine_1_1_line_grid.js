@@ -9,6 +9,6 @@ var class_jade_engine_1_1_line_grid =
     [ "GetY", "class_jade_engine_1_1_line_grid.html#ab227e30f7d6fa463969a84d48a306736", null ],
     [ "SetCenterPosition", "class_jade_engine_1_1_line_grid.html#aaab637417fc0ed3120f931a66f89cef0", null ],
     [ "SetPosition", "class_jade_engine_1_1_line_grid.html#abf0404581fd8a501ce4b63f06311f612", null ],
-    [ "Show", "class_jade_engine_1_1_line_grid.html#af6d5fb3b75959b6e62530fcaa2bc8edf", null ],
+    [ "Show", "class_jade_engine_1_1_line_grid.html#afa2eeafa44a84665518b97ec3a39a93a", null ],
     [ "Update", "class_jade_engine_1_1_line_grid.html#a655197dff0351818f2521436e5db2b64", null ]
 ];

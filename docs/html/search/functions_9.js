@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['setcursor_203',['SetCursor',['../class_jade_engine_1_1_game.html#a51c4235b37d8e49a340e6cda940fe3c6',1,'JadeEngine::Game']]],
-  ['setfullscreen_204',['SetFullscreen',['../class_jade_engine_1_1_game.html#a7bbe2c09304b3d8095cda961dd204e65',1,'JadeEngine::Game']]]
+  ['playscene_226',['PlayScene',['../class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2',1,'JadeEngine::Game']]]
 ];

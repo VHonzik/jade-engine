@@ -12,6 +12,6 @@ var class_jade_engine_1_1_line_box =
     [ "SetPosition", "class_jade_engine_1_1_line_box.html#a3b98b1007d1231cd4ec3265d4111d4ee", null ],
     [ "SetStartEnd", "class_jade_engine_1_1_line_box.html#a423cd937f64ae07a3257f976f88529b9", null ],
     [ "SetWidth", "class_jade_engine_1_1_line_box.html#a876058305a247e8636a3f144c26fc9f6", null ],
-    [ "Show", "class_jade_engine_1_1_line_box.html#aec21af6a17985057bce16a992cbae006", null ],
+    [ "Show", "class_jade_engine_1_1_line_box.html#afface9a36e507810b18716a097b02979", null ],
     [ "Update", "class_jade_engine_1_1_line_box.html#a0765bf7bfdfdba0835a64c2c501ab29f", null ]
 ];

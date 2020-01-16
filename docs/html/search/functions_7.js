@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['playscene_199',['PlayScene',['../class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2',1,'JadeEngine::Game']]]
+  ['load_224',['Load',['../class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d',1,'JadeEngine::IGameObject::Load()'],['../class_jade_engine_1_1_text.html#ad11bbec82a194f42a36f0d4fe78158f6',1,'JadeEngine::Text::Load()'],['../class_jade_engine_1_1_text_box.html#a671cd9b54ab0e261cc8fbb88cf9d47e5',1,'JadeEngine::TextBox::Load()'],['../class_jade_engine_1_1_text_sprite.html#a375129af8cd458c1cf614a5e8b3569d7',1,'JadeEngine::TextSprite::Load()']]]
 ];

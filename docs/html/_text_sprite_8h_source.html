@@ -115,8 +115,8 @@ $(document).ready(function(){initNavTree('_text_sprite_8h_source.html',''); init
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_jade_engine_1_1_text_sprite.html">TextSprite</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_text_sprite_params.html">TextSpriteParams</a>&amp; params);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> DoPreload(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> DoRender(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="namespace_jade_engine.html#a9a612f8b007073dfe9705eb59d7f90f4">LoadState</a> <a class="code" href="class_jade_engine_1_1_text_sprite.html#a375129af8cd458c1cf614a5e8b3569d7">Load</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_text_sprite.html#a78ea14404ec71a07fb9122447f8ac335">Render</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    std::string _text;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    TTF_Font* _font;</div>
@@ -128,14 +128,17 @@ $(document).ready(function(){initNavTree('_text_sprite_8h_source.html',''); init
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_jade_engine_1_1_text_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_text_sprite.html">JadeEngine::TextSprite</a></div><div class="ttdef"><b>Definition:</b> TextSprite.h:25</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_text_box_html"><div class="ttname"><a href="class_jade_engine_1_1_text_box.html">JadeEngine::TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:22</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_text_box_html"><div class="ttname"><a href="class_jade_engine_1_1_text_box.html">JadeEngine::TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:23</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_text_sprite_html_a78ea14404ec71a07fb9122447f8ac335"><div class="ttname"><a href="class_jade_engine_1_1_text_sprite.html#a78ea14404ec71a07fb9122447f8ac335">JadeEngine::TextSprite::Render</a></div><div class="ttdeci">void Render(SDL_Renderer *renderer) override</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:24</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_text_sprite_html_a375129af8cd458c1cf614a5e8b3569d7"><div class="ttname"><a href="class_jade_engine_1_1_text_sprite.html#a375129af8cd458c1cf614a5e8b3569d7">JadeEngine::TextSprite::Load</a></div><div class="ttdeci">LoadState Load(SDL_Renderer *renderer) override</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:25</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_a9a612f8b007073dfe9705eb59d7f90f4"><div class="ttname"><a href="namespace_jade_engine.html#a9a612f8b007073dfe9705eb59d7f90f4">JadeEngine::LoadState</a></div><div class="ttdeci">LoadState</div><div class="ttdef"><b>Definition:</b> IGameObject.h:12</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_text_sprite_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_text_sprite_params.html">JadeEngine::TextSpriteParams</a></div><div class="ttdef"><b>Definition:</b> TextSprite.h:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>TextSprite.h</b></li>
+    <li class="navelem"><a class="el" href="dir_809e01ca1bf6c11f87e25db515443ccb.html">include</a></li><li class="navelem"><b>TextSprite.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

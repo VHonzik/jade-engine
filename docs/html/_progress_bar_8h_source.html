@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('_progress_bar_8h_source.html',''); ini
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;ICompositeObject.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;IGameObject.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;ObjectLayer.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
@@ -135,13 +135,13 @@ $(document).ready(function(){initNavTree('_progress_bar_8h_source.html',''); ini
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">float</span> threshold;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  };</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_progress_bar.html">   49</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_progress_bar.html">ProgressBar</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_composite_object.html">ICompositeObject</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_progress_bar.html">   49</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_progress_bar.html">ProgressBar</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_jade_engine_1_1_progress_bar.html">ProgressBar</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_progress_bar_params.html">ProgressBarParams</a>&amp; params);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> Update() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> Show(<span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_progress_bar.html#ad9da0e8550c1462e2bd13c35ff4542d3">Update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_progress_bar.html#a238d65c9436d25fb78f541f96298e6ac">Show</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> SetPosition(int32_t x, int32_t y);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> SetCenterPosition(int32_t x, int32_t y);</div>
@@ -182,15 +182,17 @@ $(document).ready(function(){initNavTree('_progress_bar_8h_source.html',''); ini
 </div><!-- doc-content -->
 <div class="ttc" id="astruct_jade_engine_1_1_progress_bar_color_html"><div class="ttname"><a href="struct_jade_engine_1_1_progress_bar_color.html">JadeEngine::ProgressBarColor</a></div><div class="ttdef"><b>Definition:</b> ProgressBar.h:11</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_progress_bar_html_a238d65c9436d25fb78f541f96298e6ac"><div class="ttname"><a href="class_jade_engine_1_1_progress_bar.html#a238d65c9436d25fb78f541f96298e6ac">JadeEngine::ProgressBar::Show</a></div><div class="ttdeci">void Show(const bool shown) override</div><div class="ttdef"><b>Definition:</b> ProgressBar.cpp:151</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_foreground_html"><div class="ttname"><a href="struct_jade_engine_1_1_foreground.html">JadeEngine::Foreground</a></div><div class="ttdef"><b>Definition:</b> ProgressBar.h:41</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_i_composite_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_composite_object.html">JadeEngine::ICompositeObject</a></div><div class="ttdef"><b>Definition:</b> ICompositeObject.h:5</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:24</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></div><div class="ttdef"><b>Definition:</b> IGameObject.h:74</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:25</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_progress_bar_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_progress_bar_params.html">JadeEngine::ProgressBarParams</a></div><div class="ttdef"><b>Definition:</b> ProgressBar.h:20</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_progress_bar_html_ad9da0e8550c1462e2bd13c35ff4542d3"><div class="ttname"><a href="class_jade_engine_1_1_progress_bar.html#ad9da0e8550c1462e2bd13c35ff4542d3">JadeEngine::ProgressBar::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdef"><b>Definition:</b> ProgressBar.cpp:113</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_progress_bar_html"><div class="ttname"><a href="class_jade_engine_1_1_progress_bar.html">JadeEngine::ProgressBar</a></div><div class="ttdef"><b>Definition:</b> ProgressBar.h:49</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>ProgressBar.h</b></li>
+    <li class="navelem"><a class="el" href="dir_809e01ca1bf6c11f87e25db515443ccb.html">include</a></li><li class="navelem"><b>ProgressBar.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
