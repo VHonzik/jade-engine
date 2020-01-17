@@ -391,6 +391,7 @@ namespace JadeEngine
     void SetHoveredSprite(Sprite* sprite);
     void SortGameObjectsRendering(const std::shared_ptr<IScene>& scene);
     void Update();
+    void LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene);
     void UpdateGameObjects(std::shared_ptr<IScene>& scene);
     void UpdateKeybindings();
 

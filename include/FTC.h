@@ -49,7 +49,7 @@ namespace JadeEngine
     int32_t Height;
   private:
     void Rebuild();
-    void RecalculateSize();
+    void Recalculate();
 
     TTF_Font* _font;
     std::string _format;
@@ -69,6 +69,6 @@ namespace JadeEngine
 
     ObjectLayer _layer;
 
-    bool _recalculateSizeWanted;
+    bool _recalculateWanted;
   };
 }

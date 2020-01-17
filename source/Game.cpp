@@ -610,9 +610,9 @@ namespace JadeEngine
     _hoveredSprite = sprite;
   }
 
-  void Game::UpdateGameObjects(std::shared_ptr<IScene>& scene)
+  void Game::LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene)
   {
-    for (auto& gameObject : _gameObjects[_currentScene])
+    for (auto& gameObject : _gameObjects[scene])
     {
       if (gameObject->GetLoadState() == kLoadState_wanted)
       {
@@ -621,7 +621,6 @@ namespace JadeEngine
 
       if (gameObject->GetLoadState() == kLoadState_done)
       {
-        gameObject->Update();
         const auto sprite = GameObjectToSprite(gameObject.get());
         if (sprite != nullptr && sprite->IsShown() && GUICamera.IsMouseInside(sprite, false) && GUICamera.IsMouseInside(sprite, true))
         {
@@ -631,9 +630,20 @@ namespace JadeEngine
     }
   }
 
+  void Game::UpdateGameObjects(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[scene])
+    {
+      if (gameObject->GetLoadState() == kLoadState_done)
+      {
+        gameObject->Update();
+      }
+    }
+  }
+
   void Game::RenderGameObjects(std::shared_ptr<IScene>& scene)
   {
-    for (auto& gameObject : _gameObjects[_currentScene])
+    for (auto& gameObject : _gameObjects[scene])
     {
       if (gameObject->IsShown())
       {
@@ -693,10 +703,10 @@ namespace JadeEngine
 
     _possibleSprites.clear();
 
-    UpdateGameObjects(_currentScene);
+    LoadGameObjectsAndHover(_currentScene);
     if (_currentScene != _persistentScene)
     {
-      UpdateGameObjects(_persistentScene);
+      LoadGameObjectsAndHover(_persistentScene);
     }
 
     if (_possibleSprites.size() > 0)
@@ -709,6 +719,12 @@ namespace JadeEngine
     else
     {
       SetHoveredSprite(nullptr);
+    }
+
+    UpdateGameObjects(_currentScene);
+    if (_currentScene != _persistentScene)
+    {
+      UpdateGameObjects(_persistentScene);
     }
 
     RenderGameObjects(_currentScene);
