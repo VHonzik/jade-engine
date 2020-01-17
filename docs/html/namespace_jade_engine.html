@@ -28,7 +28,6 @@
    <div id="projectname">jade-engine
    &#160;<span id="projectnumber">0.0</span>
    </div>
-   <div id="projectbrief">A small programmer-focused 2D game engine written in C++ on top of SDL2.</div>
   </td>
  </tr>
  </tbody>
@@ -363,18 +362,6 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a730bced032a6f1da5a55a3384675085f"><td class="memItemLeft" align="right" valign="top"><a id="a730bced032a6f1da5a55a3384675085f"></a>
 <a class="el" href="struct_jade_engine_1_1_clipper_result.html">ClipperResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LiangBarskyClipper</b> (const SDL_Rect &amp;rect, const SDL_Point &amp;start, const SDL_Point &amp;end)</td></tr>
 <tr class="separator:a730bced032a6f1da5a55a3384675085f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af09247bc45516b478e97ac410342cfb2"><td class="memItemLeft" align="right" valign="top"><a id="af09247bc45516b478e97ac410342cfb2"></a>
-template&lt;&gt; </td></tr>
-<tr class="memitem:af09247bc45516b478e97ac410342cfb2"><td class="memTemplItemLeft" align="right" valign="top">Renderable&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_renderable&lt; Sprite &gt;</b> (<a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> *object)</td></tr>
-<tr class="separator:af09247bc45516b478e97ac410342cfb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a689174a133daaff13b679ebb052d5b12"><td class="memItemLeft" align="right" valign="top"><a id="a689174a133daaff13b679ebb052d5b12"></a>
-template&lt;&gt; </td></tr>
-<tr class="memitem:a689174a133daaff13b679ebb052d5b12"><td class="memTemplItemLeft" align="right" valign="top">Renderable&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_renderable&lt; ITextObject &gt;</b> (ITextObject *object)</td></tr>
-<tr class="separator:a689174a133daaff13b679ebb052d5b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2af45f28a1b2f86b220ba4b2bbc97b3"><td class="memItemLeft" align="right" valign="top"><a id="ae2af45f28a1b2f86b220ba4b2bbc97b3"></a>
-template&lt;&gt; </td></tr>
-<tr class="memitem:ae2af45f28a1b2f86b220ba4b2bbc97b3"><td class="memTemplItemLeft" align="right" valign="top">Renderable&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_renderable&lt; LineStrip &gt;</b> (<a class="el" href="class_jade_engine_1_1_line_strip.html">LineStrip</a> *object)</td></tr>
-<tr class="separator:ae2af45f28a1b2f86b220ba4b2bbc97b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -526,6 +513,11 @@ const <a class="el" href="struct_jade_engine_1_1_dropdown_params.html">DropdownP
 <tr class="memitem:a4a4ea03c4f82b05e9a97eb130e364763"><td class="memItemLeft" align="right" valign="top"><a id="a4a4ea03c4f82b05e9a97eb130e364763"></a>
 const auto&#160;</td><td class="memItemRight" valign="bottom"><b>kAppearDuration</b> = 1.5f</td></tr>
 <tr class="separator:a4a4ea03c4f82b05e9a97eb130e364763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a247f462c538677aa5abfea00c3863cfb"><td class="memItemLeft" align="right" valign="top"><a id="a247f462c538677aa5abfea00c3863cfb"></a>
+const auto&#160;</td><td class="memItemRight" valign="bottom"><b>kStayDurection</b> = 2.0f</td></tr>
+<tr class="separator:a247f462c538677aa5abfea00c3863cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebe6a5dbc264de449ea75b06dec46f82"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>kScalingSDLHintNames</b> [3]</td></tr>
+<tr class="separator:aebe6a5dbc264de449ea75b06dec46f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>"Stolen" and modified from <a href="https://github.com/Malvineous/cfgpath">https://github.com/Malvineous/cfgpath</a>. Retrieved 11/18/2018. Relevant part of copyright from original file:</p>
@@ -935,6 +927,26 @@ purpose.  If you add new platform support, please contribute a patch!</h2>
 <div class="line">    510,</div>
 <div class="line">    </div>
 <div class="line">    400,</div>
+<div class="line">  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aebe6a5dbc264de449ea75b06dec46f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebe6a5dbc264de449ea75b06dec46f82">&#9670;&nbsp;</a></span>kScalingSDLHintNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string JadeEngine::kScalingSDLHintNames[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">  {</div>
+<div class="line">    <span class="stringliteral">&quot;nearest&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;linear&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;best&quot;</span>,</div>
 <div class="line">  }</div>
 </div><!-- fragment -->
 </div>

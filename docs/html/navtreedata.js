@@ -23,6 +23,14 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "jade-engine", "index.html", [
+    [ "jade-engine Introduction", "index.html", [
+      [ "Getting started", "index.html#autotoc_md2", [
+        [ "Prerequisites", "index.html#autotoc_md3", null ],
+        [ "Set-up", "index.html#autotoc_md4", null ],
+        [ "Usage", "index.html#autotoc_md5", null ]
+      ] ]
+    ] ],
+    [ "Installation guide", "installationpage.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -52,7 +60,8 @@ var NAVTREEINDEX =
 [
 ".html",
 "class_jade_engine_1_1_line_box.html#afface9a36e507810b18716a097b02979",
-"struct_jade_engine_1_1_cursor_style_entry.html#a0e9625438f86fcadb167bd8c83f047ed"
+"struct_jade_engine_1_1_clipper_result.html#aecc3b05f73200d8e1a63701271fec2ee",
+"struct_jade_engine_1_1_tooltip_params.html#ae113e25c7487cc5822207493af148b4d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

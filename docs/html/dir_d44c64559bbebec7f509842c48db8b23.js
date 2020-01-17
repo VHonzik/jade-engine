@@ -27,10 +27,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "GameInitParamsKeyBindingEntry", "struct_jade_engine_1_1_game_init_params_key_binding_entry.html", "struct_jade_engine_1_1_game_init_params_key_binding_entry" ],
       [ "GameInitParams", "struct_jade_engine_1_1_game_init_params.html", "struct_jade_engine_1_1_game_init_params" ]
     ] ],
-    [ "ICompositeObject.h", "_i_composite_object_8h_source.html", null ],
+    [ "IGameObject.h", "_i_game_object_8h_source.html", null ],
     [ "Input.h", "_input_8h_source.html", null ],
     [ "IScene.h", "_i_scene_8h_source.html", null ],
-    [ "ITextObject.h", "_i_text_object_8h_source.html", null ],
     [ "LineBox.h", "_line_box_8h_source.html", null ],
     [ "LineGrid.h", "_line_grid_8h_source.html", null ],
     [ "LineStrip.h", "_line_strip_8h_source.html", null ],
@@ -39,7 +38,6 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "OptionsMenuScene.h", "_options_menu_scene_8h_source.html", null ],
     [ "PoweredByJadeEngineScene.h", "_powered_by_jade_engine_scene_8h_source.html", null ],
     [ "ProgressBar.h", "_progress_bar_8h_source.html", null ],
-    [ "Renderable.h", "_renderable_8h_source.html", null ],
     [ "Settings.h", "_settings_8h_source.html", null ],
     [ "SettingsFile.h", "_settings_file_8h_source.html", null ],
     [ "Slider.h", "_slider_8h_source.html", null ],
@@ -49,6 +47,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "TextBox.h", "_text_box_8h_source.html", null ],
     [ "TextSprite.h", "_text_sprite_8h_source.html", null ],
     [ "Texture.h", "_texture_8h_source.html", null ],
+    [ "TextureSampling.h", "_texture_sampling_8h_source.html", null ],
     [ "Tooltip.h", "_tooltip_8h_source.html", null ],
     [ "Utils.h", "_utils_8h_source.html", null ]
 ];
