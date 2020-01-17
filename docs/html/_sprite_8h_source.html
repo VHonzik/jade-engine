@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: include/Sprite.h Source File</title>
+<title>jade-engine: D:/GameDev/SDL/Carty/jade-engine/include/Sprite.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,6 @@
    <div id="projectname">jade-engine
    &#160;<span id="projectnumber">0.0</span>
    </div>
-   <div id="projectbrief">A small programmer-focused 2D game engine written in C++ on top of SDL2.</div>
   </td>
  </tr>
  </tbody>
@@ -89,36 +88,36 @@ $(document).ready(function(){initNavTree('_sprite_8h_source.html',''); initResiz
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;ObjectLayer.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <span class="keyword">struct </span>Texture;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">struct </span>SpriteSheetDescription;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_sprite_params.html">   14</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_jade_engine_1_1_sprite_params.html">SpriteParams</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    ObjectLayer               layer;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string               textureName;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::shared_ptr&lt;Texture&gt;  texture;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    int32_t                   z;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span>                      spriteSheet;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::string               spriteSheetName;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  };</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_sprite.html">   24</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_sprite_params.html">SpriteParams</a>&amp; params);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoRender(SDL_Renderer* renderer);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> DoPreload(SDL_Renderer* renderer) { <span class="keywordflow">return</span> <span class="keyword">true</span>; };</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update() {};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> RequiresPreload()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !_preloaded; };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Clean();</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;IGameObject.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;ObjectLayer.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;TextureSampling.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <span class="keyword">struct </span>Texture;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keyword">struct </span>SpriteSheetDescription;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_sprite_params.html">   16</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_jade_engine_1_1_sprite_params.html">SpriteParams</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ObjectLayer               layer;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    std::string               textureName;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    int32_t                   z;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span>                      spriteSheet;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::string               spriteSheetName;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_sprite.html">   25</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_sprite_params.html">SpriteParams</a>&amp; params);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>(<span class="keyword">const</span> ObjectLayer layer, std::shared_ptr&lt;Texture&gt; texture, <span class="keyword">const</span> int32_t z);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_sprite.html#a44b9b1c9a850c60e3b2b4d13d2920332">Render</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Tint(<span class="keyword">const</span> SDL_Color&amp; tintColor);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetAlpha(<span class="keywordtype">float</span> alpha);</div>
@@ -131,66 +130,59 @@ $(document).ready(function(){initNavTree('_sprite_8h_source.html',''); initResiz
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> HitTest(uint32_t x, uint32_t y) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> HasHitTest() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> Preload(SDL_Renderer* renderer);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> Render(SDL_Renderer* renderer);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> SetPosition(uint32_t x, uint32_t y);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> SetCenterPosition(uint32_t x, uint32_t y);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> Show(<span class="keywordtype">bool</span> shown);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> IsShown()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _shown; }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    int32_t GetX()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.x; }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    int32_t GetY()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.y; }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> SetPosition(uint32_t x, uint32_t y);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> SetCenterPosition(uint32_t x, uint32_t y);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    int32_t GetCenterX()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.x + _transform.w / 2; }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    int32_t GetCenterY()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.y + _transform.h / 2; }</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    int32_t GetX()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.x; }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    int32_t GetY()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.y; }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    int32_t GetWidth()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.w; }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    int32_t GetHeight()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.h; }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    int32_t GetCenterX()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.x + _transform.w / 2; }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    int32_t GetCenterY()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.y + _transform.h / 2; }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetWidth(int32_t width);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetHeight(int32_t height);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    int32_t GetWidth()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.w; }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    int32_t GetHeight()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform.h; }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetWidth(int32_t width);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetHeight(int32_t height);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> SetWidthHeight(int32_t width, int32_t height);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> SetSpriteSheetSprite(<span class="keyword">const</span> std::string&amp; sprite);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> SetSpriteSheetMask(<span class="keyword">const</span> SDL_Rect&amp; mask);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">int</span> GetZ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _z; }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">const</span> SDL_Rect&amp; GetTransform()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform; }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">const</span> std::string&amp; GetTextureName() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> std::shared_ptr&lt;Texture&gt;&amp; GetTextureDescription()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _textureDescription; }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> SetWidthHeight(int32_t width, int32_t height);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> SetSpriteSheetSprite(<span class="keyword">const</span> std::string&amp; sprite);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> SetSpriteSheetMask(<span class="keyword">const</span> SDL_Rect&amp; mask);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> SDL_Rect&amp; GetTransform()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _transform; }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">const</span> std::string&amp; GetTextureName() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> std::shared_ptr&lt;Texture&gt;&amp; GetTextureDescription()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _textureDescription; }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> SetSampling(<span class="keyword">const</span> <a class="code" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a> sampling);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::shared_ptr&lt;Texture&gt; _textureDescription;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_sprite_sheet_description.html">SpriteSheetDescription</a>* _spriteSheetDescription;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    SDL_Rect _transform;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    SDL_Rect _boundingBox;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::shared_ptr&lt;Texture&gt; _textureDescription;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_sprite_sheet_description.html">SpriteSheetDescription</a>* _spriteSheetDescription;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    SDL_Rect _transform;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    SDL_Rect _boundingBox;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    SDL_Texture* _texture;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">bool</span> _spriteSheetMasked;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    SDL_Rect _spriteSheetMask;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::string _textureName;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">bool</span> _preloaded;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">bool</span> _shown;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">bool</span> _rotated;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">int</span> _z;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">float</span> _alpha;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">double</span> _rotationAngle;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    ObjectLayer _layer;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  };</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    SDL_Texture* _texture;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> _spriteSheetMasked;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    SDL_Rect _spriteSheetMask;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::string _textureName;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">bool</span> _rotated;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">float</span> _alpha;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">double</span> _rotationAngle;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    ObjectLayer _layer;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  };</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="anamespace_jade_engine_html_a5ba5ca76be1a1cae1ffed28d1f21daea"><div class="ttname"><a href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">JadeEngine::TextureSampling</a></div><div class="ttdeci">TextureSampling</div><div class="ttdef"><b>Definition:</b> TextureSampling.h:8</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_sprite_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_sprite_params.html">JadeEngine::SpriteParams</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:14</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:24</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_sprite_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_sprite_params.html">JadeEngine::SpriteParams</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:16</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_sprite_html_a44b9b1c9a850c60e3b2b4d13d2920332"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html#a44b9b1c9a850c60e3b2b4d13d2920332">JadeEngine::Sprite::Render</a></div><div class="ttdeci">void Render(SDL_Renderer *renderer) override</div><div class="ttdef"><b>Definition:</b> Sprite.cpp:82</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></div><div class="ttdef"><b>Definition:</b> IGameObject.h:74</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:25</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_sprite_sheet_description_html"><div class="ttname"><a href="struct_jade_engine_1_1_sprite_sheet_description.html">JadeEngine::SpriteSheetDescription</a></div><div class="ttdef"><b>Definition:</b> EngineDataTypes.h:27</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

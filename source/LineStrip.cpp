@@ -10,20 +10,13 @@ namespace JadeEngine
   LineStrip::LineStrip(const LineStripParams& params)
     : _color(params.color)
     , _points(params.initialPoints)
-    , _z(params.z)
     , _layer(params.layer)
   {
-    Show(true);
-  }
-  void LineStrip::Render(SDL_Renderer* renderer)
-  {
-    if (IsShown())
-    {
-      DoRender(renderer);
-    }
+    _z = params.z;
   }
 
-  void LineStrip::DoRender(SDL_Renderer* renderer)
+
+  void LineStrip::Render(SDL_Renderer* renderer)
   {
     SDL_SetRenderDrawColor(renderer, _color.r, _color.g, _color.b, _color.a);
     if (_layer == kObjectLayer_world)

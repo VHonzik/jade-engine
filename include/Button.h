@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICompositeObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <SDL.h>
@@ -36,7 +36,7 @@ namespace JadeEngine
     std::string   clickSound;
   };
 
-  class Button : public ICompositeObject
+  class Button : public IGameObject
   {
   public:
     Button(const ButtonParams& params);

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: include/Button.h Source File</title>
+<title>jade-engine: D:/GameDev/SDL/Carty/jade-engine/include/Button.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,6 @@
    <div id="projectname">jade-engine
    &#160;<span id="projectnumber">0.0</span>
    </div>
-   <div id="projectbrief">A small programmer-focused 2D game engine written in C++ on top of SDL2.</div>
   </td>
  </tr>
  </tbody>
@@ -89,7 +88,7 @@ $(document).ready(function(){initNavTree('_button_8h_source.html',''); initResiz
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;ICompositeObject.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;IGameObject.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;ObjectLayer.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
@@ -125,7 +124,7 @@ $(document).ready(function(){initNavTree('_button_8h_source.html',''); initResiz
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::string   clickSound;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  };</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_button.html">   39</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_button.html">Button</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_composite_object.html">ICompositeObject</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_button.html">   39</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_button.html">Button</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_jade_engine_1_1_button.html">Button</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_button_params.html">ButtonParams</a>&amp; params);</div>
@@ -133,9 +132,9 @@ $(document).ready(function(){initNavTree('_button_8h_source.html',''); initResiz
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> Disable(<span class="keywordtype">bool</span> disabled);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> Disabled()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _disabled; };</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> Show(<span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_button.html#a60df2a6e4f748d1993a8659e9a1efef0">Show</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> Update() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_button.html#a9bf813aa2cd30c9853d8893dc5ab3183">Update</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> SetPosition(uint32_t x, uint32_t y);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> SetCenterPosition(uint32_t x, uint32_t y);</div>
@@ -182,8 +181,10 @@ $(document).ready(function(){initNavTree('_button_8h_source.html',''); initResiz
 </div><!-- doc-content -->
 <div class="ttc" id="astruct_jade_engine_1_1_button_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_button_params.html">JadeEngine::ButtonParams</a></div><div class="ttdef"><b>Definition:</b> Button.h:14</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_button_html_a60df2a6e4f748d1993a8659e9a1efef0"><div class="ttname"><a href="class_jade_engine_1_1_button.html#a60df2a6e4f748d1993a8659e9a1efef0">JadeEngine::Button::Show</a></div><div class="ttdeci">void Show(const bool shown) override</div><div class="ttdef"><b>Definition:</b> Button.cpp:170</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_button_html_a9bf813aa2cd30c9853d8893dc5ab3183"><div class="ttname"><a href="class_jade_engine_1_1_button.html#a9bf813aa2cd30c9853d8893dc5ab3183">JadeEngine::Button::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdef"><b>Definition:</b> Button.cpp:107</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></div><div class="ttdef"><b>Definition:</b> IGameObject.h:74</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_box_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_box_sprite.html">JadeEngine::BoxSprite</a></div><div class="ttdef"><b>Definition:</b> BoxSprite.h:14</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_i_composite_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_composite_object.html">JadeEngine::ICompositeObject</a></div><div class="ttdef"><b>Definition:</b> ICompositeObject.h:5</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_button_html"><div class="ttname"><a href="class_jade_engine_1_1_button.html">JadeEngine::Button</a></div><div class="ttdef"><b>Definition:</b> Button.h:39</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_text_html"><div class="ttname"><a href="class_jade_engine_1_1_text.html">JadeEngine::Text</a></div><div class="ttdef"><b>Definition:</b> Text.h:22</div></div>
 <!-- start footer part -->

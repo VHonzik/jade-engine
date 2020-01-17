@@ -15,7 +15,7 @@ namespace JadeEngine
   {
   public:
     BoxSprite(const BoxSpriteParams& params);
-    void DoRender(SDL_Renderer* renderer) override;
+    void Render(SDL_Renderer* renderer) override;
 
     void SetWidth(int32_t width) override;
     void SetHeight(int32_t height) override;

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: include/IScene.h Source File</title>
+<title>jade-engine: D:/GameDev/SDL/Carty/jade-engine/include/IScene.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,6 @@
    <div id="projectname">jade-engine
    &#160;<span id="projectnumber">0.0</span>
    </div>
-   <div id="projectbrief">A small programmer-focused 2D game engine written in C++ on top of SDL2.</div>
   </td>
  </tr>
  </tbody>
@@ -91,27 +90,31 @@ $(document).ready(function(){initNavTree('_i_scene_8h_source.html',''); initResi
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;  <span class="keyword">class </span>Game;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;  <span class="keyword">class </span>Sprite;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_i_scene.html">    8</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_i_scene.html">IScene</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update() {};</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SpriteHovered(<a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* oldSprite, <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* newSprite) {};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Start() {};</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">bool</span> GetInitialized()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _initialized; }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> SetInitialized(<span class="keywordtype">bool</span> initialized) { _initialized = initialized; }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">bool</span> _initialized = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  };</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;  <span class="keyword">class </span>Sprite;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">class </span>IScene</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> SpriteHovered(Sprite* oldSprite, Sprite* newSprite) {};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="namespace_jade_engine.html#ad530e1ebc3c6b07c832b2791f82f71a7">   60</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="namespace_jade_engine.html#ad530e1ebc3c6b07c832b2791f82f71a7">Start</a>() {};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="namespace_jade_engine.html#add624cff3994a40e0056531409768f1f">   89</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="namespace_jade_engine.html#add624cff3994a40e0056531409768f1f">Update</a>() {};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="namespace_jade_engine.html#aeae1c7f0ab10429b771a4b972602c7eb">   94</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespace_jade_engine.html#aeae1c7f0ab10429b771a4b972602c7eb">GetInitialized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _initialized; }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="namespace_jade_engine.html#a3fd86d80224f32f111ddbef31972e544">   99</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_jade_engine.html#a3fd86d80224f32f111ddbef31972e544">SetInitialized</a>(<span class="keywordtype">bool</span> initialized) { _initialized = initialized; }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">bool</span> _initialized = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  };</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_jade_engine_1_1_i_scene_html"><div class="ttname"><a href="class_jade_engine_1_1_i_scene.html">JadeEngine::IScene</a></div><div class="ttdef"><b>Definition:</b> IScene.h:8</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_add624cff3994a40e0056531409768f1f"><div class="ttname"><a href="namespace_jade_engine.html#add624cff3994a40e0056531409768f1f">JadeEngine::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> IScene.h:89</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:24</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_aeae1c7f0ab10429b771a4b972602c7eb"><div class="ttname"><a href="namespace_jade_engine.html#aeae1c7f0ab10429b771a4b972602c7eb">JadeEngine::GetInitialized</a></div><div class="ttdeci">bool GetInitialized() const</div><div class="ttdef"><b>Definition:</b> IScene.h:94</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_ad530e1ebc3c6b07c832b2791f82f71a7"><div class="ttname"><a href="namespace_jade_engine.html#ad530e1ebc3c6b07c832b2791f82f71a7">JadeEngine::Start</a></div><div class="ttdeci">virtual void Start()</div><div class="ttdef"><b>Definition:</b> IScene.h:60</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_a3fd86d80224f32f111ddbef31972e544"><div class="ttname"><a href="namespace_jade_engine.html#a3fd86d80224f32f111ddbef31972e544">JadeEngine::SetInitialized</a></div><div class="ttdeci">void SetInitialized(bool initialized)</div><div class="ttdef"><b>Definition:</b> IScene.h:99</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

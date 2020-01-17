@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['game_196',['Game',['../class_jade_engine_1_1_game.html#accf6c5af9f6549f537c418051a656837',1,'JadeEngine::Game::Game()'],['../class_jade_engine_1_1_game.html#a13784daed6af34b7b949e2b3ad1aff87',1,'JadeEngine::Game::Game(const Game &amp;)=delete']]]
+  ['findfont_218',['FindFont',['../class_jade_engine_1_1_game.html#a5d0b823203406f9da064fab2b6d78639',1,'JadeEngine::Game']]],
+  ['findtexture_219',['FindTexture',['../class_jade_engine_1_1_game.html#ae7aaa6b4917305d9afc638b9ecb1d731',1,'JadeEngine::Game']]]
 ];

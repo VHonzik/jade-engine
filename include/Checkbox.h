@@ -1,7 +1,7 @@
 #pragma once
 
+#include "IGameObject.h"
 #include "ObjectLayer.h"
-#include "ICompositeObject.h"
 
 #include <cstdint>
 #include <string>
@@ -21,7 +21,7 @@ namespace JadeEngine
     bool          checked;
   };
 
-  class Checkbox : public ICompositeObject
+  class Checkbox : public IGameObject
   {
   public:
     Checkbox(const CheckboxParams& params);

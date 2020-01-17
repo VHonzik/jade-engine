@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICompositeObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <string>
@@ -46,7 +46,7 @@ namespace JadeEngine
     float threshold;
   };
 
-  class ProgressBar : public ICompositeObject
+  class ProgressBar : public IGameObject
   {
   public:
     ProgressBar(const ProgressBarParams& params);

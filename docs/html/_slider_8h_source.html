@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: include/Slider.h Source File</title>
+<title>jade-engine: D:/GameDev/SDL/Carty/jade-engine/include/Slider.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,6 @@
    <div id="projectname">jade-engine
    &#160;<span id="projectnumber">0.0</span>
    </div>
-   <div id="projectbrief">A small programmer-focused 2D game engine written in C++ on top of SDL2.</div>
   </td>
  </tr>
  </tbody>
@@ -89,7 +88,7 @@ $(document).ready(function(){initNavTree('_slider_8h_source.html',''); initResiz
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;ICompositeObject.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;IGameObject.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;ObjectLayer.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
@@ -119,17 +118,17 @@ $(document).ready(function(){initNavTree('_slider_8h_source.html',''); initResiz
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">float</span>         initialValue;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  };</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_slider.html">   33</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_slider.html">Slider</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_composite_object.html">ICompositeObject</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_slider.html">   33</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_slider.html">Slider</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_jade_engine_1_1_slider.html">Slider</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_slider_params.html">SliderParams</a>&amp; params);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> Update() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_slider.html#a50f15ca0de868d57c801185a58d31dbc">Update</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> SetPosition(uint32_t x, uint32_t y);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> SetCenterPosition(uint32_t x, uint32_t y);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> Show(<span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_slider.html#a49113e5632f8079a23e04dcd461a0f86">Show</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    int32_t GetX() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    int32_t GetY() <span class="keyword">const</span>;</div>
@@ -168,9 +167,11 @@ $(document).ready(function(){initNavTree('_slider_8h_source.html',''); initResiz
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_jade_engine_1_1_slider_html"><div class="ttname"><a href="class_jade_engine_1_1_slider.html">JadeEngine::Slider</a></div><div class="ttdef"><b>Definition:</b> Slider.h:33</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></div><div class="ttdef"><b>Definition:</b> IGameObject.h:74</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_slider_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_slider_params.html">JadeEngine::SliderParams</a></div><div class="ttdef"><b>Definition:</b> Slider.h:14</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_i_composite_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_composite_object.html">JadeEngine::ICompositeObject</a></div><div class="ttdef"><b>Definition:</b> ICompositeObject.h:5</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:24</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_slider_html_a49113e5632f8079a23e04dcd461a0f86"><div class="ttname"><a href="class_jade_engine_1_1_slider.html#a49113e5632f8079a23e04dcd461a0f86">JadeEngine::Slider::Show</a></div><div class="ttdeci">void Show(const bool shown) override</div><div class="ttdef"><b>Definition:</b> Slider.cpp:151</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:25</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_slider_html_a50f15ca0de868d57c801185a58d31dbc"><div class="ttname"><a href="class_jade_engine_1_1_slider.html#a50f15ca0de868d57c801185a58d31dbc">JadeEngine::Slider::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdef"><b>Definition:</b> Slider.cpp:59</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_text_html"><div class="ttname"><a href="class_jade_engine_1_1_text.html">JadeEngine::Text</a></div><div class="ttdef"><b>Definition:</b> Text.h:22</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

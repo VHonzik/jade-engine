@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICompositeObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <SDL_ttf.h>
@@ -25,7 +25,7 @@ namespace JadeEngine
     int32_t       z;
   };
 
-  class Tooltip : public ICompositeObject
+  class Tooltip : public IGameObject
   {
   public:
     Tooltip(const TooltipParams& params);

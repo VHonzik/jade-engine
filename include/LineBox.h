@@ -1,7 +1,6 @@
 #pragma once
 
-#include "ICompositeObject.h"
-
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <cstdint>
@@ -21,7 +20,7 @@ namespace JadeEngine
     int32_t       z;
   };
 
-  class LineBox : public ICompositeObject
+  class LineBox : public IGameObject
   {
   public:
     LineBox(const LineBoxParams& params);

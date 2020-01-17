@@ -37,10 +37,12 @@ namespace JadeEngine
 
   void LineGrid::Show(bool shown)
   {
-    ICompositeObject::Show(shown);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
+
     for (auto strip : _strips)
     {
-      strip->Show(shown);
+      strip->Show(isShown);
     }
   }
 

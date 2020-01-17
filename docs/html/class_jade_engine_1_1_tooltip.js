@@ -9,6 +9,6 @@ var class_jade_engine_1_1_tooltip =
     [ "GetY", "class_jade_engine_1_1_tooltip.html#a4a96a5cf215dc85d0bb7ba6f64be0af1", null ],
     [ "SetCenterPosition", "class_jade_engine_1_1_tooltip.html#ad101435680c876bf68ba6eea92319715", null ],
     [ "SetPosition", "class_jade_engine_1_1_tooltip.html#a001696cc1fd86d9a980408ee6876d868", null ],
-    [ "Show", "class_jade_engine_1_1_tooltip.html#a797ac2e0c1e5293072b65bb7605bc3e2", null ],
+    [ "Show", "class_jade_engine_1_1_tooltip.html#aa52b49104e61226b72572f9a67652a96", null ],
     [ "Update", "class_jade_engine_1_1_tooltip.html#a01da409ccda1a0bfae93365d7815ac88", null ]
 ];

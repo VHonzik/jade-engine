@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uicamera_186',['UICamera',['../class_jade_engine_1_1_u_i_camera.html',1,'JadeEngine']]]
+  ['worldcamera_207',['WorldCamera',['../class_jade_engine_1_1_world_camera.html',1,'JadeEngine']]]
 ];

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <SDL_pixels.h>
@@ -18,24 +19,16 @@ namespace JadeEngine
     int32_t                 z;
   };
 
-  class LineStrip
+  class LineStrip : public IGameObject
   {
   public:
     LineStrip(const LineStripParams& params);
-    void Render(SDL_Renderer* renderer);
-    void DoRender(SDL_Renderer* renderer);
+    void Render(SDL_Renderer* renderer) override;
 
     void SetPoints(const std::vector<SDL_Point>& points);
-
-    void Show(const bool shown) { _shown = shown; }
-    bool IsShown() const { return _shown; }
-
-    int GetZ() const { return _z; }
   private:
     SDL_Color _color;
     std::vector<SDL_Point> _points;
-    int _z;
-    bool _shown;
     ObjectLayer _layer;
   };
 }

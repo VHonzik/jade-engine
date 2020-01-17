@@ -237,12 +237,14 @@ namespace JadeEngine
 
   void Dropdown::Show(bool shown)
   {
-    _shown = shown;
-    _box->Show(shown);
-    _expandArrowSprite->Show(shown && !_expanded);
-    _contractArrowSprite->Show(shown && _expanded);
-    _scrollBarSprite->Show(shown && _expanded);
-    _scrollBarPointSprite->Show(shown && _expanded);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
+
+    _box->Show(isShown);
+    _expandArrowSprite->Show(isShown && !_expanded);
+    _contractArrowSprite->Show(isShown && _expanded);
+    _scrollBarSprite->Show(isShown && _expanded);
+    _scrollBarPointSprite->Show(isShown && _expanded);
     UpdateEntries();
   }
 

@@ -1,9 +1,10 @@
 #pragma once
 
-#include "ITextObject.h"
+#include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <SDL_ttf.h>
+#include <string>
 
 namespace JadeEngine
 {
@@ -19,13 +20,13 @@ namespace JadeEngine
     int32_t       z;
   };
 
-  class TextBox : public ITextObject
+  class TextBox : public IGameObject
   {
   public:
     TextBox(const TextBoxParams& params);
 
-    bool DoPreload(SDL_Renderer* renderer) override;
-    void DoRender(SDL_Renderer* renderer) override;
+    LoadState Load(SDL_Renderer* renderer) override;
+    void Render(SDL_Renderer* renderer) override;
 
     void Clean() override;
 

@@ -2,10 +2,7 @@
 
 #include "DisplayModeInfo.h"
 #include "EngineDataTypes.h"
-#include "ICompositeObject.h"
-#include "ITextObject.h"
-#include "LineStrip.h"
-#include "Renderable.h"
+#include "IGameObject.h"
 #include "Sprite.h"
 #include "Texture.h"
 
@@ -16,15 +13,14 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace JadeEngine
 {
-  class   Button;
-  class   IScene;
-  struct  GameInitParams;
   class   FTC;
-  class   Text;
+  struct  GameInitParams;
+  class   IScene;
 
   class Game
   {
@@ -259,7 +255,6 @@ namespace JadeEngine
     void SetCursor(const std::string& name);
 
     Sprite* CreateSolidColorSprite(const uint32_t width, const uint32_t height, const SDL_Color& color, int32_t z, ObjectLayer layer);
-    void DestroySprite(Sprite* sprite);
 
     int32_t GetWidth() const { return _renderResolutionWidth; }
     int32_t GetHeight() const { return _renderResolutionHeight; }
@@ -275,25 +270,19 @@ namespace JadeEngine
     const int32_t GetCurrentDisplayMode() const { return _currentMode; }
     const std::vector<DisplayModeInfo>& GetDisplayModes() const { return _displayModes; }
 
-    template <typename  Class>
-    using EnableOnlyForITextObjectAndDerivedClasses = std::enable_if_t<std::is_base_of_v<ITextObject, Class>, std::add_pointer_t<Class>>;
-    template <typename  Class>
-    using EnableOnlyForICompositeObjectAndDerivedClasses = std::enable_if_t<std::is_base_of_v<ICompositeObject, Class>, std::add_pointer_t<Class>>;
-    template <typename  Class>
-    using EnableOnlyForSpriteAndDerivedClasses = std::enable_if_t<std::is_base_of_v<Sprite, Class>, std::add_pointer_t<Class>>;
-    template <typename  Class>
-    using EnableOnlyForLineStripAndDerivedClasses = std::enable_if_t<std::is_base_of_v<LineStrip, Class>, std::add_pointer_t<Class>>;
 
     /**
-    Create a text based game object.
+    Create a new game object.
 
-    The object must inherit from ITextObject interface. The object will belong to the current scene unless kObjectLayer_persitant_ui is specified.
+    The object must inherit from IGameObject interface.
+
+    The object will belong to the current scene unless kObjectLayer_persistent_ui is specified in which case it will belong to special persistent scene.
 
     When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
 
     @param params Creation structure. For the actual type and its description see the class's constructor or header.
-    @returns Pointer to the newly created object. Game instance owns the object but it might not possible to look it up later. Storing the pointer is advised.
-    @see ITextObject, Text, TextParams, FTC, FTCParams
+    @returns Pointer to the newly created game object. Game instance owns the game object but it might not possible to look it up later. Storing the pointer is advised.
+    @see IGameObject, Text, TextParams, FTC, FTCParams, Button, ButtonParams, Checkbox, CheckboxParams, Dropdown, DropdownParams, Slider, SliderParams, Sprite, SpriteParams, BoxSprite, BoxSpriteParams
     @code
     // Assuming we have filled `TextParams textParams` variable
     Text* text = GGame.Create<Text>(textParams);
@@ -301,73 +290,23 @@ namespace JadeEngine
     @endcode
     */
     template<typename Class, typename CreationStruct>
-    EnableOnlyForITextObjectAndDerivedClasses<Class> Create(const CreationStruct& params)
+    std::add_pointer_t<Class> Create(const CreationStruct& params)
     {
-      const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
-      auto result = _textObjects[scene].emplace_back(std::make_unique<Class>(params)).get();
-      result->Preload(_renderer);
-      _renderables[scene].push_back(make_renderable<ITextObject>(result));
-      if (!_batchCreate) SortRenderables(scene);
-      return static_cast<std::add_pointer_t<Class>>(result);
-    }
+      const auto& scene = params.layer == kObjectLayer_persistent_ui ? _persistentScene : _currentScene;
+      auto result = _gameObjects[scene].emplace_back(std::make_unique<Class>(params)).get();
 
-    /**
-    Create a composite game object.
+      // Some objects benefit from being loaded immediately in order to be positioned correctly in the same frame they were created
+      if (result->GetLoadState() == kLoadState_wanted)
+      {
+        result->SetLoadState(result->Load(_renderer));
+      }
 
-    The object must inherit from ICompositeObject interface. The object will belong to the current scene unless kObjectLayer_persitant_ui is specified.
+      if constexpr (std::is_base_of_v<Sprite, Class>)
+      {
+        _sprites.insert(result);
+      }
 
-    When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
-
-    @param params Creation structure. For the actual type and its description see the class's constructor or header.
-    @returns Pointer to the newly created object. Game instance owns the object but it might not possible to look it up later. Storing the pointer is advised.
-    @see ICompositeObject, Button, ButtonParams, Checkbox, CheckboxParams, Dropdown, DropdownParams, Slider, SliderParams
-    @code
-    // Assuming we have filled `ButtonParams buttonParams` variable
-    Button* button = GGame.Create<Button>(buttonParams);
-    button->SetPosition(50, 50);
-    @endcode
-    */
-    template<typename Class, typename CreationStruct>
-    EnableOnlyForICompositeObjectAndDerivedClasses<Class> Create(const CreationStruct& params)
-    {
-      const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
-      auto& result = _compositeObjects[scene].emplace_back(std::make_unique<Class>(params));
-      return static_cast<std::add_pointer_t<Class>>(result.get());
-    }
-
-    /**
-    Create a sprite based game object.
-
-    The object must inherit from Sprite class. The object will belong to the current scene unless kObjectLayer_persitant_ui is specified.
-
-    When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
-
-    @param params Creation structure. For the actual type and its description see the class's constructor or header.
-    @returns Pointer to the newly created object. Game instance owns the object but it might not possible to look it up later. Storing the pointer is advised.
-    @see Sprite, SpriteParams, BoxSprite, BoxSpriteParams
-    @code
-    // Assuming we have filled `SpriteParams spriteParams` variable
-    Sprite* sprite = GGame.Create<Sprite>(spriteParams);
-    sprite->SetPosition(50, 50);
-    @endcode
-    */
-    template<typename Class, typename CreationStruct>
-    EnableOnlyForSpriteAndDerivedClasses<Class> Create(const CreationStruct& params)
-    {
-      const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
-      auto result = _sprites[scene].emplace_back(std::make_unique<Class>(params)).get();
-      _renderables[scene].push_back(make_renderable<Sprite>(result));
-      if (!_batchCreate) SortRenderables(scene);
-      return static_cast<std::add_pointer_t<Class>>(result);
-    }
-
-    template<typename Class, typename CreationStruct>
-    EnableOnlyForLineStripAndDerivedClasses<Class> Create(const CreationStruct& params)
-    {
-      const auto& scene = params.layer == kObjectLayer_persitant_ui ? _persistentScene : _currentScene;
-      auto result = _lineStrips[scene].emplace_back(std::make_unique<Class>(params)).get();
-      _renderables[scene].push_back(make_renderable<LineStrip>(result));
-      if (!_batchCreate) SortRenderables(scene);
+      if (!_batchCreate) SortGameObjectsRendering(scene);
       return static_cast<std::add_pointer_t<Class>>(result);
     }
 
@@ -433,24 +372,28 @@ namespace JadeEngine
     std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc, const TextureSampling sampling);
 
   private:
+    std::string AssetPathToAbsolute(const char* assetName);
     void CollectDisplayModes();
     bool CreateSolidColorTexture(const std::string& name, const int32_t width, const int32_t height, const SDL_Color& color);
+    void DestroyGameObjects();
     void GetBoundingBoxAndHitArray(SDL_Surface* surface, SDL_Rect& boundingBox, std::vector<bool>& hitArray, bool hitsRequired);
     uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);
     std::string HashSolidColorTexture(const uint32_t width, const uint32_t height, const SDL_Color& color);
     void InitializeSettings(const GameInitParams& initParams);
+    Sprite* GameObjectToSprite(IGameObject* gameObject);
     bool LoadAssets(const GameInitParams& initParams);
     bool LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY);
     bool LoadFont(const std::vector<uint32_t>& sizes, const char* assetName, const char* fontFile);
     bool LoadSpritesheet(const char* assetName, const char* textureFile, const char* sheetFile, const TextureSampling sampling);
     bool LoadTexture(const char* assetName, const char* textureFile, const bool hitsRequired, const TextureSampling sampling);
     void PlayScene(std::shared_ptr<IScene>& scene);
+    void RenderGameObjects(std::shared_ptr<IScene>& scene);
     void SetHoveredSprite(Sprite* sprite);
-    void SortRenderables(const std::shared_ptr<IScene>& scene);
+    void SortGameObjectsRendering(const std::shared_ptr<IScene>& scene);
     void Update();
+    void LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene);
+    void UpdateGameObjects(std::shared_ptr<IScene>& scene);
     void UpdateKeybindings();
-    void UpdateTextObject(std::unique_ptr<ITextObject> & textObject);
-    std::string AssetPathToAbsolute(const char* assetName);
 
     SDL_Window* _window;
     SDL_Renderer* _renderer;
@@ -461,12 +404,8 @@ namespace JadeEngine
     std::shared_ptr<IScene> _persistentScene;
     std::unordered_map<int32_t, std::shared_ptr<IScene>> _scenes;
 
-    std::unordered_map<std::shared_ptr<IScene>, std::vector<std::unique_ptr<ITextObject>>> _textObjects;
-    std::unordered_map<std::shared_ptr<IScene>, std::vector<std::unique_ptr<Sprite>>> _sprites;
-    std::unordered_map<std::shared_ptr<IScene>, std::vector<std::unique_ptr<ICompositeObject>>> _compositeObjects;
-    std::unordered_map<std::shared_ptr<IScene>, std::vector<std::unique_ptr<LineStrip>>> _lineStrips;
-
-    std::unordered_map<std::shared_ptr<IScene>, std::vector<Renderable>> _renderables;
+    std::unordered_map<std::shared_ptr<IScene>, std::vector<std::unique_ptr<IGameObject>>> _gameObjects;
+    std::unordered_set<IGameObject*> _sprites;
 
     std::unordered_map<std::string, FontDescription> _fonts;
     std::unordered_map<std::string, std::shared_ptr<Texture>> _textures;

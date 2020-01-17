@@ -12,6 +12,6 @@ var class_jade_engine_1_1_slider =
     [ "Released", "class_jade_engine_1_1_slider.html#a3d391fa33b560449c55cb98374b360a5", null ],
     [ "SetCenterPosition", "class_jade_engine_1_1_slider.html#a30a0060f9ae0a0958638dbc9c4fc5692", null ],
     [ "SetPosition", "class_jade_engine_1_1_slider.html#aa8aa887094e82cbd70625aed643e881f", null ],
-    [ "Show", "class_jade_engine_1_1_slider.html#a8970d08fb532090537f18a502574e688", null ],
+    [ "Show", "class_jade_engine_1_1_slider.html#a49113e5632f8079a23e04dcd461a0f86", null ],
     [ "Update", "class_jade_engine_1_1_slider.html#a50f15ca0de868d57c801185a58d31dbc", null ]
 ];

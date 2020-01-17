@@ -21,13 +21,14 @@ namespace JadeEngine
 
   void LineBox::Update()
   {
-
   }
 
   void LineBox::Show(bool shown)
   {
-    ICompositeObject::Show(shown);
-    _strip->Show(IsShown() && _rect.w >= 2 && _rect.h >= 2);
+    IGameObject::Show(shown);
+    const auto isShown = IsShown();
+
+    _strip->Show(isShown && _rect.w >= 2 && _rect.h >= 2);
   }
 
   void LineBox::SetPosition(int32_t x, int32_t y)
