@@ -3,10 +3,17 @@ param (
 	[Parameter(Mandatory)][string]$OutputFolder
 )
 
-Write-Output "Copying assets from $AssetDirectory to $OutputFolder ..."
+$IsAssetPathAbsolute = [System.IO.Path]::IsPathRooted($AssetDirectory)
+$AssetAbsoluteDirectory = $AssetDirectory
+if (-not $IsAssetPathAbsolute)
+{
+	$AssetAbsoluteDirectory = Resolve-Path $AssetDirectory
+}
 
-xcopy $AssetDirectory\*.ttf $OutputFolder\assets /C /D /Y /K /I
-xcopy $AssetDirectory\*.png $OutputFolder\assets /C /D /Y /K /I
-xcopy $AssetDirectory\*.wav $OutputFolder\assets /C /D /Y /K /I
-xcopy $AssetDirectory\*.json $OutputFolder\assets /C /D /Y /K /I
+Write-Output "Copying assets from $AssetAbsoluteDirectory to $OutputFolder\assets ..."
+
+xcopy $AssetAbsoluteDirectory\*.ttf $OutputFolder\assets /C /D /Y /K /I
+xcopy $AssetAbsoluteDirectory\*.png $OutputFolder\assets /C /D /Y /K /I
+xcopy $AssetAbsoluteDirectory\*.wav $OutputFolder\assets /C /D /Y /K /I
+xcopy $AssetAbsoluteDirectory\*.json $OutputFolder\assets /C /D /Y /K /I
 

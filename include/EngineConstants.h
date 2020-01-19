@@ -39,6 +39,7 @@ namespace JadeEngine
   const char kKennyFontSquare[] = "kennyfsquare";
   const char kVeraFont[] = "vera";
   const char kVeraFontBold[] = "verabold";
+  const char kCursorPointer[] = "cursorPointer";
 
   const char kJadeEngineLogoTexture[] = "jadeenginelogo";
   const char kJadeEngineUISpritesheet[] = "engineUI";

@@ -14,9 +14,12 @@ namespace JadeEngine
     , _down(false)
     , _released(false)
     , _disabled(false)
+    , _hovered(false)
     , _normalTextColor(params.textColor)
     , _disabledTextColor(params.disabledTextColor)
     , _clickSound(params.clickSound)
+    , _disabledSprite(nullptr)
+    , _hoveredSprite(nullptr)
   {
     TextParams textParams;
     textParams.layer = params.layer;
@@ -42,27 +45,35 @@ namespace JadeEngine
 
     _normalSprite = GGame.Create<BoxSprite>(boxParams);
 
-    boxParams.textureName = params.textureDisabled;
-    _disabledSprite = GGame.Create<BoxSprite>(boxParams);
-    _disabledSprite->Show(false);
-
     boxParams.textureName = params.texturePressed;
     _pressedSprite = GGame.Create<BoxSprite>(boxParams);
     _pressedSprite->Show(false);
 
-    _pressedOffset = _normalSprite->GetTextureDescription()->height
-      - _pressedSprite->GetTextureDescription()->height;
+    if (!params.textureDisabled.empty())
+    {
+      boxParams.textureName = params.textureDisabled;
+      _disabledSprite = GGame.Create<BoxSprite>(boxParams);
+      _disabledSprite->Show(false);
+    }
 
-    _disabledOffset = _normalSprite->GetTextureDescription()->height
-      - _disabledSprite->GetTextureDescription()->height;
+    if (!params.textureHovered.empty())
+    {
+      boxParams.textureName = params.textureHovered;
+      _hoveredSprite = GGame.Create<BoxSprite>(boxParams);
+      _hoveredSprite->Show(false);
+    }
+
+    _pressedOffset = params.pressedDepth;
+    _disabledOffset = params.pressedDepth;
 
     _pressedSprite->SetHeight(_pressedSprite->GetHeight() - _pressedOffset);
-    _disabledSprite->SetHeight(_disabledSprite->GetHeight() - _disabledOffset);
+    _pressedSprite->SetBoundingBox({ 0, -_pressedOffset * 2, _pressedSprite->GetWidth(), _pressedSprite->GetHeight() + _pressedOffset * 2 });
 
-    _pressedSprite->SetBoundingBox({ 0, -_pressedOffset * 2,
-      _pressedSprite->GetWidth(), _pressedSprite->GetHeight() + _pressedOffset * 2 });
-    _disabledSprite->SetBoundingBox({ 0, -_disabledOffset * 2,
-      _disabledSprite->GetWidth(), _disabledSprite->GetHeight() + _disabledOffset * 2 });
+    if (_disabledSprite != nullptr)
+    {
+      _disabledSprite->SetHeight(_disabledSprite->GetHeight() - _disabledOffset);
+      _disabledSprite->SetBoundingBox({ 0, -_disabledOffset * 2, _disabledSprite->GetWidth(), _disabledSprite->GetHeight() + _disabledOffset * 2 });
+    }
 
     SetPosition(0, 0);
   }
@@ -71,7 +82,14 @@ namespace JadeEngine
   {
     _normalSprite->SetPosition(x, y);
     _pressedSprite->SetPosition(x, y + _pressedOffset);
-    _disabledSprite->SetPosition(x, y + _disabledOffset);
+    if (_disabledSprite != nullptr)
+    {
+      _disabledSprite->SetPosition(x, y + _disabledOffset);
+    }
+    if (_hoveredSprite != nullptr)
+    {
+      _hoveredSprite->SetPosition(x, y);
+    }
     AdjustTextPosition();
   }
 
@@ -85,6 +103,7 @@ namespace JadeEngine
   void Button::AdjustTextPosition()
   {
     int offset = 0;
+
     if (_down)
     {
       offset = _pressedOffset;
@@ -93,6 +112,7 @@ namespace JadeEngine
     {
       offset = _disabledOffset;
     }
+
     _text->SetPosition(_normalSprite->GetCenterX(), _normalSprite->GetCenterY() + offset);
   }
 
@@ -100,7 +120,17 @@ namespace JadeEngine
   {
     _normalSprite->SetCenterPosition(x, y);
     _pressedSprite->SetCenterPosition(x, y + _pressedOffset);
-    _disabledSprite->SetCenterPosition(x, y + _disabledOffset);
+
+    if (_disabledSprite != nullptr)
+    {
+      _disabledSprite->SetCenterPosition(x, y + _disabledOffset);
+    }
+
+    if (_hoveredSprite != nullptr)
+    {
+      _hoveredSprite->SetCenterPosition(x, y);
+    }
+
     AdjustTextPosition();
   }
 
@@ -117,8 +147,9 @@ namespace JadeEngine
     }
 
     const auto hoveredSprite = GGame.GetHoveredSprite();
-    if (!_disabled && !_down && hoveredSprite == _normalSprite
-      && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
+    _hovered = hoveredSprite == _normalSprite || hoveredSprite == _hoveredSprite;
+
+    if (!_disabled && !_down && _hovered && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
     {
       _down = true;
       _pressed = true;
@@ -142,22 +173,17 @@ namespace JadeEngine
       AdjustTextPosition();
     }
 
-    _pressedSprite->Show(_shown && _down && !_disabled);
-    _normalSprite->Show(_shown && !_down && !_disabled);
-    _disabledSprite->Show(_shown && _disabled);
+    Show(IsShown());
   }
 
   void Button::Disable(bool disabled)
   {
-    if (disabled != _disabled)
+    if (disabled != _disabled && _disabledSprite != nullptr)
     {
-      _pressedSprite->Show(disabled);
-      _normalSprite->Show(!disabled);
-      _disabledSprite->Show(disabled);
-
       _text->SetColor(disabled ? _disabledTextColor : _normalTextColor);
 
       _disabled = disabled;
+      Show(IsShown());
       AdjustTextPosition();
     }
   }
@@ -173,8 +199,17 @@ namespace JadeEngine
     const auto isShown = IsShown();
 
     _text->Show(isShown);
-    _normalSprite->Show(isShown);
-    _pressedSprite->Show(isShown);
-    _disabledSprite->Show(isShown);
+    _normalSprite->Show(isShown && !_down && !_disabled);
+    _pressedSprite->Show(isShown && _down && !_disabled);
+
+    if (_disabledSprite != nullptr)
+    {
+      _disabledSprite->Show(isShown && _disabled);
+    }
+
+    if (_hoveredSprite != nullptr)
+    {
+      _hoveredSprite->Show(isShown && _hovered && !_down && !_disabled);
+    }
   }
 }

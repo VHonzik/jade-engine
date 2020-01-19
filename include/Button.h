@@ -18,6 +18,7 @@ namespace JadeEngine
     std::string   textureNormal;
     std::string   texturePressed;
     std::string   textureDisabled;
+    std::string   textureHovered;
 
     bool          spriteSheet;
     std::string   spriteSheetName;
@@ -26,6 +27,7 @@ namespace JadeEngine
     int32_t       height;
     int32_t       z;
     int32_t       cornerSize;
+    int32_t       pressedDepth;
 
     std::string   text;
     std::string   fontName;
@@ -73,6 +75,7 @@ namespace JadeEngine
     BoxSprite* _normalSprite;
     BoxSprite* _pressedSprite;
     BoxSprite* _disabledSprite;
+    BoxSprite* _hoveredSprite;
 
     int32_t _pressedOffset;
     int32_t _disabledOffset;
@@ -84,6 +87,7 @@ namespace JadeEngine
 
     bool _disabled;
 
+    bool _hovered;
     bool _pressed;
     bool _released;
     bool _down;

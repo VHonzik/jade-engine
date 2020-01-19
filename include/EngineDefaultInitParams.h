@@ -40,6 +40,7 @@ namespace JadeEngine
   };
 
   const auto kDefaultCursors = decltype(GameInitParams::cursors){
+    { kCursorPointer, "assets/cursor_pointer3D.png", 3, 3},
   };
 
   const auto kDefaultSpritesheets = decltype(GameInitParams::spritesheets){

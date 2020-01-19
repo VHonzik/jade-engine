@@ -5,24 +5,19 @@
 
 using namespace JadeEngine;
 
-namespace HelloJadeEngine
+namespace MatchThree
 {
-  enum SampleScene
-  {
-    kSampleScene_GameScene = kScene_JadeEngineScenesEnd,
-  };
-
   const GameInitParams kSampleInitParams = {
     // uint32_t renderingResolutionWidth;
     1280,
     //uint32_t renderingResolutionHeight;
     720,
     //std::string windowName;
-    "HelloJadeEngineSample",
+    "Match3",
     //std::string appName;
-    "HelloJadeEngineSample",
+    "Match3",
     //std::vector<uint32_t> fontSizes;
-    {},
+    { 64 },
     //SDL_Color backgroundColor;
     kDarkGreyColor,
     //std::vector<GameInitParamsTextureEntry> textures;
@@ -39,6 +34,7 @@ namespace HelloJadeEngine
     },
     //std::vector<GameInitParamsSpriteSheetEntry> spritesheets;
     {
+      { kMatchThreeSpritesheet, "assets/matchThree.png", "assets/matchThree.json", kTextureSampling_neareast},
     },
     //std::vector<GameInitParamsKeyBindingEntry> keybindings;
     {
