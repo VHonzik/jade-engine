@@ -691,11 +691,6 @@ namespace JadeEngine
     SDL_SetRenderDrawColor(_renderer, _clearColor.r, _clearColor.g, _clearColor.b, 255);
     SDL_RenderClear(_renderer);
 
-    if (_currentScene)
-    {
-      _currentScene->Update();
-    }
-
     SDL_SetRenderTarget(_renderer, _nativeRenderBuffer);
     SDL_RenderClear(_renderer);
 
@@ -725,6 +720,11 @@ namespace JadeEngine
     if (_currentScene != _persistentScene)
     {
       UpdateGameObjects(_persistentScene);
+    }
+
+    if (_currentScene)
+    {
+      _currentScene->Update();
     }
 
     RenderGameObjects(_currentScene);

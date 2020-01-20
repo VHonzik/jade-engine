@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['renderingresolutionheight_254',['renderingResolutionHeight',['../struct_jade_engine_1_1_game_init_params.html#a9a616c8f4c9a63a07857811a5a79bbbb',1,'JadeEngine::GameInitParams']]],
-  ['renderingresolutionwidth_255',['renderingResolutionWidth',['../struct_jade_engine_1_1_game_init_params.html#a01105bfb47e85c9d6047efeedb8c2f33',1,'JadeEngine::GameInitParams']]]
+  ['majorversion_263',['majorVersion',['../struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a',1,'JadeEngine::GameInitParams']]],
+  ['minorversion_264',['minorVersion',['../struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980',1,'JadeEngine::GameInitParams']]]
 ];

@@ -272,7 +272,7 @@ namespace JadeEngine
 
 
     /**
-    Create a new game object.
+    Create a new %game object.
 
     The object must inherit from IGameObject interface.
 
@@ -281,7 +281,7 @@ namespace JadeEngine
     When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
 
     @param params Creation structure. For the actual type and its description see the class's constructor or header.
-    @returns Pointer to the newly created game object. Game instance owns the game object but it might not possible to look it up later. Storing the pointer is advised.
+    @returns Pointer to the newly created %game object. Game instance owns the %game object but it might not possible to look it up later. Storing the pointer is advised.
     @see IGameObject, Text, TextParams, FTC, FTCParams, Button, ButtonParams, Checkbox, CheckboxParams, Dropdown, DropdownParams, Slider, SliderParams, Sprite, SpriteParams, BoxSprite, BoxSpriteParams
     @code
     // Assuming we have filled `TextParams textParams` variable

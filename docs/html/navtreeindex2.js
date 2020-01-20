@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"struct_jade_engine_1_1_clipper_result.html":[3,0,0,9],
+"struct_jade_engine_1_1_clipper_result.html#abcd002141f3be1f6130b1bd404767902":[3,0,0,9,2],
 "struct_jade_engine_1_1_clipper_result.html#aecc3b05f73200d8e1a63701271fec2ee":[3,0,0,9,0],
 "struct_jade_engine_1_1_clipper_result.html#afca9cf5e46b1e86f7138718d4854e06d":[3,0,0,9,1],
 "struct_jade_engine_1_1_cursor_description.html":[3,0,0,11],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "struct_jade_engine_1_1_tooltip_params.html#a46c61fee7c73e695baf1dabe00ae4e87":[3,0,0,67,6],
 "struct_jade_engine_1_1_tooltip_params.html#a6008e02a1bbb0af109e689dd91e016ee":[3,0,0,67,3],
 "struct_jade_engine_1_1_tooltip_params.html#a7578b1bcea91f63f487b4b48fe1f79bb":[3,0,0,67,0],
-"struct_jade_engine_1_1_tooltip_params.html#a989bbbec9b56cde3ab30a65ba27005b5":[3,0,0,67,9],
-"struct_jade_engine_1_1_tooltip_params.html#abeaf5034b80d85a58b52afe6615539a0":[3,0,0,67,7],
-"struct_jade_engine_1_1_tooltip_params.html#ad1217f9c9e8dcf5553149f1a4540d060":[3,0,0,67,5]
+"struct_jade_engine_1_1_tooltip_params.html#a989bbbec9b56cde3ab30a65ba27005b5":[3,0,0,67,9]
 };

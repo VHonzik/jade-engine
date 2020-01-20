@@ -13,19 +13,90 @@ namespace JadeEngine
   struct Texture;
   struct SpriteSheetDescription;
 
+  /**
+  Parameters required to create a Sprite %game object.
+
+  @see Game::Create
+
+  Template to copy:
+  @code
+  SpriteParams spriteParams;
+  spriteParams.layer = kObjectLayer_ui;
+  spriteParams.textureName = "someTexture.png";
+  spriteParams.z = 0;
+  spriteParams.spriteSheet = false;
+  spriteParams.spriteSheetName = "";
+  @endcode
+  */
   struct SpriteParams
   {
+    /**
+    Layer that will the Sprite belong to.
+
+    @see ObjectLayer
+    */
     ObjectLayer               layer;
+    /**
+    Name of the texture that will be rendered by the sprite.
+
+    In the case of `spriteSheet` being false, the `textureName` must corresponds to `assetName` in `GameInitParams::textures` that was used when initializing the game.
+    In the case of `spriteSheet` being true, the `textureName` must be the name of one of the files that were packed into sprite-sheet - it must be present in sprite-sheet JSON.
+
+    @note If the texture is not found a default bright pink fall-back texture is used.
+
+    @see SpriteParams::spriteSheet
+    */
     std::string               textureName;
+    /**
+    Z coordinate of the Sprite.
+
+    The game objects with higher Z coordinate will be drawn over the ones with lower one.
+    */
     int32_t                   z;
+    /**
+    Whether the texture is part of a sprite-sheet file or stand-alone texture file.
+
+    Affects the meaning of `textureName`.
+
+    If true `spriteSheetName` must be specified.
+
+    @see SpriteParams::textureName
+    */
     bool                      spriteSheet;
+    /**
+    Name of the sprite-sheet corresponding to `GameInitParamsSpriteSheetEntry::assetName` that was used when initializing the game.
+
+    Has no effect if `spriteSheet` is false.
+
+    @see SpriteParams::spriteSheet
+    */
     std::string               spriteSheetName;
   };
 
+  /**
+  %Game object that renders a texture on screen.
+
+  @see SpriteParams
+  */
   class Sprite : public IGameObject
   {
   public:
+    /**
+    Constructor for Sprite that accepts SpriteParams.
+
+    @warning One should use `Game::Create` function to create Sprites instead of constructing the object directly.
+
+    @see Game::Create, SpriteParams
+    */
     Sprite(const SpriteParams& params);
+
+    /**
+    Utility constructor for Sprites where their texture is already known and created elsewhere.
+
+    @warning One should use `Game::Create` function to create Sprites instead of constructing the object directly.
+
+    Used internally by the Jade Engine and most likely of limited use otherwise.
+    */
     Sprite(const ObjectLayer layer, std::shared_ptr<Texture> texture, const int32_t z);
 
     void Render(SDL_Renderer* renderer) override;

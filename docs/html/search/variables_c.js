@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['windowname_264',['windowName',['../struct_jade_engine_1_1_game_init_params.html#a0aa6e97dd941278cf3c8a2721b2cb721',1,'JadeEngine::GameInitParams']]]
+  ['uidescription_277',['uiDescription',['../struct_jade_engine_1_1_game_init_params_key_binding_entry.html#ab10a6f9c995ded55d49b8548ac551c57',1,'JadeEngine::GameInitParamsKeyBindingEntry']]]
 ];

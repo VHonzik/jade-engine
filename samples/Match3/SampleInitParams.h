@@ -34,7 +34,7 @@ namespace MatchThree
     },
     //std::vector<GameInitParamsSpriteSheetEntry> spritesheets;
     {
-      { kMatchThreeSpritesheet, "assets/matchThree.png", "assets/matchThree.json", kTextureSampling_neareast},
+      { kMatchThreeSpritesheet, "assets/matchThree.png", "assets/matchThree.json", kTextureSampling_anisotropic},
     },
     //std::vector<GameInitParamsKeyBindingEntry> keybindings;
     {

@@ -60,9 +60,12 @@ namespace JadeEngine
     virtual void Start() {};
 
     /**
-    Triggered every frame by the Engine while this scene is active.
+    Triggered every frame by the Jade Engine while this scene is active.
 
     To obtain delta time since last frame use GTime.deltaTime.
+
+    Triggered after all %game objects were updated.
+
     @see Game::PlayScene, Time
     @code
     #include "Button.h"

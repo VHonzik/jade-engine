@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('struct_jade_engine_1_1_sprite_params.h
 <div class="title">JadeEngine::SpriteParams Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_sprite_8h_source.html">Sprite.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for JadeEngine::SpriteParams:</div>
 <div class="dyncontent">
@@ -101,27 +103,118 @@ Inheritance diagram for JadeEngine::SpriteParams:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3730555f752a200b26eb4ca2eb3845e6"><td class="memItemLeft" align="right" valign="top"><a id="a3730555f752a200b26eb4ca2eb3845e6"></a>
-ObjectLayer&#160;</td><td class="memItemRight" valign="bottom"><b>layer</b></td></tr>
+<tr class="memitem:a3730555f752a200b26eb4ca2eb3845e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863">ObjectLayer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_sprite_params.html#a3730555f752a200b26eb4ca2eb3845e6">layer</a></td></tr>
 <tr class="separator:a3730555f752a200b26eb4ca2eb3845e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2fbc33f9c7c63001a874b56447218ed"><td class="memItemLeft" align="right" valign="top"><a id="aa2fbc33f9c7c63001a874b56447218ed"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>textureName</b></td></tr>
+<tr class="memitem:aa2fbc33f9c7c63001a874b56447218ed"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_sprite_params.html#aa2fbc33f9c7c63001a874b56447218ed">textureName</a></td></tr>
 <tr class="separator:aa2fbc33f9c7c63001a874b56447218ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fecf97bb8bba79daa016f49e6f8bbdf"><td class="memItemLeft" align="right" valign="top"><a id="a1fecf97bb8bba79daa016f49e6f8bbdf"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
+<tr class="memitem:a1fecf97bb8bba79daa016f49e6f8bbdf"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_sprite_params.html#a1fecf97bb8bba79daa016f49e6f8bbdf">z</a></td></tr>
 <tr class="separator:a1fecf97bb8bba79daa016f49e6f8bbdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c0f12e949d3e66267b4643933542934"><td class="memItemLeft" align="right" valign="top"><a id="a7c0f12e949d3e66267b4643933542934"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>spriteSheet</b></td></tr>
+<tr class="memitem:a7c0f12e949d3e66267b4643933542934"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_sprite_params.html#a7c0f12e949d3e66267b4643933542934">spriteSheet</a></td></tr>
 <tr class="separator:a7c0f12e949d3e66267b4643933542934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa5650ad219faec64751e9fa88eb729b"><td class="memItemLeft" align="right" valign="top"><a id="aaa5650ad219faec64751e9fa88eb729b"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>spriteSheetName</b></td></tr>
+<tr class="memitem:aaa5650ad219faec64751e9fa88eb729b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_sprite_params.html#aaa5650ad219faec64751e9fa88eb729b">spriteSheetName</a></td></tr>
 <tr class="separator:aaa5650ad219faec64751e9fa88eb729b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Parameters required to create a <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> game object.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">Game::Create</a></dd></dl>
+<p>Template to copy: </p><div class="fragment"><div class="line">SpriteParams spriteParams;</div>
+<div class="line">spriteParams.layer = <a class="code" href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863ac07298e3751cce19aff277b8054f6acc">kObjectLayer_ui</a>;</div>
+<div class="line">spriteParams.textureName = <span class="stringliteral">&quot;someTexture.png&quot;</span>;</div>
+<div class="line">spriteParams.z = 0;</div>
+<div class="line">spriteParams.spriteSheet = <span class="keyword">false</span>;</div>
+<div class="line">spriteParams.spriteSheetName = <span class="stringliteral">&quot;&quot;</span>;</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a3730555f752a200b26eb4ca2eb3845e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3730555f752a200b26eb4ca2eb3845e6">&#9670;&nbsp;</a></span>layer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863">ObjectLayer</a> JadeEngine::SpriteParams::layer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Layer that will the <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> belong to.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863">ObjectLayer</a> </dd></dl>
+
+</div>
+</div>
+<a id="a7c0f12e949d3e66267b4643933542934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c0f12e949d3e66267b4643933542934">&#9670;&nbsp;</a></span>spriteSheet</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool JadeEngine::SpriteParams::spriteSheet</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Whether the texture is part of a sprite-sheet file or stand-alone texture file.</p>
+<p>Affects the meaning of <code>textureName</code>.</p>
+<p>If true <code>spriteSheetName</code> must be specified.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_jade_engine_1_1_sprite_params.html#aa2fbc33f9c7c63001a874b56447218ed">SpriteParams::textureName</a> </dd></dl>
+
+</div>
+</div>
+<a id="aaa5650ad219faec64751e9fa88eb729b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5650ad219faec64751e9fa88eb729b">&#9670;&nbsp;</a></span>spriteSheetName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string JadeEngine::SpriteParams::spriteSheetName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Name of the sprite-sheet corresponding to <code><a class="el" href="struct_jade_engine_1_1_game_init_params_sprite_sheet_entry.html#a9c4bed75950b006110e0e44d6cc87197">GameInitParamsSpriteSheetEntry::assetName</a></code> that was used when initializing the game.</p>
+<p>Has no effect if <code>spriteSheet</code> is false.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_jade_engine_1_1_sprite_params.html#a7c0f12e949d3e66267b4643933542934">SpriteParams::spriteSheet</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa2fbc33f9c7c63001a874b56447218ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2fbc33f9c7c63001a874b56447218ed">&#9670;&nbsp;</a></span>textureName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string JadeEngine::SpriteParams::textureName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Name of the texture that will be rendered by the sprite.</p>
+<p>In the case of <code>spriteSheet</code> being false, the <code>textureName</code> must corresponds to <code>assetName</code> in <code><a class="el" href="struct_jade_engine_1_1_game_init_params.html#acb625092c03e92eece2d539b0c97fc2f">GameInitParams::textures</a></code> that was used when initializing the game. In the case of <code>spriteSheet</code> being true, the <code>textureName</code> must be the name of one of the files that were packed into sprite-sheet - it must be present in sprite-sheet JSON.</p>
+<dl class="section note"><dt>Note</dt><dd>If the texture is not found a default bright pink fall-back texture is used.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_jade_engine_1_1_sprite_params.html#a7c0f12e949d3e66267b4643933542934">SpriteParams::spriteSheet</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1fecf97bb8bba79daa016f49e6f8bbdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fecf97bb8bba79daa016f49e6f8bbdf">&#9670;&nbsp;</a></span>z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t JadeEngine::SpriteParams::z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Z coordinate of the <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a>.</p>
+<p>The game objects with higher Z coordinate will be drawn over the ones with lower one. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>D:/GameDev/SDL/Carty/jade-engine/include/<a class="el" href="_sprite_8h_source.html">Sprite.h</a></li>
+<li>D:/GameDev/SDL/jade-engine/include/<a class="el" href="_sprite_8h_source.html">Sprite.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="anamespace_jade_engine_html_a880033659417a84f8c13265913a83863ac07298e3751cce19aff277b8054f6acc"><div class="ttname"><a href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863ac07298e3751cce19aff277b8054f6acc">JadeEngine::kObjectLayer_ui</a></div><div class="ttdeci">@ kObjectLayer_ui</div><div class="ttdef"><b>Definition:</b> ObjectLayer.h:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

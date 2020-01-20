@@ -60,8 +60,8 @@ var NAVTREEINDEX =
 [
 ".html",
 "class_jade_engine_1_1_line_box.html#afface9a36e507810b18716a097b02979",
-"struct_jade_engine_1_1_clipper_result.html#aecc3b05f73200d8e1a63701271fec2ee",
-"struct_jade_engine_1_1_tooltip_params.html#ae113e25c7487cc5822207493af148b4d"
+"struct_jade_engine_1_1_clipper_result.html",
+"struct_jade_engine_1_1_tooltip_params.html#abeaf5034b80d85a58b52afe6615539a0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -28,7 +28,7 @@ int32_t main(int32_t argc, char* argv[])
     game.SetCursor(kCursorPointer);
 
     //game.PlayScene(kScene_PoweredByJadeEngine);
-    game.PlayScene(kScene_MainMenu);
+    game.PlayScene(kSampleScene_GameScene);
     game.Start();
   }
   game.CleanUp();
