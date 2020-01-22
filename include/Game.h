@@ -394,6 +394,7 @@ namespace JadeEngine
     void LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene);
     void UpdateGameObjects(std::shared_ptr<IScene>& scene);
     void UpdateKeybindings();
+    void DestroyGameObject(IGameObject* gameObject);
 
     SDL_Window* _window;
     SDL_Renderer* _renderer;

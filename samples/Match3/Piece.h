@@ -52,13 +52,22 @@ namespace MatchThree
 
     void MoveCenterTo(const int32_t x, const int32_t y);
 
+    void SetZ(const int32_t z) { _z = z; }
+
+    void FlashError();
+    PieceType GetType() const { return _type; }
+
   private:
     void SetCenterPosition(const int32_t x, const int32_t y, const bool hard);
+
+    PieceType _type;
 
     Sprite* _symbol;
     Sprite* _background;
     Sprite* _backgroundHovered;
     Sprite* _backgroundSelected;
+    Sprite* _backgroundSelectedHovered;
+    Sprite* _backgroundError;
 
     bool _hovered;
     bool _selected;
@@ -71,5 +80,7 @@ namespace MatchThree
     float _movingCenterY;
 
     bool _moving;
+    bool _flashingError;
+    float _errorTimer;
   };
 }

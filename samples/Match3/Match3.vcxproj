@@ -122,6 +122,7 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClInclude Include="..\..\include\Utils.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="PiecesGrid.h" />
     <ClInclude Include="SampleConstants.h" />
     <ClInclude Include="SampleInitParams.h" />
   </ItemGroup>
@@ -155,6 +156,7 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="PiecesGrid.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

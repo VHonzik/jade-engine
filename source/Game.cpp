@@ -480,6 +480,29 @@ namespace JadeEngine
     return static_cast<std::add_pointer_t<Sprite>>(result);
   }
 
+  void Game::DestroyGameObject(IGameObject* gameObject)
+  {
+    assert(gameObject->DestructionWanted());
+    gameObject->Clean();
+
+    _sprites.erase(gameObject);
+
+    auto sprite = GameObjectToSprite(gameObject);
+    if (sprite != nullptr && sprite->GetTextureDescription()->isCopy)
+    {
+      auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+      {
+        return element->texture == sprite->GetTextureDescription()->texture;
+      });
+
+      for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
+      {
+        SDL_DestroyTexture((*iter)->texture);
+      }
+      _textureCopies.erase(elementToRemove, std::end(_textureCopies));
+    }
+  }
+
   void Game::DestroyGameObjects()
   {
     for (auto& gameObjectsPair : _gameObjects)
@@ -488,31 +511,12 @@ namespace JadeEngine
 
       auto gameObjectsToRemove = std::remove_if(std::begin(gameObjects), std::end(gameObjects),[&](const std::unique_ptr<IGameObject>& element)
       {
+        if (element->DestructionWanted())
+        {
+          DestroyGameObject(element.get());
+        }
         return element->DestructionWanted();
       });
-
-      for (auto it = gameObjectsToRemove; it != std::end(gameObjects);)
-      {
-        auto& gameObject = *it;
-        gameObject->Clean();
-
-        _sprites.erase(gameObject.get());
-
-        auto sprite = GameObjectToSprite(gameObject.get());
-        if (sprite != nullptr && sprite->GetTextureDescription()->isCopy)
-        {
-          auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
-          {
-            return element->texture == sprite->GetTextureDescription()->texture;
-          });
-
-          for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
-          {
-            SDL_DestroyTexture((*iter)->texture);
-          }
-          _textureCopies.erase(elementToRemove, std::end(_textureCopies));
-        }
-      }
 
       gameObjects.erase(gameObjectsToRemove, std::end(gameObjects));
     }
