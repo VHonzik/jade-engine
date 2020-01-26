@@ -39,6 +39,7 @@ namespace MatchThree
     Piece(const PieceParams& params);
     void Update() override;
     void Show(const bool shown) override;
+    void Clean() override;
     void Deselect();
     void EnableInput(const bool enabled);
 
@@ -49,12 +50,15 @@ namespace MatchThree
     bool IsSelected() const { return _selected; }
     bool IsHovered() const { return _hovered; }
     bool IsMoving() const { return _moving; }
+    bool IsFlashing() const { return _flashingError || _flashingMatch; }
+    bool IsFlashingMatchDone() const { return _flashingMatchDone; }
 
-    void MoveCenterTo(const int32_t x, const int32_t y);
+    void MoveCenterTo(const int32_t x, const int32_t y, const float speed);
 
     void SetZ(const int32_t z) { _z = z; }
 
     void FlashError();
+    void FlashMatch();
     PieceType GetType() const { return _type; }
 
   private:
@@ -62,12 +66,16 @@ namespace MatchThree
 
     PieceType _type;
 
+    int32_t _width;
+    int32_t _height;
+
     Sprite* _symbol;
     Sprite* _background;
     Sprite* _backgroundHovered;
     Sprite* _backgroundSelected;
     Sprite* _backgroundSelectedHovered;
     Sprite* _backgroundError;
+    Sprite* _backgroundMatched;
 
     bool _hovered;
     bool _selected;
@@ -78,9 +86,14 @@ namespace MatchThree
 
     float _movingCenterX;
     float _movingCenterY;
-
     bool _moving;
+    float _movingSpeed;
+
     bool _flashingError;
     float _errorTimer;
+
+    bool _flashingMatch;
+    float _symbolScalingTimer;
+    bool _flashingMatchDone;
   };
 }

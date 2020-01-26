@@ -22,6 +22,6 @@ namespace MatchThree
 
   void GameScene::Update()
   {
-
+    _grid->UpdateGrid();
   }
 }
