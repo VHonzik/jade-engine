@@ -70,13 +70,13 @@ namespace JadeEngine
     SDL_RenderCopy(renderer, _texture, &source, &destination);
   }
 
-  void BoxSprite::SetBoundingBox(const SDL_Rect& box)
+  void BoxSprite::SetBoundingBox(const Rectangle& box)
   {
     _boundingBox = box;
     _boundingBoxOverwritten = true;
   }
 
-  const SDL_Rect& BoxSprite::GetBoundingBox() const
+  const Rectangle& BoxSprite::GetBoundingBox() const
   {
     return _boundingBox;
   }

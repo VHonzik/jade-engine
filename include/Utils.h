@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EngineDataTypes.h"
 #include "SDL.h"
 
 #include <algorithm>
@@ -10,12 +11,12 @@
 
 namespace JadeEngine
 {
-  inline bool IsInsideRect(int32_t x, int32_t y, const SDL_Rect& rect)
+  inline bool IsInsideRect(int32_t x, int32_t y, const Rectangle& rect)
   {
     return x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h;
   }
 
-  inline bool RectsIntersect(const SDL_Rect& a, const SDL_Rect& b)
+  inline bool RectsIntersect(const Rectangle& a, const Rectangle& b)
   {
     SDL_Point aOrigin = { a.x, a.y };
     SDL_Point bOrigin = { b.x, b.y };
@@ -121,7 +122,7 @@ namespace JadeEngine
   };
 
   // Source: https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
-  inline ClipperResult LiangBarskyClipper(const SDL_Rect& rect, const SDL_Point& start, const SDL_Point& end)
+  inline ClipperResult LiangBarskyClipper(const Rectangle& rect, const SDL_Point& start, const SDL_Point& end)
   {
     ClipperResult result;
 

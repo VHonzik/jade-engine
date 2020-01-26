@@ -1,6 +1,8 @@
 #pragma once
 
-#include <SDL.h>
+#include "EngineDataTypes.h"
+
+#include <SDL_rect.h>
 
 namespace JadeEngine
 {
@@ -12,7 +14,7 @@ namespace JadeEngine
     UICamera();
 
     void SetResolution(int32_t width, int32_t height);
-    void SetDisplayMode(const SDL_Rect& scaledRect, const SDL_Rect& windowRect);
+    void SetDisplayMode(const Rectangle& scaledRect, const Rectangle& windowRect);
 
     int32_t WindowToRenderX(const int32_t x) const;
     int32_t WindowToRenderY(const int32_t y) const;
@@ -35,10 +37,10 @@ namespace JadeEngine
   public:
     WorldCamera();
 
-    SDL_Rect WorldToScreen(const SDL_Rect& rect);
+    Rectangle WorldToScreen(const Rectangle& rect);
     SDL_Point WorldToScreen(const SDL_Point& point);
 
-    SDL_Rect ScreenToWorld(const SDL_Rect& rect);
+    Rectangle ScreenToWorld(const Rectangle& rect);
     SDL_Point ScreenToWorld(const SDL_Point& point);
 
     void SetPosition(int x, int y);

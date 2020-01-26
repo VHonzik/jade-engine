@@ -245,5 +245,8 @@
     <ClInclude Include="..\..\include\IGameObject.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\EngineResourcesDescriptions.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

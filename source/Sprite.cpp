@@ -31,6 +31,7 @@ namespace JadeEngine
       _spriteSheetDescription = GGame.GetSpriteSheetDescription(params.spriteSheetName);
       if (_spriteSheetDescription != nullptr && _spriteSheetDescription->sprites.count(params.textureName) > 0)
       {
+        _spriteSheetMasked = true;
         _textureDescription = GGame.FindTexture(_spriteSheetDescription->textureName);
         SetSpriteSheetMask(_spriteSheetDescription->sprites.find(params.textureName)->second.rect);
       }
@@ -145,18 +146,18 @@ namespace JadeEngine
     return _textureDescription->hitArray.size() > 0;
   }
 
-  bool Sprite::HitTest(uint32_t x, uint32_t y) const
+  bool Sprite::HitTest(const int32_t x, const int32_t y) const
   {
     assert(HasHitTest());
     return _textureDescription->hitArray[x + y * _transform.w];
   }
 
-  const SDL_Rect& Sprite::GetBoundingBox() const
+  const Rectangle& Sprite::GetBoundingBox() const
   {
     return _boundingBox;
   }
 
-  SDL_Rect Sprite::GetCollisionBox() const
+  Rectangle Sprite::GetCollisionBox() const
   {
     return { GetX(), GetY(), _boundingBox.w, _boundingBox.h };
   }
@@ -168,16 +169,17 @@ namespace JadeEngine
 
   void Sprite::SetSpriteSheetSprite(const std::string& sprite)
   {
-    if (!_spriteSheetMasked) return;
+    assert(_spriteSheetMasked);
+
     const auto spriteFound = _spriteSheetDescription->sprites.find(sprite);
     if (spriteFound == std::end(_spriteSheetDescription->sprites)) return;
 
     SetSpriteSheetMask(spriteFound->second.rect);
   }
 
-  void Sprite::SetSpriteSheetMask(const SDL_Rect& mask)
+  void Sprite::SetSpriteSheetMask(const Rectangle& mask)
   {
-    _spriteSheetMasked = true;
+    assert(_spriteSheetMasked);
     _spriteSheetMask = mask;
     _boundingBox = { 0, 0, _spriteSheetMask.w, _spriteSheetMask.h };
   }
@@ -215,6 +217,14 @@ namespace JadeEngine
     {
       _textureDescription = GGame.CopyTexture(_textureDescription, sampling);
       _texture = _textureDescription->texture;
+    }
+  }
+
+  void Sprite::Clean()
+  {
+    if (_textureDescription->isCopy)
+    {
+      GGame.DestroyCopyTexture(_textureDescription->texture);
     }
   }
 }

@@ -22,11 +22,11 @@ namespace JadeEngine
 
     void SetScale(const int32_t x, const int32_t y);
 
-    void SetBoundingBox(const SDL_Rect& box);
-    const SDL_Rect& GetBoundingBox() const override;
+    void SetBoundingBox(const Rectangle& box);
+    const Rectangle& GetBoundingBox() const override;
     bool HasHitTest() const override { return false; }
   private:
-    SDL_Rect _boundingBox;
+    Rectangle _boundingBox;
     bool _boundingBoxOverwritten;
     int32_t _cornerSize;
     int32_t _scaleX;

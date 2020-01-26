@@ -15,7 +15,7 @@ var class_jade_engine_1_1_text =
     [ "Render", "class_jade_engine_1_1_text.html#abb6e58a8431a44404edb03234a83971a", null ],
     [ "SetColor", "class_jade_engine_1_1_text.html#aebf92c2c945e3b0c879d099ac1b54d4e", null ],
     [ "SetHorizontalAlign", "class_jade_engine_1_1_text.html#a38040414703c252e7a97ec58c3bb1d8a", null ],
-    [ "SetMask", "class_jade_engine_1_1_text.html#a30be581a77cebc5aaf78988e22246143", null ],
+    [ "SetMask", "class_jade_engine_1_1_text.html#a6af8b25e96fd8ef8109284e241795e01", null ],
     [ "SetPosition", "class_jade_engine_1_1_text.html#a07ac9f3d8a622242cf39c45f570ffc31", null ],
     [ "SetText", "class_jade_engine_1_1_text.html#a6490d0a86a5ecd1ee13b94715e764033", null ],
     [ "SetTextAndColor", "class_jade_engine_1_1_text.html#a3084475f957297f8a4ac1614b96e9b92", null ],

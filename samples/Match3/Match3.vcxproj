@@ -91,6 +91,7 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClInclude Include="..\..\include\EngineConstants.h" />
     <ClInclude Include="..\..\include\EngineDataTypes.h" />
     <ClInclude Include="..\..\include\EngineDefaultInitParams.h" />
+    <ClInclude Include="..\..\include\EngineResourcesDescriptions.h" />
     <ClInclude Include="..\..\include\EngineSettings.h" />
     <ClInclude Include="..\..\include\EngineTemplateParams.h" />
     <ClInclude Include="..\..\include\EngineTime.h" />

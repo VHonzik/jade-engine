@@ -168,6 +168,9 @@
     <ClInclude Include="PiecesGrid.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\EngineResourcesDescriptions.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\AlignedGroup.cpp">

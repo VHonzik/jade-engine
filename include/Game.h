@@ -2,6 +2,7 @@
 
 #include "DisplayModeInfo.h"
 #include "EngineDataTypes.h"
+#include "EngineResourcesDescriptions.h"
 #include "IGameObject.h"
 #include "Sprite.h"
 #include "Texture.h"
@@ -371,12 +372,14 @@ namespace JadeEngine
     */
     std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc, const TextureSampling sampling);
 
+    void DestroyCopyTexture(SDL_Texture* texture);
+
   private:
     std::string AssetPathToAbsolute(const char* assetName);
     void CollectDisplayModes();
     bool CreateSolidColorTexture(const std::string& name, const int32_t width, const int32_t height, const SDL_Color& color);
     void DestroyGameObjects();
-    void GetBoundingBoxAndHitArray(SDL_Surface* surface, SDL_Rect& boundingBox, std::vector<bool>& hitArray, bool hitsRequired);
+    void GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle& boundingBox, std::vector<bool>& hitArray, bool hitsRequired);
     uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);
     std::string HashSolidColorTexture(const uint32_t width, const uint32_t height, const SDL_Color& color);
     void InitializeSettings(const GameInitParams& initParams);
@@ -430,8 +433,8 @@ namespace JadeEngine
     int32_t _renderResolutionWidth;
     int32_t _renderResolutionHeight;
 
-    SDL_Rect _scaledBufferRect;
-    SDL_Rect _windowBufferRect;
+    Rectangle _scaledBufferRect;
+    Rectangle _windowBufferRect;
 
     bool _fullscreen;
     bool _fullscreenChangedWanted;

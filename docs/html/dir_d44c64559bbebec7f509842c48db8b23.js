@@ -13,6 +13,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "EngineConstants.h", "_engine_constants_8h_source.html", null ],
     [ "EngineDataTypes.h", "_engine_data_types_8h_source.html", null ],
     [ "EngineDefaultInitParams.h", "_engine_default_init_params_8h_source.html", null ],
+    [ "EngineResourcesDescriptions.h", "_engine_resources_descriptions_8h_source.html", null ],
     [ "EngineSettings.h", "_engine_settings_8h_source.html", null ],
     [ "EngineTemplateParams.h", "_engine_template_params_8h_source.html", null ],
     [ "EngineTime.h", "_engine_time_8h_source.html", null ],

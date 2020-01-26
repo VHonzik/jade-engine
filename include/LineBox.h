@@ -1,11 +1,12 @@
 #pragma once
 
+#include "EngineDataTypes.h"
 #include "IGameObject.h"
 #include "ObjectLayer.h"
 
 #include <cstdint>
 #include <SDL_pixels.h>
-#include <SDL_rect.h>
+
 
 namespace JadeEngine
 {
@@ -49,6 +50,6 @@ namespace JadeEngine
     void UpdatePoints();
 
     LineStrip* _strip;
-    SDL_Rect _rect;
+    Rectangle _rect;
   };
 }

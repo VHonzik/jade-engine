@@ -23,7 +23,7 @@ namespace JadeEngine
     _resolutionHeight = _scaledResolutionHeight = _windowResolutionHeight = height;
   }
 
-  void UICamera::SetDisplayMode(const SDL_Rect& scaledRect, const SDL_Rect& windowRect)
+  void UICamera::SetDisplayMode(const Rectangle& scaledRect, const Rectangle& windowRect)
   {
     _scaledResolutionWidth = scaledRect.w;
     _scaledResolutionHeight = scaledRect.h;
@@ -91,7 +91,7 @@ namespace JadeEngine
   {
   }
 
-  SDL_Rect WorldCamera::WorldToScreen(const SDL_Rect& rect)
+  Rectangle WorldCamera::WorldToScreen(const Rectangle& rect)
   {
     return { rect.x - _x, rect.y - _y, rect.w, rect.h };
   }
@@ -101,7 +101,7 @@ namespace JadeEngine
     return { point.x - _x, point.y - _y };
   }
 
-  SDL_Rect WorldCamera::ScreenToWorld(const SDL_Rect& rect)
+  Rectangle WorldCamera::ScreenToWorld(const Rectangle& rect)
   {
     return { rect.x + _x, rect.y + _y, rect.w, rect.h };
   }

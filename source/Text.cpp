@@ -54,7 +54,7 @@ namespace JadeEngine
     }
   }
 
-  void Text::SetMask(const SDL_Rect& mask)
+  void Text::SetMask(const Rectangle& mask)
   {
     _masked = true;
     _mask = mask;

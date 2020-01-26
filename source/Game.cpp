@@ -283,8 +283,7 @@ namespace JadeEngine
     return 0;
   }
 
-  void Game::GetBoundingBoxAndHitArray(SDL_Surface* surface,
-    SDL_Rect& boundingBox, std::vector<bool>& hitArray, bool hitsRequired)
+  void Game::GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle& boundingBox, std::vector<bool>& hitArray, bool hitsRequired)
   {
     if (hitsRequired)
     {
@@ -486,21 +485,6 @@ namespace JadeEngine
     gameObject->Clean();
 
     _sprites.erase(gameObject);
-
-    auto sprite = GameObjectToSprite(gameObject);
-    if (sprite != nullptr && sprite->GetTextureDescription()->isCopy)
-    {
-      auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
-      {
-        return element->texture == sprite->GetTextureDescription()->texture;
-      });
-
-      for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
-      {
-        SDL_DestroyTexture((*iter)->texture);
-      }
-      _textureCopies.erase(elementToRemove, std::end(_textureCopies));
-    }
   }
 
   void Game::DestroyGameObjects()
@@ -1110,5 +1094,25 @@ namespace JadeEngine
     }
 
     return nullptr;
+  }
+
+  void Game::DestroyCopyTexture(SDL_Texture* texture)
+  {
+    assert(std::find_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+    {
+      return element->texture == texture;
+    }) != std::end(_textureCopies));
+
+    auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+    {
+      if (element->texture == texture)
+      {
+        SDL_DestroyTexture(texture);
+        return true;
+      }
+      return false;
+    });
+
+    _textureCopies.erase(elementToRemove, std::end(_textureCopies));
   }
 }

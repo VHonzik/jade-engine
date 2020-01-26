@@ -241,6 +241,8 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a629d6da598ff27deff57a451ce9a16be"><td class="memItemLeft" align="right" valign="top"><a id="a629d6da598ff27deff57a451ce9a16be"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayModeInfoKey</b> = size_t</td></tr>
 <tr class="separator:a629d6da598ff27deff57a451ce9a16be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08a5074a7539ccbe13e3b04ac023d9b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> = SDL_Rect</td></tr>
+<tr class="separator:af08a5074a7539ccbe13e3b04ac023d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29ae1757c79379e4c36b59ff86c7bcee"><td class="memItemLeft" align="right" valign="top"><a id="a29ae1757c79379e4c36b59ff86c7bcee"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>SettingsEntryID</b> = int32_t</td></tr>
 <tr class="separator:a29ae1757c79379e4c36b59ff86c7bcee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -327,12 +329,12 @@ std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <tr class="memitem:aac6e1e219b45b298f59cab6182f4a52a"><td class="memItemLeft" align="right" valign="top"><a id="aac6e1e219b45b298f59cab6182f4a52a"></a>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;stream, const <a class="el" href="class_jade_engine_1_1_settings_entry.html">SettingsEntry</a> &amp;entry)</td></tr>
 <tr class="separator:aac6e1e219b45b298f59cab6182f4a52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a325e5281da012f92fb291a5e6d2157"><td class="memItemLeft" align="right" valign="top"><a id="a8a325e5281da012f92fb291a5e6d2157"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInsideRect</b> (int32_t x, int32_t y, const SDL_Rect &amp;rect)</td></tr>
-<tr class="separator:a8a325e5281da012f92fb291a5e6d2157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac900f36213760878fabb8347aba262f2"><td class="memItemLeft" align="right" valign="top"><a id="ac900f36213760878fabb8347aba262f2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>RectsIntersect</b> (const SDL_Rect &amp;a, const SDL_Rect &amp;b)</td></tr>
-<tr class="separator:ac900f36213760878fabb8347aba262f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa36293b2050338cb57335d082e3086ff"><td class="memItemLeft" align="right" valign="top"><a id="aa36293b2050338cb57335d082e3086ff"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInsideRect</b> (int32_t x, int32_t y, const <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> &amp;rect)</td></tr>
+<tr class="separator:aa36293b2050338cb57335d082e3086ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7012e4db8cbc7fc754a7835525eae10d"><td class="memItemLeft" align="right" valign="top"><a id="a7012e4db8cbc7fc754a7835525eae10d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>RectsIntersect</b> (const <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> &amp;a, const <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> &amp;b)</td></tr>
+<tr class="separator:a7012e4db8cbc7fc754a7835525eae10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add2d9de5677e81a455f3d284729ac4c7"><td class="memTemplParams" colspan="2"><a id="add2d9de5677e81a455f3d284729ac4c7"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:add2d9de5677e81a455f3d284729ac4c7"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Sign</b> (const T &amp;val)</td></tr>
@@ -359,9 +361,9 @@ template&lt;typename T &gt; </td></tr>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a62772eeb4b4d14adb4ac50aee9ddac4b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Interpolate</b> (const T &amp;start, const T &amp;end, const float t)</td></tr>
 <tr class="separator:a62772eeb4b4d14adb4ac50aee9ddac4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a730bced032a6f1da5a55a3384675085f"><td class="memItemLeft" align="right" valign="top"><a id="a730bced032a6f1da5a55a3384675085f"></a>
-<a class="el" href="struct_jade_engine_1_1_clipper_result.html">ClipperResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LiangBarskyClipper</b> (const SDL_Rect &amp;rect, const SDL_Point &amp;start, const SDL_Point &amp;end)</td></tr>
-<tr class="separator:a730bced032a6f1da5a55a3384675085f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2b99a6f73c1771a2302e6e6c46e08c"><td class="memItemLeft" align="right" valign="top"><a id="a0a2b99a6f73c1771a2302e6e6c46e08c"></a>
+<a class="el" href="struct_jade_engine_1_1_clipper_result.html">ClipperResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LiangBarskyClipper</b> (const <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> &amp;rect, const SDL_Point &amp;start, const SDL_Point &amp;end)</td></tr>
+<tr class="separator:a0a2b99a6f73c1771a2302e6e6c46e08c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -529,7 +531,24 @@ const auto&#160;</td><td class="memItemRight" valign="bottom"><b>kStayDurection<
 <p>This code is placed in the public domain. You are free to use it for any </p>
 <h2><a class="anchor" id="autotoc_md1"></a>
 purpose.  If you add new platform support, please contribute a patch!</h2>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="af08a5074a7539ccbe13e3b04ac023d9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08a5074a7539ccbe13e3b04ac023d9b">&#9670;&nbsp;</a></span>Rectangle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">JadeEngine::Rectangle</a> = typedef SDL_Rect</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A structure that represent a rectangle with positional elements <code>x</code> and <code>y</code> and size elements <code>w</code> (short for width) and <code>h</code> (short for height).</p>
+<p>Generally used to represent a rectangle on the screen in pixels with <code>x</code> and <code>y</code> representing the top-left of the rectangle and <code>w</code> and <code>h</code> representing the width and height respectively. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a9a612f8b007073dfe9705eb59d7f90f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a612f8b007073dfe9705eb59d7f90f4">&#9670;&nbsp;</a></span>LoadState</h2>
 
@@ -1110,7 +1129,7 @@ purpose.  If you add new platform support, please contribute a patch!</h2>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
 <div class="ttc" id="anamespace_jade_engine_html_ad530e1ebc3c6b07c832b2791f82f71a7"><div class="ttname"><a href="namespace_jade_engine.html#ad530e1ebc3c6b07c832b2791f82f71a7">JadeEngine::Start</a></div><div class="ttdeci">virtual void Start()</div><div class="ttdef"><b>Definition:</b> IScene.h:60</div></div>
 <div class="ttc" id="anamespace_jade_engine_html_a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7"><div class="ttname"><a href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7">JadeEngine::kTextureSampling_anisotropic</a></div><div class="ttdeci">@ kTextureSampling_anisotropic</div><div class="ttdef"><b>Definition:</b> TextureSampling.h:21</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:81</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:82</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -1,38 +1,13 @@
 #pragma once
 
-#include <SDL_ttf.h>
-#include <string>
-#include <unordered_map>
+#include <SDL_rect.h>
 
 namespace JadeEngine
 {
-  struct FontDescription
-  {
-    std::string name;
-    TTF_Font* ttfFont;
-    uint32_t size;
-  };
+  /**
+  A structure that represent a rectangle with positional elements `x` and `y` and size elements `w` (short for width) and `h` (short for height).
 
-  struct CursorDescription
-  {
-    SDL_Cursor* cursor;
-    SDL_Surface* surface;
-  };
-
-  struct SpriteSheetEntryDescription
-  {
-    SDL_Rect rect;
-  };
-
-  struct SpriteSheetDescription
-  {
-    std::string textureName;
-    std::unordered_map<std::string, SpriteSheetEntryDescription> sprites;
-  };
-
-  struct KeyBindingDescription
-  {
-    std::string uiDescription;
-    int32_t     key;
-  };
+  Generally used to represent a rectangle on the screen in pixels with `x` and `y` representing the top-left of the rectangle and `w` and `h` representing the width and height respectively.
+  */
+  using Rectangle = SDL_Rect;
 }

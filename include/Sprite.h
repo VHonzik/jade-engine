@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EngineDataTypes.h"
 #include "IGameObject.h"
 #include "ObjectLayer.h"
 #include "TextureSampling.h"
@@ -100,18 +101,101 @@ namespace JadeEngine
     Sprite(const ObjectLayer layer, std::shared_ptr<Texture> texture, const int32_t z);
 
     void Render(SDL_Renderer* renderer) override;
+    void Clean() override;
 
+    /**
+    Tint the sprite with a single color.
+
+    @warning The first time Sprite is tinted or its transparency changed a deep copy of the texture is created which is potentially expensive operation.
+    @param tintColor RGBA 0-255 color that will be used to multiply each pixel of the sprite. Alpha component is ignored.
+    @see Game::CopyTexture, Sprite::SetAlpha
+    */
     virtual void Tint(const SDL_Color& tintColor);
 
+    /**
+    Changed the transparency of the sprite.
+
+    @warning The first time Sprite is tinted or its transparency changed a deep copy of the texture is created which is potentially expensive operation.
+    @param alpha Transparency alpha value to set. 0 will make the sprite completely invisible, 1 fully opaque. It will be clamped to [0.0f, 1.0f] range.
+    @see Game::CopyTexture, Sprite::Tint
+    */
     virtual void SetAlpha(float alpha);
+
+    /**
+    Return the current transparency alpha value.
+    */
     virtual float GetAlpha() const;
 
+    /**
+    Set the rotation the sprite will rendered with.
+
+    The rotation center will be the center of the sprite, i.e. GetWidth() / 2 and GetHeight() / 2. This only affects the rendering of the sprite and not its transform.
+
+    @param angle Rotational angle in degrees in a clockwise direction.
+    */
     void SetRotation(const double angle);
 
-    virtual const SDL_Rect& GetBoundingBox() const;
-    SDL_Rect GetCollisionBox() const;
-    virtual bool HitTest(uint32_t x, uint32_t y) const;
+    /**
+    Return the bounding box of the sprite. A bounding box position elements (`x` and `y`) are always zero. The `w` and `h` elements are the width and height of the sprite respectively.
+    */
+    virtual const Rectangle& GetBoundingBox() const;
+
+    /**
+    Return the collision box of the sprite. The `x` and `y` elements are the current sprite's position. The `w` and `h` elements are the width and height of the sprite respectively.
+    */
+    Rectangle GetCollisionBox() const;
+
+    /**
+    Perform a hit test, returning whether a pixel of the sprite is not empty (not completely transparent, alpha > 0).
+
+    @pre The texture used by the sprite was initialized with hit map. You can use HasHitTest() to confirm so.
+    @see GameInitParamsTextureEntry::generateHitMap, Sprite::HasHitTest
+    @returns True if the pixel is opaque, false if completely transparent.
+    */
+    virtual bool HitTest(const int32_t x, const int32_t y) const;
+
+    /**
+    Return whether the sprite's texture was initialized with hit map.
+
+    @see GameInitParamsTextureEntry::generateHitMap, Sprite::HitTest
+    */
     virtual bool HasHitTest() const;
+
+    /**
+    Change the sampling of the texture.
+
+    @warning Changing sampling requires a deep copy of the texture which is potentially expensive operation.
+
+    @see TextureSampling, GameInitParamsTextureEntry::sampling, GameInitParamsSpriteSheetEntry::sampling
+    */
+    void SetSampling(const TextureSampling sampling);
+
+    /**
+    Change the sprite's texture to a different texture that is part of the same sprite-sheet.
+
+    Useful for simple frame-based animations of sprites. Nothing happens if the new texture is not found.
+
+    @pre The sprite was initialized with sprite-sheet.
+    @param sprite Name of the new texture as defined by the sprite-sheet. Usually original file name of the texture before packing into sprite-sheet.
+    @see SpriteParams::spriteSheet
+    */
+    void SetSpriteSheetSprite(const std::string& sprite);
+
+    /**
+    Change the what rectangle of the sprite-sheet is used for rendering the sprite.
+
+    As sprite-sheets are collections of texture it is recommended to use Sprite::SetSpriteSheetSprite instead of directly specifying the rectangle.
+
+    @pre The sprite was initialized with sprite-sheet.
+    @see SpriteParams::spriteSheet
+    */
+    void SetSpriteSheetMask(const Rectangle& mask);
+
+    /**
+    Return the texture name that the sprite is rendering. In the case of sprite-sheet sprite it is the texture name of one of the packed textures.
+    @see SpriteParams::spriteSheet
+    */
+    const std::string& GetTextureName() const;
 
     void SetPosition(uint32_t x, uint32_t y);
     void SetCenterPosition(uint32_t x, uint32_t y);
@@ -130,24 +214,19 @@ namespace JadeEngine
 
     void SetWidthHeight(int32_t width, int32_t height);
 
-    void SetSpriteSheetSprite(const std::string& sprite);
-    void SetSpriteSheetMask(const SDL_Rect& mask);
+    const Rectangle& GetTransform() const { return _transform; }
 
-    const SDL_Rect& GetTransform() const { return _transform; }
-    const std::string& GetTextureName() const;
-    const std::shared_ptr<Texture>& GetTextureDescription() const { return _textureDescription; }
-    void SetSampling(const TextureSampling sampling);
   protected:
     std::shared_ptr<Texture> _textureDescription;
     const SpriteSheetDescription* _spriteSheetDescription;
 
-    SDL_Rect _transform;
-    SDL_Rect _boundingBox;
+    Rectangle _transform;
+    Rectangle _boundingBox;
 
     SDL_Texture* _texture;
 
     bool _spriteSheetMasked;
-    SDL_Rect _spriteSheetMask;
+    Rectangle _spriteSheetMask;
     std::string _textureName;
 
     bool _rotated;
