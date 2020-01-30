@@ -53,19 +53,17 @@ namespace JadeEngine
     if (_spriteSheetMasked)
     {
       _textureName = params.textureName;
-      _transform = { 0, 0, _spriteSheetMask.w, _spriteSheetMask.h };
-      _boundingBox = { 0, 0, _spriteSheetMask.w, _spriteSheetMask.h };
+      transform->Initialize(0, 0, _spriteSheetMask.w, _spriteSheetMask.h);
     }
     else
     {
-      _transform = { 0, 0, _textureDescription->width, _textureDescription->height };
-      _boundingBox = _textureDescription->boundingBox;
+      transform->Initialize(0, 0, _textureDescription->width, _textureDescription->height);
+      transform->SetBoundingBox(_textureDescription->boundingBox);
     }
   }
 
   Sprite::Sprite(const ObjectLayer layer, std::shared_ptr<Texture> texture, const int32_t z)
     : _alpha(1.0f)
-    , _boundingBox(texture->boundingBox)
     , _layer(layer)
     , _rotated(false)
     , _rotationAngle(0)
@@ -73,8 +71,9 @@ namespace JadeEngine
     , _texture(texture->texture)
     , _textureDescription(texture)
     , _textureName(texture->name)
-    , _transform{0, 0, texture->width, texture->height}
   {
+    transform->Initialize(0, 0, texture->width, texture->height);
+    transform->SetBoundingBox(texture->boundingBox);
     _z = z;
     SetLoadState(kLoadState_done);
     assert(_textureDescription);
@@ -82,7 +81,7 @@ namespace JadeEngine
 
   void Sprite::Render(SDL_Renderer* renderer)
   {
-    SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(_transform) : _transform;
+    SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
     SDL_Rect* source = _spriteSheetMasked ? &_spriteSheetMask : nullptr;
     if (_rotated)
     {
@@ -92,42 +91,6 @@ namespace JadeEngine
     {
       SDL_RenderCopy(renderer, _texture, source, &destination);
     }
-  }
-
-  void Sprite::SetPosition(uint32_t x, uint32_t y)
-  {
-    _transform.x = x;
-    _transform.y = y;
-  }
-
-  void Sprite::SetCenterPosition(uint32_t x, uint32_t y)
-  {
-    _transform.x = x - _transform.w / 2;
-    _transform.y = y - _transform.h / 2;
-  }
-
-  void Sprite::SetWidth(int32_t width)
-  {
-    if (_transform.w != width)
-    {
-      _transform.w = width;
-      _boundingBox = { 0, 0, _transform.w, _transform.h };
-    }
-  }
-
-  void Sprite::SetHeight(int32_t height)
-  {
-    if (_transform.h != height)
-    {
-      _transform.h = height;
-      _boundingBox = { 0, 0, _transform.w, _transform.h };
-    }
-  }
-
-  void Sprite::SetWidthHeight(int32_t width, int32_t height)
-  {
-    SetWidth(width);
-    SetHeight(height);
   }
 
   void Sprite::Tint(const SDL_Color& tintColor)
@@ -149,17 +112,7 @@ namespace JadeEngine
   bool Sprite::HitTest(const int32_t x, const int32_t y) const
   {
     assert(HasHitTest());
-    return _textureDescription->hitArray[x + y * _transform.w];
-  }
-
-  const Rectangle& Sprite::GetBoundingBox() const
-  {
-    return _boundingBox;
-  }
-
-  Rectangle Sprite::GetCollisionBox() const
-  {
-    return { GetX(), GetY(), _boundingBox.w, _boundingBox.h };
+    return _textureDescription->hitArray[x + y * transform->GetWidth()];
   }
 
   const std::string& Sprite::GetTextureName() const
@@ -181,7 +134,7 @@ namespace JadeEngine
   {
     assert(_spriteSheetMasked);
     _spriteSheetMask = mask;
-    _boundingBox = { 0, 0, _spriteSheetMask.w, _spriteSheetMask.h };
+    transform->SetBoundingBox({ 0, 0, _spriteSheetMask.w, _spriteSheetMask.h });
   }
 
   void Sprite::SetAlpha(float alpha)

@@ -1,7 +1,9 @@
 #include "Checkbox.h"
-#include "Sprite.h"
+
 #include "Game.h"
 #include "Input.h"
+#include "Sprite.h"
+#include "Transform.h"
 
 #include <algorithm>
 
@@ -55,45 +57,43 @@ namespace JadeEngine
 
   int32_t Checkbox::GetX() const
   {
-    return _checkedSprite->GetX();
+    return _checkedSprite->transform->GetX();
   }
 
   int32_t Checkbox::GetY() const
   {
-    return _checkedSprite->GetCenterY();
+    return _checkedSprite->transform->GetCenterY();
   }
 
   int32_t Checkbox::GetCenterX() const
   {
-    return _checkedSprite->GetCenterX();
+    return _checkedSprite->transform->GetCenterX();
   }
 
   int32_t Checkbox::GetCenterY() const
   {
-    return _checkedSprite->GetCenterY();
+    return _checkedSprite->transform->GetCenterY();
   }
 
   int32_t Checkbox::GetWidth() const
   {
-    return _checkedSprite->GetWidth();
+    return _checkedSprite->transform->GetWidth();
   }
 
   int32_t Checkbox::GetHeight() const
   {
-    return _checkedSprite->GetHeight();
+    return _checkedSprite->transform->GetHeight();
   }
 
   void Checkbox::SetPosition(int32_t x, int32_t y)
   {
-    _checkedSprite->SetPosition(x, y);
-    _emptySprite->SetCenterPosition(_checkedSprite->GetCenterX(),
-      _checkedSprite->GetCenterY());
+    _checkedSprite->transform->SetPosition(x, y);
+    _emptySprite->transform->SetCenterPosition(_checkedSprite->transform->GetCenterX(), _checkedSprite->transform->GetCenterY());
   }
 
   void Checkbox::SetCenterPosition(int32_t x, int32_t y)
   {
-    _checkedSprite->SetCenterPosition(x, y);
-    _emptySprite->SetCenterPosition(_checkedSprite->GetCenterX(),
-      _checkedSprite->GetCenterY());
+    _checkedSprite->transform->SetCenterPosition(x, y);
+    _emptySprite->transform->SetCenterPosition(_checkedSprite->transform->GetCenterX(), _checkedSprite->transform->GetCenterY());
   }
 }

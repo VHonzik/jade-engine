@@ -1,11 +1,11 @@
 #include "Button.h"
 
+#include "Audio.h"
+#include "BoxSprite.h"
 #include "Game.h"
 #include "Input.h"
-#include "Audio.h"
 #include "Text.h"
-
-#include "BoxSprite.h"
+#include "Transform.h"
 
 namespace JadeEngine
 {
@@ -66,13 +66,13 @@ namespace JadeEngine
     _pressedOffset = params.pressedDepth;
     _disabledOffset = params.pressedDepth;
 
-    _pressedSprite->SetHeight(_pressedSprite->GetHeight() - _pressedOffset);
-    _pressedSprite->SetBoundingBox({ 0, -_pressedOffset * 2, _pressedSprite->GetWidth(), _pressedSprite->GetHeight() + _pressedOffset * 2 });
+    _pressedSprite->transform->SetHeight(_pressedSprite->transform->GetHeight() - _pressedOffset);
+    _pressedSprite->transform->SetBoundingBox({ 0, -_pressedOffset * 2, _pressedSprite->transform->GetWidth(), _pressedSprite->transform->GetHeight() + _pressedOffset * 2 });
 
     if (_disabledSprite != nullptr)
     {
-      _disabledSprite->SetHeight(_disabledSprite->GetHeight() - _disabledOffset);
-      _disabledSprite->SetBoundingBox({ 0, -_disabledOffset * 2, _disabledSprite->GetWidth(), _disabledSprite->GetHeight() + _disabledOffset * 2 });
+      _disabledSprite->transform->SetHeight(_disabledSprite->transform->GetHeight() - _disabledOffset);
+      _disabledSprite->transform->SetBoundingBox({ 0, -_disabledOffset * 2, _disabledSprite->transform->GetWidth(), _disabledSprite->transform->GetHeight() + _disabledOffset * 2 });
     }
 
     SetPosition(0, 0);
@@ -80,25 +80,25 @@ namespace JadeEngine
 
   void Button::SetPosition(uint32_t x, uint32_t y)
   {
-    _normalSprite->SetPosition(x, y);
-    _pressedSprite->SetPosition(x, y + _pressedOffset);
+    _normalSprite->transform->SetPosition(x, y);
+    _pressedSprite->transform->SetPosition(x, y + _pressedOffset);
     if (_disabledSprite != nullptr)
     {
-      _disabledSprite->SetPosition(x, y + _disabledOffset);
+      _disabledSprite->transform->SetPosition(x, y + _disabledOffset);
     }
     if (_hoveredSprite != nullptr)
     {
-      _hoveredSprite->SetPosition(x, y);
+      _hoveredSprite->transform->SetPosition(x, y);
     }
     AdjustTextPosition();
   }
 
-  int32_t Button::GetWidth() const { return _normalSprite->GetWidth(); }
-  int32_t Button::GetHeight() const { return _normalSprite->GetHeight(); }
-  int32_t Button::GetX() const { return _normalSprite->GetX(); }
-  int32_t Button::GetY() const { return _normalSprite->GetY(); }
-  int32_t Button::GetCenterX() const { return _normalSprite->GetCenterX(); }
-  int32_t Button::GetCenterY() const { return _normalSprite->GetCenterY(); }
+  int32_t Button::GetWidth() const { return _normalSprite->transform->GetWidth(); }
+  int32_t Button::GetHeight() const { return _normalSprite->transform->GetHeight(); }
+  int32_t Button::GetX() const { return _normalSprite->transform->GetX(); }
+  int32_t Button::GetY() const { return _normalSprite->transform->GetY(); }
+  int32_t Button::GetCenterX() const { return _normalSprite->transform->GetCenterX(); }
+  int32_t Button::GetCenterY() const { return _normalSprite->transform->GetCenterY(); }
 
   void Button::AdjustTextPosition()
   {
@@ -113,22 +113,22 @@ namespace JadeEngine
       offset = _disabledOffset;
     }
 
-    _text->SetPosition(_normalSprite->GetCenterX(), _normalSprite->GetCenterY() + offset);
+    _text->SetPosition(_normalSprite->transform->GetCenterX(), _normalSprite->transform->GetCenterY() + offset);
   }
 
   void Button::SetCenterPosition(uint32_t x, uint32_t y)
   {
-    _normalSprite->SetCenterPosition(x, y);
-    _pressedSprite->SetCenterPosition(x, y + _pressedOffset);
+    _normalSprite->transform->SetCenterPosition(x, y);
+    _pressedSprite->transform->SetCenterPosition(x, y + _pressedOffset);
 
     if (_disabledSprite != nullptr)
     {
-      _disabledSprite->SetCenterPosition(x, y + _disabledOffset);
+      _disabledSprite->transform->SetCenterPosition(x, y + _disabledOffset);
     }
 
     if (_hoveredSprite != nullptr)
     {
-      _hoveredSprite->SetCenterPosition(x, y);
+      _hoveredSprite->transform->SetCenterPosition(x, y);
     }
 
     AdjustTextPosition();

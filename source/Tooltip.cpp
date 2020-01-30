@@ -3,6 +3,7 @@
 #include "BoxSprite.h"
 #include "Game.h"
 #include "TextBox.h"
+#include "Transform.h"
 
 namespace JadeEngine
 {
@@ -42,22 +43,22 @@ namespace JadeEngine
     if (!_textPreloaded && _textBox->GetLoadState() == kLoadState_done)
     {
       _textPreloaded = true;
-      const auto previousHeight = _boxSprite->GetHeight();
-      _boxSprite->SetHeight(_textBox->GetHeight() + _padding * 2);
+      const auto previousHeight = _boxSprite->transform->GetHeight();
+      _boxSprite->transform->SetHeight(_textBox->GetHeight() + _padding * 2);
       SetPosition(GetX(), GetY() - (GetHeight() - previousHeight));
     }
   }
 
   void Tooltip::SetPosition(int32_t x, int32_t y)
   {
-    _boxSprite->SetPosition(x, y);
+    _boxSprite->transform->SetPosition(x, y);
     _textBox->SetPosition(x + _padding, y + _padding);
   }
 
   void Tooltip::SetCenterPosition(int32_t x, int32_t y)
   {
-    _boxSprite->SetCenterPosition(x, y);
-    SetPosition(_boxSprite->GetX(), _boxSprite->GetY());
+    _boxSprite->transform->SetCenterPosition(x, y);
+    SetPosition(_boxSprite->transform->GetX(), _boxSprite->transform->GetY());
   }
 
   void Tooltip::Show(bool shown)
@@ -69,10 +70,10 @@ namespace JadeEngine
     _textBox->Show(isShown);
   }
 
-  int32_t Tooltip::GetX() const { return _boxSprite->GetX(); }
-  int32_t Tooltip::GetY() const { return _boxSprite->GetY(); }
-  int32_t Tooltip::GetCenterX() const { return _boxSprite->GetCenterX(); }
-  int32_t Tooltip::GetCenterY() const { return _boxSprite->GetCenterY(); }
-  int32_t Tooltip::GetWidth() const { return _boxSprite->GetWidth(); }
-  int32_t Tooltip::GetHeight() const { return _boxSprite->GetHeight(); }
+  int32_t Tooltip::GetX() const { return _boxSprite->transform->GetX(); }
+  int32_t Tooltip::GetY() const { return _boxSprite->transform->GetY(); }
+  int32_t Tooltip::GetCenterX() const { return _boxSprite->transform->GetCenterX(); }
+  int32_t Tooltip::GetCenterY() const { return _boxSprite->transform->GetCenterY(); }
+  int32_t Tooltip::GetWidth() const { return _boxSprite->transform->GetWidth(); }
+  int32_t Tooltip::GetHeight() const { return _boxSprite->transform->GetHeight(); }
 }

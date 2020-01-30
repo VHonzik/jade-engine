@@ -7,9 +7,9 @@ namespace JadeEngine
   /**
   Interface for Scene classes.
 
-  Scene is a high-level building block of a game in Jade engine. It is a collection of game objects that are updated and rendered at the same time, and usually contains logic that operates on those game objects.
+  Scene is a high-level building block of a game in Jade engine. It is a collection of %game objects that are updated and rendered at the same time, and usually contains logic that operates on those %game objects.
 
-  All game objects created while a scene is active, such as during it's Start() function will be considered part of that scene and will stop being updated and rendered when a new scene is played. Exception to that are objects created with kObjectLayer_persistent_ui ObjectLayer which are always rendered and updated.
+  All %game objects created while a scene is active, such as during it's Start() function will be considered part of that scene and will stop being updated and rendered when a new scene is played. Exception to that are objects created with kObjectLayer_persistent_ui ObjectLayer which are always rendered and updated.
 
   All scenes must inherit from IScene and can override the public virtual functions in order receive callbacks from the Jade engine.
 
@@ -45,7 +45,7 @@ namespace JadeEngine
     /**
     Triggered the first time this scene is played.
 
-    An ideal callback to initialize the scene's game objects. Only triggered once, i.e. second call to GGame.PlayScene with this scene will not trigger Start(). Start() will be triggered immediately when GGame.PlayScene is called while the first Update() will happen next frame.
+    An ideal callback to initialize the scene's %game objects. Only triggered once, i.e. second call to GGame.PlayScene with this scene will not trigger Start(). Start() will be triggered immediately when GGame.PlayScene is called while the first Update() will happen next frame.
 
     @see Game::PlayScene
     @code
@@ -60,13 +60,24 @@ namespace JadeEngine
     virtual void Start() {};
 
     /**
+    Triggered ever frame by the Jade Engine while this scene is active.
+
+    To obtain delta time since last frame use GTime.deltaTime.
+
+    The trigger order is the following: IScene::PreUpdate -> IGameObject::Load -> IGameObject::Update -> IScene::Update -> IGameObject::Load -> IGameObject::Render.
+
+    @see Game::PlayScene, Time, IGameObject::Update
+    */
+    virtual void PreUpdate() {};
+
+    /**
     Triggered every frame by the Jade Engine while this scene is active.
 
     To obtain delta time since last frame use GTime.deltaTime.
 
-    Triggered after all %game objects were updated.
+    The trigger order is the following: IScene::PreUpdate -> IGameObject::Load -> IGameObject::Update -> IScene::Update -> IGameObject::Load -> IGameObject::Render.
 
-    @see Game::PlayScene, Time
+    @see Game::PlayScene, Time, IGameObject::Update
     @code
     #include "Button.h"
     #include "EngineTime.h"

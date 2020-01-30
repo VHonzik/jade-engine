@@ -152,7 +152,7 @@ namespace JadeEngine
     /**
     Play a previously added scene, making it the current scene.
 
-    Among other things, the current scene receives Update() callbacks and all game objects created during this scene are rendered.
+    Among other things, the current scene receives Update() callbacks and all %game objects created during this scene are rendered.
 
     If the scene is being played for the first time its Start() callback is triggered.
 
@@ -344,7 +344,7 @@ namespace JadeEngine
     @returns Found underlying SDL2 TTF_Font opaque pointer or nullptr if not found.
     @pre GGame was Initialize() with the wanted font or in is part of default assets.
     @see GameInitParamsFontEntry, GameInitParams, Text
-    @warning Only useful when creating a complex custom text-based game objects and should be seldom used. For usage see existing text objects such as Text.
+    @warning Only useful when creating a complex custom text-based %game objects and should be seldom used. For usage see existing text objects such as Text.
     */
     TTF_Font* FindFont(const std::string& fontName, const uint32_t size) const;
 
@@ -354,7 +354,7 @@ namespace JadeEngine
     @returns Found Texture instance or nullptr if not found.
     @pre GGame was Initialize() with the wanted texture.
     @see GameInitParamsFontEntry, GameInitParams, Sprite
-    @warning Only useful when creating a complex custom texture-based game objects and should be seldom used. For usage see Sprite.
+    @warning Only useful when creating a complex custom texture-based %game objects and should be seldom used. For usage see Sprite.
     */
     std::shared_ptr<Texture> FindTexture(const std::string& textureName) const;
 
@@ -394,8 +394,10 @@ namespace JadeEngine
     void SetHoveredSprite(Sprite* sprite);
     void SortGameObjectsRendering(const std::shared_ptr<IScene>& scene);
     void Update();
-    void LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene);
+    void LoadGameObjects(std::shared_ptr<IScene>& scene);
+    void HoverSprites(std::shared_ptr<IScene>& scene);
     void UpdateGameObjects(std::shared_ptr<IScene>& scene);
+    void UpdateGameObjectsTransforms(std::shared_ptr<IScene>& scene);
     void UpdateKeybindings();
     void DestroyGameObject(IGameObject* gameObject);
 

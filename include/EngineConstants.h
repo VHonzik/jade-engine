@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <inttypes.h>
 #include <SDL_pixels.h>
 
@@ -45,4 +46,6 @@ namespace JadeEngine
   const char kJadeEngineUISpritesheet[] = "engineUI";
 
   const int32_t kDefaultMaxResolutionFraction = 8;
+
+  const auto kFPI = std::acos(-1.0f);
 }

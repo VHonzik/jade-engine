@@ -5,6 +5,7 @@
 #include "Input.h"
 #include "SampleConstants.h"
 #include "Sprite.h"
+#include "Transform.h"
 #include "Utils.h"
 
 #include <array>
@@ -46,10 +47,10 @@ namespace MatchThree
     , _flashingMatch(false)
     , _flashingMatchDone(false)
     , _type(params.type)
-    , _width(params.width)
-    , _height(params.height)
     , _movingSpeed(100.0f)
   {
+    transform->Initialize(0, 0, params.width, params.height);
+
     SpriteParams spriteParams;
     spriteParams.layer = kObjectLayer_ui;
     spriteParams.textureName = kPiecesTextures[params.type];
@@ -58,58 +59,47 @@ namespace MatchThree
     spriteParams.spriteSheetName = kMatchThreeSpritesheet;
 
     _symbol = GGame.Create<Sprite>(spriteParams);
-    _symbol->SetWidthHeight(static_cast<int32_t>(_width * kBackgroundEmptySpacePercentage), static_cast<int32_t>(_height * kBackgroundEmptySpacePercentage));
+    _symbol->transform->SetSize(static_cast<int32_t>(transform->GetWidth() * kBackgroundEmptySpacePercentage), static_cast<int32_t>(transform->GetHeight() * kBackgroundEmptySpacePercentage));
 
     spriteParams.z = params.z-1;
     spriteParams.textureName = kBackgroundTileNormal;
     _background = GGame.Create<Sprite>(spriteParams);
-    _background->SetWidthHeight(_width, _height);
+    _background->transform->SetSize(transform->GetSize());
 
     spriteParams.textureName = kBackgroundTileHover;
     _backgroundHovered = GGame.Create<Sprite>(spriteParams);
-    _backgroundHovered->SetWidthHeight(_width, _height);
+    _backgroundHovered->transform->SetSize(transform->GetSize());
 
     spriteParams.textureName = kBackgroundTileSelected;
     _backgroundSelected = GGame.Create<Sprite>(spriteParams);
-    _backgroundSelected->SetWidthHeight(_width, _height);
+    _backgroundSelected->transform->SetSize(transform->GetSize());
 
     spriteParams.textureName = kBackgroundTileSelectedHover;
     _backgroundSelectedHovered = GGame.Create<Sprite>(spriteParams);
-    _backgroundSelectedHovered->SetWidthHeight(_width, _height);
+    _backgroundSelectedHovered->transform->SetSize(transform->GetSize());
 
     spriteParams.textureName = kBackgroundTileError;
     _backgroundError = GGame.Create<Sprite>(spriteParams);
-    _backgroundError->SetWidthHeight(_width, _height);
+    _backgroundError->transform->SetSize(transform->GetSize());
 
     spriteParams.textureName = kBackgroundTileSelectedMatched;
     _backgroundMatched = GGame.Create<Sprite>(spriteParams);
-    _backgroundMatched->SetWidthHeight(_width, _height);
+    _backgroundMatched->transform->SetSize(transform->GetSize());
 
-    SetCenterPosition(0, 0);
+    UpdatePosition();
+
     Show(true);
   }
 
-  void Piece::SetCenterPosition(const int32_t x, const int32_t y, const bool hard)
+  void Piece::UpdatePosition()
   {
-    if (hard)
-    {
-      _wantedCenterX = x;
-      _wantedCenterY = y;
-      _moving = false;
-    }
-
-    _symbol->SetCenterPosition(x, y);
-    _background->SetCenterPosition(x, y);
-    _backgroundHovered->SetCenterPosition(x, y);
-    _backgroundSelected->SetCenterPosition(x, y);
-    _backgroundSelectedHovered->SetCenterPosition(x, y);
-    _backgroundError->SetCenterPosition(x, y);
-    _backgroundMatched->SetCenterPosition(x, y);
-  }
-
-  void Piece::SetCenterPosition(const int32_t x, const int32_t y)
-  {
-    SetCenterPosition(x, y, true);
+    _symbol->transform->SetCenterPosition(transform->GetCenterPosition());
+    _background->transform->SetCenterPosition(transform->GetCenterPosition());
+    _backgroundHovered->transform->SetCenterPosition(transform->GetCenterPosition());
+    _backgroundSelected->transform->SetCenterPosition(transform->GetCenterPosition());
+    _backgroundSelectedHovered->transform->SetCenterPosition(transform->GetCenterPosition());
+    _backgroundError->transform->SetCenterPosition(transform->GetCenterPosition());
+    _backgroundMatched->transform->SetCenterPosition(transform->GetCenterPosition());
   }
 
   void Piece::Show(const bool shown)
@@ -130,19 +120,16 @@ namespace MatchThree
   {
     if (_moving)
     {
-      if (_wantedCenterX != GetCenterX())
+      if (_wantedCenter != transform->GetCenterPosition())
       {
-        _movingCenterX = MoveTowards(_movingCenterX, static_cast<float>(_wantedCenterX), _movingSpeed * GTime.deltaTime);
+        _movingCenterX = MoveTowards(_movingCenterX, static_cast<float>(_wantedCenter.x), _movingSpeed * GTime.deltaTime);
+        _movingCenterY = MoveTowards(_movingCenterY, static_cast<float>(_wantedCenter.y), _movingSpeed * GTime.deltaTime);
       }
 
-      if (_wantedCenterY != GetCenterY())
-      {
-        _movingCenterY = MoveTowards(_movingCenterY, static_cast<float>(_wantedCenterY), _movingSpeed * GTime.deltaTime);
-      }
+      transform->SetCenterPosition(static_cast<int32_t>(_movingCenterX), static_cast<int32_t>(_movingCenterY));
+      UpdatePosition();
 
-      SetCenterPosition(static_cast<int32_t>(_movingCenterX), static_cast<int32_t>(_movingCenterY), false);
-
-      if (_wantedCenterX == GetCenterX() && _wantedCenterY == GetCenterY())
+      if (_wantedCenter == transform->GetCenterPosition())
       {
         _moving = false;
       }
@@ -164,17 +151,16 @@ namespace MatchThree
       const auto t = (1.0f - _symbolScalingTimer / kFlashMatchSymbolScaleDuration);
 
       const auto scale = Interpolate(1.0f, kFlashMatchSymbolScale, t);
-      const auto wantedWidth = static_cast<int32_t>(_width * kBackgroundEmptySpacePercentage * scale);
-      const auto wantedHeight = static_cast<int32_t>(_height * kBackgroundEmptySpacePercentage * scale);
-      _symbol->SetWidthHeight(wantedWidth, wantedHeight);
-      SetCenterPosition(GetCenterX(), GetCenterY());
+      const auto wantedWidth = static_cast<int32_t>(transform->GetWidth() * kBackgroundEmptySpacePercentage * scale);
+      const auto wantedHeight = static_cast<int32_t>(transform->GetHeight() * kBackgroundEmptySpacePercentage * scale);
+      _symbol->transform->SetSize(wantedWidth, wantedHeight);
+      UpdatePosition();
 
       if (_symbolScalingTimer <= 0.0f)
       {
         _flashingMatchDone = true;
       }
     }
-
 
     if (!_inputEnabled) return;
 
@@ -204,27 +190,24 @@ namespace MatchThree
     _inputEnabled = enabled;
   }
 
-  void Piece::MoveCenterTo(const int32_t x, const int32_t y, const float speed)
+  void Piece::MoveCenterTo(const Vector& pos, const float speed)
   {
-    _wantedCenterX = x;
-    _wantedCenterY = y;
+    _wantedCenter = pos;
 
-    _movingCenterX = static_cast<float>(GetCenterX());
-    _movingCenterY = static_cast<float>(GetCenterY());
+    _movingCenterX = static_cast<float>(transform->GetCenterX());
+    _movingCenterY = static_cast<float>(transform->GetCenterY());
 
     _movingSpeed = speed;
 
     _moving = true;
   }
 
-  int32_t Piece::GetCenterX() const
+  void Piece::TeleportCenterTo(const Vector& pos)
   {
-    return _background->GetCenterX();
-  }
-
-  int32_t Piece::GetCenterY() const
-  {
-    return _background->GetCenterY();
+    _wantedCenter = transform->GetCenterPosition();
+    _moving = false;
+    transform->SetCenterPosition(pos);
+    UpdatePosition();
   }
 
   void Piece::FlashError()

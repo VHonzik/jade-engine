@@ -3,7 +3,7 @@
 namespace JadeEngine
 {
   /**
-  Enumeration for layers that game objects must belong to.
+  Enumeration for layers that %game objects must belong to.
   */
   enum ObjectLayer
   {
@@ -21,14 +21,14 @@ namespace JadeEngine
 
     The scene that is currently active when the %game object is created will be the owner and therefore the %game object will be only updated and rendered while its active.
 
-    Position of game objects, placed in world coordinates, on the screen depends on WorldCamera position.
+    Position of %game objects, placed in world coordinates, on the screen depends on WorldCamera position.
 
     @see WorldCamera
     */
     kObjectLayer_world,
 
     /**
-    Similarly to `kObjectLayer_ui` game objects created in `kObjectLayer_persistent_ui` are rendered in screen coordinates but they belong to singleton persistent scene.
+    Similarly to `kObjectLayer_ui` %game objects created in `kObjectLayer_persistent_ui` are rendered in screen coordinates but they belong to singleton persistent scene.
 
     Game objects in persistent scene are always rendered and updated.
     */

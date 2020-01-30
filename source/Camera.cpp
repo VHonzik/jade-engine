@@ -61,24 +61,22 @@ namespace JadeEngine
     auto mouseX = GInput.GetMouseX();
     auto mouseY = GInput.GetMouseY();
 
-    const auto transform = sprite->GetTransform();
+    const auto& transform = sprite->transform;
 
     bool inside = false;
 
     if (preciseTest)
     {
-      inside = IsInsideRect(mouseX, mouseY, transform);
+      inside = IsInsideRect(mouseX, mouseY, transform->GetBox());
 
       if (inside)
       {
-        inside = sprite->HitTest(mouseX - transform.x, mouseY - transform.y);
+        inside = sprite->HitTest(mouseX - transform->GetX(), mouseY - transform->GetY());
       }
     }
     else
     {
-      SDL_Rect boundingBox = sprite->GetBoundingBox();
-      SDL_Rect testingBox = { transform.x + boundingBox.x,
-        transform.y + boundingBox.y, boundingBox.w, boundingBox.h };
+      const auto testingBox = transform->GetTestingBox();
       inside = IsInsideRect(mouseX, mouseY, testingBox);
     }
 
@@ -99,6 +97,17 @@ namespace JadeEngine
   SDL_Point WorldCamera::WorldToScreen(const SDL_Point& point)
   {
     return { point.x - _x, point.y - _y };
+  }
+
+  Vector WorldCamera::WorldToScreen(const Vector& vector)
+  {
+    return { vector.x - _x, vector.y - _y };
+  }
+
+  Box WorldCamera::WorldToScreen(const std::shared_ptr<Transform>& transform)
+  {
+    assert(transform);
+    return { transform->GetX() - _x, transform->GetY() - _y, transform->GetWidth(), transform->GetHeight() };
   }
 
   Rectangle WorldCamera::ScreenToWorld(const Rectangle& rect)

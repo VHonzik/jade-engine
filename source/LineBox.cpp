@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "LineStrip.h"
+#include "Transform.h"
 
 namespace JadeEngine
 {

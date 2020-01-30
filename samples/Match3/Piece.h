@@ -2,6 +2,8 @@
 
 #include "IGameObject.h"
 #include "ObjectLayer.h"
+#include "SampleConstants.h"
+#include "Vector.h"
 
 using namespace JadeEngine;
 
@@ -12,18 +14,6 @@ namespace JadeEngine
 
 namespace MatchThree
 {
-  enum PieceType
-  {
-    kPieceType_BlueOctagon,
-    kPieceType_GreenCircle,
-    kPieceType_OrangeTriangle,
-    kPieceType_PinkHeart,
-    kPieceType_RedDiamond,
-    kPieceType_WhitePentagon,
-    kPieceType_YellowStar,
-    kPieceType_Count,
-  };
-
   struct PieceParams
   {
     ObjectLayer layer;
@@ -43,17 +33,14 @@ namespace MatchThree
     void Deselect();
     void EnableInput(const bool enabled);
 
-    void SetCenterPosition(const int32_t x, const int32_t y);
-    int32_t GetCenterX() const;
-    int32_t GetCenterY() const;
-
     bool IsSelected() const { return _selected; }
     bool IsHovered() const { return _hovered; }
     bool IsMoving() const { return _moving; }
     bool IsFlashing() const { return _flashingError || _flashingMatch; }
     bool IsFlashingMatchDone() const { return _flashingMatchDone; }
 
-    void MoveCenterTo(const int32_t x, const int32_t y, const float speed);
+    void MoveCenterTo(const Vector& pos, const float speed);
+    void TeleportCenterTo(const Vector& pos);
 
     void SetZ(const int32_t z) { _z = z; }
 
@@ -62,12 +49,9 @@ namespace MatchThree
     PieceType GetType() const { return _type; }
 
   private:
-    void SetCenterPosition(const int32_t x, const int32_t y, const bool hard);
+    void UpdatePosition();
 
     PieceType _type;
-
-    int32_t _width;
-    int32_t _height;
 
     Sprite* _symbol;
     Sprite* _background;
@@ -81,8 +65,7 @@ namespace MatchThree
     bool _selected;
     bool _inputEnabled;
 
-    int32_t _wantedCenterX;
-    int32_t _wantedCenterY;
+    Vector _wantedCenter;
 
     float _movingCenterX;
     float _movingCenterY;

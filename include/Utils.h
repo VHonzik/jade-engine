@@ -9,6 +9,12 @@
 #include <iterator>
 #include <vector>
 
+#ifdef NDEBUG
+#define SDL_ASSERT_SUCCESS(sdlCall) sdlCall
+#else
+#define SDL_ASSERT_SUCCESS(sdlCall) assert(sdlCall == 0)
+#endif
+
 namespace JadeEngine
 {
   inline bool IsInsideRect(int32_t x, int32_t y, const Rectangle& rect)
@@ -39,6 +45,11 @@ namespace JadeEngine
     }
 
     return false;
+  }
+
+  constexpr uint32_t NumberOfBits(uint32_t x)
+  {
+    return x < 2 ? x : 1 + NumberOfBits(x >> 1);
   }
 
   template<typename T>

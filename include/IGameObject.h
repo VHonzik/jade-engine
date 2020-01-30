@@ -1,11 +1,14 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 struct SDL_Renderer;
 
 namespace JadeEngine
 {
+  class Transform;
+
   /**
   Enumeration for state of loading a %game object is currently in.
   */
@@ -35,13 +38,13 @@ namespace JadeEngine
   };
 
   /**
-  Interface for game objects.
+  Interface for %game objects.
 
-  The most basic building block of Jade Engine, game objects are objects that live inside a scene and can be updated and rendered every frame.
+  The most basic building block of Jade Engine, %game objects are objects that live inside a scene and can be updated and rendered every frame.
 
-  Additionally game objects can be used to compose simple game objects into more advanced ones. For example a Button %game object will have collection of Sprite game objects for various pressed states and a Text game objects.
+  Additionally %game objects can be used to compose simple %game objects into more advanced ones. For example a Button %game object will have collection of Sprite %game objects for various pressed states and a Text %game objects.
 
-  When creating new game objects based on IGameObject it is necessary to create a constructor that accepts only one argument: constant reference to creation structure which will contain at the very least `ObjectLayer layer;` member. See following example:
+  When creating new %game objects based on IGameObject it is necessary to create a constructor that accepts only one argument: constant reference to creation structure which will contain at the very least `ObjectLayer layer;` member. See following example:
   @code
   #include "IGameObject.h"
   #include "ObjectLayer.h"
@@ -77,10 +80,10 @@ namespace JadeEngine
     /**
     Triggered every frame while the scene that owns this %game object is active and the %game object was successfully loaded.
 
-    Goes before Render function.
+    The trigger order is the following: IScene::PreUpdate -> IGameObject::Load -> IGameObject::Update -> IScene::Update -> IGameObject::Load -> IGameObject::Render.
 
     To obtain delta time since last frame use GTime.deltaTime.
-    @see Time, LoadState, IGameObject::Render
+    @see Time, LoadState, IGameObject::Render, IScene::Update, IScene::PreUpdate
     */
     virtual void Update() {};
 
@@ -94,6 +97,8 @@ namespace JadeEngine
     /**
     Triggered every frame when GetLoadState function returns `kLoadState_wanted` to allow resources, such as textures, to be loaded.
 
+    The trigger order is the following: IScene::PreUpdate -> IGameObject::Load -> IGameObject::Update -> IScene::Update -> IGameObject::Load -> IGameObject::Render.
+
     @param renderer The engine's SDL2 renderer that can be used to create resources.
     @returns The function must return the load state that reflects the result of the load operation. It will be used in SetLoadState function by the Game class.
 
@@ -104,7 +109,7 @@ namespace JadeEngine
     /**
     Triggered every frame while the scene that owns this %game object is active, the %game object was successfully loaded and the %game object is shown.
 
-    Goes after Update function.
+    The trigger order is the following: IScene::PreUpdate -> IGameObject::Load -> IGameObject::Update -> IScene::Update -> IGameObject::Load -> IGameObject::Render.
 
     @param renderer The engine's SDL2 renderer that should be used to render the %game object.
 
@@ -137,7 +142,7 @@ namespace JadeEngine
     /**
     Show or hide %game object.
 
-    @warning This does not affect any owned child game objects as this interface has no knowledge of them. It only handles tracking the visibility state. It is recommended to override this function for %game object that own other game objects. Inside the overridden function one should call this - base - function and handle hiding/showing of children game objects there.
+    @warning This does not affect any owned child %game objects as this interface has no knowledge of them. It only handles tracking the visibility state. It is recommended to override this function for %game object that own other %game objects. Inside the overridden function one should call this - base - function and handle hiding/showing of children %game objects there.
     @code
     void SomeGameObject::Show(const bool shown) //override
     {
@@ -152,7 +157,7 @@ namespace JadeEngine
     virtual void Show(const bool show) { _shown = show; }
 
     /**
-    Returns Z coordinate. The game objects with higher Z coordinate will be drawn over the ones with lower one.
+    Returns Z coordinate. The %game objects with higher Z coordinate will be drawn over the ones with lower one.
     */
     int32_t GetZ() const { return _z; }
 
@@ -167,6 +172,12 @@ namespace JadeEngine
     Returns whether the object is marked for destruction.
     */
     bool DestructionWanted() const { return _destructionWanted; }
+
+    /**
+    Transform of the %game object.
+    */
+    const std::shared_ptr<Transform> transform = std::make_shared<Transform>();
+
   protected:
     LoadState _loadState = kLoadState_done;
     bool _shown = true;

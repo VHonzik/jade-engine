@@ -3,6 +3,7 @@
 #include "Piece.h"
 #include "Game.h"
 #include "Input.h"
+#include "Transform.h"
 
 #include <algorithm>
 #include <cassert>
@@ -26,10 +27,12 @@ namespace MatchThree
     , _piecesMatching     (false)
     , _piecesMovingMatch  (false)
     , _layer              (params.layer)
-    , _centerX            (0)
-    , _centerY            (0)
   {
     assert(_columns > 0 && _rows > 0);
+
+    const auto totalWidth = static_cast<int32_t>(_columns * (_pieceWidth + _piecesSpacing) - _piecesSpacing);
+    const auto totalHeight = static_cast<int32_t>(_rows * (_pieceHeight + _piecesSpacing) - _piecesSpacing);
+    transform->Initialize(0, 0, totalWidth, totalHeight);
 
     GGame.StartBatchCreate();
 
@@ -45,7 +48,7 @@ namespace MatchThree
         piece = CreateRandomPiece(column);
         _pieceToPiecesIndex[piece] = piecesIndex;
 
-        piece->SetCenterPosition(GridPositionX(row, column), GridPositionY(row, column));
+        piece->TeleportCenterTo(GridPosition(row, column));
       }
     }
 
@@ -67,8 +70,8 @@ namespace MatchThree
 
   void PiecesGrid::SwapPiecesInit(const PiecesContainer::iterator& pieceA, const PiecesContainer::iterator& pieceB)
   {
-    (*pieceA)->MoveCenterTo((*pieceB)->GetCenterX(), (*pieceB)->GetCenterY(), kSwappingMovementSpeed);
-    (*pieceB)->MoveCenterTo((*pieceA)->GetCenterX(), (*pieceA)->GetCenterY(), kSwappingMovementSpeed);
+    (*pieceA)->MoveCenterTo((*pieceB)->transform->GetCenterPosition(), kSwappingMovementSpeed);
+    (*pieceB)->MoveCenterTo((*pieceA)->transform->GetCenterPosition(), kSwappingMovementSpeed);
     _piecesMoving = true;
   }
 
@@ -93,6 +96,11 @@ namespace MatchThree
 
   void PiecesGrid::UpdateGrid()
   {
+    if (transform->IsDirty(kDirtyFlag_centerPosition))
+    {
+      UpdatePiecesPosition();
+    }
+
     const auto firstSelected = std::find_if(std::begin(_pieces), std::end(_pieces), [](auto& piece)
     {
       return piece->IsSelected();
@@ -245,11 +253,8 @@ namespace MatchThree
     return (rowDistance + columnDistance) == 1;
   }
 
-  void PiecesGrid::SetCenterPosition(const int32_t x, const int32_t y)
+  void PiecesGrid::UpdatePiecesPosition()
   {
-    _centerX = x;
-    _centerY = y;
-
     for (size_t row = 0; row < _rows; row++)
     {
       for (size_t column = 0; column < _columns; column++)
@@ -257,7 +262,7 @@ namespace MatchThree
         const auto piecesIndex = PiecesIndexFromColumnRow(row, column);
         auto& piece = _pieces[piecesIndex];
 
-        piece->SetCenterPosition(GridPositionX(row, column), GridPositionY(row, column));
+        piece->TeleportCenterTo(GridPosition(row, column));
       }
     }
   }
@@ -317,7 +322,7 @@ namespace MatchThree
       {
         if (possibleMatches.size() >= 3)
         {
-          std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
+          std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
         }
         possibleMatches.clear();
         possibleMatches.push_back(piece);
@@ -338,8 +343,12 @@ namespace MatchThree
     // We could have reached end while inside a match sequence
     if (possibleMatches.size() >= 3)
     {
-      std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
-    }
+      std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));    }
+
+    std::transform(std::cbegin(matches), std::cend(matches), std::back_inserter(_matches), [](const auto& piece)
+    {
+      return MatchInfo{ piece->GetType(), piece->transform->GetCenterPosition() };
+    });
 
     for (auto& piece : matches)
     {
@@ -382,21 +391,20 @@ namespace MatchThree
         const auto piecesIndex = PiecesIndexFromColumnRow(row, column);
         auto& piece = _pieces[piecesIndex];
 
-        const auto wantedX = GridPositionX(row, column);
-        const auto wantedY = GridPositionY(row, column);
+        const auto wantedPos = GridPosition(row, column);
 
         if (nextFreePiece != std::end(rowPieces))
         {
           piece = *nextFreePiece;
-          piece->MoveCenterTo(wantedX, wantedY, kRefillMovementSpeed);
+          piece->MoveCenterTo(wantedPos, kRefillMovementSpeed);
           ++nextFreePiece;
         }
         else
         {
           piece = CreateRandomPiece(column);
           const auto startY = - static_cast<int32_t>((_rows - 1 - row)) * (_pieceHeight + _piecesSpacing);
-          piece->SetCenterPosition(wantedX, startY);
-          piece->MoveCenterTo(wantedX, wantedY, kRefillMovementSpeed);
+          piece->TeleportCenterTo({ wantedPos.x, startY });
+          piece->MoveCenterTo(wantedPos, kRefillMovementSpeed);
         }
 
         _pieceToPiecesIndex[piece] = piecesIndex;
@@ -405,17 +413,20 @@ namespace MatchThree
     GGame.EndBatchCreate();
   }
 
-  int32_t PiecesGrid::GridPositionX(const size_t row, const size_t column) const
+  Vector PiecesGrid::GridPosition(const size_t row, const size_t column) const
   {
-    const auto totalWidth = _columns * (_pieceWidth + _piecesSpacing) - _piecesSpacing;
-    const auto startX = _centerX - totalWidth / 2;
-    return static_cast<int32_t>(startX + (_pieceWidth + _piecesSpacing) * column);
+    const auto startX = transform->GetCenterX() - transform->GetWidth() / 2;
+    const auto startY = transform->GetCenterY() - transform->GetHeight() / 2;
+    return { static_cast<int32_t>(startX + (_pieceWidth + _piecesSpacing) * column), static_cast<int32_t>(startY + (_pieceHeight + _piecesSpacing) * row) };
   }
 
-  int32_t PiecesGrid::GridPositionY(const size_t row, const size_t column) const
+  const std::vector<MatchInfo>& PiecesGrid::GetMatches() const
   {
-    const auto totalHeight = _rows * (_pieceHeight + _piecesSpacing) - _piecesSpacing;
-    const auto startY = _centerY - totalHeight / 2;
-    return static_cast<int32_t>(startY + (_pieceHeight + _piecesSpacing) * row);
+    return _matches;
+  }
+
+  void PiecesGrid::ResetMatches()
+  {
+    _matches.clear();
   }
 }

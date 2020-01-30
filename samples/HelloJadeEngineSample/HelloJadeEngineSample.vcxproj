@@ -102,6 +102,8 @@
     <ClCompile Include="..\..\source\TextBox.cpp" />
     <ClCompile Include="..\..\source\TextSprite.cpp" />
     <ClCompile Include="..\..\source\Tooltip.cpp" />
+    <ClCompile Include="..\..\source\Transform.cpp" />
+    <ClCompile Include="..\..\source\Vector.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -148,7 +150,9 @@
     <ClInclude Include="..\..\include\Texture.h" />
     <ClInclude Include="..\..\include\TextureSampling.h" />
     <ClInclude Include="..\..\include\Tooltip.h" />
+    <ClInclude Include="..\..\include\Transform.h" />
     <ClInclude Include="..\..\include\Utils.h" />
+    <ClInclude Include="..\..\include\Vector.h" />
     <ClInclude Include="SampleGameScene.h" />
     <ClInclude Include="SampleInitParams.h" />
   </ItemGroup>

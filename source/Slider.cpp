@@ -1,9 +1,10 @@
 #include "Slider.h"
 
 #include "Game.h"
+#include "Input.h"
 #include "Sprite.h"
 #include "Text.h"
-#include "Input.h"
+#include "Transform.h"
 #include "Utils.h"
 
 namespace JadeEngine
@@ -40,7 +41,7 @@ namespace JadeEngine
     spriteParams.spriteSheetName = params.spriteSheetName;
 
     _axis = GGame.Create<Sprite>(spriteParams);
-    _axis->SetWidth(params.width);
+    _axis->transform->SetWidth(params.width);
 
     spriteParams.textureName = params.axisEndTexture;
     spriteParams.z = params.z + 1;
@@ -68,11 +69,10 @@ namespace JadeEngine
       _slidingReleased = false;
     }
 
-    if (!_sliding && GGame.GetHoveredSprite() == _pointer
-      && GInput.MouseButtonDown(SDL_BUTTON_LEFT))
+    if (!_sliding && GGame.GetHoveredSprite() == _pointer && GInput.MouseButtonDown(SDL_BUTTON_LEFT))
     {
       _sliding = true;
-      _slidingOffset = GInput.GetMouseX() - _pointer->GetCenterX();
+      _slidingOffset = GInput.GetMouseX() - _pointer->transform->GetCenterX();
     }
     else if (_sliding && !GInput.MouseButtonDown(SDL_BUTTON_LEFT))
     {
@@ -83,38 +83,35 @@ namespace JadeEngine
 
     if (_sliding)
     {
-      const auto pos = Clamp(GInput.GetMouseX() - _slidingOffset,
-        _axisLEnd->GetCenterX(), _axisREnd->GetCenterX());
+      const auto pos = Clamp(GInput.GetMouseX() - _slidingOffset, _axisLEnd->transform->GetCenterX(), _axisREnd->transform->GetCenterX());
       const auto prevValue = _value;
 
-      _value = static_cast<float>(Clamp01(
-        static_cast<float>(pos - _axisLEnd->GetCenterX())
-        / static_cast<float>(_axisREnd->GetCenterX() - _axisLEnd->GetCenterX())));
+      _value = static_cast<float>(Clamp01(static_cast<float>(pos - _axisLEnd->transform->GetCenterX()) / static_cast<float>(_axisREnd->transform->GetCenterX() - _axisLEnd->transform->GetCenterX())));
 
       _valueChanged = prevValue != _value;
 
-      _pointer->SetCenterPosition(pos, _pointer->GetCenterY());
+      _pointer->transform->SetCenterPosition(pos, _pointer->transform->GetCenterY());
     }
   }
 
   int32_t Slider::GetX() const
   {
-    return _axis->GetX();
+    return _axis->transform->GetX();
   }
 
   int32_t Slider::GetY() const
   {
-    return _axis->GetCenterY();
+    return _axis->transform->GetCenterY();
   }
 
   int32_t Slider::GetCenterX() const
   {
-    return _axis->GetCenterX();
+    return _axis->transform->GetCenterX();
   }
 
   int32_t Slider::GetCenterY() const
   {
-    return _axis->GetCenterY();
+    return _axis->transform->GetCenterY();
   }
 
   int32_t Slider::GetWidth() const
@@ -124,26 +121,25 @@ namespace JadeEngine
 
   int32_t Slider::GetHeight() const
   {
-    return (_maxTitle->GetY() + _maxTitle->GetHeight()) - _pointer->GetY();
+    return (_maxTitle->GetY() + _maxTitle->GetHeight()) - _pointer->transform->GetY();
   }
 
   void Slider::SetPosition(uint32_t x, uint32_t y)
   {
-    _axis->SetPosition(x, y);
-    _axisLEnd->SetCenterPosition(x, _axis->GetCenterY());
-    _axisREnd->SetCenterPosition(x + _width, _axis->GetCenterY());
-    _pointer->SetCenterPosition(x + static_cast<int32_t>(_value * _width),
-      _axis->GetCenterY());
+    _axis->transform->SetPosition(x, y);
+    _axisLEnd->transform->SetCenterPosition(x, _axis->transform->GetCenterY());
+    _axisREnd->transform->SetCenterPosition(x + _width, _axis->transform->GetCenterY());
+    _pointer->transform->SetCenterPosition(x + static_cast<int32_t>(_value * _width), _axis->transform->GetCenterY());
     _minTitle->SetPosition(x, y + _minMaxYMargin);
     _maxTitle->SetPosition(x + _width, y + _minMaxYMargin);
   }
 
   void Slider::SetCenterPosition(uint32_t x, uint32_t y)
   {
-    _pointer->SetCenterPosition(x + static_cast<int32_t>((_value - 0.5f) * _width), y);
-    _axis->SetCenterPosition(x, y);
-    _axisLEnd->SetCenterPosition(x - _width / 2, y);
-    _axisREnd->SetCenterPosition(x + _width / 2, y);
+    _pointer->transform->SetCenterPosition(x + static_cast<int32_t>((_value - 0.5f) * _width), y);
+    _axis->transform->SetCenterPosition(x, y);
+    _axisLEnd->transform->SetCenterPosition(x - _width / 2, y);
+    _axisREnd->transform->SetCenterPosition(x + _width / 2, y);
     _minTitle->SetPosition(x - _width / 2, y + _minMaxYMargin);
     _maxTitle->SetPosition(x + _width / 2, y + _minMaxYMargin);
   }
@@ -161,5 +157,4 @@ namespace JadeEngine
     _minTitle->Show(isShown);
     _maxTitle->Show(isShown);
   }
-
 }

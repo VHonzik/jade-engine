@@ -120,12 +120,15 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClInclude Include="..\..\include\Texture.h" />
     <ClInclude Include="..\..\include\TextureSampling.h" />
     <ClInclude Include="..\..\include\Tooltip.h" />
+    <ClInclude Include="..\..\include\Transform.h" />
     <ClInclude Include="..\..\include\Utils.h" />
+    <ClInclude Include="..\..\include\Vector.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="PiecesGrid.h" />
     <ClInclude Include="SampleConstants.h" />
     <ClInclude Include="SampleInitParams.h" />
+    <ClInclude Include="ScoreMeter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\AlignedGroup.cpp" />
@@ -154,10 +157,13 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClCompile Include="..\..\source\TextBox.cpp" />
     <ClCompile Include="..\..\source\TextSprite.cpp" />
     <ClCompile Include="..\..\source\Tooltip.cpp" />
+    <ClCompile Include="..\..\source\Transform.cpp" />
+    <ClCompile Include="..\..\source\Vector.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="PiecesGrid.cpp" />
+    <ClCompile Include="ScoreMeter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

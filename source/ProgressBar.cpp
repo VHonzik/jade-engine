@@ -1,9 +1,10 @@
 #include "ProgressBar.h"
 
+#include "EngineTime.h"
 #include "Game.h"
 #include "Sprite.h"
+#include "Transform.h"
 #include "Utils.h"
-#include "EngineTime.h"
 
 #include <cassert>
 
@@ -39,14 +40,13 @@ namespace JadeEngine
       spriteParams.z = params.z;
       foreground.right = GGame.Create<Sprite>(spriteParams);
 
-      foreground.middle->SetWidth(_foregroundWidth - foreground.left->GetWidth() - foreground.right->GetWidth());
+      foreground.middle->transform->SetWidth(_foregroundWidth - foreground.left->transform->GetWidth() - foreground.right->transform->GetWidth());
       foreground.threshold = color.threshold;
 
       _foregrounds.push_back(foreground);
     }
 
-    std::sort(std::begin(_foregrounds), std::end(_foregrounds),
-      [](const Foreground& a, const Foreground& b)
+    std::sort(std::begin(_foregrounds), std::end(_foregrounds), [](const Foreground& a, const Foreground& b)
     {
       return a.threshold < b.threshold;
     });
@@ -67,12 +67,12 @@ namespace JadeEngine
 
     for (const auto& foreground : _foregrounds)
     {
-      assert(foreground.left->GetWidth() == _backgroundLeft->GetWidth());
-      assert(foreground.right->GetWidth() == _backgroundRight->GetWidth());
-      assert(_backgroundWidth > foreground.left->GetWidth() + foreground.right->GetWidth());
+      assert(foreground.left->transform->GetWidth() == _backgroundLeft->transform->GetWidth());
+      assert(foreground.right->transform->GetWidth() == _backgroundRight->transform->GetWidth());
+      assert(_backgroundWidth > foreground.left->transform->GetWidth() + foreground.right->transform->GetWidth());
     }
 
-    _backgroundMiddle->SetWidth(_backgroundWidth - _backgroundLeft->GetWidth() - _backgroundRight->GetWidth());
+    _backgroundMiddle->transform->SetWidth(_backgroundWidth - _backgroundLeft->transform->GetWidth() - _backgroundRight->transform->GetWidth());
 
     SetPosition(0, 0);
     Show(true);
@@ -80,32 +80,30 @@ namespace JadeEngine
 
   void ProgressBar::SetCenterPosition(int32_t x, int32_t y)
   {
-    _backgroundLeft->SetPosition(x - (_backgroundWidth / 2), 0);
-    _backgroundLeft->SetCenterPosition(_backgroundLeft->GetCenterX(), y);
-    _backgroundMiddle->SetPosition(_backgroundLeft->GetX() + _backgroundLeft->GetWidth(), _backgroundLeft->GetY());
-    _backgroundRight->SetPosition(_backgroundMiddle->GetX() + _backgroundMiddle->GetWidth(),
-      _backgroundMiddle->GetY());
+    _backgroundLeft->transform->SetPosition(x - (_backgroundWidth / 2), 0);
+    _backgroundLeft->transform->SetCenterPosition(_backgroundLeft->transform->GetCenterX(), y);
+    _backgroundMiddle->transform->SetPosition(_backgroundLeft->transform->GetX() + _backgroundLeft->transform->GetWidth(), _backgroundLeft->transform->GetY());
+    _backgroundRight->transform->SetPosition(_backgroundMiddle->transform->GetX() + _backgroundMiddle->transform->GetWidth(), _backgroundMiddle->transform->GetY());
 
     for (const auto& foreground : _foregrounds)
     {
-      foreground.left->SetCenterPosition(_backgroundLeft->GetCenterX(), _backgroundLeft->GetCenterY());
-      foreground.middle->SetPosition(foreground.left->GetX() + foreground.left->GetWidth(), foreground.left->GetY());
-      foreground.right->SetPosition(foreground.middle->GetX() + foreground.middle->GetWidth(),
-        foreground.middle->GetY());
+      foreground.left->transform->SetCenterPosition(_backgroundLeft->transform->GetCenterX(), _backgroundLeft->transform->GetCenterY());
+      foreground.middle->transform->SetPosition(foreground.left->transform->GetX() + foreground.left->transform->GetWidth(), foreground.left->transform->GetY());
+      foreground.right->transform->SetPosition(foreground.middle->transform->GetX() + foreground.middle->transform->GetWidth(), foreground.middle->transform->GetY());
     }
   }
 
   void ProgressBar::SetPosition(int32_t x, int32_t y)
   {
-    _backgroundLeft->SetPosition(x, y);
-    _backgroundMiddle->SetPosition(x + _backgroundLeft->GetWidth(), y);
-    _backgroundRight->SetPosition(x + _backgroundWidth - _backgroundRight->GetWidth(), y);
+    _backgroundLeft->transform->SetPosition(x, y);
+    _backgroundMiddle->transform->SetPosition(x + _backgroundLeft->transform->GetWidth(), y);
+    _backgroundRight->transform->SetPosition(x + _backgroundWidth - _backgroundRight->transform->GetWidth(), y);
 
     for (auto& foreground : _foregrounds)
     {
-      foreground.left->SetPosition(x, y);
-      foreground.middle->SetPosition(x + foreground.left->GetWidth(), y);
-      foreground.right->SetPosition(foreground.middle->GetX() + foreground.middle->GetWidth(), y);
+      foreground.left->transform->SetPosition(x, y);
+      foreground.middle->transform->SetPosition(x + foreground.left->transform->GetWidth(), y);
+      foreground.right->transform->SetPosition(foreground.middle->transform->GetX() + foreground.middle->transform->GetWidth(), y);
     }
   }
 
@@ -120,7 +118,7 @@ namespace JadeEngine
   }
   int32_t ProgressBar::GetHeight() const
   {
-    return _backgroundLeft->GetHeight();
+    return _backgroundLeft->transform->GetHeight();
   }
 
   int32_t ProgressBar::GetWidth() const
@@ -163,15 +161,14 @@ namespace JadeEngine
   {
     _t = Clamp(value, 0.0f, 1.0f);
     _foregroundWidth = static_cast<int32_t>(_t * _backgroundWidth);
-    const auto middleWidth = Clamp(_foregroundWidth - _backgroundLeft->GetWidth() - _backgroundRight->GetWidth(),
-      0, _backgroundWidth);
+    const auto middleWidth = Clamp(_foregroundWidth - _backgroundLeft->transform->GetWidth() - _backgroundRight->transform->GetWidth(), 0, _backgroundWidth);
 
     for (auto& foreground : _foregrounds)
     {
-      foreground.middle->SetWidth(middleWidth);
+      foreground.middle->transform->SetWidth(middleWidth);
     }
 
-    SetPosition(_backgroundLeft->GetX(), _backgroundLeft->GetY());
+    SetPosition(_backgroundLeft->transform->GetX(), _backgroundLeft->transform->GetY());
     UpdateForegroundsVisibility();
   }
 

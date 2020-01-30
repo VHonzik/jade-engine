@@ -4,6 +4,7 @@
 #include "ObjectLayer.h"
 #include "Piece.h"
 
+#include <array>
 #include <unordered_map>
 #include <vector>
 
@@ -27,7 +28,6 @@ namespace MatchThree
     kIterationDirection_Columns,
   };
 
-
   using PiecesContainer = std::vector<Piece*>;
 
   class PiecesGrid : public IGameObject
@@ -35,7 +35,9 @@ namespace MatchThree
   public:
     PiecesGrid(const PiecesGridParams& params);
     void UpdateGrid();
-    void SetCenterPosition(const int32_t x, const int32_t y);
+
+    const std::vector<MatchInfo>& GetMatches() const;
+    void ResetMatches();
 
   private:
     size_t PiecesIndexFromColumnRow(const size_t row, const size_t column) const;
@@ -56,8 +58,9 @@ namespace MatchThree
     void RefillGrid();
 
     Piece* CreateRandomPiece(const size_t column);
-    int32_t GridPositionX(const size_t row, const size_t column) const;
-    int32_t GridPositionY(const size_t row, const size_t column) const;
+    Vector GridPosition(const size_t row, const size_t column) const;
+
+    void UpdatePiecesPosition();
 
     ObjectLayer _layer;
 
@@ -73,10 +76,9 @@ namespace MatchThree
     bool _piecesMatching;
     bool _piecesMovingMatch;
 
-    int32_t _centerX;
-    int32_t _centerY;
-
     PiecesContainer _pieces;
     std::unordered_map<Piece*, size_t> _pieceToPiecesIndex;
+
+    std::vector<MatchInfo> _matches;
   };
 }

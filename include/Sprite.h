@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <SDL.h>
-#include <vector>
+#include <string>
 
 namespace JadeEngine
 {
@@ -51,7 +51,7 @@ namespace JadeEngine
     /**
     Z coordinate of the Sprite.
 
-    The game objects with higher Z coordinate will be drawn over the ones with lower one.
+    The %game objects with higher Z coordinate will be drawn over the ones with lower one.
     */
     int32_t                   z;
     /**
@@ -136,16 +136,6 @@ namespace JadeEngine
     void SetRotation(const double angle);
 
     /**
-    Return the bounding box of the sprite. A bounding box position elements (`x` and `y`) are always zero. The `w` and `h` elements are the width and height of the sprite respectively.
-    */
-    virtual const Rectangle& GetBoundingBox() const;
-
-    /**
-    Return the collision box of the sprite. The `x` and `y` elements are the current sprite's position. The `w` and `h` elements are the width and height of the sprite respectively.
-    */
-    Rectangle GetCollisionBox() const;
-
-    /**
     Perform a hit test, returning whether a pixel of the sprite is not empty (not completely transparent, alpha > 0).
 
     @pre The texture used by the sprite was initialized with hit map. You can use HasHitTest() to confirm so.
@@ -197,31 +187,9 @@ namespace JadeEngine
     */
     const std::string& GetTextureName() const;
 
-    void SetPosition(uint32_t x, uint32_t y);
-    void SetCenterPosition(uint32_t x, uint32_t y);
-
-    int32_t GetX() const { return _transform.x; }
-    int32_t GetY() const { return _transform.y; }
-
-    int32_t GetCenterX() const { return _transform.x + _transform.w / 2; }
-    int32_t GetCenterY() const { return _transform.y + _transform.h / 2; }
-
-    int32_t GetWidth() const { return _transform.w; }
-    int32_t GetHeight() const { return _transform.h; }
-
-    virtual void SetWidth(int32_t width);
-    virtual void SetHeight(int32_t height);
-
-    void SetWidthHeight(int32_t width, int32_t height);
-
-    const Rectangle& GetTransform() const { return _transform; }
-
   protected:
     std::shared_ptr<Texture> _textureDescription;
     const SpriteSheetDescription* _spriteSheetDescription;
-
-    Rectangle _transform;
-    Rectangle _boundingBox;
 
     SDL_Texture* _texture;
 

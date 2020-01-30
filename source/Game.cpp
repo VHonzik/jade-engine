@@ -103,8 +103,7 @@ namespace JadeEngine
     _nativeTextureFormats = info.texture_formats[0];
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
-    _nativeRenderBuffer = SDL_CreateTexture(_renderer, _nativeTextureFormats,
-      SDL_TEXTUREACCESS_TARGET, _renderResolutionWidth, _renderResolutionHeight);
+    _nativeRenderBuffer = SDL_CreateTexture(_renderer, _nativeTextureFormats, SDL_TEXTUREACCESS_TARGET, _renderResolutionWidth, _renderResolutionHeight);
 
     if (_nativeRenderBuffer == nullptr)
     {
@@ -390,8 +389,7 @@ namespace JadeEngine
     return result;
   }
 
-  bool Game::CreateSolidColorTexture(const std::string& name, const int32_t width,
-    const int32_t height, const SDL_Color& color)
+  bool Game::CreateSolidColorTexture(const std::string& name, const int32_t width, const int32_t height, const SDL_Color& color)
   {
     auto imageSurface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
     SDL_FillRect(imageSurface, NULL, SDL_MapRGB(imageSurface->format, color.r, color.g, color.b));
@@ -598,22 +596,25 @@ namespace JadeEngine
     _hoveredSprite = sprite;
   }
 
-  void Game::LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene)
+  void Game::HoverSprites(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[scene])
+    {
+      const auto sprite = GameObjectToSprite(gameObject.get());
+      if (sprite != nullptr && sprite->IsShown() && GUICamera.IsMouseInside(sprite, false) && GUICamera.IsMouseInside(sprite, true))
+      {
+        _possibleSprites.push_back(sprite);
+      }
+    }
+  }
+
+  void Game::LoadGameObjects(std::shared_ptr<IScene>& scene)
   {
     for (auto& gameObject : _gameObjects[scene])
     {
       if (gameObject->GetLoadState() == kLoadState_wanted)
       {
         gameObject->SetLoadState(gameObject->Load(_renderer));
-      }
-
-      if (gameObject->GetLoadState() == kLoadState_done)
-      {
-        const auto sprite = GameObjectToSprite(gameObject.get());
-        if (sprite != nullptr && sprite->IsShown() && GUICamera.IsMouseInside(sprite, false) && GUICamera.IsMouseInside(sprite, true))
-        {
-          _possibleSprites.push_back(sprite);
-        }
       }
     }
   }
@@ -625,6 +626,17 @@ namespace JadeEngine
       if (gameObject->GetLoadState() == kLoadState_done)
       {
         gameObject->Update();
+      }
+    }
+  }
+
+  void Game::UpdateGameObjectsTransforms(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[scene])
+    {
+      if (gameObject->GetLoadState() == kLoadState_done)
+      {
+        gameObject->transform->Update();
       }
     }
   }
@@ -686,10 +698,17 @@ namespace JadeEngine
 
     _possibleSprites.clear();
 
-    LoadGameObjectsAndHover(_currentScene);
-    if (_currentScene != _persistentScene)
+    if (_currentScene)
     {
-      LoadGameObjectsAndHover(_persistentScene);
+      _currentScene->PreUpdate();
+      LoadGameObjects(_currentScene);
+
+      if (_currentScene != _persistentScene)
+      {
+        LoadGameObjects(_persistentScene);
+      }
+
+      HoverSprites(_currentScene);
     }
 
     if (_possibleSprites.size() > 0)
@@ -704,15 +723,17 @@ namespace JadeEngine
       SetHoveredSprite(nullptr);
     }
 
-    UpdateGameObjects(_currentScene);
-    if (_currentScene != _persistentScene)
-    {
-      UpdateGameObjects(_persistentScene);
-    }
-
     if (_currentScene)
     {
+      UpdateGameObjects(_currentScene);
+      if (_currentScene != _persistentScene)
+      {
+        UpdateGameObjects(_persistentScene);
+      }
+
       _currentScene->Update();
+      LoadGameObjects(_currentScene);
+      UpdateGameObjectsTransforms(_currentScene);
     }
 
     RenderGameObjects(_currentScene);

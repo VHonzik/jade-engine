@@ -12,6 +12,10 @@
 using namespace JadeEngine;
 using namespace MatchThree;
 
+// Odyssey Nowtro
+// Android Automatic Lazer Love
+// Garth Knight Transcoding
+
 int32_t main(int32_t argc, char* argv[])
 {
   auto& game = GGame;

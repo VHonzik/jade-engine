@@ -1,8 +1,8 @@
 #include "LineGrid.h"
 
-#include "LineStrip.h"
-
 #include "Game.h"
+#include "LineStrip.h"
+#include "Transform.h"
 
 namespace JadeEngine
 {
@@ -13,8 +13,7 @@ namespace JadeEngine
     , _horizontalAlignment(params.horizontalAlignment)
     , _verticalAlignment(params.verticalAlignment)
   {
-    const auto count = (_width / _gridSize) + (_height / _gridSize)
-      + (_verticalAlignment != kVerticalAlignment_Center ? 1 : 0) + (_horizontalAlignment != kHorizontalAlignment_Center ? 1 : 0);
+    const auto count = (_width / _gridSize) + (_height / _gridSize) + (_verticalAlignment != kVerticalAlignment_Center ? 1 : 0) + (_horizontalAlignment != kHorizontalAlignment_Center ? 1 : 0);
     _strips.resize(count);
 
     LineStripParams stripParams;
@@ -55,7 +54,7 @@ namespace JadeEngine
 
     for (int32_t i = 0; i < rows; i++)
     {
-      SDL_Point origin = {x, y};
+      Vector origin = {x, y};
       switch (_verticalAlignment)
       {
       case kVerticalAlignment_Top:
@@ -68,14 +67,15 @@ namespace JadeEngine
         origin.y = y + (_height % _gridSize) - 1;
         break;
       }
-      const SDL_Point start = { origin.x, origin.y + i * _gridSize };
-      const SDL_Point end = { origin.x + _width, origin.y + i * _gridSize };
+      const Vector start = { 0, i * _gridSize };
+      const Vector end = { _width, i * _gridSize };
+      _strips[i]->transform->SetPosition(origin);
       _strips[i]->SetPoints({ start, end });
     }
 
     for (int32_t i = 0; i < columns; i++)
     {
-      SDL_Point origin = { x, y };
+      Vector origin = { x, y };
       switch (_horizontalAlignment)
       {
       case kHorizontalAlignment_Left:
@@ -89,8 +89,9 @@ namespace JadeEngine
         break;
       }
 
-      const SDL_Point start = { origin.x + i * _gridSize, origin.y };
-      const SDL_Point end = { origin.x + i * _gridSize, origin.y + _height };
+      const Vector start = { i * _gridSize, 0 };
+      const Vector end = { i * _gridSize, _height };
+      _strips[i]->transform->SetPosition(origin);
       _strips[rows + i]->SetPoints({ start, end });
     }
   }
