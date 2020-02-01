@@ -12,6 +12,8 @@
 #include <sstream>
 #include <string>
 
+using namespace JadeEngine::detail;
+
 namespace JadeEngine
 {
   Settings GSettings;

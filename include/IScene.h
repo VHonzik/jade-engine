@@ -27,7 +27,7 @@ namespace JadeEngine
     void Start() override;
     void Update() override;
   };
-  @encode
+  @endcode
 
   */
   class IScene

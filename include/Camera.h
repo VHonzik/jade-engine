@@ -2,7 +2,7 @@
 
 #include "EngineDataTypes.h"
 #include "Transform.h"
-#include "Vector.h"
+#include "Vector2D.h"
 
 #include <SDL_rect.h>
 
@@ -39,8 +39,8 @@ namespace JadeEngine
   public:
     WorldCamera();
 
-    Box WorldToScreen(const std::shared_ptr<Transform>& transform);
-    Vector WorldToScreen(const Vector& transform);
+    Box_i32 WorldToScreen(const std::shared_ptr<Transform>& transform);
+    Vector2D_i32 WorldToScreen(const Vector2D_i32& transform);
     Rectangle WorldToScreen(const Rectangle& rect);
     SDL_Point WorldToScreen(const SDL_Point& point);
 

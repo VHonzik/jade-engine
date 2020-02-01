@@ -60,47 +60,42 @@ namespace MatchThree
 
     _symbol = GGame.Create<Sprite>(spriteParams);
     _symbol->transform->SetSize(static_cast<int32_t>(transform->GetWidth() * kBackgroundEmptySpacePercentage), static_cast<int32_t>(transform->GetHeight() * kBackgroundEmptySpacePercentage));
+    transform->Attach(_symbol->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     spriteParams.z = params.z-1;
     spriteParams.textureName = kBackgroundTileNormal;
     _background = GGame.Create<Sprite>(spriteParams);
     _background->transform->SetSize(transform->GetSize());
+    transform->Attach(_background->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     spriteParams.textureName = kBackgroundTileHover;
     _backgroundHovered = GGame.Create<Sprite>(spriteParams);
     _backgroundHovered->transform->SetSize(transform->GetSize());
+    transform->Attach(_backgroundHovered->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     spriteParams.textureName = kBackgroundTileSelected;
     _backgroundSelected = GGame.Create<Sprite>(spriteParams);
     _backgroundSelected->transform->SetSize(transform->GetSize());
+    transform->Attach(_backgroundSelected->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     spriteParams.textureName = kBackgroundTileSelectedHover;
     _backgroundSelectedHovered = GGame.Create<Sprite>(spriteParams);
     _backgroundSelectedHovered->transform->SetSize(transform->GetSize());
+    transform->Attach(_backgroundSelectedHovered->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     spriteParams.textureName = kBackgroundTileError;
     _backgroundError = GGame.Create<Sprite>(spriteParams);
     _backgroundError->transform->SetSize(transform->GetSize());
+    transform->Attach(_backgroundError->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     spriteParams.textureName = kBackgroundTileSelectedMatched;
     _backgroundMatched = GGame.Create<Sprite>(spriteParams);
     _backgroundMatched->transform->SetSize(transform->GetSize());
-
-    UpdatePosition();
+    transform->Attach(_backgroundMatched->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
 
     Show(true);
   }
 
-  void Piece::UpdatePosition()
-  {
-    _symbol->transform->SetCenterPosition(transform->GetCenterPosition());
-    _background->transform->SetCenterPosition(transform->GetCenterPosition());
-    _backgroundHovered->transform->SetCenterPosition(transform->GetCenterPosition());
-    _backgroundSelected->transform->SetCenterPosition(transform->GetCenterPosition());
-    _backgroundSelectedHovered->transform->SetCenterPosition(transform->GetCenterPosition());
-    _backgroundError->transform->SetCenterPosition(transform->GetCenterPosition());
-    _backgroundMatched->transform->SetCenterPosition(transform->GetCenterPosition());
-  }
 
   void Piece::Show(const bool shown)
   {
@@ -127,7 +122,6 @@ namespace MatchThree
       }
 
       transform->SetCenterPosition(static_cast<int32_t>(_movingCenterX), static_cast<int32_t>(_movingCenterY));
-      UpdatePosition();
 
       if (_wantedCenter == transform->GetCenterPosition())
       {
@@ -154,7 +148,6 @@ namespace MatchThree
       const auto wantedWidth = static_cast<int32_t>(transform->GetWidth() * kBackgroundEmptySpacePercentage * scale);
       const auto wantedHeight = static_cast<int32_t>(transform->GetHeight() * kBackgroundEmptySpacePercentage * scale);
       _symbol->transform->SetSize(wantedWidth, wantedHeight);
-      UpdatePosition();
 
       if (_symbolScalingTimer <= 0.0f)
       {
@@ -190,7 +183,7 @@ namespace MatchThree
     _inputEnabled = enabled;
   }
 
-  void Piece::MoveCenterTo(const Vector& pos, const float speed)
+  void Piece::MoveCenterTo(const Vector2D_i32& pos, const float speed)
   {
     _wantedCenter = pos;
 
@@ -202,12 +195,11 @@ namespace MatchThree
     _moving = true;
   }
 
-  void Piece::TeleportCenterTo(const Vector& pos)
+  void Piece::TeleportCenterTo(const Vector2D_i32& pos)
   {
     _wantedCenter = transform->GetCenterPosition();
     _moving = false;
     transform->SetCenterPosition(pos);
-    UpdatePosition();
   }
 
   void Piece::FlashError()

@@ -43,12 +43,13 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "SettingsFile.h", "_settings_file_8h_source.html", null ],
     [ "Slider.h", "_slider_8h_source.html", null ],
     [ "Sprite.h", "_sprite_8h_source.html", null ],
-    [ "Style.h", "_style_8h_source.html", null ],
     [ "Text.h", "_text_8h_source.html", null ],
     [ "TextBox.h", "_text_box_8h_source.html", null ],
     [ "TextSprite.h", "_text_sprite_8h_source.html", null ],
     [ "Texture.h", "_texture_8h_source.html", null ],
     [ "TextureSampling.h", "_texture_sampling_8h_source.html", null ],
     [ "Tooltip.h", "_tooltip_8h_source.html", null ],
-    [ "Utils.h", "_utils_8h_source.html", null ]
+    [ "Transform.h", "_transform_8h_source.html", null ],
+    [ "Utils.h", "_utils_8h_source.html", null ],
+    [ "Vector2D.h", "_vector2_d_8h_source.html", null ]
 ];

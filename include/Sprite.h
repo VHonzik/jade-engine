@@ -12,7 +12,11 @@
 namespace JadeEngine
 {
   struct Texture;
-  struct SpriteSheetDescription;
+
+  namespace detail
+  {
+    struct SpriteSheetDescription;
+  }
 
   /**
   Parameters required to create a Sprite %game object.
@@ -189,7 +193,7 @@ namespace JadeEngine
 
   protected:
     std::shared_ptr<Texture> _textureDescription;
-    const SpriteSheetDescription* _spriteSheetDescription;
+    const detail::SpriteSheetDescription* _spriteSheetDescription;
 
     SDL_Texture* _texture;
 

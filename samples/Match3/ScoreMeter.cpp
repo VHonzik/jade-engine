@@ -12,11 +12,23 @@
 
 namespace MatchThree
 {
+  const std::array<SDL_Color, kPieceType_Count> kPiecesColor = {
+    kPieceColor_BlueOctagon   ,
+    kPieceColor_GreenCircle   ,
+    kPieceColor_OrangeTriangle,
+    kPieceColor_PinkHeart     ,
+    kPieceColor_RedDiamond    ,
+    kPieceColor_WhitePentagon ,
+    kPieceColor_YellowStar    ,
+  };
+
   ScoreMeter::ScoreMeter(const ScoreMeterParams& params)
     : _wantedScore(0)
     , _currentScore(0.0f)
     , _displayedScore(0)
+    , _layer(params.layer)
   {
+    _z = params.z;
     transform->Initialize(0, 0, params.width, params.height);
 
     LineStripParams lineStripParams;
@@ -49,7 +61,7 @@ namespace MatchThree
     _text->SetPosition(transform->GetCenterX(), transform->GetCenterY());
   }
 
-  void ScoreMeter::CreateRegularPolygonVertices(std::vector<Vector>& vertices, const int32_t sides, const int32_t radius)
+  void ScoreMeter::CreateRegularPolygonVertices(std::vector<Vector2D_i32>& vertices, const int32_t sides, const int32_t radius)
   {
     const auto offset = -0.75f * 2 * kFPI / sides;
     vertices.clear();
@@ -67,9 +79,47 @@ namespace MatchThree
 
   void ScoreMeter::Score(const std::vector<MatchInfo>& matches)
   {
+    TextParams textParams;
+    textParams.layer = _layer;
+    textParams.fontName = kVeraFont;
+    textParams.fontSize = 12;
+    textParams.text = "+1";
+    textParams.z = _z + 100;
+
     for (const auto& match : matches)
     {
+      textParams.color = kPiecesColor[match.type];
+
+      FloatingPoint point;
+      point.text = GGame.Create<Text>(textParams);
+      point.text->SetHorizontalAlign(kHorizontalAlignment_Center);
+      point.text->SetVerticalAlign(kVerticalAlignment_Center);
+      point.text->SetPosition(match.position.x, match.position.y);
+      point.currentPos = match.position;
+      point.wantedPos = transform->GetCenterPosition();
+      point.speed = 10.0f;
+      point.acceleration = 200.0f;
+      point.maxSpeed = 1000.0f;
+
+      _floatingPoints.push_back(point);
+    }
+  }
+
+  void ScoreMeter::UpdateFloatingPoint(FloatingPoint& point)
+  {
+    point.speed = std::min(point.maxSpeed, point.speed + GTime.deltaTime * point.acceleration);
+    const auto moveTowardsResult = MoveTowardsDone(point.currentPos, point.wantedPos, point.speed  *GTime.deltaTime);
+    point.currentPos = moveTowardsResult.first;
+
+    Vector2D_i32 currentPos = {};
+    currentPos = point.currentPos;
+
+    point.text->SetPosition(currentPos.x, currentPos.y);
+
+    if (moveTowardsResult.second)
+    {
       _wantedScore += 1;
+      point.text->Destroy();
     }
   }
 
@@ -79,7 +129,6 @@ namespace MatchThree
     {
       _text->SetPosition(transform->GetCenterX(), transform->GetCenterY());
     }
-
 
     if (_wantedScore != _displayedScore)
     {
@@ -96,6 +145,13 @@ namespace MatchThree
         _text->SetText(std::to_string(static_cast<int32_t>(std::floor(_displayedScore))));
       }
     }
+
+    for (auto& point : _floatingPoints)
+    {
+      UpdateFloatingPoint(point);
+    }
+
+    _floatingPoints.erase(std::remove_if(std::begin(_floatingPoints), std::end(_floatingPoints), [](const FloatingPoint& point) { return point.text->DestructionWanted(); }), std::end(_floatingPoints));
   }
 
 }

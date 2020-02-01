@@ -27,21 +27,8 @@ namespace JadeEngine
 
     LoadState Load(SDL_Renderer* renderer) override;
     void Render(SDL_Renderer* renderer) override;
-    /**
-
-    @warning Invalidates the underlying texture which will be recreated the next Update cycle. It is therefore recommended to call this in IScene::PreUpdate.
-    */
     void SetText(const std::string& text);
-
-    /**
-
-    @warning Invalidates the underlying texture which will be recreated the next Update cycle. It is therefore recommended to call this in IScene::PreUpdate.
-    */
     void SetTextAndColor(const std::string& text, const SDL_Color& color);
-    /**
-
-    @warning Invalidates the underlying texture which will be recreated the next Update cycle. It is therefore recommended to call this in IScene::PreUpdate.
-    */
     void SetColor(const SDL_Color& color);
     void SetMask(const Rectangle& mask);
 

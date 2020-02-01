@@ -4,6 +4,8 @@
 
 #include <cstdint>
 
+using namespace JadeEngine::detail;
+
 namespace JadeEngine
 {
   class AlignedGrid

@@ -16,7 +16,6 @@
 #include "Settings.h"
 #include "Slider.h"
 #include "Sprite.h"
-#include "Style.h"
 #include "Text.h"
 
 #include <fstream>

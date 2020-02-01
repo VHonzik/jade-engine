@@ -1,5 +1,6 @@
 var class_jade_engine_1_1_i_game_object =
 [
+    [ "IGameObject", "class_jade_engine_1_1_i_game_object.html#a87729ae5661f5da9f0df51bb1a4450be", null ],
     [ "Clean", "class_jade_engine_1_1_i_game_object.html#afbc3e5422c19aa5842611cd3af31ea6d", null ],
     [ "Destroy", "class_jade_engine_1_1_i_game_object.html#adf60693a2ea2ced0d5e07ec3120abede", null ],
     [ "DestructionWanted", "class_jade_engine_1_1_i_game_object.html#a6c688837a8b3e69a2d42b606702cfa72", null ],
@@ -13,5 +14,6 @@ var class_jade_engine_1_1_i_game_object =
     [ "Update", "class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c", null ],
     [ "_loadState", "class_jade_engine_1_1_i_game_object.html#a1f80959a4bd7959c1975a3ea39eb9a8c", null ],
     [ "_shown", "class_jade_engine_1_1_i_game_object.html#a7d24494e6d61e6782a7e331169c99883", null ],
-    [ "_z", "class_jade_engine_1_1_i_game_object.html#a497aa619a171af5b84b102ee3b0f5c6d", null ]
+    [ "_z", "class_jade_engine_1_1_i_game_object.html#a497aa619a171af5b84b102ee3b0f5c6d", null ],
+    [ "transform", "class_jade_engine_1_1_i_game_object.html#a63969dbb02c171440660ed16a2f7ea1d", null ]
 ];

@@ -126,9 +126,6 @@
     <ClInclude Include="..\..\include\Sprite.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Style.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Text.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -177,7 +174,7 @@
     <ClInclude Include="ScoreMeter.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Vector.h">
+    <ClInclude Include="..\..\include\Vector2D.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
@@ -277,9 +274,6 @@
     </ClCompile>
     <ClCompile Include="ScoreMeter.cpp">
       <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Vector.cpp">
-      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

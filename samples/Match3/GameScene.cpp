@@ -22,9 +22,10 @@ namespace MatchThree
     piecesGridParams.pieceWidth = 50;
     piecesGridParams.pieceHeight = 50;
     piecesGridParams.piecesSpacing = 10;
+    const auto gridTotalHeight = PiecesGrid::GetTotalHeight(piecesGridParams.rows, piecesGridParams.pieceHeight, piecesGridParams.piecesSpacing);
+    piecesGridParams.centerPosition = { GGame.GetHalfWidth(), GGame.GetHeight() - 10 - gridTotalHeight / 2 };
 
     _grid = GGame.Create<PiecesGrid>(piecesGridParams);
-    _grid->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHeight() - 10 - _grid->transform->GetHeight() / 2);
 
     ScoreMeterParams scoreParams;
     scoreParams.layer = kObjectLayer_ui;

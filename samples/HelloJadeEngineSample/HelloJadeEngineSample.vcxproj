@@ -103,7 +103,6 @@
     <ClCompile Include="..\..\source\TextSprite.cpp" />
     <ClCompile Include="..\..\source\Tooltip.cpp" />
     <ClCompile Include="..\..\source\Transform.cpp" />
-    <ClCompile Include="..\..\source\Vector.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -143,7 +142,6 @@
     <ClInclude Include="..\..\include\SettingsFile.h" />
     <ClInclude Include="..\..\include\Slider.h" />
     <ClInclude Include="..\..\include\Sprite.h" />
-    <ClInclude Include="..\..\include\Style.h" />
     <ClInclude Include="..\..\include\Text.h" />
     <ClInclude Include="..\..\include\TextBox.h" />
     <ClInclude Include="..\..\include\TextSprite.h" />
@@ -152,7 +150,7 @@
     <ClInclude Include="..\..\include\Tooltip.h" />
     <ClInclude Include="..\..\include\Transform.h" />
     <ClInclude Include="..\..\include\Utils.h" />
-    <ClInclude Include="..\..\include\Vector.h" />
+    <ClInclude Include="..\..\include\Vector2D.h" />
     <ClInclude Include="SampleGameScene.h" />
     <ClInclude Include="SampleInitParams.h" />
   </ItemGroup>

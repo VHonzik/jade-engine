@@ -3,6 +3,7 @@
 #include "IGameObject.h"
 #include "ObjectLayer.h"
 #include "Piece.h"
+#include "Vector2D.h"
 
 #include <array>
 #include <unordered_map>
@@ -14,12 +15,13 @@ namespace MatchThree
 {
   struct PiecesGridParams
   {
-    ObjectLayer layer;
-    size_t      columns;
-    size_t      rows;
-    int32_t     pieceWidth;
-    int32_t     pieceHeight;
-    int32_t     piecesSpacing;
+    ObjectLayer   layer;
+    size_t        columns;
+    size_t        rows;
+    int32_t       pieceWidth;
+    int32_t       pieceHeight;
+    int32_t       piecesSpacing;
+    Vector2D_i32  centerPosition;
   };
 
   enum IterationDirection
@@ -38,6 +40,9 @@ namespace MatchThree
 
     const std::vector<MatchInfo>& GetMatches() const;
     void ResetMatches();
+
+    static int32_t GetTotalWidth(size_t columns, int32_t pieceWidth, int32_t piecesSpacing);
+    static int32_t GetTotalHeight(size_t rows, int32_t pieceHeight, int32_t piecesSpacing);
 
   private:
     size_t PiecesIndexFromColumnRow(const size_t row, const size_t column) const;
@@ -58,7 +63,7 @@ namespace MatchThree
     void RefillGrid();
 
     Piece* CreateRandomPiece(const size_t column);
-    Vector GridPosition(const size_t row, const size_t column) const;
+    Vector2D_i32 GridPosition(const size_t row, const size_t column) const;
 
     void UpdatePiecesPosition();
 

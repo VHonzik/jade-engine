@@ -3,7 +3,7 @@
 #include "IGameObject.h"
 #include "ObjectLayer.h"
 #include "SampleConstants.h"
-#include "Vector.h"
+#include "Vector2D.h"
 
 #include <vector>
 
@@ -26,6 +26,16 @@ namespace MatchThree
     int32_t     z;
   };
 
+  struct FloatingPoint
+  {
+    Text*         text;
+    Vector2D_f32  currentPos;
+    Vector2D_f32  wantedPos;
+    float         speed;
+    float         acceleration;
+    float         maxSpeed;
+  };
+
   class ScoreMeter : public IGameObject
   {
   public:
@@ -33,15 +43,17 @@ namespace MatchThree
     void Score(const std::vector<MatchInfo>& matches);
     void Update() override;
   private:
-    void CreateRegularPolygonVertices(std::vector<Vector>& vertices, const int32_t sides, const int32_t radius);
+    void CreateRegularPolygonVertices(std::vector<Vector2D_i32>& vertices, const int32_t sides, const int32_t radius);
+    void UpdateFloatingPoint(FloatingPoint& point);
     LineStrip* _fullEnergyBorder;
     LineStrip* _thresholdEnergyBorder;
     Text* _text;
 
-    std::vector<Text*> _floatingPoints;
+    std::vector<FloatingPoint> _floatingPoints;
 
     int32_t _wantedScore;
     float _currentScore;
     int32_t _displayedScore;
+    ObjectLayer _layer;
   };
 }

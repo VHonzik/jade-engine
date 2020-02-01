@@ -9,7 +9,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace JadeEngine
+namespace JadeEngine::detail
 {
   struct FontDescription
   {

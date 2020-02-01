@@ -30,9 +30,8 @@ namespace MatchThree
   {
     assert(_columns > 0 && _rows > 0);
 
-    const auto totalWidth = static_cast<int32_t>(_columns * (_pieceWidth + _piecesSpacing) - _piecesSpacing);
-    const auto totalHeight = static_cast<int32_t>(_rows * (_pieceHeight + _piecesSpacing) - _piecesSpacing);
-    transform->Initialize(0, 0, totalWidth, totalHeight);
+    transform->Initialize({0, 0}, { GetTotalWidth(_columns, _pieceWidth, _piecesSpacing), GetTotalHeight(_rows, _pieceHeight, _piecesSpacing)});
+    transform->SetCenterPosition(params.centerPosition);
 
     GGame.StartBatchCreate();
 
@@ -54,6 +53,16 @@ namespace MatchThree
 
     GGame.EndBatchCreate();
     EvaluateMatches();
+  }
+
+  int32_t PiecesGrid::GetTotalWidth(size_t columns, int32_t pieceWidth, int32_t piecesSpacing)
+  {
+    return static_cast<int32_t>(columns * (pieceWidth + piecesSpacing) - piecesSpacing);
+  }
+
+  int32_t PiecesGrid::GetTotalHeight(size_t rows, int32_t pieceHeight, int32_t piecesSpacing)
+  {
+    return static_cast<int32_t>(rows * (pieceHeight + piecesSpacing) - piecesSpacing);
   }
 
   Piece* PiecesGrid::CreateRandomPiece(const size_t column)
@@ -322,7 +331,8 @@ namespace MatchThree
       {
         if (possibleMatches.size() >= 3)
         {
-          std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
+          std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
+
         }
         possibleMatches.clear();
         possibleMatches.push_back(piece);
@@ -343,7 +353,8 @@ namespace MatchThree
     // We could have reached end while inside a match sequence
     if (possibleMatches.size() >= 3)
     {
-      std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));    }
+      std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
+    }
 
     std::transform(std::cbegin(matches), std::cend(matches), std::back_inserter(_matches), [](const auto& piece)
     {
@@ -413,7 +424,7 @@ namespace MatchThree
     GGame.EndBatchCreate();
   }
 
-  Vector PiecesGrid::GridPosition(const size_t row, const size_t column) const
+  Vector2D_i32 PiecesGrid::GridPosition(const size_t row, const size_t column) const
   {
     const auto startX = transform->GetCenterX() - transform->GetWidth() / 2;
     const auto startY = transform->GetCenterY() - transform->GetHeight() / 2;

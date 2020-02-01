@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <vector>
 
+using namespace JadeEngine::detail;
+
 namespace JadeEngine
 {
   enum GroupDirection

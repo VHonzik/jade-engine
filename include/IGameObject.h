@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Transform.h"
+
 #include <cstdint>
 #include <memory>
 
@@ -7,8 +9,6 @@ struct SDL_Renderer;
 
 namespace JadeEngine
 {
-  class Transform;
-
   /**
   Enumeration for state of loading a %game object is currently in.
   */
@@ -17,11 +17,12 @@ namespace JadeEngine
     /**
     The %game object owns resources that require loading.
 
-    It's Load function will be called once every frame until the load state changes. The Update function is suspended.
+    It's Load function will be called every frame until the load state changes. The Update function is suspended.
 
     @see IGameObject::Load
     */
     kLoadState_wanted,
+
     /**
     The %game object's resources were successfully loaded or there were no resources to load.
 
@@ -77,6 +78,18 @@ namespace JadeEngine
   class IGameObject
   {
   public:
+    /**
+    Default constructor for %game object.
+    */
+    IGameObject()
+      : transform(std::make_shared<Transform>())
+      , _loadState(kLoadState_done)
+      , _shown(true)
+      , _z(0)
+      , _destructionWanted(false)
+    {
+    }
+
     /**
     Triggered every frame while the scene that owns this %game object is active and the %game object was successfully loaded.
 
@@ -175,14 +188,16 @@ namespace JadeEngine
 
     /**
     Transform of the %game object.
+
+    @see Transform
     */
-    const std::shared_ptr<Transform> transform = std::make_shared<Transform>();
+    const std::shared_ptr<Transform> transform;
 
   protected:
-    LoadState _loadState = kLoadState_done;
-    bool _shown = true;
-    int32_t _z = 0;
+    LoadState _loadState;
+    bool      _shown;
+    int32_t   _z;
   private:
-    bool _destructionWanted = false;
+    bool      _destructionWanted;
   };
 }

@@ -99,12 +99,12 @@ namespace JadeEngine
     return { point.x - _x, point.y - _y };
   }
 
-  Vector WorldCamera::WorldToScreen(const Vector& vector)
+  Vector2D_i32 WorldCamera::WorldToScreen(const Vector2D_i32& Vector2D_i32)
   {
-    return { vector.x - _x, vector.y - _y };
+    return { Vector2D_i32.x - _x, Vector2D_i32.y - _y };
   }
 
-  Box WorldCamera::WorldToScreen(const std::shared_ptr<Transform>& transform)
+  Box_i32 WorldCamera::WorldToScreen(const std::shared_ptr<Transform>& transform)
   {
     assert(transform);
     return { transform->GetX() - _x, transform->GetY() - _y, transform->GetWidth(), transform->GetHeight() };

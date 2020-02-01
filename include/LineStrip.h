@@ -2,7 +2,7 @@
 
 #include "IGameObject.h"
 #include "ObjectLayer.h"
-#include "Vector.h"
+#include "Vector2D.h"
 
 #include <SDL_rect.h>
 #include <vector>
@@ -14,7 +14,7 @@ namespace JadeEngine
   struct LineStripParams
   {
     ObjectLayer             layer;
-    std::vector<Vector>     initialPoints;
+    std::vector<Vector2D_i32>     initialPoints;
     SDL_Color               color;
     int32_t                 z;
   };
@@ -24,14 +24,14 @@ namespace JadeEngine
   public:
     LineStrip(const LineStripParams& params);
     void Render(SDL_Renderer* renderer) override;
-    void SetPoints(const std::vector<Vector>& points);
+    void SetPoints(const std::vector<Vector2D_i32>& points);
     void Update() override;
   private:
     void UpdatePoints();
 
     SDL_Color _color;
     std::vector<SDL_Point> _points;
-    std::vector<Vector> _localPoints;
+    std::vector<Vector2D_i32> _localPoints;
     ObjectLayer _layer;
   };
 }

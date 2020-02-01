@@ -61,7 +61,6 @@ namespace JadeEngine
     if (color.a < 255)
     {
       color.a = static_cast<uint8_t>(Clamp(color.a + (255.0f / kAppearDuration) * GTime.deltaTime, 0.0f, 255.0f));
-      // Setting color invalidates the text texture and doing so every frame in Update would mean it's never active hence PreUpdate
       _text->SetColor(color);
     }
 

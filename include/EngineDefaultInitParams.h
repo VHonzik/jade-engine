@@ -2,9 +2,9 @@
 
 #include "EngineConstants.h"
 #include "EngineTemplateParams.h"
+#include "FTC.h"
 #include "GameInitParams.h"
 #include "ObjectLayer.h"
-#include "Style.h"
 #include "TextureSampling.h"
 
 namespace JadeEngine

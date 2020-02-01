@@ -54,7 +54,7 @@ namespace JadeEngine
 
     for (int32_t i = 0; i < rows; i++)
     {
-      Vector origin = {x, y};
+      Vector2D_i32 origin = {x, y};
       switch (_verticalAlignment)
       {
       case kVerticalAlignment_Top:
@@ -67,15 +67,15 @@ namespace JadeEngine
         origin.y = y + (_height % _gridSize) - 1;
         break;
       }
-      const Vector start = { 0, i * _gridSize };
-      const Vector end = { _width, i * _gridSize };
+      const Vector2D_i32 start = { 0, i * _gridSize };
+      const Vector2D_i32 end = { _width, i * _gridSize };
       _strips[i]->transform->SetPosition(origin);
       _strips[i]->SetPoints({ start, end });
     }
 
     for (int32_t i = 0; i < columns; i++)
     {
-      Vector origin = { x, y };
+      Vector2D_i32 origin = { x, y };
       switch (_horizontalAlignment)
       {
       case kHorizontalAlignment_Left:
@@ -89,8 +89,8 @@ namespace JadeEngine
         break;
       }
 
-      const Vector start = { i * _gridSize, 0 };
-      const Vector end = { i * _gridSize, _height };
+      const Vector2D_i32 start = { i * _gridSize, 0 };
+      const Vector2D_i32 end = { i * _gridSize, _height };
       _strips[i]->transform->SetPosition(origin);
       _strips[rows + i]->SetPoints({ start, end });
     }

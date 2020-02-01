@@ -40,14 +40,14 @@ namespace JadeEngine
   {
     _points.clear();
     const auto centerPosition = transform->GetCenterPosition();
-    std::transform(std::cbegin(_localPoints), std::cend(_localPoints), std::back_inserter(_points), [&](const Vector& point)
+    std::transform(std::cbegin(_localPoints), std::cend(_localPoints), std::back_inserter(_points), [&](const Vector2D_i32& point)
     {
       const auto position = centerPosition + point;
       return SDL_Point{ position.x, position.y };
     });
   }
 
-  void LineStrip::SetPoints(const std::vector<Vector>& points)
+  void LineStrip::SetPoints(const std::vector<Vector2D_i32>& points)
   {
     _localPoints = points;
     UpdatePoints();

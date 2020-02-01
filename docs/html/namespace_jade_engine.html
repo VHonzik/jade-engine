@@ -101,6 +101,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_audio.html">Audio</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_box.html">Box</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_box_sprite.html">BoxSprite</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_box_sprite_params.html">BoxSpriteParams</a></td></tr>
@@ -231,7 +233,11 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_tooltip_params.html">TooltipParams</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_transform.html">Transform</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_u_i_camera.html">UICamera</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_world_camera.html">WorldCamera</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,6 +252,15 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayModeInfoKey</
 <tr class="memitem:a29ae1757c79379e4c36b59ff86c7bcee"><td class="memItemLeft" align="right" valign="top"><a id="a29ae1757c79379e4c36b59ff86c7bcee"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>SettingsEntryID</b> = int32_t</td></tr>
 <tr class="separator:a29ae1757c79379e4c36b59ff86c7bcee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0480c0eed6d3a550e6e20f7806fe8132"><td class="memItemLeft" align="right" valign="top"><a id="a0480c0eed6d3a550e6e20f7806fe8132"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Vector2D_i32</b> = <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D</a>&lt; int32_t &gt;</td></tr>
+<tr class="separator:a0480c0eed6d3a550e6e20f7806fe8132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33a88a153bd7df75c4fd756d1ffbb23f"><td class="memItemLeft" align="right" valign="top"><a id="a33a88a153bd7df75c4fd756d1ffbb23f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Vector2D_f32</b> = <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D</a>&lt; float &gt;</td></tr>
+<tr class="separator:a33a88a153bd7df75c4fd756d1ffbb23f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedece38a9d1e75e0fa32019385b03be8"><td class="memItemLeft" align="right" valign="top"><a id="aedece38a9d1e75e0fa32019385b03be8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Box_i32</b> = <a class="el" href="class_jade_engine_1_1_box.html">Box</a>&lt; int32_t &gt;</td></tr>
+<tr class="separator:aedece38a9d1e75e0fa32019385b03be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -305,6 +320,20 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7">kTextureSampling_anisotropic</a>
  }</td></tr>
 <tr class="separator:a5ba5ca76be1a1cae1ffed28d1f21daea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a667185b9120590f401058ee24a7fad8f"><td class="memItemLeft" align="right" valign="top"><a id="a667185b9120590f401058ee24a7fad8f"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DirtyFlag</b> { <br />
+&#160;&#160;<b>kDirtyFlag_position</b>, 
+<b>kDirtyFlag_centerPosition</b>, 
+<b>kDirtyFlag_size</b>, 
+<b>kDirtyFlag_boundingBox</b>, 
+<br />
+&#160;&#160;<b>kDirtyFlag_count</b>
+<br />
+ }</td></tr>
+<tr class="separator:a667185b9120590f401058ee24a7fad8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29dec6fee26bfcc6d5baa96f11c49819"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_jade_engine.html#a29dec6fee26bfcc6d5baa96f11c49819">AttachmentPoint</a> { <a class="el" href="namespace_jade_engine.html#a29dec6fee26bfcc6d5baa96f11c49819a9f099c9af760b4217122be4eb66baf78">kAttachmentPoint_TopLeft</a>, 
+<b>kAttachmentPoint_Center</b>
+ }</td></tr>
+<tr class="separator:a29dec6fee26bfcc6d5baa96f11c49819"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -314,6 +343,8 @@ template&lt;typename T &gt; </td></tr>
 <tr class="separator:a86cdc2a6cae927f814c3fbd286fc77ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad530e1ebc3c6b07c832b2791f82f71a7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_jade_engine.html#ad530e1ebc3c6b07c832b2791f82f71a7">Start</a> ()</td></tr>
 <tr class="separator:ad530e1ebc3c6b07c832b2791f82f71a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbd74b77ffdc2e7cd8837986a657af4c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_jade_engine.html#adbd74b77ffdc2e7cd8837986a657af4c">PreUpdate</a> ()</td></tr>
+<tr class="separator:adbd74b77ffdc2e7cd8837986a657af4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add624cff3994a40e0056531409768f1f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_jade_engine.html#add624cff3994a40e0056531409768f1f">Update</a> ()</td></tr>
 <tr class="separator:add624cff3994a40e0056531409768f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeae1c7f0ab10429b771a4b972602c7eb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_jade_engine.html#aeae1c7f0ab10429b771a4b972602c7eb">GetInitialized</a> () const</td></tr>
@@ -335,6 +366,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInsideRect</b> (int
 <tr class="memitem:a7012e4db8cbc7fc754a7835525eae10d"><td class="memItemLeft" align="right" valign="top"><a id="a7012e4db8cbc7fc754a7835525eae10d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>RectsIntersect</b> (const <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> &amp;a, const <a class="el" href="namespace_jade_engine.html#af08a5074a7539ccbe13e3b04ac023d9b">Rectangle</a> &amp;b)</td></tr>
 <tr class="separator:a7012e4db8cbc7fc754a7835525eae10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c1c3cebfbb513af1479aa535763509"><td class="memItemLeft" align="right" valign="top"><a id="af7c1c3cebfbb513af1479aa535763509"></a>
+constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>NumberOfBits</b> (uint32_t x)</td></tr>
+<tr class="separator:af7c1c3cebfbb513af1479aa535763509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add2d9de5677e81a455f3d284729ac4c7"><td class="memTemplParams" colspan="2"><a id="add2d9de5677e81a455f3d284729ac4c7"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:add2d9de5677e81a455f3d284729ac4c7"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Sign</b> (const T &amp;val)</td></tr>
@@ -353,6 +387,13 @@ template&lt;typename T &gt; </td></tr>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ac10a0d843cbb8a2b5b8ad83816a85cf4"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Clamp01</b> (const T &amp;value)</td></tr>
 <tr class="separator:ac10a0d843cbb8a2b5b8ad83816a85cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af10ea4421adef773a34ce4556411fa2d"><td class="memTemplParams" colspan="2"><a id="af10ea4421adef773a34ce4556411fa2d"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af10ea4421adef773a34ce4556411fa2d"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; T, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>MoveTowardsDone</b> (const T &amp;current, const T &amp;wanted, const T &amp;maxChange)</td></tr>
+<tr class="separator:af10ea4421adef773a34ce4556411fa2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389f6310ea92179bf01faf0dfbcd5500"><td class="memItemLeft" align="right" valign="top"><a id="a389f6310ea92179bf01faf0dfbcd5500"></a>
+std::pair&lt; <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D_f32</a>, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>MoveTowardsDone</b> (const <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D_f32</a> &amp;current, const <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D_f32</a> &amp;wanted, const float &amp;maxChange)</td></tr>
+<tr class="separator:a389f6310ea92179bf01faf0dfbcd5500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac103ef2f5b86ce89dbda57650727fd6b"><td class="memTemplParams" colspan="2"><a id="ac103ef2f5b86ce89dbda57650727fd6b"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ac103ef2f5b86ce89dbda57650727fd6b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>MoveTowards</b> (const T &amp;current, const T &amp;wanted, const T &amp;maxChange)</td></tr>
@@ -457,6 +498,9 @@ const char&#160;</td><td class="memItemRight" valign="bottom"><b>kJadeEngineUISp
 <tr class="memitem:a2957a4409899f5bbffa33396d71d2712"><td class="memItemLeft" align="right" valign="top"><a id="a2957a4409899f5bbffa33396d71d2712"></a>
 const int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>kDefaultMaxResolutionFraction</b> = 8</td></tr>
 <tr class="separator:a2957a4409899f5bbffa33396d71d2712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a828c8cb039bf99ddce4d8bcf0de1d6bc"><td class="memItemLeft" align="right" valign="top"><a id="a828c8cb039bf99ddce4d8bcf0de1d6bc"></a>
+const auto&#160;</td><td class="memItemRight" valign="bottom"><b>kFPI</b> = std::acos(-1.0f)</td></tr>
+<tr class="separator:a828c8cb039bf99ddce4d8bcf0de1d6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82672026995896a457897175ba4683e1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_jade_engine_1_1_f_t_c_params.html">FTCParams</a>&#160;</td><td class="memItemRight" valign="bottom"><b>kDefaultFPSFTCParams</b></td></tr>
 <tr class="separator:a82672026995896a457897175ba4683e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3d6d3b8f90f3d5c2d95cff1f9f24248"><td class="memItemLeft" align="right" valign="top"><a id="ae3d6d3b8f90f3d5c2d95cff1f9f24248"></a>
@@ -549,6 +593,27 @@ purpose.  If you add new platform support, please contribute a patch!</h2>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a29dec6fee26bfcc6d5baa96f11c49819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29dec6fee26bfcc6d5baa96f11c49819">&#9670;&nbsp;</a></span>AttachmentPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespace_jade_engine.html#a29dec6fee26bfcc6d5baa96f11c49819">JadeEngine::AttachmentPoint</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Specifies the type of attachment that one object has to another. Determines the point on both parent and child transform that local position is relative to.</p>
+<dl class="section see"><dt>See also</dt><dd>Transform::Attach, Transform::SetLocalPosition </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a29dec6fee26bfcc6d5baa96f11c49819a9f099c9af760b4217122be4eb66baf78"></a>kAttachmentPoint_TopLeft&#160;</td><td class="fielddoc"><p>The top-left of the child will be positioned where parent top-left corner is offset by local position of the child.</p>
+<p>When <code>parent</code> moves following will be applied to the <code>child</code>: </p><div class="fragment"><div class="line">child-&gt;SetPosition(parent-&gt;GetPosition() + child-&gt;GetLocalPosition());</div>
+</div><!-- fragment --> </td></tr>
+</table>
+
+</div>
+</div>
 <a id="a9a612f8b007073dfe9705eb59d7f90f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a612f8b007073dfe9705eb59d7f90f4">&#9670;&nbsp;</a></span>LoadState</h2>
 
@@ -647,6 +712,35 @@ purpose.  If you add new platform support, please contribute a patch!</h2>
 
 </div>
 </div>
+<a id="adbd74b77ffdc2e7cd8837986a657af4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd74b77ffdc2e7cd8837986a657af4c">&#9670;&nbsp;</a></span>PreUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void JadeEngine::PreUpdate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Triggered ever frame by the Jade Engine while this scene is active.</p>
+<p>To obtain delta time since last frame use GTime.deltaTime.</p>
+<p>The trigger order is the following: IScene::PreUpdate -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d">IGameObject::Load</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a> -&gt; IScene::Update -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d">IGameObject::Load</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a80999ad66d2319ae747e2c56bf1d3d74">IGameObject::Render</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">Game::PlayScene</a>, <a class="el" href="class_jade_engine_1_1_time.html">Time</a>, <a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a> </dd></dl>
+
+</div>
+</div>
 <a id="a3fd86d80224f32f111ddbef31972e544"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3fd86d80224f32f111ddbef31972e544">&#9670;&nbsp;</a></span>SetInitialized()</h2>
 
@@ -738,8 +832,8 @@ purpose.  If you add new platform support, please contribute a patch!</h2>
 </div><div class="memdoc">
 <p>Triggered every frame by the Jade Engine while this scene is active.</p>
 <p>To obtain delta time since last frame use GTime.deltaTime.</p>
-<p>Triggered after all game objects were updated.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">Game::PlayScene</a>, <a class="el" href="class_jade_engine_1_1_time.html">Time</a> <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;Button.h&quot;</span></div>
+<p>The trigger order is the following: IScene::PreUpdate -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d">IGameObject::Load</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a> -&gt; IScene::Update -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d">IGameObject::Load</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a80999ad66d2319ae747e2c56bf1d3d74">IGameObject::Render</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">Game::PlayScene</a>, <a class="el" href="class_jade_engine_1_1_time.html">Time</a>, <a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a> <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;Button.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;EngineTime.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> GameScene::Update() <span class="comment">//override</span></div>
@@ -1125,7 +1219,7 @@ purpose.  If you add new platform support, please contribute a patch!</h2>
 </div><!-- doc-content -->
 <div class="ttc" id="anamespace_jade_engine_html_a880033659417a84f8c13265913a83863ac902904d974ea471429060dddccb1051"><div class="ttname"><a href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863ac902904d974ea471429060dddccb1051">JadeEngine::kObjectLayer_persistent_ui</a></div><div class="ttdeci">@ kObjectLayer_persistent_ui</div><div class="ttdef"><b>Definition:</b> ObjectLayer.h:35</div></div>
 <div class="ttc" id="anamespace_jade_engine_html_a880033659417a84f8c13265913a83863ac07298e3751cce19aff277b8054f6acc"><div class="ttname"><a href="namespace_jade_engine.html#a880033659417a84f8c13265913a83863ac07298e3751cce19aff277b8054f6acc">JadeEngine::kObjectLayer_ui</a></div><div class="ttdeci">@ kObjectLayer_ui</div><div class="ttdef"><b>Definition:</b> ObjectLayer.h:17</div></div>
-<div class="ttc" id="anamespace_jade_engine_html_add624cff3994a40e0056531409768f1f"><div class="ttname"><a href="namespace_jade_engine.html#add624cff3994a40e0056531409768f1f">JadeEngine::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> IScene.h:92</div></div>
+<div class="ttc" id="anamespace_jade_engine_html_add624cff3994a40e0056531409768f1f"><div class="ttname"><a href="namespace_jade_engine.html#add624cff3994a40e0056531409768f1f">JadeEngine::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> IScene.h:103</div></div>
 <div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
 <div class="ttc" id="anamespace_jade_engine_html_ad530e1ebc3c6b07c832b2791f82f71a7"><div class="ttname"><a href="namespace_jade_engine.html#ad530e1ebc3c6b07c832b2791f82f71a7">JadeEngine::Start</a></div><div class="ttdeci">virtual void Start()</div><div class="ttdef"><b>Definition:</b> IScene.h:60</div></div>
 <div class="ttc" id="anamespace_jade_engine_html_a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7"><div class="ttname"><a href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daeaaca3dd862dbae837f21eab450264911b7">JadeEngine::kTextureSampling_anisotropic</a></div><div class="ttdeci">@ kTextureSampling_anisotropic</div><div class="ttdef"><b>Definition:</b> TextureSampling.h:21</div></div>
