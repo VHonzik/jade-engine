@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: D:/GameDev/SDL/Carty/jade-engine/include/SettingsFile.h Source File</title>
+<title>jade-engine: D:/GameDev/SDL/jade-engine/include/SettingsFile.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,14 +99,14 @@ $(document).ready(function(){initNavTree('_settings_file_8h_source.html',''); in
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define MAX_PATH 512  </span><span class="comment">/* arbitrary value */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span>JadeEngine::detail</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_settings_file.html">   28</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_settings_file.html">SettingsFile</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">class </span>SettingsFile</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_jade_engine_1_1_settings_file.html">SettingsFile</a>&amp; Get(<span class="keyword">const</span> std::string&amp; appName)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> SettingsFile&amp; Get(<span class="keyword">const</span> std::string&amp; appName)</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      <span class="keyword">static</span> <a class="code" href="class_jade_engine_1_1_settings_file.html">SettingsFile</a> oneAndOnly(appName);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      <span class="keyword">static</span> SettingsFile oneAndOnly(appName);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      <span class="keywordflow">return</span> oneAndOnly;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('_settings_file_8h_source.html',''); in
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_jade_engine_1_1_settings_file.html">SettingsFile</a>(<span class="keyword">const</span> std::string&amp; appName)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    SettingsFile(<span class="keyword">const</span> std::string&amp; appName)</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      _valid = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#if defined(_WIN32)</span></div>
@@ -168,8 +168,6 @@ $(document).ready(function(){initNavTree('_settings_file_8h_source.html',''); in
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_settings_file_html"><div class="ttname"><a href="class_jade_engine_1_1_settings_file.html">JadeEngine::SettingsFile</a></div><div class="ttdef"><b>Definition:</b> SettingsFile.h:28</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

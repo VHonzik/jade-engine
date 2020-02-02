@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['windowname_135',['windowName',['../struct_jade_engine_1_1_game_init_params.html#a0aa6e97dd941278cf3c8a2721b2cb721',1,'JadeEngine::GameInitParams']]],
-  ['worldcamera_136',['WorldCamera',['../class_jade_engine_1_1_world_camera.html',1,'JadeEngine']]]
+  ['vector2d_161',['Vector2D',['../class_jade_engine_1_1_vector2_d.html',1,'JadeEngine']]],
+  ['vector2d_3c_20float_20_3e_162',['Vector2D&lt; float &gt;',['../class_jade_engine_1_1_vector2_d.html',1,'JadeEngine']]],
+  ['vector2d_3c_20int32_5ft_20_3e_163',['Vector2D&lt; int32_t &gt;',['../class_jade_engine_1_1_vector2_d.html',1,'JadeEngine']]]
 ];

@@ -16,7 +16,6 @@
 #include "Settings.h"
 #include "Slider.h"
 #include "Sprite.h"
-#include "Style.h"
 #include "Text.h"
 
 #include <fstream>
@@ -103,8 +102,7 @@ namespace JadeEngine
     _nativeTextureFormats = info.texture_formats[0];
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
-    _nativeRenderBuffer = SDL_CreateTexture(_renderer, _nativeTextureFormats,
-      SDL_TEXTUREACCESS_TARGET, _renderResolutionWidth, _renderResolutionHeight);
+    _nativeRenderBuffer = SDL_CreateTexture(_renderer, _nativeTextureFormats, SDL_TEXTUREACCESS_TARGET, _renderResolutionWidth, _renderResolutionHeight);
 
     if (_nativeRenderBuffer == nullptr)
     {
@@ -283,8 +281,7 @@ namespace JadeEngine
     return 0;
   }
 
-  void Game::GetBoundingBoxAndHitArray(SDL_Surface* surface,
-    SDL_Rect& boundingBox, std::vector<bool>& hitArray, bool hitsRequired)
+  void Game::GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle& boundingBox, std::vector<bool>& hitArray, bool hitsRequired)
   {
     if (hitsRequired)
     {
@@ -391,8 +388,7 @@ namespace JadeEngine
     return result;
   }
 
-  bool Game::CreateSolidColorTexture(const std::string& name, const int32_t width,
-    const int32_t height, const SDL_Color& color)
+  bool Game::CreateSolidColorTexture(const std::string& name, const int32_t width, const int32_t height, const SDL_Color& color)
   {
     auto imageSurface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
     SDL_FillRect(imageSurface, NULL, SDL_MapRGB(imageSurface->format, color.r, color.g, color.b));
@@ -480,6 +476,14 @@ namespace JadeEngine
     return static_cast<std::add_pointer_t<Sprite>>(result);
   }
 
+  void Game::DestroyGameObject(IGameObject* gameObject)
+  {
+    assert(gameObject->DestructionWanted());
+    gameObject->Clean();
+
+    _sprites.erase(gameObject);
+  }
+
   void Game::DestroyGameObjects()
   {
     for (auto& gameObjectsPair : _gameObjects)
@@ -488,31 +492,12 @@ namespace JadeEngine
 
       auto gameObjectsToRemove = std::remove_if(std::begin(gameObjects), std::end(gameObjects),[&](const std::unique_ptr<IGameObject>& element)
       {
+        if (element->DestructionWanted())
+        {
+          DestroyGameObject(element.get());
+        }
         return element->DestructionWanted();
       });
-
-      for (auto it = gameObjectsToRemove; it != std::end(gameObjects);)
-      {
-        auto& gameObject = *it;
-        gameObject->Clean();
-
-        _sprites.erase(gameObject.get());
-
-        auto sprite = GameObjectToSprite(gameObject.get());
-        if (sprite != nullptr && sprite->GetTextureDescription()->isCopy)
-        {
-          auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
-          {
-            return element->texture == sprite->GetTextureDescription()->texture;
-          });
-
-          for (auto iter = elementToRemove; iter != std::end(_textureCopies); ++iter)
-          {
-            SDL_DestroyTexture((*iter)->texture);
-          }
-          _textureCopies.erase(elementToRemove, std::end(_textureCopies));
-        }
-      }
 
       gameObjects.erase(gameObjectsToRemove, std::end(gameObjects));
     }
@@ -610,22 +595,25 @@ namespace JadeEngine
     _hoveredSprite = sprite;
   }
 
-  void Game::LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene)
+  void Game::HoverSprites(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[scene])
+    {
+      const auto sprite = GameObjectToSprite(gameObject.get());
+      if (sprite != nullptr && sprite->IsShown() && GUICamera.IsMouseInside(sprite, false) && GUICamera.IsMouseInside(sprite, true))
+      {
+        _possibleSprites.push_back(sprite);
+      }
+    }
+  }
+
+  void Game::LoadGameObjects(std::shared_ptr<IScene>& scene)
   {
     for (auto& gameObject : _gameObjects[scene])
     {
       if (gameObject->GetLoadState() == kLoadState_wanted)
       {
         gameObject->SetLoadState(gameObject->Load(_renderer));
-      }
-
-      if (gameObject->GetLoadState() == kLoadState_done)
-      {
-        const auto sprite = GameObjectToSprite(gameObject.get());
-        if (sprite != nullptr && sprite->IsShown() && GUICamera.IsMouseInside(sprite, false) && GUICamera.IsMouseInside(sprite, true))
-        {
-          _possibleSprites.push_back(sprite);
-        }
       }
     }
   }
@@ -637,6 +625,17 @@ namespace JadeEngine
       if (gameObject->GetLoadState() == kLoadState_done)
       {
         gameObject->Update();
+      }
+    }
+  }
+
+  void Game::UpdateGameObjectsTransforms(std::shared_ptr<IScene>& scene)
+  {
+    for (auto& gameObject : _gameObjects[scene])
+    {
+      if (gameObject->GetLoadState() == kLoadState_done)
+      {
+        gameObject->transform->Update();
       }
     }
   }
@@ -691,11 +690,6 @@ namespace JadeEngine
     SDL_SetRenderDrawColor(_renderer, _clearColor.r, _clearColor.g, _clearColor.b, 255);
     SDL_RenderClear(_renderer);
 
-    if (_currentScene)
-    {
-      _currentScene->Update();
-    }
-
     SDL_SetRenderTarget(_renderer, _nativeRenderBuffer);
     SDL_RenderClear(_renderer);
 
@@ -703,10 +697,17 @@ namespace JadeEngine
 
     _possibleSprites.clear();
 
-    LoadGameObjectsAndHover(_currentScene);
-    if (_currentScene != _persistentScene)
+    if (_currentScene)
     {
-      LoadGameObjectsAndHover(_persistentScene);
+      _currentScene->PreUpdate();
+      LoadGameObjects(_currentScene);
+
+      if (_currentScene != _persistentScene)
+      {
+        LoadGameObjects(_persistentScene);
+      }
+
+      HoverSprites(_currentScene);
     }
 
     if (_possibleSprites.size() > 0)
@@ -721,10 +722,17 @@ namespace JadeEngine
       SetHoveredSprite(nullptr);
     }
 
-    UpdateGameObjects(_currentScene);
-    if (_currentScene != _persistentScene)
+    if (_currentScene)
     {
-      UpdateGameObjects(_persistentScene);
+      UpdateGameObjects(_currentScene);
+      if (_currentScene != _persistentScene)
+      {
+        UpdateGameObjects(_persistentScene);
+      }
+
+      _currentScene->Update();
+      LoadGameObjects(_currentScene);
+      UpdateGameObjectsTransforms(_currentScene);
     }
 
     RenderGameObjects(_currentScene);
@@ -1106,5 +1114,25 @@ namespace JadeEngine
     }
 
     return nullptr;
+  }
+
+  void Game::DestroyCopyTexture(SDL_Texture* texture)
+  {
+    assert(std::find_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+    {
+      return element->texture == texture;
+    }) != std::end(_textureCopies));
+
+    auto elementToRemove = std::remove_if(std::begin(_textureCopies), std::end(_textureCopies), [&](const std::shared_ptr<Texture>& element)
+    {
+      if (element->texture == texture)
+      {
+        SDL_DestroyTexture(texture);
+        return true;
+      }
+      return false;
+    });
+
+    _textureCopies.erase(elementToRemove, std::end(_textureCopies));
   }
 }

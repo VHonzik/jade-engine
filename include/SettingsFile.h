@@ -23,7 +23,7 @@
 #define MAX_PATH 512  /* arbitrary value */
 #endif
 
-namespace JadeEngine
+namespace JadeEngine::detail
 {
   class SettingsFile
   {

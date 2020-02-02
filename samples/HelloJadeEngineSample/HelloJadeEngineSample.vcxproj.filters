@@ -93,12 +93,6 @@
     <ClCompile Include="..\..\source\Slider.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Sprite.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Text.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\TextBox.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
@@ -109,6 +103,18 @@
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\TextSprite.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Transform.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Sprite.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Text.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Animations.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,9 +209,6 @@
     <ClInclude Include="..\..\include\Sprite.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Style.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Text.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -243,6 +246,18 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\IGameObject.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\EngineResourcesDescriptions.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Transform.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Vector2D.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Animations.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>

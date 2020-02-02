@@ -1,9 +1,10 @@
 #pragma once
 
-#include <SDL.h>
+#include "EngineDataTypes.h"
 
 #include <cstdint>
 #include <functional>
+#include <SDL.h>
 
 namespace JadeEngine
 {
@@ -18,9 +19,9 @@ namespace JadeEngine
 
     std::string name;
 
-    SDL_Rect scaledRect;
+    Rectangle scaledRect;
 
-    SDL_Rect windowRect;
+    Rectangle windowRect;
 
     int32_t distanceFromNative;
 

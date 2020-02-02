@@ -33,6 +33,6 @@ namespace JadeEngine
     TTF_Font* _font;
     SDL_Texture* _cachedTextTexture;
     SDL_Texture* _finalTexture;
-    SDL_Rect _textDimensions;
+    Rectangle _textDimensions;
   };
 }

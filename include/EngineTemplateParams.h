@@ -84,6 +84,8 @@ namespace JadeEngine
     "blue_button10.png",
     //std::string textureDisabled;
     "grey_button11.png",
+    //std::string textureHovered;
+    "blue_button14.png",
     //bool spriteSheet;
     true,
     //std::string spriteSheetName;
@@ -97,6 +99,8 @@ namespace JadeEngine
     1,
     //int32_t cornerSize;
     9,
+    //int32_t pressedDepth;
+    5,
 
     //std::string text;
     "",
@@ -145,6 +149,8 @@ namespace JadeEngine
     "grey_panel.png",
     //std::string textureDisabled;
     "blue_panel.png",
+    //std::string textureHovered;
+    "",
     //bool spriteSheet;
     true,
     //std::string spriteSheetName;
@@ -158,6 +164,8 @@ namespace JadeEngine
     2,
     //int32_t cornerSize;
     7,
+    //int32_t pressedDepth;
+    0,
 
     //std::string text;
     "",
@@ -218,6 +226,8 @@ namespace JadeEngine
     "grey_button11.png",
     //std::string textureDisabled;
     "blue_button06.png",
+    //std::string textureHovered;
+    "",
     //bool spriteSheet;
     true,
     //std::string spriteSheetName;
@@ -231,6 +241,8 @@ namespace JadeEngine
     1,
     //int32_t cornerSize;
     9,
+    //int32_t pressedDepth;
+    5,
 
     //std::string text;
     "",

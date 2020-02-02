@@ -54,6 +54,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>powershell.exe $(JadeEngineDirectory)\scripts\CopyDependencies.ps1 -JadeEngineDirectory "$(JadeEngineDirectory)" -OutputFolder "$(SolutionDir)$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -68,9 +71,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>powershell.exe $(JadeEngineDirectory)\scripts\CopyDependencies.ps1 -JadeEngineDirectory "$(JadeEngineDirectory)" -OutputFolder "$(SolutionDir)$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\AlignedGroup.cpp" />
+    <ClCompile Include="..\..\source\Animations.cpp" />
     <ClCompile Include="..\..\source\Audio.cpp" />
     <ClCompile Include="..\..\source\BoxSprite.cpp" />
     <ClCompile Include="..\..\source\Button.cpp" />
@@ -96,6 +103,7 @@
     <ClCompile Include="..\..\source\TextBox.cpp" />
     <ClCompile Include="..\..\source\TextSprite.cpp" />
     <ClCompile Include="..\..\source\Tooltip.cpp" />
+    <ClCompile Include="..\..\source\Transform.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -103,6 +111,7 @@
     <ClInclude Include="..\..\include\Aligment.h" />
     <ClInclude Include="..\..\include\AlignedGrid.h" />
     <ClInclude Include="..\..\include\AlignedGroup.h" />
+    <ClInclude Include="..\..\include\Animations.h" />
     <ClInclude Include="..\..\include\Audio.h" />
     <ClInclude Include="..\..\include\BoxSprite.h" />
     <ClInclude Include="..\..\include\Button.h" />
@@ -113,6 +122,7 @@
     <ClInclude Include="..\..\include\EngineConstants.h" />
     <ClInclude Include="..\..\include\EngineDataTypes.h" />
     <ClInclude Include="..\..\include\EngineDefaultInitParams.h" />
+    <ClInclude Include="..\..\include\EngineResourcesDescriptions.h" />
     <ClInclude Include="..\..\include\EngineSettings.h" />
     <ClInclude Include="..\..\include\EngineTemplateParams.h" />
     <ClInclude Include="..\..\include\EngineTime.h" />
@@ -134,14 +144,15 @@
     <ClInclude Include="..\..\include\SettingsFile.h" />
     <ClInclude Include="..\..\include\Slider.h" />
     <ClInclude Include="..\..\include\Sprite.h" />
-    <ClInclude Include="..\..\include\Style.h" />
     <ClInclude Include="..\..\include\Text.h" />
     <ClInclude Include="..\..\include\TextBox.h" />
     <ClInclude Include="..\..\include\TextSprite.h" />
     <ClInclude Include="..\..\include\Texture.h" />
     <ClInclude Include="..\..\include\TextureSampling.h" />
     <ClInclude Include="..\..\include\Tooltip.h" />
+    <ClInclude Include="..\..\include\Transform.h" />
     <ClInclude Include="..\..\include\Utils.h" />
+    <ClInclude Include="..\..\include\Vector2D.h" />
     <ClInclude Include="SampleGameScene.h" />
     <ClInclude Include="SampleInitParams.h" />
   </ItemGroup>

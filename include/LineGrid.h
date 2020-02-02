@@ -41,6 +41,7 @@ namespace JadeEngine
 
     int32_t GetWidth() const { return _width; }
     int32_t GetHeight() const { return _height; }
+
   private:
     std::vector<LineStrip*> _strips;
     int32_t _width;

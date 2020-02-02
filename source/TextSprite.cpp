@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "EngineConstants.h"
 #include "Game.h"
+#include "Transform.h"
 
 #include <cassert>
 #include <sstream>
@@ -57,7 +58,7 @@ namespace JadeEngine
       return kLoadState_done;
     }
 
-    auto surface = TTF_RenderText_Blended_Wrapped(_font, _text.c_str(), kWhiteColor, _transform.w);
+    auto surface = TTF_RenderText_Blended_Wrapped(_font, _text.c_str(), kWhiteColor, transform->GetWidth());
 
     if (surface != nullptr)
     {
@@ -116,7 +117,7 @@ namespace JadeEngine
 
   void TextSprite::Render(SDL_Renderer* renderer)
   {
-    SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(_transform) : _transform;
+    SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
 
     SDL_Rect* source = _spriteSheetMasked ? &_spriteSheetMask : nullptr;
     if (_rotated)

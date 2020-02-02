@@ -22,7 +22,7 @@ namespace JadeEngine
   struct GameInitParamsTextureEntry
   {
     /**
-    String to identify the texture that will be used to reference it when creating game objects with textures.
+    String to identify the texture that will be used to reference it when creating %game objects with textures.
 
     Must be unique across all loaded textures.
     */
@@ -63,7 +63,7 @@ namespace JadeEngine
   struct GameInitParamsFontEntry
   {
     /**
-    String to identify the font that will be used to reference it when creating game objects with fonts.
+    String to identify the font that will be used to reference it when creating %game objects with fonts.
 
     Must be unique across all loaded fonts.
     */
@@ -139,7 +139,7 @@ namespace JadeEngine
   struct GameInitParamsSpriteSheetEntry
   {
     /**
-    String to identify the sprite-sheet that will be used to reference it when creating game objects with textures that support sprite-sheets.
+    String to identify the sprite-sheet that will be used to reference it when creating %game objects with textures that support sprite-sheets.
 
     Must be unique across all loaded sprite-sheets.
     */
@@ -279,7 +279,7 @@ namespace JadeEngine
   struct GameInitParams
   {
     /**
-    Width in pixels of "rendering" resolution that will be used to draw all game objects.
+    Width in pixels of "rendering" resolution that will be used to draw all %game objects.
 
     What is presented on the screen is potentially scaled version of that depending on the user chosen "display" resolution.
     All assets should be targeting this rendering resolution.
@@ -287,7 +287,7 @@ namespace JadeEngine
     uint32_t renderingResolutionWidth;
 
     /**
-    Height in pixels of "rendering" resolution that will be used to draw all game objects.
+    Height in pixels of "rendering" resolution that will be used to draw all %game objects.
 
     @see GameInitParams::renderingResolutionWidth
     */

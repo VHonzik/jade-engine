@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['initialize_224',['Initialize',['../class_jade_engine_1_1_game.html#a46d6dbe6e45aed769cebc650f9a997a7',1,'JadeEngine::Game']]],
-  ['isshown_225',['IsShown',['../class_jade_engine_1_1_i_game_object.html#a356f513227a5e930149f4cb88be7cde5',1,'JadeEngine::IGameObject']]]
+  ['hashittest_265',['HasHitTest',['../class_jade_engine_1_1_box_sprite.html#af0f02a62c40473654ba76cb8768e3f77',1,'JadeEngine::BoxSprite::HasHitTest()'],['../class_jade_engine_1_1_sprite.html#aed40d0dcc126c1a34e3a4fcb0da4de23',1,'JadeEngine::Sprite::HasHitTest()']]],
+  ['hittest_266',['HitTest',['../class_jade_engine_1_1_sprite.html#a629a2b72d1d7b7385f475800eaf18ac2',1,'JadeEngine::Sprite']]]
 ];

@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Text.h"
 #include "TextSprite.h"
+#include "Transform.h"
 #include "Utils.h"
 
 namespace JadeEngine
@@ -51,7 +52,7 @@ namespace JadeEngine
     textSpriteParams.text = "JadeEngine";
 
     _logo = GGame.Create<TextSprite>(textSpriteParams);
-    _logo->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
+    _logo->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
   }
 
   void PoweredByJadeEngineScene::Update()

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keybindings_251',['keybindings',['../struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774',1,'JadeEngine::GameInitParams']]]
+  ['initialpoints_317',['initialPoints',['../struct_jade_engine_1_1_line_strip_params.html#a6f70ac7bdeee476b06591aa47d614f7f',1,'JadeEngine::LineStripParams']]]
 ];

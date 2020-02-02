@@ -1,8 +1,8 @@
 var struct_jade_engine_1_1_texture =
 [
-    [ "Texture", "struct_jade_engine_1_1_texture.html#ad718ce5920d8fc47769b51535ce41ae3", null ],
+    [ "Texture", "struct_jade_engine_1_1_texture.html#a5705f1d8f60a63d9b1a4bbc05f9b84ee", null ],
     [ "Texture", "struct_jade_engine_1_1_texture.html#aa533e49150720d98ba8da18ef41dc7e0", null ],
-    [ "boundingBox", "struct_jade_engine_1_1_texture.html#a2e771d396494d2d6f139483822ecd364", null ],
+    [ "boundingBox", "struct_jade_engine_1_1_texture.html#ae9e8c5afecdf8304810fb2dfa9b37a13", null ],
     [ "format", "struct_jade_engine_1_1_texture.html#a6426395c6d8029c4cff7eef8abcd96ca", null ],
     [ "height", "struct_jade_engine_1_1_texture.html#a48e8dc29b894bdf995ad4125e559b47f", null ],
     [ "hitArray", "struct_jade_engine_1_1_texture.html#aaca0b3eb05cb6f78c016363816deb407", null ],

@@ -2,6 +2,7 @@
 
 #include "DisplayModeInfo.h"
 #include "EngineDataTypes.h"
+#include "EngineResourcesDescriptions.h"
 #include "IGameObject.h"
 #include "Sprite.h"
 #include "Texture.h"
@@ -15,6 +16,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+using namespace JadeEngine::detail;
 
 namespace JadeEngine
 {
@@ -151,7 +154,7 @@ namespace JadeEngine
     /**
     Play a previously added scene, making it the current scene.
 
-    Among other things, the current scene receives Update() callbacks and all game objects created during this scene are rendered.
+    Among other things, the current scene receives Update() callbacks and all %game objects created during this scene are rendered.
 
     If the scene is being played for the first time its Start() callback is triggered.
 
@@ -272,7 +275,7 @@ namespace JadeEngine
 
 
     /**
-    Create a new game object.
+    Create a new %game object.
 
     The object must inherit from IGameObject interface.
 
@@ -281,7 +284,7 @@ namespace JadeEngine
     When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
 
     @param params Creation structure. For the actual type and its description see the class's constructor or header.
-    @returns Pointer to the newly created game object. Game instance owns the game object but it might not possible to look it up later. Storing the pointer is advised.
+    @returns Pointer to the newly created %game object. Game instance owns the %game object but it might not possible to look it up later. Storing the pointer is advised.
     @see IGameObject, Text, TextParams, FTC, FTCParams, Button, ButtonParams, Checkbox, CheckboxParams, Dropdown, DropdownParams, Slider, SliderParams, Sprite, SpriteParams, BoxSprite, BoxSpriteParams
     @code
     // Assuming we have filled `TextParams textParams` variable
@@ -343,7 +346,7 @@ namespace JadeEngine
     @returns Found underlying SDL2 TTF_Font opaque pointer or nullptr if not found.
     @pre GGame was Initialize() with the wanted font or in is part of default assets.
     @see GameInitParamsFontEntry, GameInitParams, Text
-    @warning Only useful when creating a complex custom text-based game objects and should be seldom used. For usage see existing text objects such as Text.
+    @warning Only useful when creating a complex custom text-based %game objects and should be seldom used. For usage see existing text objects such as Text.
     */
     TTF_Font* FindFont(const std::string& fontName, const uint32_t size) const;
 
@@ -353,7 +356,7 @@ namespace JadeEngine
     @returns Found Texture instance or nullptr if not found.
     @pre GGame was Initialize() with the wanted texture.
     @see GameInitParamsFontEntry, GameInitParams, Sprite
-    @warning Only useful when creating a complex custom texture-based game objects and should be seldom used. For usage see Sprite.
+    @warning Only useful when creating a complex custom texture-based %game objects and should be seldom used. For usage see Sprite.
     */
     std::shared_ptr<Texture> FindTexture(const std::string& textureName) const;
 
@@ -371,12 +374,14 @@ namespace JadeEngine
     */
     std::shared_ptr<Texture> CopyTexture(const std::shared_ptr<Texture>& textureDesc, const TextureSampling sampling);
 
+    void DestroyCopyTexture(SDL_Texture* texture);
+
   private:
     std::string AssetPathToAbsolute(const char* assetName);
     void CollectDisplayModes();
     bool CreateSolidColorTexture(const std::string& name, const int32_t width, const int32_t height, const SDL_Color& color);
     void DestroyGameObjects();
-    void GetBoundingBoxAndHitArray(SDL_Surface* surface, SDL_Rect& boundingBox, std::vector<bool>& hitArray, bool hitsRequired);
+    void GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle& boundingBox, std::vector<bool>& hitArray, bool hitsRequired);
     uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);
     std::string HashSolidColorTexture(const uint32_t width, const uint32_t height, const SDL_Color& color);
     void InitializeSettings(const GameInitParams& initParams);
@@ -391,9 +396,12 @@ namespace JadeEngine
     void SetHoveredSprite(Sprite* sprite);
     void SortGameObjectsRendering(const std::shared_ptr<IScene>& scene);
     void Update();
-    void LoadGameObjectsAndHover(std::shared_ptr<IScene>& scene);
+    void LoadGameObjects(std::shared_ptr<IScene>& scene);
+    void HoverSprites(std::shared_ptr<IScene>& scene);
     void UpdateGameObjects(std::shared_ptr<IScene>& scene);
+    void UpdateGameObjectsTransforms(std::shared_ptr<IScene>& scene);
     void UpdateKeybindings();
+    void DestroyGameObject(IGameObject* gameObject);
 
     SDL_Window* _window;
     SDL_Renderer* _renderer;
@@ -429,8 +437,8 @@ namespace JadeEngine
     int32_t _renderResolutionWidth;
     int32_t _renderResolutionHeight;
 
-    SDL_Rect _scaledBufferRect;
-    SDL_Rect _windowBufferRect;
+    Rectangle _scaledBufferRect;
+    Rectangle _windowBufferRect;
 
     bool _fullscreen;
     bool _fullscreenChangedWanted;

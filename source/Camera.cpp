@@ -23,7 +23,7 @@ namespace JadeEngine
     _resolutionHeight = _scaledResolutionHeight = _windowResolutionHeight = height;
   }
 
-  void UICamera::SetDisplayMode(const SDL_Rect& scaledRect, const SDL_Rect& windowRect)
+  void UICamera::SetDisplayMode(const Rectangle& scaledRect, const Rectangle& windowRect)
   {
     _scaledResolutionWidth = scaledRect.w;
     _scaledResolutionHeight = scaledRect.h;
@@ -61,24 +61,22 @@ namespace JadeEngine
     auto mouseX = GInput.GetMouseX();
     auto mouseY = GInput.GetMouseY();
 
-    const auto transform = sprite->GetTransform();
+    const auto& transform = sprite->transform;
 
     bool inside = false;
 
     if (preciseTest)
     {
-      inside = IsInsideRect(mouseX, mouseY, transform);
+      inside = IsInsideRect(mouseX, mouseY, transform->GetBox());
 
       if (inside)
       {
-        inside = sprite->HitTest(mouseX - transform.x, mouseY - transform.y);
+        inside = sprite->HitTest(mouseX - transform->GetX(), mouseY - transform->GetY());
       }
     }
     else
     {
-      SDL_Rect boundingBox = sprite->GetBoundingBox();
-      SDL_Rect testingBox = { transform.x + boundingBox.x,
-        transform.y + boundingBox.y, boundingBox.w, boundingBox.h };
+      const auto testingBox = transform->GetTestingBox();
       inside = IsInsideRect(mouseX, mouseY, testingBox);
     }
 
@@ -91,7 +89,7 @@ namespace JadeEngine
   {
   }
 
-  SDL_Rect WorldCamera::WorldToScreen(const SDL_Rect& rect)
+  Rectangle WorldCamera::WorldToScreen(const Rectangle& rect)
   {
     return { rect.x - _x, rect.y - _y, rect.w, rect.h };
   }
@@ -101,7 +99,18 @@ namespace JadeEngine
     return { point.x - _x, point.y - _y };
   }
 
-  SDL_Rect WorldCamera::ScreenToWorld(const SDL_Rect& rect)
+  Vector2D_i32 WorldCamera::WorldToScreen(const Vector2D_i32& vector)
+  {
+    return { vector.x - _x, vector.y - _y };
+  }
+
+  Box_i32 WorldCamera::WorldToScreen(const std::shared_ptr<Transform>& transform)
+  {
+    assert(transform);
+    return { transform->GetX() - _x, transform->GetY() - _y, transform->GetWidth(), transform->GetHeight() };
+  }
+
+  Rectangle WorldCamera::ScreenToWorld(const Rectangle& rect)
   {
     return { rect.x + _x, rect.y + _y, rect.w, rect.h };
   }

@@ -7,6 +7,7 @@ var class_jade_engine_1_1_game =
     [ "CopyTexture", "class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b", null ],
     [ "Create", "class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd", null ],
     [ "CreateSolidColorSprite", "class_jade_engine_1_1_game.html#a92265d1b5a1a2a5142ea522cac14731b", null ],
+    [ "DestroyCopyTexture", "class_jade_engine_1_1_game.html#a07e0bd9465b987a33210fc79e7b6579c", null ],
     [ "End", "class_jade_engine_1_1_game.html#ad3096660b7e86746b1f9f89856a21600", null ],
     [ "EndBatchCreate", "class_jade_engine_1_1_game.html#adbb4bbe836014471f54b31fd6dbd70ab", null ],
     [ "FindFont", "class_jade_engine_1_1_game.html#a5d0b823203406f9da064fab2b6d78639", null ],

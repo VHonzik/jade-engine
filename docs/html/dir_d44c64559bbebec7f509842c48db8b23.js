@@ -3,6 +3,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Aligment.h", "_aligment_8h_source.html", null ],
     [ "AlignedGrid.h", "_aligned_grid_8h_source.html", null ],
     [ "AlignedGroup.h", "_aligned_group_8h_source.html", null ],
+    [ "Animations.h", "_animations_8h_source.html", null ],
     [ "Audio.h", "_audio_8h_source.html", null ],
     [ "BoxSprite.h", "_box_sprite_8h_source.html", null ],
     [ "Button.h", "_button_8h_source.html", null ],
@@ -13,6 +14,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "EngineConstants.h", "_engine_constants_8h_source.html", null ],
     [ "EngineDataTypes.h", "_engine_data_types_8h_source.html", null ],
     [ "EngineDefaultInitParams.h", "_engine_default_init_params_8h_source.html", null ],
+    [ "EngineResourcesDescriptions.h", "_engine_resources_descriptions_8h_source.html", null ],
     [ "EngineSettings.h", "_engine_settings_8h_source.html", null ],
     [ "EngineTemplateParams.h", "_engine_template_params_8h_source.html", null ],
     [ "EngineTime.h", "_engine_time_8h_source.html", null ],
@@ -42,12 +44,13 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "SettingsFile.h", "_settings_file_8h_source.html", null ],
     [ "Slider.h", "_slider_8h_source.html", null ],
     [ "Sprite.h", "_sprite_8h_source.html", null ],
-    [ "Style.h", "_style_8h_source.html", null ],
     [ "Text.h", "_text_8h_source.html", null ],
     [ "TextBox.h", "_text_box_8h_source.html", null ],
     [ "TextSprite.h", "_text_sprite_8h_source.html", null ],
     [ "Texture.h", "_texture_8h_source.html", null ],
     [ "TextureSampling.h", "_texture_sampling_8h_source.html", null ],
     [ "Tooltip.h", "_tooltip_8h_source.html", null ],
-    [ "Utils.h", "_utils_8h_source.html", null ]
+    [ "Transform.h", "_transform_8h_source.html", null ],
+    [ "Utils.h", "_utils_8h_source.html", null ],
+    [ "Vector2D.h", "_vector2_d_8h_source.html", null ]
 ];

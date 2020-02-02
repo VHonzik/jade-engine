@@ -3,6 +3,7 @@ var namespace_jade_engine =
     [ "AlignedGrid", "class_jade_engine_1_1_aligned_grid.html", "class_jade_engine_1_1_aligned_grid" ],
     [ "AlignedGroup", "class_jade_engine_1_1_aligned_group.html", "class_jade_engine_1_1_aligned_group" ],
     [ "Audio", "class_jade_engine_1_1_audio.html", "class_jade_engine_1_1_audio" ],
+    [ "Box", "class_jade_engine_1_1_box.html", "class_jade_engine_1_1_box" ],
     [ "BoxSprite", "class_jade_engine_1_1_box_sprite.html", "class_jade_engine_1_1_box_sprite" ],
     [ "BoxSpriteParams", "struct_jade_engine_1_1_box_sprite_params.html", "struct_jade_engine_1_1_box_sprite_params" ],
     [ "Button", "class_jade_engine_1_1_button.html", "class_jade_engine_1_1_button" ],
@@ -68,6 +69,8 @@ var namespace_jade_engine =
     [ "Time", "class_jade_engine_1_1_time.html", "class_jade_engine_1_1_time" ],
     [ "Tooltip", "class_jade_engine_1_1_tooltip.html", "class_jade_engine_1_1_tooltip" ],
     [ "TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", "struct_jade_engine_1_1_tooltip_params" ],
+    [ "Transform", "class_jade_engine_1_1_transform.html", "class_jade_engine_1_1_transform" ],
     [ "UICamera", "class_jade_engine_1_1_u_i_camera.html", "class_jade_engine_1_1_u_i_camera" ],
+    [ "Vector2D", "class_jade_engine_1_1_vector2_d.html", "class_jade_engine_1_1_vector2_d" ],
     [ "WorldCamera", "class_jade_engine_1_1_world_camera.html", "class_jade_engine_1_1_world_camera" ]
 ];

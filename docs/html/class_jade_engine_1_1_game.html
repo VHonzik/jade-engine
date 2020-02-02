@@ -104,7 +104,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a13784daed6af34b7b949e2b3ad1aff87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f575467a763080c6384cb5b5549b7da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_jade_engine_1_1_game.html">Game</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#a1f575467a763080c6384cb5b5549b7da">operator=</a> (const <a class="el" href="class_jade_engine_1_1_game.html">Game</a> &amp;)=delete</td></tr>
 <tr class="separator:a1f575467a763080c6384cb5b5549b7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaafe4a71f22367decda8796b6272c2bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">AddScene</a> (const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</td></tr>
+<tr class="memitem:aaafe4a71f22367decda8796b6272c2bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">AddScene</a> (const int32_t id, const std::shared_ptr&lt; <a class="el" href="class_jade_engine_1_1_i_scene.html">IScene</a> &gt; &amp;scene)</td></tr>
 <tr class="separator:aaafe4a71f22367decda8796b6272c2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5be00dfbc890e6245b49e44f8e06a7f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">PlayScene</a> (const int32_t id)</td></tr>
 <tr class="separator:a5be00dfbc890e6245b49e44f8e06a7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,13 +165,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartBatchCreate</b> 
 void&#160;</td><td class="memItemRight" valign="bottom"><b>EndBatchCreate</b> ()</td></tr>
 <tr class="separator:adbb4bbe836014471f54b31fd6dbd70ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a322fe4c193117315a4fa88f9122703f2"><td class="memItemLeft" align="right" valign="top"><a id="a322fe4c193117315a4fa88f9122703f2"></a>
-const <a class="el" href="struct_jade_engine_1_1_sprite_sheet_description.html">SpriteSheetDescription</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetSpriteSheetDescription</b> (const std::string &amp;name)</td></tr>
+const SpriteSheetDescription *&#160;</td><td class="memItemRight" valign="bottom"><b>GetSpriteSheetDescription</b> (const std::string &amp;name)</td></tr>
 <tr class="separator:a322fe4c193117315a4fa88f9122703f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabebecdf1ade173b67b1d8e876ef6f3c"><td class="memItemLeft" align="right" valign="top"><a id="aabebecdf1ade173b67b1d8e876ef6f3c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetKeybinding</b> (const int32_t settingsId, const int32_t newValue)</td></tr>
 <tr class="separator:aabebecdf1ade173b67b1d8e876ef6f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7f537d8abc48c877510149905b1db3b"><td class="memItemLeft" align="right" valign="top"><a id="ac7f537d8abc48c877510149905b1db3b"></a>
-const std::unordered_map&lt; int32_t, <a class="el" href="struct_jade_engine_1_1_key_binding_description.html">KeyBindingDescription</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetKeyBindings</b> () const</td></tr>
+const std::unordered_map&lt; int32_t, KeyBindingDescription &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetKeyBindings</b> () const</td></tr>
 <tr class="separator:ac7f537d8abc48c877510149905b1db3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a648496e18e6dc66169351b2ce687334d"><td class="memItemLeft" align="right" valign="top"><a id="a648496e18e6dc66169351b2ce687334d"></a>
 int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GeyKeyFromKeybind</b> (const int32_t keybindSettingId)</td></tr>
@@ -207,8 +207,11 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetNativeTextureF
 <tr class="separator:a5d0b823203406f9da064fab2b6d78639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7aaa6b4917305d9afc638b9ecb1d731"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_jade_engine_1_1_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#ae7aaa6b4917305d9afc638b9ecb1d731">FindTexture</a> (const std::string &amp;textureName) const</td></tr>
 <tr class="separator:ae7aaa6b4917305d9afc638b9ecb1d731"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec104d85c91fd1cc2770fe428736c05b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_jade_engine_1_1_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b">CopyTexture</a> (const std::shared_ptr&lt; <a class="el" href="struct_jade_engine_1_1_texture.html">Texture</a> &gt; &amp;textureDesc, const <a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a> sampling)</td></tr>
+<tr class="memitem:aec104d85c91fd1cc2770fe428736c05b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="struct_jade_engine_1_1_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b">CopyTexture</a> (const std::shared_ptr&lt; <a class="el" href="struct_jade_engine_1_1_texture.html">Texture</a> &gt; &amp;textureDesc, const TextureSampling sampling)</td></tr>
 <tr class="separator:aec104d85c91fd1cc2770fe428736c05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e0bd9465b987a33210fc79e7b6579c"><td class="memItemLeft" align="right" valign="top"><a id="a07e0bd9465b987a33210fc79e7b6579c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DestroyCopyTexture</b> (SDL_Texture *texture)</td></tr>
+<tr class="separator:a07e0bd9465b987a33210fc79e7b6579c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="accf6c5af9f6549f537c418051a656837"></a>
@@ -272,7 +275,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetNativeTextureF
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::shared_ptr&lt; IScene &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="class_jade_engine_1_1_i_scene.html">IScene</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>scene</em>&#160;</td>
         </tr>
         <tr>
@@ -291,7 +294,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetNativeTextureF
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">Game::PlayScene</a>, IScene</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">Game::PlayScene</a>, <a class="el" href="class_jade_engine_1_1_i_scene.html">IScene</a></dd></dl>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;EngineConstants.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;Game.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="_game_init_params_8h.html">GameInitParams.h</a>&quot;</span></div>
@@ -354,7 +357,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetNativeTextureF
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a>&#160;</td>
+          <td class="paramtype">const TextureSampling&#160;</td>
           <td class="paramname"><em>sampling</em>&#160;</td>
         </tr>
         <tr>
@@ -374,7 +377,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetNativeTextureF
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new texture, deep copy of the passed texture. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#ae7aaa6b4917305d9afc638b9ecb1d731">FindTexture</a>, <a class="el" href="namespace_jade_engine.html#a5ba5ca76be1a1cae1ffed28d1f21daea">TextureSampling</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#ae7aaa6b4917305d9afc638b9ecb1d731">FindTexture</a>, TextureSampling </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Potentially expensive operation including render targets. </dd>
 <dd>
 Instead of working with textures it is recommend to use existing Sprite-based classes. Should be seldom used. </dd></dl>
@@ -563,7 +566,7 @@ template&lt;typename Class , typename CreationStruct &gt; </div>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;Game.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="_game_init_params_8h.html">GameInitParams.h</a>&quot;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespace_jade_engine.html">JadeEngine</a>;</div>
+<div class="line"><span class="keyword">using namespace </span>JadeEngine;</div>
 <div class="line"> </div>
 <div class="line">int32_t main(int32_t argc, <span class="keywordtype">char</span>* argv[])</div>
 <div class="line">{</div>
@@ -632,7 +635,7 @@ template&lt;typename Class , typename CreationStruct &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>IScene, <a class="el" href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">Game::AddScene</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_i_scene.html">IScene</a>, <a class="el" href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">Game::AddScene</a> </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>The scene was added using <a class="el" href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">Game::AddScene</a>. <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;EngineConstants.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;Game.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="_game_init_params_8h.html">GameInitParams.h</a>&quot;</span></div>
@@ -855,23 +858,22 @@ template&lt;typename Class , typename CreationStruct &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/GameDev/SDL/Carty/jade-engine/include/<a class="el" href="_game_8h_source.html">Game.h</a></li>
-<li>D:/GameDev/SDL/Carty/jade-engine/source/Game.cpp</li>
+<li>D:/GameDev/SDL/jade-engine/include/<a class="el" href="_game_8h_source.html">Game.h</a></li>
+<li>D:/GameDev/SDL/jade-engine/source/Game.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_game_init_params_8h_html"><div class="ttname"><a href="_game_init_params_8h.html">GameInitParams.h</a></div></div>
-<div class="ttc" id="anamespace_jade_engine_html"><div class="ttname"><a href="namespace_jade_engine.html">JadeEngine</a></div><div class="ttdef"><b>Definition:</b> Aligment.h:5</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:293</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_aaafe4a71f22367decda8796b6272c2bc"><div class="ttname"><a href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">JadeEngine::Game::AddScene</a></div><div class="ttdeci">void AddScene(const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</div><div class="ttdef"><b>Definition:</b> Game.cpp:521</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_a44e715fe08d13c6bed62d1d47d7b0b51"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a44e715fe08d13c6bed62d1d47d7b0b51">JadeEngine::Game::CleanUp</a></div><div class="ttdeci">void CleanUp()</div><div class="ttdef"><b>Definition:</b> Game.cpp:549</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_a7bbe2c09304b3d8095cda961dd204e65"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a7bbe2c09304b3d8095cda961dd204e65">JadeEngine::Game::SetFullscreen</a></div><div class="ttdeci">void SetFullscreen(const bool fullscreen)</div><div class="ttdef"><b>Definition:</b> Game.cpp:784</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_a4aab440f8cd521303b89bd3e5392578a"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a4aab440f8cd521303b89bd3e5392578a">JadeEngine::Game::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> Game.cpp:749</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_ad3096660b7e86746b1f9f89856a21600"><div class="ttname"><a href="class_jade_engine_1_1_game.html#ad3096660b7e86746b1f9f89856a21600">JadeEngine::Game::End</a></div><div class="ttdeci">void End()</div><div class="ttdef"><b>Definition:</b> Game.h:195</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:296</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_aaafe4a71f22367decda8796b6272c2bc"><div class="ttname"><a href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">JadeEngine::Game::AddScene</a></div><div class="ttdeci">void AddScene(const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</div><div class="ttdef"><b>Definition:</b> Game.cpp:506</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_a44e715fe08d13c6bed62d1d47d7b0b51"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a44e715fe08d13c6bed62d1d47d7b0b51">JadeEngine::Game::CleanUp</a></div><div class="ttdeci">void CleanUp()</div><div class="ttdef"><b>Definition:</b> Game.cpp:534</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_a7bbe2c09304b3d8095cda961dd204e65"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a7bbe2c09304b3d8095cda961dd204e65">JadeEngine::Game::SetFullscreen</a></div><div class="ttdeci">void SetFullscreen(const bool fullscreen)</div><div class="ttdef"><b>Definition:</b> Game.cpp:792</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_a4aab440f8cd521303b89bd3e5392578a"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a4aab440f8cd521303b89bd3e5392578a">JadeEngine::Game::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> Game.cpp:757</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_ad3096660b7e86746b1f9f89856a21600"><div class="ttname"><a href="class_jade_engine_1_1_game.html#ad3096660b7e86746b1f9f89856a21600">JadeEngine::Game::End</a></div><div class="ttdeci">void End()</div><div class="ttdef"><b>Definition:</b> Game.h:198</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespace_jade_engine.html">JadeEngine</a></li><li class="navelem"><a class="el" href="class_jade_engine_1_1_game.html">Game</a></li>
+    <li class="navelem"><b>JadeEngine</b></li><li class="navelem"><a class="el" href="class_jade_engine_1_1_game.html">Game</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

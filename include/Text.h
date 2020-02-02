@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Aligment.h"
+#include "EngineDataTypes.h"
 #include "IGameObject.h"
 #include "ObjectLayer.h"
 
@@ -26,11 +27,10 @@ namespace JadeEngine
 
     LoadState Load(SDL_Renderer* renderer) override;
     void Render(SDL_Renderer* renderer) override;
-
     void SetText(const std::string& text);
     void SetTextAndColor(const std::string& text, const SDL_Color& color);
     void SetColor(const SDL_Color& color);
-    void SetMask(const SDL_Rect& mask);
+    void SetMask(const Rectangle& mask);
 
     void SetHorizontalAlign(const HorizontalAlignment align) { _textHorizontalAlign = align; }
     HorizontalAlignment GetHorizontalAlign() const { return _textHorizontalAlign; }
@@ -60,7 +60,7 @@ namespace JadeEngine
     void RemoveCache();
 
     bool _masked;
-    SDL_Rect _mask;
+    Rectangle _mask;
 
     int32_t _width;
     int32_t _height;

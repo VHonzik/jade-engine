@@ -9,10 +9,11 @@ namespace JadeEngine
 {
   LineStrip::LineStrip(const LineStripParams& params)
     : _color(params.color)
-    , _points(params.initialPoints)
     , _layer(params.layer)
   {
+    transform->Initialize(0, 0, 0, 0);
     _z = params.z;
+    SetPoints(params.initialPoints);
   }
 
 
@@ -35,8 +36,28 @@ namespace JadeEngine
     }
   }
 
-  void LineStrip::SetPoints(const std::vector<SDL_Point>& points)
+  void LineStrip::UpdatePoints()
   {
-    _points = points;
+    _points.clear();
+    const auto centerPosition = transform->GetCenterPosition();
+    std::transform(std::cbegin(_localPoints), std::cend(_localPoints), std::back_inserter(_points), [&](const Vector2D_i32& point)
+    {
+      const auto position = centerPosition + point;
+      return SDL_Point{ position.x, position.y };
+    });
+  }
+
+  void LineStrip::SetPoints(const std::vector<Vector2D_i32>& points)
+  {
+    _localPoints = points;
+    UpdatePoints();
+  }
+
+  void LineStrip::Update()
+  {
+    if (transform->IsDirty(kDirtyFlag_centerPosition))
+    {
+      UpdatePoints();
+    }
   }
 }

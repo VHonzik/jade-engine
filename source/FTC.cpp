@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "Text.h"
+#include "Transform.h"
 
 #include <numeric>
 #include <cassert>

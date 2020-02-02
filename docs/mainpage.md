@@ -15,7 +15,7 @@ Instead we recommend to set-up `jade-engine` as [git submodule](https://git-scm.
 ### Usage
 `jade-engine` comes with a samples solution that can be found in `samples` folder and should be the first stop when exploring `jade-engine`.
 
-When browsing the documentation some of the key classes are: [Game](@ref JadeEngine::Game), [IGameObject](@ref JadeEngine::IGameObject), [IScene](@ref JadeEngine::IScene).
+When browsing the documentation some of the key classes are: [Game](@ref JadeEngine::Game), [IGameObject](@ref JadeEngine::IGameObject), [IScene](@ref JadeEngine::IScene), [Transform](@ref JadeEngine::Transform).
 
 
 

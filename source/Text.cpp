@@ -1,5 +1,8 @@
 #include "Text.h"
+
 #include "Game.h"
+#include "Transform.h"
+#include "Utils.h"
 
 #include <cassert>
 
@@ -36,12 +39,14 @@ namespace JadeEngine
     {
       if (_color.a < 255)
       {
-        SDL_SetSurfaceAlphaMod(surface, _color.a);
+        SDL_ASSERT_SUCCESS(SDL_SetSurfaceAlphaMod(surface, _color.a));
       }
 
       _width = surface->w;
       _height = surface->h;
+
       _cachedTexture = SDL_CreateTextureFromSurface(renderer, surface);
+      SDL_ASSERT_SUCCESS(SDL_SetTextureBlendMode(_cachedTexture, SDL_BLENDMODE_BLEND));
       SDL_FreeSurface(surface);
 
       return _cachedTexture != nullptr ? kLoadState_done : kLoadState_abandoned;
@@ -54,7 +59,7 @@ namespace JadeEngine
     }
   }
 
-  void Text::SetMask(const SDL_Rect& mask)
+  void Text::SetMask(const Rectangle& mask)
   {
     _masked = true;
     _mask = mask;
@@ -103,8 +108,7 @@ namespace JadeEngine
         SDL_Rect interesection;
         if (SDL_IntersectRect(&destination, &_mask, &interesection) != SDL_FALSE)
         {
-          SDL_Rect source = { interesection.x - destination.x, interesection.y - destination.y,
-            interesection.w, interesection.h };
+          SDL_Rect source = { interesection.x - destination.x, interesection.y - destination.y, interesection.w, interesection.h };
           SDL_RenderCopy(renderer, _cachedTexture, &source, &interesection);
         }
       }

@@ -10,6 +10,7 @@
 #include "Input.h"
 #include "Settings.h"
 #include "Slider.h"
+#include "Transform.h"
 
 #include <sstream>
 
@@ -31,7 +32,7 @@ namespace JadeEngine
   void OptionsMenuScene::Start()
   {
     auto box = GGame.Create<BoxSprite>(kOptionsGreyPanel);
-    box->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
+    box->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
 
     auto buttonParams = kOptionsSectionTitleButton;
     buttonParams.text = "Audio";
