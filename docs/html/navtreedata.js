@@ -50,8 +50,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"class_jade_engine_1_1_line_box.html#a27dd7ab4e76e5935e6b508635b922965",
-"functions.html"
+"class_jade_engine_1_1_line_box.html#a0765bf7bfdfdba0835a64c2c501ab29f",
+"class_jade_engine_1_1_world_camera.html#a0c09aa2d12ea834dfe0d6e4a27c257a7",
+"struct_jade_engine_1_1_tooltip_params.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

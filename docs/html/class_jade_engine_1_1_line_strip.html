@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_jade_engine_1_1_line_strip.html'
 <div class="title">JadeEngine::LineStrip Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_line_strip_8h_source.html">LineStrip.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for JadeEngine::LineStrip:</div>
 <div class="dyncontent">
@@ -101,16 +103,14 @@ Inheritance diagram for JadeEngine::LineStrip:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab1263a5e095123d6bf7e90951140dcaf"><td class="memItemLeft" align="right" valign="top"><a id="ab1263a5e095123d6bf7e90951140dcaf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LineStrip</b> (const <a class="el" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a> &amp;params)</td></tr>
+<tr class="memitem:ab1263a5e095123d6bf7e90951140dcaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_line_strip.html#ab1263a5e095123d6bf7e90951140dcaf">LineStrip</a> (const <a class="el" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a> &amp;params)</td></tr>
 <tr class="separator:ab1263a5e095123d6bf7e90951140dcaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65173c8842f72d6359dc81a9dad7eef4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_line_strip.html#a65173c8842f72d6359dc81a9dad7eef4">Render</a> (SDL_Renderer *renderer) override</td></tr>
 <tr class="separator:a65173c8842f72d6359dc81a9dad7eef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac21151ef538d9ba017ab78bf2f4fa1ce"><td class="memItemLeft" align="right" valign="top"><a id="ac21151ef538d9ba017ab78bf2f4fa1ce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPoints</b> (const std::vector&lt; <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D_i32</a> &gt; &amp;points)</td></tr>
-<tr class="separator:ac21151ef538d9ba017ab78bf2f4fa1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6fa994c480bee5d1ee7c9886f8d504"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_line_strip.html#a4e6fa994c480bee5d1ee7c9886f8d504">Update</a> () override</td></tr>
 <tr class="separator:a4e6fa994c480bee5d1ee7c9886f8d504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac21151ef538d9ba017ab78bf2f4fa1ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_line_strip.html#ac21151ef538d9ba017ab78bf2f4fa1ce">SetPoints</a> (const std::vector&lt; <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D_i32</a> &gt; &amp;points)</td></tr>
+<tr class="separator:ac21151ef538d9ba017ab78bf2f4fa1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_jade_engine_1_1_i_game_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_jade_engine_1_1_i_game_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></td></tr>
 <tr class="memitem:a87729ae5661f5da9f0df51bb1a4450be inherit pub_methods_class_jade_engine_1_1_i_game_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_game_object.html#a87729ae5661f5da9f0df51bb1a4450be">IGameObject</a> ()</td></tr>
 <tr class="separator:a87729ae5661f5da9f0df51bb1a4450be inherit pub_methods_class_jade_engine_1_1_i_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +149,31 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_shown</b></td></tr>
 int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_z</b></td></tr>
 <tr class="separator:a497aa619a171af5b84b102ee3b0f5c6d inherit pro_attribs_class_jade_engine_1_1_i_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Game object that renders a sequence of connected line segments on screen, each 1 pixel thick.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab1263a5e095123d6bf7e90951140dcaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1263a5e095123d6bf7e90951140dcaf">&#9670;&nbsp;</a></span>LineStrip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JadeEngine::LineStrip::LineStrip </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor for <a class="el" href="class_jade_engine_1_1_line_strip.html">LineStrip</a> that accepts <a class="el" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a>.</p>
+<dl class="section warning"><dt>Warning</dt><dd>One should use <code><a class="el" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">Game::Create</a></code> function to create LineStrips instead of constructing the object directly.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">Game::Create</a>, <a class="el" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a> </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a65173c8842f72d6359dc81a9dad7eef4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65173c8842f72d6359dc81a9dad7eef4">&#9670;&nbsp;</a></span>Render()</h2>
@@ -184,6 +209,28 @@ int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_z</b></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a>, LoadState, <a class="el" href="class_jade_engine_1_1_i_game_object.html#a356f513227a5e930149f4cb88be7cde5">IGameObject::IsShown</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_jade_engine_1_1_i_game_object.html#a80999ad66d2319ae747e2c56bf1d3d74">JadeEngine::IGameObject</a>.</p>
+
+</div>
+</div>
+<a id="ac21151ef538d9ba017ab78bf2f4fa1ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21151ef538d9ba017ab78bf2f4fa1ce">&#9670;&nbsp;</a></span>SetPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JadeEngine::LineStrip::SetPoints </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_jade_engine_1_1_vector2_d.html">Vector2D_i32</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>points</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Changed the points that define the <a class="el" href="class_jade_engine_1_1_line_strip.html">LineStrip</a>. The LineScript will now consist of <code>points.size()-1</code> lines.</p>
+<p>The points are relative to the <a class="el" href="class_jade_engine_1_1_line_strip.html">LineStrip</a>'s <code>transform</code> center position (<code><a class="el" href="class_jade_engine_1_1_i_game_object.html#a63969dbb02c171440660ed16a2f7ea1d">LineStrip::transform</a>-&gt;GetCenterPosition()</code>). This means the whole strip can be moved around by changing the <code>transform</code>.</p>
+<p>Each point is a both a start and an end of a line segment apart from the very first and very last points which are only start and end points respectively. Assuming three different points are passed: A, B, C in that order than the <a class="el" href="class_jade_engine_1_1_line_strip.html">LineStrip</a> will look like A-B-C. In order to create a closed loop, a copy of the very first point should the very last point.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_transform.html">Transform</a> </dd></dl>
 
 </div>
 </div>

@@ -99,36 +99,47 @@ $(document).ready(function(){initNavTree('_line_strip_8h_source.html',''); initR
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>JadeEngine</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_line_strip_params.html">   14</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    ObjectLayer             layer;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt;Vector2D_i32&gt;     initialPoints;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    SDL_Color               color;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    int32_t                 z;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  };</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_line_strip.html">   22</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_line_strip.html">LineStrip</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_jade_engine_1_1_line_strip.html">LineStrip</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a>&amp; params);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_line_strip.html#a65173c8842f72d6359dc81a9dad7eef4">Render</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> SetPoints(<span class="keyword">const</span> std::vector&lt;Vector2D_i32&gt;&amp; points);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_line_strip.html#a4e6fa994c480bee5d1ee7c9886f8d504">Update</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> UpdatePoints();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    SDL_Color _color;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::vector&lt;SDL_Point&gt; _points;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::vector&lt;Vector2D_i32&gt; _localPoints;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    ObjectLayer _layer;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  };</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_line_strip_params.html">   28</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  {</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_line_strip_params.html#aee645beb8977fee0131d6326d9fd51c0">   35</a></span>&#160;    ObjectLayer               <a class="code" href="struct_jade_engine_1_1_line_strip_params.html#aee645beb8977fee0131d6326d9fd51c0">layer</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_line_strip_params.html#a6f70ac7bdeee476b06591aa47d614f7f">   48</a></span>&#160;    std::vector&lt;Vector2D_i32&gt; <a class="code" href="struct_jade_engine_1_1_line_strip_params.html#a6f70ac7bdeee476b06591aa47d614f7f">initialPoints</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_line_strip_params.html#a7fbbdff454f3e05da07626d4efc4c6c9">   53</a></span>&#160;    SDL_Color                 <a class="code" href="struct_jade_engine_1_1_line_strip_params.html#a7fbbdff454f3e05da07626d4efc4c6c9">color</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_line_strip_params.html#a3471940669221a6be967a2bbb1ba24d4">   60</a></span>&#160;    int32_t                   <a class="code" href="struct_jade_engine_1_1_line_strip_params.html#a3471940669221a6be967a2bbb1ba24d4">z</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  };</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_line_strip.html">   68</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_line_strip.html">LineStrip</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="class_jade_engine_1_1_line_strip.html#ab1263a5e095123d6bf7e90951140dcaf">LineStrip</a>(<span class="keyword">const</span> <a class="code" href="struct_jade_engine_1_1_line_strip_params.html">LineStripParams</a>&amp; params);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_line_strip.html#a65173c8842f72d6359dc81a9dad7eef4">Render</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_line_strip.html#a4e6fa994c480bee5d1ee7c9886f8d504">Update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_line_strip.html#ac21151ef538d9ba017ab78bf2f4fa1ce">SetPoints</a>(<span class="keyword">const</span> std::vector&lt;Vector2D_i32&gt;&amp; points);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> UpdatePoints();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    SDL_Color _color;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    std::vector&lt;SDL_Point&gt; _points;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::vector&lt;Vector2D_i32&gt; _localPoints;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    ObjectLayer _layer;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  };</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astruct_jade_engine_1_1_line_strip_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_line_strip_params.html">JadeEngine::LineStripParams</a></div><div class="ttdef"><b>Definition:</b> LineStrip.h:14</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_line_strip_html"><div class="ttname"><a href="class_jade_engine_1_1_line_strip.html">JadeEngine::LineStrip</a></div><div class="ttdef"><b>Definition:</b> LineStrip.h:22</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_line_strip_params_html_aee645beb8977fee0131d6326d9fd51c0"><div class="ttname"><a href="struct_jade_engine_1_1_line_strip_params.html#aee645beb8977fee0131d6326d9fd51c0">JadeEngine::LineStripParams::layer</a></div><div class="ttdeci">ObjectLayer layer</div><div class="ttdef"><b>Definition:</b> LineStrip.h:35</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_line_strip_params_html_a7fbbdff454f3e05da07626d4efc4c6c9"><div class="ttname"><a href="struct_jade_engine_1_1_line_strip_params.html#a7fbbdff454f3e05da07626d4efc4c6c9">JadeEngine::LineStripParams::color</a></div><div class="ttdeci">SDL_Color color</div><div class="ttdef"><b>Definition:</b> LineStrip.h:53</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_line_strip_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_line_strip_params.html">JadeEngine::LineStripParams</a></div><div class="ttdef"><b>Definition:</b> LineStrip.h:28</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_line_strip_html"><div class="ttname"><a href="class_jade_engine_1_1_line_strip.html">JadeEngine::LineStrip</a></div><div class="ttdef"><b>Definition:</b> LineStrip.h:68</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_line_strip_html_a65173c8842f72d6359dc81a9dad7eef4"><div class="ttname"><a href="class_jade_engine_1_1_line_strip.html#a65173c8842f72d6359dc81a9dad7eef4">JadeEngine::LineStrip::Render</a></div><div class="ttdeci">void Render(SDL_Renderer *renderer) override</div><div class="ttdef"><b>Definition:</b> LineStrip.cpp:20</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_line_strip_html_ab1263a5e095123d6bf7e90951140dcaf"><div class="ttname"><a href="class_jade_engine_1_1_line_strip.html#ab1263a5e095123d6bf7e90951140dcaf">JadeEngine::LineStrip::LineStrip</a></div><div class="ttdeci">LineStrip(const LineStripParams &amp;params)</div><div class="ttdef"><b>Definition:</b> LineStrip.cpp:10</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></div><div class="ttdef"><b>Definition:</b> IGameObject.h:78</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_line_strip_html_ac21151ef538d9ba017ab78bf2f4fa1ce"><div class="ttname"><a href="class_jade_engine_1_1_line_strip.html#ac21151ef538d9ba017ab78bf2f4fa1ce">JadeEngine::LineStrip::SetPoints</a></div><div class="ttdeci">void SetPoints(const std::vector&lt; Vector2D_i32 &gt; &amp;points)</div><div class="ttdef"><b>Definition:</b> LineStrip.cpp:50</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_line_strip_params_html_a6f70ac7bdeee476b06591aa47d614f7f"><div class="ttname"><a href="struct_jade_engine_1_1_line_strip_params.html#a6f70ac7bdeee476b06591aa47d614f7f">JadeEngine::LineStripParams::initialPoints</a></div><div class="ttdeci">std::vector&lt; Vector2D_i32 &gt; initialPoints</div><div class="ttdef"><b>Definition:</b> LineStrip.h:48</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_line_strip_params_html_a3471940669221a6be967a2bbb1ba24d4"><div class="ttname"><a href="struct_jade_engine_1_1_line_strip_params.html#a3471940669221a6be967a2bbb1ba24d4">JadeEngine::LineStripParams::z</a></div><div class="ttdeci">int32_t z</div><div class="ttdef"><b>Definition:</b> LineStrip.h:60</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_line_strip_html_a4e6fa994c480bee5d1ee7c9886f8d504"><div class="ttname"><a href="class_jade_engine_1_1_line_strip.html#a4e6fa994c480bee5d1ee7c9886f8d504">JadeEngine::LineStrip::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdef"><b>Definition:</b> LineStrip.cpp:56</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

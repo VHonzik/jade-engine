@@ -52,6 +52,9 @@ var hierarchy =
     [ "JadeEngine::LineStripParams", "struct_jade_engine_1_1_line_strip_params.html", null ],
     [ "JadeEngine::ProgressBarColor", "struct_jade_engine_1_1_progress_bar_color.html", null ],
     [ "JadeEngine::ProgressBarParams", "struct_jade_engine_1_1_progress_bar_params.html", null ],
+    [ "JadeEngine::PulseAnimation", "class_jade_engine_1_1_pulse_animation.html", null ],
+    [ "JadeEngine::PulseAnimationEntry", "struct_jade_engine_1_1_pulse_animation_entry.html", null ],
+    [ "JadeEngine::PulseAnimationParams", "struct_jade_engine_1_1_pulse_animation_params.html", null ],
     [ "JadeEngine::Settings", "class_jade_engine_1_1_settings.html", null ],
     [ "JadeEngine::SettingsEntry", "class_jade_engine_1_1_settings_entry.html", null ],
     [ "JadeEngine::SliderParams", "struct_jade_engine_1_1_slider_params.html", null ],
@@ -66,6 +69,7 @@ var hierarchy =
     [ "JadeEngine::TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", null ],
     [ "JadeEngine::UICamera", "class_jade_engine_1_1_u_i_camera.html", null ],
     [ "JadeEngine::Vector2D< ValueType >", "class_jade_engine_1_1_vector2_d.html", null ],
+    [ "JadeEngine::Vector2D< float >", "class_jade_engine_1_1_vector2_d.html", null ],
     [ "JadeEngine::Vector2D< int32_t >", "class_jade_engine_1_1_vector2_d.html", null ],
     [ "JadeEngine::WorldCamera", "class_jade_engine_1_1_world_camera.html", null ]
 ];

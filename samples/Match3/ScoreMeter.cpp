@@ -100,7 +100,7 @@ namespace MatchThree
 
     _energySymbolsPulse.Initialize(pulseParams);
 
-    std::fill(std::begin(_energy), std::end(_energy), /*kMinEnergy*/ 40.0f);
+    std::fill(std::begin(_energy), std::end(_energy), kMinEnergy);
   }
 
   Vector2D_i32 ScoreMeter::CreateRegularPolygonVertex(const int32_t sides, const float radius, const size_t index)

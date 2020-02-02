@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['layer_304',['layer',['../struct_jade_engine_1_1_sprite_params.html#a3730555f752a200b26eb4ca2eb3845e6',1,'JadeEngine::SpriteParams']]]
+  ['keybindings_318',['keybindings',['../struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774',1,'JadeEngine::GameInitParams']]]
 ];
