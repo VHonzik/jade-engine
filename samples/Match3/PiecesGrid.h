@@ -44,6 +44,8 @@ namespace MatchThree
     static int32_t GetTotalWidth(size_t columns, int32_t pieceWidth, int32_t piecesSpacing);
     static int32_t GetTotalHeight(size_t rows, int32_t pieceHeight, int32_t piecesSpacing);
 
+    void ForcePieceTypeMatch(const PieceType type);
+
   private:
     size_t PiecesIndexFromColumnRow(const size_t row, const size_t column) const;
     size_t PiecesIndexFromPiece(Piece* piece) const;
@@ -80,6 +82,7 @@ namespace MatchThree
     bool _piecesMoving;
     bool _piecesMatching;
     bool _piecesMovingMatch;
+    std::pair<Piece*, Piece*> _swappedPieces;
 
     PiecesContainer _pieces;
     std::unordered_map<Piece*, size_t> _pieceToPiecesIndex;

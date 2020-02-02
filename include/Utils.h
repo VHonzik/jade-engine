@@ -130,4 +130,14 @@ namespace JadeEngine
   {
     return static_cast<T>(start + (end - start) * Clamp01(t));
   }
+
+  inline SDL_Color ChangedBrigthness(const SDL_Color& color, const float brightnessChange)
+  {
+    return {
+      Clamp(static_cast<uint8_t>(color.r * brightnessChange), uint8_t{0}, uint8_t{255}),
+      Clamp(static_cast<uint8_t>(color.g * brightnessChange), uint8_t{0}, uint8_t{255}),
+      Clamp(static_cast<uint8_t>(color.b * brightnessChange), uint8_t{0}, uint8_t{255}),
+      color.a
+    };
+  }
 }

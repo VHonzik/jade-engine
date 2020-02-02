@@ -12,17 +12,6 @@
 
 namespace
 {
-  const std::array<std::string, MatchThree::kPieceType_Count> kPiecesTextures =
-  {
-    "tileBlue_42.png",    //BlueOctagon
-    "tileGreen_35.png",   //GreenCircle
-    "tileOrange_30.png",  //OrangeTriangle
-    "tilePink_48.png",    //PinkHeart
-    "tileRed_34.png",     //RedDiamond
-    "tileGrey_29.png",    //WhitePentagon
-    "tileYellow_33.png",  //YellowStar
-  };
-
   const char kBackgroundTileNormal[] = "BackTile_17.png";
   const char kBackgroundTileHover[] = "BackTile_18.png";
   const char kBackgroundTileSelected[] = "BackTile_09.png";

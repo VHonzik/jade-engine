@@ -12,11 +12,6 @@
 using namespace JadeEngine;
 using namespace MatchThree;
 
-// Odyssey Nowtro
-// Android Automatic Lazer Love
-// Garth Knight Transcoding
-// Carl Craig The Melody (Henrik Schwarz remix)
-
 int32_t main(int32_t argc, char* argv[])
 {
   auto& game = GGame;

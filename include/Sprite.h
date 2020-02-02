@@ -40,7 +40,8 @@ namespace JadeEngine
 
     @see ObjectLayer
     */
-    ObjectLayer               layer;
+    ObjectLayer layer;
+
     /**
     Name of the texture that will be rendered by the sprite.
 
@@ -51,13 +52,15 @@ namespace JadeEngine
 
     @see SpriteParams::spriteSheet
     */
-    std::string               textureName;
+    std::string textureName;
+
     /**
     Z coordinate of the Sprite.
 
     The %game objects with higher Z coordinate will be drawn over the ones with lower one.
     */
-    int32_t                   z;
+    int32_t z;
+
     /**
     Whether the texture is part of a sprite-sheet file or stand-alone texture file.
 
@@ -67,7 +70,8 @@ namespace JadeEngine
 
     @see SpriteParams::textureName
     */
-    bool                      spriteSheet;
+    bool spriteSheet;
+
     /**
     Name of the sprite-sheet corresponding to `GameInitParamsSpriteSheetEntry::assetName` that was used when initializing the game.
 
@@ -75,7 +79,7 @@ namespace JadeEngine
 
     @see SpriteParams::spriteSheet
     */
-    std::string               spriteSheetName;
+    std::string spriteSheetName;
   };
 
   /**

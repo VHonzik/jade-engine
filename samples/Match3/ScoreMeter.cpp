@@ -4,6 +4,8 @@
 #include "EngineTime.h"
 #include "Game.h"
 #include "LineStrip.h"
+#include "SampleConstants.h"
+#include "Sprite.h"
 #include "Text.h"
 #include "Transform.h"
 #include "Utils.h"
@@ -12,40 +14,66 @@
 
 namespace MatchThree
 {
-  const std::array<SDL_Color, kPieceType_Count> kPiecesColor = {
-    kPieceColor_BlueOctagon   ,
-    kPieceColor_GreenCircle   ,
-    kPieceColor_OrangeTriangle,
-    kPieceColor_PinkHeart     ,
-    kPieceColor_RedDiamond    ,
-    kPieceColor_WhitePentagon ,
-    kPieceColor_YellowStar    ,
-  };
+  const float kMinEnergy = 0.0f;
+  const float kThresholdEnergy = 60.0f;
+  const float kMaxEnergy = 100.f;
+  const float kMatchEnergyContribution = 1.0f;
 
   ScoreMeter::ScoreMeter(const ScoreMeterParams& params)
     : _wantedScore(0)
     , _currentScore(0.0f)
     , _displayedScore(0)
     , _layer(params.layer)
+    , _scoreChanged(false)
   {
     _z = params.z;
     transform->Initialize(0, 0, params.width, params.height);
 
     LineStripParams lineStripParams;
-    lineStripParams.layer = params.layer;
+    lineStripParams.layer = _layer;
     lineStripParams.color = kLighterDarkGreyColor;
-    lineStripParams.z = params.z;
+    lineStripParams.z = _z;
 
-    auto radius = std::min(transform->GetWidth(), transform->GetHeight()) / 2;
-    CreateRegularPolygonVertices(lineStripParams.initialPoints, params.sides, radius);
+    _maxEnergyDisplayedRadius = static_cast<float>(std::min(transform->GetWidth(), transform->GetHeight()) / 2);
+    _thresholdEnergyDisplayedRadius = _maxEnergyDisplayedRadius * 2.0f / 3.0f;
+    _minEnergyDisplayedRadius = 30.0f;
 
+    CreateRegularPolygonVertices(lineStripParams.initialPoints, kPieceType_Count, _maxEnergyDisplayedRadius);
     _fullEnergyBorder = GGame.Create<LineStrip>(lineStripParams);
 
-    radius = radius * 6 / 4;
-    CreateRegularPolygonVertices(lineStripParams.initialPoints, params.sides, radius);
+    CreateRegularPolygonVertices(lineStripParams.initialPoints, kPieceType_Count, _thresholdEnergyDisplayedRadius);
     _thresholdEnergyBorder = GGame.Create<LineStrip>(lineStripParams);
-    transform->Attach(_fullEnergyBorder->transform);
-    transform->Attach(_thresholdEnergyBorder->transform);
+
+    for (size_t i = 0; i < kPieceType_Count; i++)
+    {
+      lineStripParams.initialPoints = { kZeroVector2D_i32, CreateRegularPolygonVertex(kPieceType_Count, _maxEnergyDisplayedRadius, i) };
+      _energyLines[i] = GGame.Create<LineStrip>(lineStripParams);
+      transform->Attach(_energyLines[i]->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    }
+
+    lineStripParams.z = _z + 1;
+    lineStripParams.color = kWhiteColor;
+    CreateRegularPolygonVertices(lineStripParams.initialPoints, kPieceType_Count, _minEnergyDisplayedRadius);
+    _energySpiderChart = GGame.Create<LineStrip>(lineStripParams);
+
+    transform->Attach(_fullEnergyBorder->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_thresholdEnergyBorder->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_energySpiderChart->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+
+    SpriteParams spriteParams;
+    spriteParams.layer = _layer;
+    spriteParams.z = _z + 2;
+    spriteParams.spriteSheet = true;
+    spriteParams.spriteSheetName = kMatchThreeSpritesheet;
+
+    for (size_t i = 0; i < kPieceType_Count; i++)
+    {
+      spriteParams.textureName = kPiecesTextures[i];
+      const auto position = CreateRegularPolygonVertex(kPieceType_Count, _maxEnergyDisplayedRadius, i);
+      _energySymbols[i] = GGame.Create<Sprite>(spriteParams);
+      _energySymbols[i]->transform->SetSize(20, 20);
+      transform->Attach(_energySymbols[i]->transform, position, kAttachmentPoint_Center);
+    }
 
     TextParams textParams;
     textParams.layer = params.layer;
@@ -59,21 +87,40 @@ namespace MatchThree
     _text->SetVerticalAlign(kVerticalAlignment_Center);
     _text->SetHorizontalAlign(kHorizontalAlignment_Center);
     _text->SetPosition(transform->GetCenterX(), transform->GetCenterY());
+
+    PulseAnimationParams pulseParams;
+    pulseParams.expandStartingSpeed = 1.0f;
+    pulseParams.expandMinMaxSpeed = 1.2f;
+    pulseParams.expandAcceleration = 0.5f;
+    pulseParams.contractStartingSpeed = 1.2f;
+    pulseParams.contractMinMaxSpeed = 1.0f;
+    pulseParams.contractAcceleration = -0.5f;
+    pulseParams.relativeFinalSize = 1.5f;
+    pulseParams.startImmidiatelly = false;
+
+    _energySymbolsPulse.Initialize(pulseParams);
+
+    std::fill(std::begin(_energy), std::end(_energy), /*kMinEnergy*/ 40.0f);
   }
 
-  void ScoreMeter::CreateRegularPolygonVertices(std::vector<Vector2D_i32>& vertices, const int32_t sides, const int32_t radius)
+  Vector2D_i32 ScoreMeter::CreateRegularPolygonVertex(const int32_t sides, const float radius, const size_t index)
   {
     const auto offset = -0.75f * 2 * kFPI / sides;
+    const auto sideAngle = (2 * kFPI * index / sides);
+    const auto x = radius * std::cos(offset + sideAngle);
+    const auto y = radius * std::sin(offset + sideAngle);
+    return { static_cast<int32_t>(x), static_cast<int32_t>(y) };
+  }
+
+  void ScoreMeter::CreateRegularPolygonVertices(std::vector<Vector2D_i32>& vertices, const int32_t sides, const float radius)
+  {
     vertices.clear();
     // To close the loop we need the starting point twice
     vertices.resize(sides + 1);
     for (size_t i = 0; i < vertices.size(); i++) {
       // Repeat starting point as the last element
       const auto polygonVertexIndex = i < vertices.size() - 1 ? i : 0;
-      const auto sideAngle = (2 * kFPI * polygonVertexIndex / sides);
-      const auto x = transform->GetCenterX() + radius * std::cos(offset + sideAngle);
-      const auto y = transform->GetCenterY() + radius * std::sin(offset + sideAngle);
-      vertices[i] = { static_cast<int32_t>(x), static_cast<int32_t>(y) };
+      vertices[i] = CreateRegularPolygonVertex(sides, radius, polygonVertexIndex);
     }
   }
 
@@ -81,8 +128,8 @@ namespace MatchThree
   {
     TextParams textParams;
     textParams.layer = _layer;
-    textParams.fontName = kVeraFont;
-    textParams.fontSize = 12;
+    textParams.fontName = kVeraFontBold;
+    textParams.fontSize = 24;
     textParams.text = "+1";
     textParams.z = _z + 100;
 
@@ -95,11 +142,12 @@ namespace MatchThree
       point.text->SetHorizontalAlign(kHorizontalAlignment_Center);
       point.text->SetVerticalAlign(kVerticalAlignment_Center);
       point.text->SetPosition(match.position.x, match.position.y);
-      point.currentPos = match.position;
-      point.wantedPos = transform->GetCenterPosition();
+      point.currentPos = match.position.Convert<float>();
+      point.wantedPos = transform->GetCenterPosition().Convert<float>();
       point.speed = 10.0f;
       point.acceleration = 200.0f;
       point.maxSpeed = 1000.0f;
+      point.type = match.type;
 
       _floatingPoints.push_back(point);
     }
@@ -111,16 +159,56 @@ namespace MatchThree
     const auto moveTowardsResult = MoveTowardsDone(point.currentPos, point.wantedPos, point.speed  *GTime.deltaTime);
     point.currentPos = moveTowardsResult.first;
 
-    Vector2D_i32 currentPos = {};
-    currentPos = point.currentPos;
-
+    const auto currentPos = point.currentPos.Convert<int32_t>();
     point.text->SetPosition(currentPos.x, currentPos.y);
 
     if (moveTowardsResult.second)
     {
       _wantedScore += 1;
+      _scoreChanged = true;
+
+      for (size_t i = 0; i < kPieceType_Count; i++)
+      {
+        if (i != point.type) _energy[i] += kMatchEnergyContribution;
+        if (_energy[i] >= kThresholdEnergy)
+        {
+          _energySymbolsPulse.Register(_energySymbols[i]);
+          if (_energySymbolsPulse.GetState() == kPulseAnimationState_stopped)
+          {
+            _energySymbolsPulse.Start();
+          }
+        }
+      }
+
       point.text->Destroy();
     }
+  }
+
+  void ScoreMeter::UpdateEnergySpiderChart()
+  {
+    std::vector<Vector2D_i32> points(kPieceType_Count);
+
+    for (size_t i = 0; i < kPieceType_Count; i++)
+    {
+      float radius = 0.0f;
+      if (_energy[i] <= kThresholdEnergy)
+      {
+        const auto t = (_energy[i] - kMinEnergy) / (kMaxEnergy - kMinEnergy);
+        radius = Interpolate(_minEnergyDisplayedRadius, _thresholdEnergyDisplayedRadius, t);
+      }
+      else
+      {
+        const auto t = (_energy[i] - kThresholdEnergy) / (kMaxEnergy - kThresholdEnergy);
+        radius = Interpolate(_thresholdEnergyDisplayedRadius, _maxEnergyDisplayedRadius, t);
+      }
+
+      points[i] = CreateRegularPolygonVertex(kPieceType_Count, radius, i);
+    }
+
+    // To close the loop repeat the start
+    points.push_back(points[0]);
+
+    _energySpiderChart->SetPoints(points);
   }
 
   void ScoreMeter::Update()
@@ -152,6 +240,26 @@ namespace MatchThree
     }
 
     _floatingPoints.erase(std::remove_if(std::begin(_floatingPoints), std::end(_floatingPoints), [](const FloatingPoint& point) { return point.text->DestructionWanted(); }), std::end(_floatingPoints));
+
+    if (_scoreChanged)
+    {
+      UpdateEnergySpiderChart();
+      _scoreChanged = false;
+    }
+
+    _energySymbolsPulse.Update();
+  }
+
+  bool ScoreMeter::IsPieceTypeCharged(const PieceType type) const
+  {
+    return _energy[type] >= kThresholdEnergy;
+  }
+
+  void ScoreMeter::ResetPieceTypeEnergy(const PieceType type)
+  {
+    _energy[type] = kMinEnergy;
+    _energySymbolsPulse.Unregister(_energySymbols[type]);
+    UpdateEnergySpiderChart();
   }
 
 }

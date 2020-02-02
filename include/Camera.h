@@ -40,7 +40,7 @@ namespace JadeEngine
     WorldCamera();
 
     Box_i32 WorldToScreen(const std::shared_ptr<Transform>& transform);
-    Vector2D_i32 WorldToScreen(const Vector2D_i32& transform);
+    Vector2D_i32 WorldToScreen(const Vector2D_i32& vector);
     Rectangle WorldToScreen(const Rectangle& rect);
     SDL_Point WorldToScreen(const SDL_Point& point);
 

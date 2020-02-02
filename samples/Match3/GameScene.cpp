@@ -29,24 +29,31 @@ namespace MatchThree
 
     ScoreMeterParams scoreParams;
     scoreParams.layer = kObjectLayer_ui;
-    scoreParams.sides = kPieceType_Count;
-    scoreParams.width = 100;
-    scoreParams.height = 100;
+    scoreParams.width = 180;
+    scoreParams.height = 180;
     scoreParams.z = 0;
 
     _scoreMeter = GGame.Create<ScoreMeter>(scoreParams);
-    _scoreMeter->transform->SetCenterPosition(GGame.GetHalfWidth(), 100);
+    _scoreMeter->transform->SetCenterPosition(GGame.GetHalfWidth(), 110);
   }
-
 
   void GameScene::Update()
   {
     _grid->UpdateGrid();
 
-    const auto& matches = _grid->GetMatches();
+    const auto matches = _grid->GetMatches();
     if (matches.size() > 0)
     {
       _scoreMeter->Score(matches);
+      for (const auto& match : matches)
+      {
+        if (match.initiatedByPlayerSwap && _scoreMeter->IsPieceTypeCharged(match.type))
+        {
+          _grid->ForcePieceTypeMatch(match.type);
+          _scoreMeter->ResetPieceTypeEnergy(match.type);
+          break;
+        }
+      }
       _grid->ResetMatches();
     }
   }

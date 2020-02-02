@@ -3,6 +3,9 @@
 #include "EngineConstants.h"
 #include "Vector2D.h"
 
+#include <array>
+#include <string>
+
 using namespace JadeEngine;
 
 namespace MatchThree
@@ -35,8 +38,31 @@ namespace MatchThree
   struct MatchInfo
   {
     PieceType type;
-    Vector2D_i32    position;
+    Vector2D_i32 position;
+    bool initiatedByPlayerSwap;
   };
 
   const char kMatchThreeSpritesheet[] = "matchThree";
+
+  const std::array<std::string, MatchThree::kPieceType_Count> kPiecesTextures =
+  {
+    "tileBlue_42.png",    //BlueOctagon
+    "tileGreen_35.png",   //GreenCircle
+    "tileOrange_30.png",  //OrangeTriangle
+    "tilePink_48.png",    //PinkHeart
+    "tileRed_34.png",     //RedDiamond
+    "tileGrey_29.png",    //WhitePentagon
+    "tileYellow_33.png",  //YellowStar
+  };
+
+  const std::array<SDL_Color, kPieceType_Count> kPiecesColor =
+  {
+    kPieceColor_BlueOctagon,    //BlueOctagon
+    kPieceColor_GreenCircle,    //GreenCircle
+    kPieceColor_OrangeTriangle, //OrangeTriangle
+    kPieceColor_PinkHeart,      //PinkHeart
+    kPieceColor_RedDiamond,     //RedDiamond
+    kPieceColor_WhitePentagon,  //WhitePentagon
+    kPieceColor_YellowStar,     //YellowStar
+  };
 }

@@ -46,22 +46,6 @@ namespace JadeEngine
       return *this;
     }
 
-    template<typename U = ValueType>
-    Vector2D<float>& operator=(const Vector2D<int32_t>& other)
-    {
-      x = static_cast<float>(other.x);
-      y = static_cast<float>(other.y);
-      return *this;
-    }
-
-    template<typename U = ValueType>
-    Vector2D<int32_t>& operator=(const Vector2D<float>& other)
-    {
-      x = static_cast<int32_t>(other.x);
-      y = static_cast<int32_t>(other.y);
-      return *this;
-    }
-
     Vector2D& operator=(Vector2D&& other)
     {
       if (this != &other)
@@ -96,6 +80,11 @@ namespace JadeEngine
       return { x * number, y * number };
     }
 
+    Vector2D operator*(const Vector2D& other) const
+    {
+      return { x * other.x, y * other.y };
+    }
+
     bool operator==(const Vector2D& other) const
     {
       return x == other.x && y == other.y;
@@ -106,7 +95,13 @@ namespace JadeEngine
       return !(*this == other);
     }
 
-    ValueType SizeSq() const {
+    bool operator<(const Vector2D& other) const
+    {
+      return x < other.x && y < other.y;
+    }
+
+    ValueType SizeSq() const
+    {
       return x * x + y * y;
     }
 
@@ -115,10 +110,17 @@ namespace JadeEngine
       return std::sqrt(SizeSq());
     }
 
-    template <typename U = ValueType>
-    std::enable_if_t<std::is_floating_point_v<U>, Vector2D> Normalized() const
+    Vector2D Normalized() const
     {
+      static_assert(std::is_floating_point<ValueType>::value);
       return *this / Size();
+    }
+
+    template<typename OtherValueType>
+    Vector2D<OtherValueType> Convert() const
+    {
+      static_assert(!std::is_same<ValueType, OtherValueType>::value);
+      return { static_cast<OtherValueType>(x),  static_cast<OtherValueType>(y) };
     }
   };
 

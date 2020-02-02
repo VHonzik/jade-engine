@@ -114,6 +114,9 @@
     <ClCompile Include="..\..\source\Text.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\Animations.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Aligment.h">
@@ -252,6 +255,9 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Vector2D.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Animations.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>

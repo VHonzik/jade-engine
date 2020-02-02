@@ -38,7 +38,7 @@ namespace JadeEngine
     Initialize a new game.
 
     @param initParams Parameters required to initialize the game.
-    @param argv Argument Vector2D_i32 as passed to the main function.
+    @param argv Argument vector as passed to the main function.
     @warning Should be a first operation on GGame in the program life cycle.
     @return Whether the initialization was successful. Reasons for failing are generally non-recoverable internal SDL2 libraries failing. Debugging recommended.
     @see GameInitParams

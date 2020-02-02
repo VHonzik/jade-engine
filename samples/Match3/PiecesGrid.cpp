@@ -17,16 +17,17 @@ namespace
 namespace MatchThree
 {
   PiecesGrid::PiecesGrid(const PiecesGridParams& params)
-    : _columns            (params.columns)
-    , _rows               (params.rows)
-    , _inputEnabled       (true)
-    , _pieceWidth         (params.pieceWidth)
-    , _pieceHeight        (params.pieceHeight)
-    , _piecesSpacing      (params.piecesSpacing)
-    , _piecesMoving       (false)
-    , _piecesMatching     (false)
-    , _piecesMovingMatch  (false)
-    , _layer              (params.layer)
+    : _columns              (params.columns)
+    , _rows                 (params.rows)
+    , _inputEnabled         (true)
+    , _pieceWidth           (params.pieceWidth)
+    , _pieceHeight          (params.pieceHeight)
+    , _piecesSpacing        (params.piecesSpacing)
+    , _piecesMoving         (false)
+    , _piecesMatching       (false)
+    , _piecesMovingMatch    (false)
+    , _swappedPieces        { nullptr, nullptr }
+    , _layer                (params.layer)
   {
     assert(_columns > 0 && _rows > 0);
 
@@ -86,6 +87,8 @@ namespace MatchThree
 
   void PiecesGrid::SwapPiecesFinish(const PiecesContainer::iterator& pieceA, const PiecesContainer::iterator& pieceB)
   {
+    _swappedPieces = { (*pieceA), (*pieceB) };
+
     (*pieceA)->Deselect();
     (*pieceB)->Deselect();
 
@@ -105,6 +108,8 @@ namespace MatchThree
 
   void PiecesGrid::UpdateGrid()
   {
+    _swappedPieces = { nullptr, nullptr };
+
     if (transform->IsDirty(kDirtyFlag_centerPosition))
     {
       UpdatePiecesPosition();
@@ -356,9 +361,9 @@ namespace MatchThree
       std::copy(std::cbegin(possibleMatches), std::cend(possibleMatches), std::back_inserter(matches));
     }
 
-    std::transform(std::cbegin(matches), std::cend(matches), std::back_inserter(_matches), [](const auto& piece)
+    std::transform(std::cbegin(matches), std::cend(matches), std::back_inserter(_matches), [&](const Piece* piece)
     {
-      return MatchInfo{ piece->GetType(), piece->transform->GetCenterPosition() };
+      return MatchInfo{ piece->GetType(), piece->transform->GetCenterPosition(), _swappedPieces.first == piece || _swappedPieces.second == piece };
     });
 
     for (auto& piece : matches)
@@ -439,5 +444,29 @@ namespace MatchThree
   void PiecesGrid::ResetMatches()
   {
     _matches.clear();
+  }
+
+  void PiecesGrid::ForcePieceTypeMatch(const PieceType type)
+  {
+    auto iter = std::begin(_pieces);
+    bool atLeastOneMatched = false;
+
+    while (iter != std::end(_pieces))
+    {
+      const auto& piece = *iter;
+      if (piece->GetType() == type)
+      {
+        atLeastOneMatched = true;
+        piece->FlashMatch();
+        _matches.push_back({piece->GetType(), piece->transform->GetCenterPosition()});
+      }
+
+      ColumnAdvance(iter);
+    }
+
+    if (atLeastOneMatched)
+    {
+      _piecesMatching = true;
+    }
   }
 }
