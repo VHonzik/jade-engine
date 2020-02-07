@@ -24,6 +24,12 @@ var NAVTREEINDEX2 =
 "index.html#autotoc_md4":[0,0,1],
 "index.html#autotoc_md5":[0,0,2],
 "installationpage.html":[1],
+"installationpage.html#autotoc_md10":[1,0,3],
+"installationpage.html#autotoc_md11":[1,0,4],
+"installationpage.html#autotoc_md6":[1,0],
+"installationpage.html#autotoc_md7":[1,0,0],
+"installationpage.html#autotoc_md8":[1,0,1],
+"installationpage.html#autotoc_md9":[1,0,2],
 "pages.html":[],
 "struct_jade_engine_1_1_box_sprite_params.html":[2,0,0,5],
 "struct_jade_engine_1_1_box_sprite_params.html#a421551269e55bbc0790ef97df7330eda":[2,0,0,5,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX2 =
 "struct_jade_engine_1_1_texture.html#a48e8dc29b894bdf995ad4125e559b47f":[2,0,0,54,4],
 "struct_jade_engine_1_1_texture.html#a5705f1d8f60a63d9b1a4bbc05f9b84ee":[2,0,0,54,0],
 "struct_jade_engine_1_1_texture.html#a6426395c6d8029c4cff7eef8abcd96ca":[2,0,0,54,3],
-"struct_jade_engine_1_1_texture.html#a86b1951464e410f644b05290d294f18b":[2,0,0,54,6],
-"struct_jade_engine_1_1_texture.html#aa533e49150720d98ba8da18ef41dc7e0":[2,0,0,54,1],
-"struct_jade_engine_1_1_texture.html#aa9a48763bbe1ea72e48973050ee64bdd":[2,0,0,54,9],
-"struct_jade_engine_1_1_texture.html#aaca0b3eb05cb6f78c016363816deb407":[2,0,0,54,5],
-"struct_jade_engine_1_1_texture.html#abfaba3411e4455e128480be34656a4f3":[2,0,0,54,8],
-"struct_jade_engine_1_1_texture.html#ae9e8c5afecdf8304810fb2dfa9b37a13":[2,0,0,54,2],
-"struct_jade_engine_1_1_texture.html#afabe15e7b115a8f4ac6d3a0b90bafe3a":[2,0,0,54,10]
+"struct_jade_engine_1_1_texture.html#a86b1951464e410f644b05290d294f18b":[2,0,0,54,6]
 };

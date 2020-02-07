@@ -30,7 +30,15 @@ var NAVTREE =
         [ "Usage", "index.html#autotoc_md5", null ]
       ] ]
     ] ],
-    [ "Installation guide", "installationpage.html", null ],
+    [ "Installation guide", "installationpage.html", [
+      [ "Adding Jade Engine to a new project and compiling minimalistic sample", "installationpage.html#autotoc_md6", [
+        [ "Create Empty Visual Studio project", "installationpage.html#autotoc_md7", null ],
+        [ "Add Jade Engine as git submodule", "installationpage.html#autotoc_md8", null ],
+        [ "Add Jade Engine header and source files to the project", "installationpage.html#autotoc_md9", null ],
+        [ "Add Jade Engine property files to the project", "installationpage.html#autotoc_md10", null ],
+        [ "Add main.cpp and initialize Jade Engine", "installationpage.html#autotoc_md11", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -52,7 +60,7 @@ var NAVTREEINDEX =
 ".html",
 "class_jade_engine_1_1_line_box.html#a0765bf7bfdfdba0835a64c2c501ab29f",
 "class_jade_engine_1_1_world_camera.html#a0c09aa2d12ea834dfe0d6e4a27c257a7",
-"struct_jade_engine_1_1_tooltip_params.html"
+"struct_jade_engine_1_1_texture.html#aa533e49150720d98ba8da18ef41dc7e0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

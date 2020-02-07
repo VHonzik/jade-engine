@@ -90,7 +90,6 @@ namespace JadeEngine
     true,
     //std::string spriteSheetName;
     kJadeEngineUISpritesheet,
-
     //int32_t width;
     250,
     //int32_t height;
