@@ -265,6 +265,8 @@ namespace JadeEngine
     int32_t GetHalfWidth() const { return GetWidth() / 2; }
     int32_t GetHalfHeight() const { return GetHeight() / 2; }
 
+    Vector2D_i32 GetMiddlePoint() const { return { GetHalfWidth(), GetHalfHeight() }; };
+
     const Sprite* GetHoveredSprite() const { return _hoveredSprite; }
     SDL_Renderer* GetRenderer() { return _renderer; }
     bool IsFullscreen() const { return _fullscreen; }

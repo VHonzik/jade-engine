@@ -9,6 +9,8 @@
 
 namespace JadeEngine
 {
+  class Transform;
+
   /**
   Specifies type of transform's properties that were changed - dirtied - last frame.
 
@@ -42,32 +44,37 @@ namespace JadeEngine
     kDirtyFlag_count
   };
 
-  /**
-  Specifies the type of attachment that one object has to another. Determines the point on both parent and child transform that local position is relative to.
+  enum TransformBorderCoordinate
+  {
+    kTransformBorderCoordinate_left_top,
+    kTransformBorderCoordinate_center,
+    kTransformBorderCoordinate_right_bottom,
+  };
 
-  @see Transform::Attach, Transform::SetLocalPosition
+  /**
+  Specified a point on transform outline or center that will be used to position transform relative to another.
   */
-  enum AttachmentPoint
+  struct AttachmentPoint
   {
     /**
-    The top-left of the child will be positioned where parent top-left corner is offset by local position of the child.
-
-    When `parent` moves the following or similar code will be called on the `child`:
-    @code
-    child->SetPosition(parent->GetPosition() + child->GetLocalPosition());
-    @endcode
+    X coordinate of the point.
     */
-    kAttachmentPoint_TopLeft,
+    TransformBorderCoordinate x;
 
     /**
-    The center of the child will be positioned where the parent center is offset by the local position of the child.
-
-    When `parent` moves the following or similar code will be called on the `child`:
-    @code
-    child->SetCenterPosition(parent->GetCenterPosition() + child->GetLocalPosition());
-    @endcode
+    Y coordinate of the point.
     */
-    kAttachmentPoint_Center
+    TransformBorderCoordinate y;
+  };
+
+  const AttachmentPoint kDefaultAttachmentPoint = { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_left_top };
+  const AttachmentPoint kCenterAttachmentPoint = { kTransformBorderCoordinate_center, kTransformBorderCoordinate_center };
+
+  struct TransformAttachmentData
+  {
+    Vector2D_i32 localPosition;
+    AttachmentPoint parentAttachmentPoint;
+    AttachmentPoint childAttachmentPoint;
   };
 
   /**
@@ -194,7 +201,7 @@ namespace JadeEngine
 
     @see Transform::Attach, Transform::IsAttached, AttachmentPoint
     */
-    Vector2D_i32 GetLocalPosition() const { return _localPosition; }
+    Vector2D_i32 GetLocalPosition() const { return _attachmentData.localPosition; }
 
     /**
     Set the transform x and y position as a vector in pixels.
@@ -225,6 +232,9 @@ namespace JadeEngine
     Set the transform's center x and y position as a vector's element in pixels. See the vector version for more information.
     */
     void SetCenterPosition(const int32_t centerX, const int32_t centerY);
+
+    void SetPointPosition(const int32_t x, const int32_t y, const AttachmentPoint& point);
+    void SetPointPosition(const Vector2D_i32& position, const AttachmentPoint& point);
 
     /**
     Set the height of the transform in pixels. Internally calls Transform::SetSize, see that for more information.
@@ -290,12 +300,13 @@ namespace JadeEngine
     As part of this call the child transform will be moved to the same position as the parent respecting `localPosition` and `attachmentPoint` parameters.
 
     @param other The transform that will become a child of `this` transform.
-    @param localPosition The initial local position in pixels. The meaning of the local position depends on `attachmentPoint` parameter.
-    @param attachmentPoint The type of attachment to use. See AttachmentPoint enumeration for details.
+    @param localPosition The initial local position in pixels. The meaning of the local position depends on `attachmentPoint` and `otherAttachmentPoint` parameters.
+    @param attachmentPoint The point on `this` transform where the `other` transform `otherAttachmentPoint` will be placed.
+    @param otherAttachmentPoint The point on `other` transform that will placed where `attachmentPoint` of `this` is.
 
     @see Transform::SetLocalPosition, Transform::GetLocalPosition, Transform::IsAttached, AttachmentPoint
     */
-    void Attach(const std::shared_ptr<Transform>& other, const Vector2D_i32& localPosition = kZeroVector2D_i32, const AttachmentPoint attachmentPoint = kAttachmentPoint_TopLeft);
+    void Attach(const std::shared_ptr<Transform>& other, const Vector2D_i32& localPosition = kZeroVector2D_i32, const AttachmentPoint& attachmentPoint = kDefaultAttachmentPoint, const AttachmentPoint& otherAttachmentPoint = kDefaultAttachmentPoint);
 
     /**
     Detach the transform from its the parent.
@@ -326,7 +337,7 @@ namespace JadeEngine
     bool IsDirty(const DirtyFlag flag) const;
 
   private:
-    void OnAttached(const std::shared_ptr<Transform>& parent, const Vector2D_i32& localPosition, const AttachmentPoint attachmentPoint);
+    void OnAttached(const std::shared_ptr<Transform>& parent, const TransformAttachmentData& data);
     void OnAttachedPositionChange();
     void OnChildDetached(const std::shared_ptr<Transform>& child);
 
@@ -334,8 +345,7 @@ namespace JadeEngine
     Vector2D_i32 _position;
     Vector2D_i32 _size;
 
-    Vector2D_i32 _localPosition;
-    AttachmentPoint _attachmentPoint;
+    TransformAttachmentData _attachmentData;
 
     bool _boundingBoxSet;
     Box_i32 _boundingBox;
@@ -345,8 +355,7 @@ namespace JadeEngine
     std::bitset<kDirtyFlag_count> _dirtyFlags;
 
     std::shared_ptr<Transform> _parent;
-    std::vector<std::shared_ptr<Transform>> _childrenTopLeft;
-    std::vector<std::shared_ptr<Transform>> _childrenCenter;
+    std::vector<std::shared_ptr<Transform>> _children;
   };
 
 }

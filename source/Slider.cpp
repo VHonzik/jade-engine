@@ -25,13 +25,9 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _minTitle = GGame.Create<Text>(textParams);
-    _minTitle->SetVerticalAlign(kVerticalAlignment_Top);
-    _minTitle->SetHorizontalAlign(kHorizontalAlignment_Center);
 
     textParams.text = params.maxTitle;
     _maxTitle = GGame.Create<Text>(textParams);
-    _maxTitle->SetVerticalAlign(kVerticalAlignment_Top);
-    _maxTitle->SetHorizontalAlign(kHorizontalAlignment_Center);
 
     SpriteParams spriteParams;
     spriteParams.layer = params.layer;
@@ -116,12 +112,12 @@ namespace JadeEngine
 
   int32_t Slider::GetWidth() const
   {
-    return (_maxTitle->GetX() + _maxTitle->GetWidth()) - _minTitle->GetX();
+    return (_maxTitle->transform->GetX() + _maxTitle->transform->GetWidth()) - _minTitle->transform->GetX();
   }
 
   int32_t Slider::GetHeight() const
   {
-    return (_maxTitle->GetY() + _maxTitle->GetHeight()) - _pointer->transform->GetY();
+    return (_maxTitle->transform->GetY() + _maxTitle->transform->GetHeight()) - _pointer->transform->GetY();
   }
 
   void Slider::SetPosition(uint32_t x, uint32_t y)
@@ -130,8 +126,8 @@ namespace JadeEngine
     _axisLEnd->transform->SetCenterPosition(x, _axis->transform->GetCenterY());
     _axisREnd->transform->SetCenterPosition(x + _width, _axis->transform->GetCenterY());
     _pointer->transform->SetCenterPosition(x + static_cast<int32_t>(_value * _width), _axis->transform->GetCenterY());
-    _minTitle->SetPosition(x, y + _minMaxYMargin);
-    _maxTitle->SetPosition(x + _width, y + _minMaxYMargin);
+    _minTitle->transform->SetPointPosition(x, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
+    _maxTitle->transform->SetPointPosition(x + _width, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
   }
 
   void Slider::SetCenterPosition(uint32_t x, uint32_t y)
@@ -140,8 +136,8 @@ namespace JadeEngine
     _axis->transform->SetCenterPosition(x, y);
     _axisLEnd->transform->SetCenterPosition(x - _width / 2, y);
     _axisREnd->transform->SetCenterPosition(x + _width / 2, y);
-    _minTitle->SetPosition(x - _width / 2, y + _minMaxYMargin);
-    _maxTitle->SetPosition(x + _width / 2, y + _minMaxYMargin);
+    _minTitle->transform->SetPointPosition(x - _width / 2, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
+    _maxTitle->transform->SetPointPosition(x + _width / 2, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
   }
 
   void Slider::Show(bool shown)

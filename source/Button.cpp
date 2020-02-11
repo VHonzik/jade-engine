@@ -21,6 +21,55 @@ namespace JadeEngine
     , _disabledSprite(nullptr)
     , _hoveredSprite(nullptr)
   {
+    transform->Initialize(kZeroVector2D_i32, { params.width, params.height });
+
+    BoxSpriteParams boxParams;
+    boxParams.layer = params.layer;
+    boxParams.textureName = params.textureNormal;
+    boxParams.z = params.z-1;
+    boxParams.spriteSheet = params.spriteSheet;
+    boxParams.spriteSheetName = params.spriteSheetName;
+    boxParams.cornerSize = params.cornerSize;
+    boxParams.size = {params.width, params.height};
+
+    _normalSprite = GGame.Create<BoxSprite>(boxParams);
+    transform->Attach(_normalSprite->transform);
+
+    boxParams.textureName = params.texturePressed;
+    _pressedSprite = GGame.Create<BoxSprite>(boxParams);
+    _pressedSprite->Show(false);
+    transform->Attach(_pressedSprite->transform);
+
+    if (!params.textureDisabled.empty())
+    {
+      boxParams.textureName = params.textureDisabled;
+      _disabledSprite = GGame.Create<BoxSprite>(boxParams);
+      _disabledSprite->Show(false);
+      transform->Attach(_disabledSprite->transform);
+    }
+
+    if (!params.textureHovered.empty())
+    {
+      boxParams.textureName = params.textureHovered;
+      _hoveredSprite = GGame.Create<BoxSprite>(boxParams);
+      _hoveredSprite->Show(false);
+      transform->Attach(_hoveredSprite->transform);
+    }
+
+    _pressedOffset = params.pressedDepth;
+    _disabledOffset = params.pressedDepth;
+
+    _pressedSprite->transform->SetLocalPosition(0, _pressedOffset);
+    _pressedSprite->transform->SetHeight(_pressedSprite->transform->GetHeight() - _pressedOffset);
+    _pressedSprite->transform->SetBoundingBox({ 0, -_pressedOffset * 2, _pressedSprite->transform->GetWidth(), _pressedSprite->transform->GetHeight() + _pressedOffset * 2 });
+
+    if (_disabledSprite != nullptr)
+    {
+      _disabledSprite->transform->SetLocalPosition(0, _disabledOffset);
+      _disabledSprite->transform->SetHeight(_disabledSprite->transform->GetHeight() - _disabledOffset);
+      _disabledSprite->transform->SetBoundingBox({ 0, -_disabledOffset * 2, _disabledSprite->transform->GetWidth(), _disabledSprite->transform->GetHeight() + _disabledOffset * 2 });
+    }
+
     TextParams textParams;
     textParams.layer = params.layer;
     textParams.fontName = params.fontName;
@@ -30,52 +79,18 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _text = GGame.Create<Text>(textParams);
-    _text->SetHorizontalAlign(kHorizontalAlignment_Center);
-    _text->SetVerticalAlign(kVerticalAlignment_Center);
-
-    BoxSpriteParams boxParams;
-    boxParams.layer = params.layer;
-    boxParams.textureName = params.textureNormal;
-    boxParams.z = params.z-1;
-    boxParams.spriteSheet = params.spriteSheet;
-    boxParams.spriteSheetName = params.spriteSheetName;
-    boxParams.cornerSize = params.cornerSize;
-    boxParams.width = params.width;
-    boxParams.height = params.height;
-
-    _normalSprite = GGame.Create<BoxSprite>(boxParams);
-
-    boxParams.textureName = params.texturePressed;
-    _pressedSprite = GGame.Create<BoxSprite>(boxParams);
-    _pressedSprite->Show(false);
-
-    if (!params.textureDisabled.empty())
-    {
-      boxParams.textureName = params.textureDisabled;
-      _disabledSprite = GGame.Create<BoxSprite>(boxParams);
-      _disabledSprite->Show(false);
-    }
-
-    if (!params.textureHovered.empty())
-    {
-      boxParams.textureName = params.textureHovered;
-      _hoveredSprite = GGame.Create<BoxSprite>(boxParams);
-      _hoveredSprite->Show(false);
-    }
-
-    _pressedOffset = params.pressedDepth;
-    _disabledOffset = params.pressedDepth;
-
-    _pressedSprite->transform->SetHeight(_pressedSprite->transform->GetHeight() - _pressedOffset);
-    _pressedSprite->transform->SetBoundingBox({ 0, -_pressedOffset * 2, _pressedSprite->transform->GetWidth(), _pressedSprite->transform->GetHeight() + _pressedOffset * 2 });
-
-    if (_disabledSprite != nullptr)
-    {
-      _disabledSprite->transform->SetHeight(_disabledSprite->transform->GetHeight() - _disabledOffset);
-      _disabledSprite->transform->SetBoundingBox({ 0, -_disabledOffset * 2, _disabledSprite->transform->GetWidth(), _disabledSprite->transform->GetHeight() + _disabledOffset * 2 });
-    }
+    transform->Attach(_text->transform, kZeroVector2D_i32, kCenterAttachmentPoint, kCenterAttachmentPoint);
 
     SetPosition(0, 0);
+  }
+
+  void Button::SetCenterPosition(uint32_t x, uint32_t y)  {
+    _normalSprite->transform->SetCenterPosition(x, y);
+    _pressedSprite->transform->SetCenterPosition(x, y + _pressedOffset);
+    if (_disabledSprite != nullptr)    {      _disabledSprite->transform->SetCenterPosition(x, y + _disabledOffset);    }
+    if (_hoveredSprite != nullptr)    {      _hoveredSprite->transform->SetCenterPosition(x, y);
+    }
+    AdjustTextPosition();
   }
 
   void Button::SetPosition(uint32_t x, uint32_t y)
@@ -113,25 +128,7 @@ namespace JadeEngine
       offset = _disabledOffset;
     }
 
-    _text->SetPosition(_normalSprite->transform->GetCenterX(), _normalSprite->transform->GetCenterY() + offset);
-  }
-
-  void Button::SetCenterPosition(uint32_t x, uint32_t y)
-  {
-    _normalSprite->transform->SetCenterPosition(x, y);
-    _pressedSprite->transform->SetCenterPosition(x, y + _pressedOffset);
-
-    if (_disabledSprite != nullptr)
-    {
-      _disabledSprite->transform->SetCenterPosition(x, y + _disabledOffset);
-    }
-
-    if (_hoveredSprite != nullptr)
-    {
-      _hoveredSprite->transform->SetCenterPosition(x, y);
-    }
-
-    AdjustTextPosition();
+    _text->transform->SetLocalPosition(0, offset);
   }
 
   void Button::Update()

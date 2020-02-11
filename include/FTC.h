@@ -24,29 +24,13 @@ namespace JadeEngine
   public:
     FTC(const FTCParams& params);
 
-    void Update() override;
     void Show(const bool shown) override;
-
-    void SetHorizontalAlign(const HorizontalAlignment align);
-    void SetVerticalAlign(const VerticalAlignment align);
 
     void SetIntValue(const uint32_t index, const int32_t value);
     void SetStringValue(const uint32_t index, const std::string& value);
     void SetFloatValue(const uint32_t index, const float value);
     void SetValueColor(const uint32_t index, const SDL_Color& color);
 
-    void SetPositon(int32_t x, int32_t y);
-    int32_t GetX() const { return _x; }
-    int32_t GetY() const { return _y; }
-
-    int32_t GetCenterX() const { return _x + Width / 2; }
-    int32_t GetCenterY() const { return _y + Height / 2; }
-
-    int32_t GetWidth() const { return Width; }
-    int32_t GetHeight() const { return Height; }
-
-    int32_t Width;
-    int32_t Height;
   private:
     void Rebuild();
     void Recalculate();
@@ -62,13 +46,6 @@ namespace JadeEngine
 
     std::vector<Text*> _texts;
 
-    HorizontalAlignment _align;
-
-    int32_t _x;
-    int32_t _y;
-
     ObjectLayer _layer;
-
-    bool _recalculateWanted;
   };
 }
