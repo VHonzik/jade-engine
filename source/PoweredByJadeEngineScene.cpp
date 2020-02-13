@@ -37,7 +37,7 @@ namespace JadeEngine
     textParams.z = 0;
 
     _text = GGame.Create<Text>(textParams);
-    _text->transform->SetPointPosition(GGame.GetHalfWidth(), GGame.GetHeight() - 50, {kTransformBorderCoordinate_center, kTransformBorderCoordinate_right_bottom});
+    _text->transform->SetPositionAnchor(GGame.GetHalfWidth(), GGame.GetHeight() - 50, kAnchor_centerBottom);
 
     TextSpriteParams textSpriteParams;
     textSpriteParams.layer = kObjectLayer_ui;

@@ -69,8 +69,8 @@ namespace JadeEngine
     _slidersRow.SetPosition(GGame.GetHalfWidth() + 60, GGame.GetHalfHeight());
     _slidersRow.AddVA(_musicVolume, _soundVolume);
 
-    _musicVolumeDescription->transform->SetPointPosition(_musicVolume->GetX() - 20, _musicVolume->GetCenterY(), {kTransformBorderCoordinate_right_bottom, kTransformBorderCoordinate_center});
-    _soundVolumeDescription->transform->SetPointPosition(_soundVolume->GetX() - 20, _soundVolume->GetCenterY(), {kTransformBorderCoordinate_right_bottom, kTransformBorderCoordinate_center});
+    _musicVolumeDescription->transform->SetPositionAnchor(_musicVolume->GetX() - 20, _musicVolume->GetCenterY(), kAnchor_rightCenter);
+    _soundVolumeDescription->transform->SetPositionAnchor(_soundVolume->GetX() - 20, _soundVolume->GetCenterY(), kAnchor_rightCenter);
 
     buttonParams = kMainMenuBlueButton;
     buttonParams.width = 250;
@@ -110,7 +110,7 @@ namespace JadeEngine
 
     for (size_t i = 0; i < std::min(_keybindingButtons.size(), size_t{6}); i++)
     {
-      _keybindingDescription[i]->transform->SetPointPosition(_keybindingButtons[i]->GetX() - 10,  _keybindingButtons[i]->GetCenterY(), {kTransformBorderCoordinate_right_bottom, kTransformBorderCoordinate_center});
+      _keybindingDescription[i]->transform->SetPositionAnchor(_keybindingButtons[i]->GetX() - 10,  _keybindingButtons[i]->GetCenterY(), kAnchor_rightCenter);
     }
 
     auto checkboxStyle = kBlueCheckbox;
@@ -123,7 +123,7 @@ namespace JadeEngine
     textParams.text = "Fullscreen:";
     _fullScreenDescription = GGame.Create<Text>(textParams);
     _fullScreenDescription->Show(false);
-    _fullScreenDescription->transform->SetPointPosition(_fullScreenCheckbox->GetX() - 20, _fullScreenCheckbox->GetCenterY(), {kTransformBorderCoordinate_right_bottom, kTransformBorderCoordinate_center});
+    _fullScreenDescription->transform->SetPositionAnchor(_fullScreenCheckbox->GetX() - 20, _fullScreenCheckbox->GetCenterY(), kAnchor_rightCenter);
 
     _resolutionsDropdown = GGame.Create<Dropdown>(kOptionsDropdown);
 

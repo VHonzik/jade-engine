@@ -84,10 +84,18 @@ namespace JadeEngine
     }
   }
 
-  void Text::SetText(const std::string& text)
+  void Text::SetTextFast(const std::string& text)
   {
     _text = text;
     RemoveCache();
+  }
+
+  void Text::SetText(const std::string& text)
+  {
+    if (_text != text)
+    {
+      SetTextFast(text);
+    }
   }
 
   void Text::SetTextAndColor(const std::string& text, const SDL_Color& color)

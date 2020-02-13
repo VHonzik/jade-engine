@@ -18,8 +18,6 @@ namespace HelloJadeEngine
     params.z = 0;
 
     _helloJadeEngineText = GGame.Create<Text>(params);
-    _helloJadeEngineText->SetHorizontalAlign(kHorizontalAlignment_Center);
-    _helloJadeEngineText->SetVerticalAlign(kVerticalAlignment_Center);
-    _helloJadeEngineText->SetPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
+    _helloJadeEngineText->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
   }
 }

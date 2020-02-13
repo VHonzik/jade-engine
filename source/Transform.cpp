@@ -77,38 +77,47 @@ namespace JadeEngine
     }
   }
 
-  void Transform::SetPointPosition(const int32_t x, const int32_t y, const AttachmentPoint& point)
+  void Transform::SetPositionAnchor(const int32_t x, const int32_t y, const Anchor& point)
   {
-    SetPointPosition({ x, y }, point);
+    SetPositionAnchor({ x, y }, point);
   }
 
-  void Transform::SetPointPosition(const Vector2D_i32& position, const AttachmentPoint& point)
+  void Transform::SetPositionAnchor(const Vector2D_i32& position, const Anchor& point)
   {
-    Vector2D_i32 destination = position;
-    switch (point.x)
+    if (point == kAnchor_center)
     {
-    case kTransformBorderCoordinate_left_top:
-      destination.x -= 0;
-      break;
-    case kTransformBorderCoordinate_center:
+      SetCenterPosition(position);
+    }
+    else if (point == kAnchor_leftTop)
+    {
+      SetPosition(position);
+    }
+
+    Vector2D_i32 destination = position;
+    switch (point)
+    {
+    case kAnchor_center:
+    case kAnchor_centerBottom:
+    case kAnchor_centerTop:
       destination.x -= GetWidth() / 2;
       break;
-    default:
-      assert(point.x == kTransformBorderCoordinate_right_bottom);
+    case kAnchor_rightBottom:
+    case kAnchor_rightCenter:
+    case kAnchor_rightTop:
       destination.x -= GetWidth();
       break;
     }
 
-    switch (point.y)
+    switch (point)
     {
-    case kTransformBorderCoordinate_left_top:
-      destination.y -= 0;
-      break;
-    case kTransformBorderCoordinate_center:
+    case kAnchor_center:
+    case kAnchor_leftCenter:
+    case kAnchor_rightCenter:
       destination.y -= GetHeight() / 2;
       break;
-    default:
-      assert(point.y == kTransformBorderCoordinate_right_bottom);
+    case kAnchor_centerBottom:
+    case kAnchor_leftBottom:
+    case kAnchor_rightBottom:
       destination.y -= GetHeight();
       break;
     }
@@ -152,7 +161,7 @@ namespace JadeEngine
         _dirtyFlagsCurrentFrame.set(kDirtyFlag_boundingBox);
       }
 
-      if (IsAttached() && (_attachmentData.childAttachmentPoint.x == kTransformBorderCoordinate_center || _attachmentData.childAttachmentPoint.y == kTransformBorderCoordinate_center))
+      if (IsAttached() && _attachmentData.childAnchor != kAnchor_leftTop)
       {
         OnAttachedPositionChange();
       }
@@ -201,37 +210,38 @@ namespace JadeEngine
   void Transform::OnAttachedPositionChange()
   {
     assert(_parent);
-    Vector2D_i32 destination = kZeroVector2D_i32;
-    switch (_attachmentData.parentAttachmentPoint.x)
+    Vector2D_i32 destination = _parent->GetPosition();
+
+    switch (_attachmentData.parentAnchor)
     {
-    case kTransformBorderCoordinate_left_top:
-      destination.x = _parent->GetX();
-      break;
-    case kTransformBorderCoordinate_center:
+    case kAnchor_center:
+    case kAnchor_centerBottom:
+    case kAnchor_centerTop:
       destination.x = _parent->GetCenterX();
       break;
-    default:
-      assert(_attachmentData.parentAttachmentPoint.x == kTransformBorderCoordinate_right_bottom);
+    case kAnchor_rightBottom:
+    case kAnchor_rightCenter:
+    case kAnchor_rightTop:
       destination.x = _parent->GetX() + _parent->GetWidth();
       break;
     }
 
-    switch (_attachmentData.parentAttachmentPoint.y)
+    switch (_attachmentData.parentAnchor)
     {
-    case kTransformBorderCoordinate_left_top:
-      destination.y = _parent->GetY();
-      break;
-    case kTransformBorderCoordinate_center:
+    case kAnchor_center:
+    case kAnchor_leftCenter:
+    case kAnchor_rightCenter:
       destination.y = _parent->GetCenterY();
       break;
-    default:
-      assert(_attachmentData.parentAttachmentPoint.y == kTransformBorderCoordinate_right_bottom);
+    case kAnchor_centerBottom:
+    case kAnchor_leftBottom:
+    case kAnchor_rightBottom:
       destination.y = _parent->GetY() + _parent->GetHeight();
       break;
     }
 
     // Special case where we want to use SetCenterPosition
-    if (_attachmentData.childAttachmentPoint.x == kTransformBorderCoordinate_center && _attachmentData.childAttachmentPoint.y == kTransformBorderCoordinate_center)
+    if (_attachmentData.childAnchor == kAnchor_center)
     {
       SetCenterPosition(destination + _attachmentData.localPosition);
     }
@@ -239,30 +249,30 @@ namespace JadeEngine
     {
       Vector2D_i32 topLeftOffset = kZeroVector2D_i32;
 
-      switch (_attachmentData.childAttachmentPoint.x)
+      switch (_attachmentData.childAnchor)
       {
-      case kTransformBorderCoordinate_left_top:
-        topLeftOffset.x = 0;
-        break;
-      case kTransformBorderCoordinate_center:
+      case kAnchor_center:
+      case kAnchor_centerBottom:
+      case kAnchor_centerTop:
         topLeftOffset.x = -GetWidth() / 2;
         break;
-      default:
-        assert(_attachmentData.parentAttachmentPoint.x == kTransformBorderCoordinate_right_bottom);
+      case kAnchor_rightBottom:
+      case kAnchor_rightCenter:
+      case kAnchor_rightTop:
         topLeftOffset.x = -GetWidth();
         break;
       }
 
-      switch (_attachmentData.childAttachmentPoint.y)
+      switch (_attachmentData.childAnchor)
       {
-      case kTransformBorderCoordinate_left_top:
-        topLeftOffset.y = 0;
-        break;
-      case kTransformBorderCoordinate_center:
+      case kAnchor_center:
+      case kAnchor_leftCenter:
+      case kAnchor_rightCenter:
         topLeftOffset.y = -GetHeight() / 2;
         break;
-      default:
-        assert(_attachmentData.parentAttachmentPoint.y == kTransformBorderCoordinate_right_bottom);
+      case kAnchor_centerBottom:
+      case kAnchor_leftBottom:
+      case kAnchor_rightBottom:
         topLeftOffset.y = -GetHeight();
         break;
       }
@@ -271,12 +281,12 @@ namespace JadeEngine
     }
   }
 
-  void Transform::Attach(const std::shared_ptr<Transform>& other, const Vector2D_i32& localPosition, const AttachmentPoint& attachmentPoint /*= kDefaultAttachmentPoint*/, const AttachmentPoint& otherAttachmentPoint /*= kDefaultAttachmentPoint*/)
+  void Transform::Attach(const std::shared_ptr<Transform>& other, const Vector2D_i32& localPosition, const Anchor& anchor, const Anchor& otherAnchor)
   {
     assert(other);
     _children.push_back(other);
 
-    other->OnAttached(shared_from_this(), {localPosition, attachmentPoint, otherAttachmentPoint});
+    other->OnAttached(shared_from_this(), { localPosition, anchor, otherAnchor });
   }
 
   void Transform::OnAttached(const std::shared_ptr<Transform>& parent, const TransformAttachmentData& data)

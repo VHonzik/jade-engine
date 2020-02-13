@@ -48,7 +48,7 @@ namespace MatchThree
     {
       lineStripParams.initialPoints = { kZeroVector2D_i32, CreateRegularPolygonVertex(kPieceType_Count, _maxEnergyDisplayedRadius, i) };
       _energyLines[i] = GGame.Create<LineStrip>(lineStripParams);
-      transform->Attach(_energyLines[i]->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+      transform->Attach(_energyLines[i]->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
     }
 
     lineStripParams.z = _z + 1;
@@ -56,9 +56,9 @@ namespace MatchThree
     CreateRegularPolygonVertices(lineStripParams.initialPoints, kPieceType_Count, _minEnergyDisplayedRadius);
     _energySpiderChart = GGame.Create<LineStrip>(lineStripParams);
 
-    transform->Attach(_fullEnergyBorder->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
-    transform->Attach(_thresholdEnergyBorder->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
-    transform->Attach(_energySpiderChart->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_fullEnergyBorder->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
+    transform->Attach(_thresholdEnergyBorder->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
+    transform->Attach(_energySpiderChart->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     SpriteParams spriteParams;
     spriteParams.layer = _layer;
@@ -72,7 +72,7 @@ namespace MatchThree
       const auto position = CreateRegularPolygonVertex(kPieceType_Count, _maxEnergyDisplayedRadius, i);
       _energySymbols[i] = GGame.Create<Sprite>(spriteParams);
       _energySymbols[i]->transform->SetSize(20, 20);
-      transform->Attach(_energySymbols[i]->transform, position, kAttachmentPoint_Center);
+      transform->Attach(_energySymbols[i]->transform, position, kAnchor_center, kAnchor_center);
     }
 
     TextParams textParams;
@@ -84,9 +84,7 @@ namespace MatchThree
     textParams.z = params.z;
 
     _text = GGame.Create<Text>(textParams);
-    _text->SetVerticalAlign(kVerticalAlignment_Center);
-    _text->SetHorizontalAlign(kHorizontalAlignment_Center);
-    _text->SetPosition(transform->GetCenterX(), transform->GetCenterY());
+    transform->Attach(_text->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     PulseAnimationParams pulseParams;
     pulseParams.expandStartingSpeed = 1.0f;
@@ -139,9 +137,7 @@ namespace MatchThree
 
       FloatingPoint point;
       point.text = GGame.Create<Text>(textParams);
-      point.text->SetHorizontalAlign(kHorizontalAlignment_Center);
-      point.text->SetVerticalAlign(kVerticalAlignment_Center);
-      point.text->SetPosition(match.position.x, match.position.y);
+      point.text->transform->SetCenterPosition(match.position.x, match.position.y);
       point.currentPos = match.position.Convert<float>();
       point.wantedPos = transform->GetCenterPosition().Convert<float>();
       point.speed = 10.0f;
@@ -160,7 +156,7 @@ namespace MatchThree
     point.currentPos = moveTowardsResult.first;
 
     const auto currentPos = point.currentPos.Convert<int32_t>();
-    point.text->SetPosition(currentPos.x, currentPos.y);
+    point.text->transform->SetCenterPosition(currentPos);
 
     if (moveTowardsResult.second)
     {
@@ -213,11 +209,6 @@ namespace MatchThree
 
   void ScoreMeter::Update()
   {
-    if (transform->IsDirty(kDirtyFlag_centerPosition))
-    {
-      _text->SetPosition(transform->GetCenterX(), transform->GetCenterY());
-    }
-
     if (_wantedScore != _displayedScore)
     {
       const auto diff = std::abs(_wantedScore - _currentScore);

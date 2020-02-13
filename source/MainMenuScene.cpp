@@ -56,7 +56,7 @@ namespace JadeEngine
     copyrightParams.text = stream.str();
 
     auto copyright = GGame.Create<Text>(copyrightParams);
-    copyright->transform->SetPointPosition(GGame.GetWidth() - 5, GGame.GetHeight() - 5, {kTransformBorderCoordinate_right_bottom, kTransformBorderCoordinate_right_bottom});
+    copyright->transform->SetPositionAnchor(GGame.GetWidth() - 5, GGame.GetHeight() - 5, kAnchor_rightBottom);
 
     auto buttonParams = kMainMenuBlueButton;
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Vector2D.h"
 
@@ -44,37 +44,94 @@ namespace JadeEngine
     kDirtyFlag_count
   };
 
-  enum TransformBorderCoordinate
-  {
-    kTransformBorderCoordinate_left_top,
-    kTransformBorderCoordinate_center,
-    kTransformBorderCoordinate_right_bottom,
-  };
-
   /**
-  Specified a point on transform outline or center that will be used to position transform relative to another.
+  Anchor specifies a point within an object's bounding box.
+
+  In the process of attaching one transform to another one can specify parent and child anchors for convenient positioning.
   */
-  struct AttachmentPoint
+  enum Anchor
   {
     /**
-    X coordinate of the point.
+    Left-top corner of the bounding box.
+
+    *═══╗
+    ║   ║
+    ╚═══╝
     */
-    TransformBorderCoordinate x;
+    kAnchor_leftTop,
 
     /**
-    Y coordinate of the point.
+    Center-top of the bounding box.
+    ╔═*═╗
+    ║   ║
+    ╚═══╝
     */
-    TransformBorderCoordinate y;
+    kAnchor_centerTop,
+
+    /**
+    Right-top corner of the bounding box.
+    ╔═══*
+    ║   ║
+    ╚═══╝
+    */
+    kAnchor_rightTop,
+
+    /**
+    Right-center of the bounding box.
+    ╔═══╗
+    ║   *
+    ╚═══╝
+    */
+    kAnchor_rightCenter,
+
+    /**
+    Right-bottom corner of the bounding box.
+    ╔═══╗
+    ║   ║
+    ╚═══*
+    */
+    kAnchor_rightBottom,
+
+    /**
+    Center-bottom of the bounding box.
+    ╔═══╗
+    ║   ║
+    ╚═*═╝
+    */
+    kAnchor_centerBottom,
+
+    /**
+    Left-bottom corner of the bounding box.
+    ╔═══╗
+    ║   ║
+    *═══╝
+    */
+    kAnchor_leftBottom,
+
+    /**
+    Left-center of the bounding box.
+    ╔═══╗
+    *   ║
+    ╚═══╝
+    */
+    kAnchor_leftCenter,
+
+    /**
+    Center of the bounding box.
+    ╔═══╗
+    ║ * ║
+    ╚═══╝
+    */
+    kAnchor_center,
   };
 
-  const AttachmentPoint kDefaultAttachmentPoint = { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_left_top };
-  const AttachmentPoint kCenterAttachmentPoint = { kTransformBorderCoordinate_center, kTransformBorderCoordinate_center };
+  const Anchor kDefaultAnchor = kAnchor_leftTop;
 
   struct TransformAttachmentData
   {
     Vector2D_i32 localPosition;
-    AttachmentPoint parentAttachmentPoint;
-    AttachmentPoint childAttachmentPoint;
+    Anchor parentAnchor;
+    Anchor childAnchor;
   };
 
   /**
@@ -197,9 +254,9 @@ namespace JadeEngine
     /**
     Returns local position of the transform. This value only has effect when `IsAttached()` is true.
 
-    The meaning of the local position depends on `AttachmentPoint` value that was passed to `Attach` function.
+    Local position is essentially a vector from the position of parent's anchor to the position of this (child) anchor as they were specified in `Attach` call.
 
-    @see Transform::Attach, Transform::IsAttached, AttachmentPoint
+    @see Transform::Attach, Transform::IsAttached, Anchor
     */
     Vector2D_i32 GetLocalPosition() const { return _attachmentData.localPosition; }
 
@@ -233,8 +290,21 @@ namespace JadeEngine
     */
     void SetCenterPosition(const int32_t centerX, const int32_t centerY);
 
-    void SetPointPosition(const int32_t x, const int32_t y, const AttachmentPoint& point);
-    void SetPointPosition(const Vector2D_i32& position, const AttachmentPoint& point);
+    /**
+    Set transforms x and y position so that the passed anchor point will be positioned exactly at the passed position as vector in pixels.
+
+    If the `kAnchor_center` is passed this is the same as calling `SetCenterPosition` including dirty flag effects.
+    If the `kAnchor_leftTop` is passed this is the same as calling `SetPosition` including dirty flag effects.
+    Otherwise this will internally call `SetPosition`, including dirty flag effects, with appropriate offset.
+
+    @see Anchor, Transform::SetPosition, Transform::SetCenterPosition
+    */
+    void SetPositionAnchor(const Vector2D_i32& position, const Anchor& point);
+
+    /**
+    Set transforms x and y position so that the passed anchor point will be positioned exactly at the passed position as vector's elements in pixels. See the vector version for more information.
+    */
+    void SetPositionAnchor(const int32_t x, const int32_t y, const Anchor& point);
 
     /**
     Set the height of the transform in pixels. Internally calls Transform::SetSize, see that for more information.
@@ -255,7 +325,7 @@ namespace JadeEngine
 
     If bounding box was not previously explicitly set (via `Transform::SetBoundingBox`), the bounding box will be resized to make its size match transform's size.
     This will dirty the `kDirtyFlag_size` and `kDirtyFlag_centerPosition` flags for the next frame. In the case bounding box was modified, `kDirtyFlag_boundingBox` flag will be dirtied as well.
-    This will cause all children that were attached with `kAttachmentPoint_Center` to be immediately moved as well.
+    This will cause all children to be immediately moved as well unless they were attached with `kAnchor_leftTop` as parent anchor.
 
     @see Transform::SetBoundingBox
     */
@@ -280,10 +350,10 @@ namespace JadeEngine
     /**
     Set the transform's x and y of the local position in pixels.
 
-    The meaning of the local position depends on `AttachmentPoint` value that was passed to `Attach` function.
+    Local position is essentially a vector from the position of parent's anchor to the position of this (child) anchor as they were specified in `Attach` call.
 
     @pre The transform must have been previously attached to another transform via Transform::Attach. You can check whether transform is attached via Transform::IsAttached.
-    @see Transform::Attach, Transform::IsAttached, AttachmentPoint
+    @see Transform::Attach, Transform::IsAttached, Anchor
     */
     void SetLocalPosition(const Vector2D_i32& position);
 
@@ -297,16 +367,16 @@ namespace JadeEngine
 
     Attachment essentially means that when the parent transform moves the child transform moves with it.
 
-    As part of this call the child transform will be moved to the same position as the parent respecting `localPosition` and `attachmentPoint` parameters.
+    As part of this call the child transform will be moved to have correct relative position to the parent respecting `localPosition`, `parentAnchor` and `childAnchor` parameters.
 
     @param other The transform that will become a child of `this` transform.
-    @param localPosition The initial local position in pixels. The meaning of the local position depends on `attachmentPoint` and `otherAttachmentPoint` parameters.
-    @param attachmentPoint The point on `this` transform where the `other` transform `otherAttachmentPoint` will be placed.
-    @param otherAttachmentPoint The point on `other` transform that will placed where `attachmentPoint` of `this` is.
+    @param localPosition The initial local position in pixels. Local position is essentially a vector from the position of parent's anchor to the position of the child anchor.
+    @param anchor The point on `this` transform where the `other` transform `otherAttachmentPoint` will be placed.
+    @param otherAnchor The point on `other` transform that will placed where `anchor` of `this` is.
 
-    @see Transform::SetLocalPosition, Transform::GetLocalPosition, Transform::IsAttached, AttachmentPoint
+    @see Transform::SetLocalPosition, Transform::GetLocalPosition, Transform::IsAttached, Anchor
     */
-    void Attach(const std::shared_ptr<Transform>& other, const Vector2D_i32& localPosition = kZeroVector2D_i32, const AttachmentPoint& attachmentPoint = kDefaultAttachmentPoint, const AttachmentPoint& otherAttachmentPoint = kDefaultAttachmentPoint);
+    void Attach(const std::shared_ptr<Transform>& other, const Vector2D_i32& localPosition = kZeroVector2D_i32, const Anchor& anchor = kDefaultAnchor, const Anchor& otherAnchor = kDefaultAnchor);
 
     /**
     Detach the transform from its the parent.

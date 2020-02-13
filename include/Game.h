@@ -298,7 +298,7 @@ namespace JadeEngine
     std::add_pointer_t<Class> Create(const CreationStruct& params)
     {
       const auto& scene = params.layer == kObjectLayer_persistent_ui ? _persistentScene : _currentScene;
-      auto result = _gameObjects[scene].emplace_back(std::make_unique<Class>(params)).get();
+      auto result = _gameObjects[scene].emplace_back(std::move(std::make_unique<Class>(params))).get();
 
       // Some objects benefit from being loaded immediately in order to be positioned correctly in the same frame they were created
       if (result->GetLoadState() == kLoadState_wanted)

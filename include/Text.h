@@ -28,6 +28,7 @@ namespace JadeEngine
     LoadState Load(SDL_Renderer* renderer) override;
     void Render(SDL_Renderer* renderer) override;
     void SetText(const std::string& text);
+    void SetTextFast(const std::string& text);
     void SetTextAndColor(const std::string& text, const SDL_Color& color);
     void SetColor(const SDL_Color& color);
     void SetMask(const Rectangle& mask);

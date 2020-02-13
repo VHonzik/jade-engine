@@ -126,8 +126,8 @@ namespace JadeEngine
     _axisLEnd->transform->SetCenterPosition(x, _axis->transform->GetCenterY());
     _axisREnd->transform->SetCenterPosition(x + _width, _axis->transform->GetCenterY());
     _pointer->transform->SetCenterPosition(x + static_cast<int32_t>(_value * _width), _axis->transform->GetCenterY());
-    _minTitle->transform->SetPointPosition(x, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
-    _maxTitle->transform->SetPointPosition(x + _width, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
+    _minTitle->transform->SetPositionAnchor(x, y + _minMaxYMargin, kAnchor_leftCenter);
+    _maxTitle->transform->SetPositionAnchor(x + _width, y + _minMaxYMargin, kAnchor_leftCenter);
   }
 
   void Slider::SetCenterPosition(uint32_t x, uint32_t y)
@@ -136,8 +136,8 @@ namespace JadeEngine
     _axis->transform->SetCenterPosition(x, y);
     _axisLEnd->transform->SetCenterPosition(x - _width / 2, y);
     _axisREnd->transform->SetCenterPosition(x + _width / 2, y);
-    _minTitle->transform->SetPointPosition(x - _width / 2, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
-    _maxTitle->transform->SetPointPosition(x + _width / 2, y + _minMaxYMargin, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
+    _minTitle->transform->SetPositionAnchor(x - _width / 2, y + _minMaxYMargin, kAnchor_leftCenter);
+    _maxTitle->transform->SetPositionAnchor(x + _width / 2, y + _minMaxYMargin, kAnchor_leftCenter);
   }
 
   void Slider::Show(bool shown)

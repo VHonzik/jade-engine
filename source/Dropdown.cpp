@@ -66,7 +66,7 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _currentEntryText = GGame.Create<Text>(textParams);
-    _box->transform->Attach(_currentEntryText->transform, kZeroVector2D_i32, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center }, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
+    _box->transform->Attach(_currentEntryText->transform, kZeroVector2D_i32, kAnchor_leftCenter, kAnchor_leftCenter);
 
     SetPosition(0, 0);
   }
@@ -87,7 +87,7 @@ namespace JadeEngine
 
       _visibleEntriesTexts.push_back(GGame.Create<Text>(textParams));
       auto newEntry = _visibleEntriesTexts[_visibleEntriesTexts.size() - 1];
-      _box->transform->Attach(newEntry->transform, kZeroVector2D_i32, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center }, { kTransformBorderCoordinate_left_top, kTransformBorderCoordinate_center });
+      _box->transform->Attach(newEntry->transform, kZeroVector2D_i32, kAnchor_leftCenter, kAnchor_leftCenter);
     }
   }
 

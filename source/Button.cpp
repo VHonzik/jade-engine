@@ -79,16 +79,24 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _text = GGame.Create<Text>(textParams);
-    transform->Attach(_text->transform, kZeroVector2D_i32, kCenterAttachmentPoint, kCenterAttachmentPoint);
+    transform->Attach(_text->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     SetPosition(0, 0);
   }
 
-  void Button::SetCenterPosition(uint32_t x, uint32_t y)  {
+  void Button::SetCenterPosition(uint32_t x, uint32_t y)
+  {
     _normalSprite->transform->SetCenterPosition(x, y);
-    _pressedSprite->transform->SetCenterPosition(x, y + _pressedOffset);
-    if (_disabledSprite != nullptr)    {      _disabledSprite->transform->SetCenterPosition(x, y + _disabledOffset);    }
-    if (_hoveredSprite != nullptr)    {      _hoveredSprite->transform->SetCenterPosition(x, y);
+    _pressedSprite->transform->SetCenterPosition(x, y + _pressedOffset);
+
+    if (_disabledSprite != nullptr)
+    {
+      _disabledSprite->transform->SetCenterPosition(x, y + _disabledOffset);
+    }
+
+    if (_hoveredSprite != nullptr)
+    {
+      _hoveredSprite->transform->SetCenterPosition(x, y);
     }
     AdjustTextPosition();
   }
