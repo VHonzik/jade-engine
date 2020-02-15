@@ -8,7 +8,6 @@
 
 namespace JadeEngine
 {
-  const Vector2D_f32 kOneOneVector2D_f32 = { 1.0f, 1.0f };
 
   PulseAnimation::PulseAnimation()
     : _state(kPulseAnimationState_uinitialized)
@@ -205,7 +204,7 @@ namespace JadeEngine
       startingSize,
       //Vector2D_f32 finalSize;
       finalSize
-    });
+      });
   }
 
   void PulseAnimation::Unregister(IGameObject* gameObject)

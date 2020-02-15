@@ -114,20 +114,33 @@ namespace JadeEngine
     /**
     Tint the sprite with a single color.
 
-    @warning The first time Sprite is tinted or its transparency changed a deep copy of the texture is created which is potentially expensive operation.
+    @warning The first time Sprite is tinted or its transparency changed `MakeTextureUnique` is called which is potentially expensive operation. Consider calling `MakeTextureUnique` explicitly during initialization to avoid flickering.
+    @warning Sprite-sheet Sprites are not recommended to be used with SetAlpha.
     @param tintColor RGBA 0-255 color that will be used to multiply each pixel of the sprite. Alpha component is ignored.
-    @see Game::CopyTexture, Sprite::SetAlpha
+    @see Sprite::MakeTextureUnique
     */
-    virtual void Tint(const SDL_Color& tintColor);
+    void Tint(const SDL_Color& tintColor);
 
     /**
     Changed the transparency of the sprite.
 
-    @warning The first time Sprite is tinted or its transparency changed a deep copy of the texture is created which is potentially expensive operation.
+    @warning The first time Sprite is tinted or its transparency changed `MakeTextureUnique` is called which is potentially expensive operation. Consider calling `MakeTextureUnique` explicitly during initialization to avoid flickering.
+    @warning Sprite-sheet Sprites are not recommended to be used with SetAlpha.
     @param alpha Transparency alpha value to set. 0 will make the sprite completely invisible, 1 fully opaque. It will be clamped to [0.0f, 1.0f] range.
-    @see Game::CopyTexture, Sprite::Tint
+    @see Sprite::MakeTextureUnique
     */
-    virtual void SetAlpha(float alpha);
+    void SetAlpha(const float alpha);
+
+    /**
+    Create a deep-copy of the Sprite texture that is not shared with other Sprites using the same texture.
+
+    This operation is necessary for `Sprite::Tint` and `Sprite::SetAlpha` and will be called automatically on their first call unless already called by the user.
+
+    @warning This is potentially expensive operation as it deep-copying the texture using `Game::CopyTexture`.
+
+    @see Sprite::Tint, Sprite::SetAlpha, Game::CopyTexture
+    */
+    void MakeTextureUnique();
 
     /**
     Return the current transparency alpha value.
