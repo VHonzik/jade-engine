@@ -95,23 +95,23 @@ Adding Jade Engine to a new project and compiling minimalistic sample</h1>
 <h2><a class="anchor" id="autotoc_md7"></a>
 Create Empty Visual Studio project</h2>
 <p>With Visual Studio open, go to <code>File &gt; New &gt; Project...</code> pick <code>Visual C++ &gt; Empty Project</code>, choose project name - in my case JadeEngineSample - and location and check <code>Create new Git repository</code> (alternatively you can do <code>git init</code> yourself).</p>
-<p><img src="images/create_vs_project.png" alt="Creating Empty VS project" class="inline"/></p>
+<p><img src="images/create_vs_project.PNG" alt="Creating Empty VS project" class="inline"/></p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 Add Jade Engine as git submodule</h2>
 <p>Open the chosen location in Git and type following:</p>
 <div class="fragment"><div class="line">git submodule add https://github.com/VHonzik/jade-engine.git</div>
-</div><!-- fragment --><p><img src="images/add_submodule.png" alt="Add Jade Engine as submodule" class="inline"/></p>
+</div><!-- fragment --><p><img src="images/add_submodule.PNG" alt="Add Jade Engine as submodule" class="inline"/></p>
 <h2><a class="anchor" id="autotoc_md9"></a>
 Add Jade Engine header and source files to the project</h2>
 <p>Next, back in Visual Studio, we will add the Jade Engine source files and headers to our project. We recommend creating a filter for Jade Engine files but that step is optional.</p>
 <p>In <code>Solution Explorer</code> (if you don't see this window go to <code>View &gt; Solution Explorer</code>) right click on <code>Header Files</code> filter, select <code>Add &gt; New Filter</code> and name it <code>JadeEngine</code>. Right click on the newly created filter and select <code>Add &gt; Existing Item...</code>, navigate to <code>jade-engine\include</code>, select all files (Ctrl+A) and click <code>Add</code>.</p>
 <p>Repeat similar process for source files: In <code>Solution Explorer</code> right click on <code>Source Files</code> filter, select <code>Add &gt; New Filter</code> and name it <code>JadeEngine</code>. Right click on the newly created filter and select <code>Add &gt; Existing Item...</code>, navigate to <code>jade-engine\source</code>, select all files (Ctrl+A) and click <code>Add</code>.</p>
-<p><img src="images/add_files.png" alt="Add Jade Engine files to the project" class="inline"/></p>
+<p><img src="images/add_files.PNG" alt="Add Jade Engine files to the project" class="inline"/></p>
 <h2><a class="anchor" id="autotoc_md10"></a>
 Add Jade Engine property files to the project</h2>
 <p>In <code>Property Manager</code> (if you don't see this window go to <code>View &gt; Other Windows &gt; Property Manager</code>) navigate to <code>JadeEngineSample &gt; Debug | x64</code>, right click and select <code>Add Existing Property Sheet...</code>. Locate <code>jade-engine\JadeEngineLocationSubmodule.props</code> and click <code>Open</code>. Repeat the same process for <code>jade-engine\JadeEngineDebug.props</code>.</p>
 <p>In <code>Property Manager</code> navigate to <code>JadeEngineSample &gt; Release | x64</code> and repeat the above process for <code>jade-engine\JadeEngineLocationSubmodule.props</code> followed by <code>jade-engine\adeEngineRelease.props</code>.</p>
-<p><img src="images/properties_files.png" alt="Add Jade Engine Properties files to the project" class="inline"/></p>
+<p><img src="images/properties_files.PNG" alt="Add Jade Engine Properties files to the project" class="inline"/></p>
 <h2><a class="anchor" id="autotoc_md11"></a>
 Add main.cpp and initialize Jade Engine</h2>
 <p>Switch <code>Solution Platform</code> to x64 as Jade Engine is only intended to compile in x64 configuration.</p>
@@ -141,7 +141,7 @@ Add main.cpp and initialize Jade Engine</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>For more mature examples of <code>main.cpp</code> see <code>jade-engine\samples\JadeEngineSamples.sln</code> solution.</p>
 <p>Build the project (<code>Build &gt; Build Solution</code> or F7) and run it (<code>Debug &gt; Start Debugging</code> or F5).</p>
-<p><img src="images/running_sample.png" alt="Running sample of Jade Engine" class="inline"/> </p>
+<p><img src="images/running_sample.PNG" alt="Running sample of Jade Engine" class="inline"/> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

@@ -14,7 +14,7 @@ Note that the instructions will be using Git from command line but the steps sho
 
 With Visual Studio open, go to `File > New > Project...` pick `Visual C++ > Empty Project`, choose project name - in my case JadeEngineSample - and location and check `Create new Git repository` (alternatively you can do `git init` yourself).
 
-![Creating Empty VS project](images/create_vs_project.png)
+![Creating Empty VS project](images/create_vs_project.PNG)
 
 ### Add Jade Engine as git submodule
 
@@ -24,7 +24,7 @@ Open the chosen location in Git and type following:
 git submodule add https://github.com/VHonzik/jade-engine.git
 ```
 
-![Add Jade Engine as submodule](images/add_submodule.png)
+![Add Jade Engine as submodule](images/add_submodule.PNG)
 
 ### Add Jade Engine header and source files to the project
 
@@ -34,7 +34,7 @@ In `Solution Explorer` (if you don't see this window go to `View > Solution Expl
 
 Repeat similar process for source files: In `Solution Explorer` right click on `Source Files` filter, select `Add > New Filter` and name it `JadeEngine`. Right click on the newly created filter and select `Add > Existing Item...`, navigate to `jade-engine\source`, select all files (Ctrl+A) and click `Add`.
 
-![Add Jade Engine files to the project](images/add_files.png)
+![Add Jade Engine files to the project](images/add_files.PNG)
 
 ### Add Jade Engine property files to the project
 
@@ -42,7 +42,7 @@ In `Property Manager` (if you don't see this window go to `View > Other Windows 
 
 In `Property Manager` navigate to `JadeEngineSample > Release | x64` and repeat the above process for `jade-engine\JadeEngineLocationSubmodule.props` followed by `jade-engine\adeEngineRelease.props`.
 
-![Add Jade Engine Properties files to the project](images/properties_files.png)
+![Add Jade Engine Properties files to the project](images/properties_files.PNG)
 
 ### Add main.cpp and initialize Jade Engine
 
@@ -82,4 +82,4 @@ For more mature examples of `main.cpp` see `jade-engine\samples\JadeEngineSample
 
 Build the project (`Build > Build Solution` or F7) and run it (`Debug > Start Debugging` or F5).
 
-![Running sample of Jade Engine](images/running_sample.png)
+![Running sample of Jade Engine](images/running_sample.PNG)
