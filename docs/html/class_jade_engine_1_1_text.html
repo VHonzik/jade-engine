@@ -112,6 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6490d0a86a5ecd1ee13b94715e764033"><td class="memItemLeft" align="right" valign="top"><a id="a6490d0a86a5ecd1ee13b94715e764033"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetText</b> (const std::string &amp;text)</td></tr>
 <tr class="separator:a6490d0a86a5ecd1ee13b94715e764033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aba00e253e0d7182b6cac226e4e6fc5"><td class="memItemLeft" align="right" valign="top"><a id="a2aba00e253e0d7182b6cac226e4e6fc5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTextFast</b> (const std::string &amp;text)</td></tr>
+<tr class="separator:a2aba00e253e0d7182b6cac226e4e6fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3084475f957297f8a4ac1614b96e9b92"><td class="memItemLeft" align="right" valign="top"><a id="a3084475f957297f8a4ac1614b96e9b92"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTextAndColor</b> (const std::string &amp;text, const SDL_Color &amp;color)</td></tr>
 <tr class="separator:a3084475f957297f8a4ac1614b96e9b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,44 +124,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetColor</b> (const S
 <tr class="memitem:a6af8b25e96fd8ef8109284e241795e01"><td class="memItemLeft" align="right" valign="top"><a id="a6af8b25e96fd8ef8109284e241795e01"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMask</b> (const Rectangle &amp;mask)</td></tr>
 <tr class="separator:a6af8b25e96fd8ef8109284e241795e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38040414703c252e7a97ec58c3bb1d8a"><td class="memItemLeft" align="right" valign="top"><a id="a38040414703c252e7a97ec58c3bb1d8a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHorizontalAlign</b> (const HorizontalAlignment align)</td></tr>
-<tr class="separator:a38040414703c252e7a97ec58c3bb1d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77bf20006c74ac7dbc68f71e9e2f3585"><td class="memItemLeft" align="right" valign="top"><a id="a77bf20006c74ac7dbc68f71e9e2f3585"></a>
-HorizontalAlignment&#160;</td><td class="memItemRight" valign="bottom"><b>GetHorizontalAlign</b> () const</td></tr>
-<tr class="separator:a77bf20006c74ac7dbc68f71e9e2f3585"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5c27a35b6715a8b20c6e61b8d599ab0"><td class="memItemLeft" align="right" valign="top"><a id="ac5c27a35b6715a8b20c6e61b8d599ab0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetVerticalAlign</b> (const VerticalAlignment align)</td></tr>
-<tr class="separator:ac5c27a35b6715a8b20c6e61b8d599ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38ce7f0ad6457d8d14030968b63c5462"><td class="memItemLeft" align="right" valign="top"><a id="a38ce7f0ad6457d8d14030968b63c5462"></a>
-VerticalAlignment&#160;</td><td class="memItemRight" valign="bottom"><b>GetVerticalAlign</b> () const</td></tr>
-<tr class="separator:a38ce7f0ad6457d8d14030968b63c5462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeb7d8965962b454167cb2edf6fef850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_text.html#afeb7d8965962b454167cb2edf6fef850">Clean</a> () override</td></tr>
 <tr class="separator:afeb7d8965962b454167cb2edf6fef850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c70a53da5555e4c8553a26ff3e12df"><td class="memItemLeft" align="right" valign="top"><a id="ac7c70a53da5555e4c8553a26ff3e12df"></a>
+const SDL_Color &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetColor</b> () const</td></tr>
+<tr class="separator:ac7c70a53da5555e4c8553a26ff3e12df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac842a8f7ada06be5080ac16c46b01f2c"><td class="memItemLeft" align="right" valign="top"><a id="ac842a8f7ada06be5080ac16c46b01f2c"></a>
 TTF_Font *&#160;</td><td class="memItemRight" valign="bottom"><b>GetFont</b> () const</td></tr>
 <tr class="separator:ac842a8f7ada06be5080ac16c46b01f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f9ab762e22a1d0dcca0901d624ed99a"><td class="memItemLeft" align="right" valign="top"><a id="a7f9ab762e22a1d0dcca0901d624ed99a"></a>
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetText</b> () const</td></tr>
 <tr class="separator:a7f9ab762e22a1d0dcca0901d624ed99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25416e222b522903da436af46db18a9d"><td class="memItemLeft" align="right" valign="top"><a id="a25416e222b522903da436af46db18a9d"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetWidth</b> () const</td></tr>
-<tr class="separator:a25416e222b522903da436af46db18a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad96d285460a8f46ee0c61cc03891af5c"><td class="memItemLeft" align="right" valign="top"><a id="ad96d285460a8f46ee0c61cc03891af5c"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetHeight</b> () const</td></tr>
-<tr class="separator:ad96d285460a8f46ee0c61cc03891af5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3caa76119f2f477ef31c2d45fbb6f1"><td class="memItemLeft" align="right" valign="top"><a id="adc3caa76119f2f477ef31c2d45fbb6f1"></a>
-SDL_Color&#160;</td><td class="memItemRight" valign="bottom"><b>GetColor</b> () const</td></tr>
-<tr class="separator:adc3caa76119f2f477ef31c2d45fbb6f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07ac9f3d8a622242cf39c45f570ffc31"><td class="memItemLeft" align="right" valign="top"><a id="a07ac9f3d8a622242cf39c45f570ffc31"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPosition</b> (int32_t x, int32_t y)</td></tr>
-<tr class="separator:a07ac9f3d8a622242cf39c45f570ffc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c5e0236a536100e27b5cec4e99b72d6"><td class="memItemLeft" align="right" valign="top"><a id="a0c5e0236a536100e27b5cec4e99b72d6"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetX</b> () const</td></tr>
-<tr class="separator:a0c5e0236a536100e27b5cec4e99b72d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade0edec0dac50a337642bc1a0ebc2181"><td class="memItemLeft" align="right" valign="top"><a id="ade0edec0dac50a337642bc1a0ebc2181"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>GetY</b> () const</td></tr>
-<tr class="separator:ade0edec0dac50a337642bc1a0ebc2181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_jade_engine_1_1_i_game_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_jade_engine_1_1_i_game_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></td></tr>
 <tr class="memitem:a87729ae5661f5da9f0df51bb1a4450be inherit pub_methods_class_jade_engine_1_1_i_game_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_game_object.html#a87729ae5661f5da9f0df51bb1a4450be">IGameObject</a> ()</td></tr>
 <tr class="separator:a87729ae5661f5da9f0df51bb1a4450be inherit pub_methods_class_jade_engine_1_1_i_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -307,8 +283,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/GameDev/SDL/jade-engine/include/<a class="el" href="_text_8h_source.html">Text.h</a></li>
-<li>D:/GameDev/SDL/jade-engine/source/Text.cpp</li>
+<li>D:/GameDev/SDL/Idlefactory/jade-engine/include/<a class="el" href="_text_8h_source.html">Text.h</a></li>
+<li>D:/GameDev/SDL/Idlefactory/jade-engine/source/Text.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

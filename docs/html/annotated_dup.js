@@ -60,6 +60,7 @@ var annotated_dup =
       [ "Tooltip", "class_jade_engine_1_1_tooltip.html", "class_jade_engine_1_1_tooltip" ],
       [ "TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", "struct_jade_engine_1_1_tooltip_params" ],
       [ "Transform", "class_jade_engine_1_1_transform.html", "class_jade_engine_1_1_transform" ],
+      [ "TransformAttachmentData", "struct_jade_engine_1_1_transform_attachment_data.html", "struct_jade_engine_1_1_transform_attachment_data" ],
       [ "UICamera", "class_jade_engine_1_1_u_i_camera.html", "class_jade_engine_1_1_u_i_camera" ],
       [ "Vector2D", "class_jade_engine_1_1_vector2_d.html", "class_jade_engine_1_1_vector2_d" ],
       [ "WorldCamera", "class_jade_engine_1_1_world_camera.html", "class_jade_engine_1_1_world_camera" ]

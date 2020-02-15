@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: D:/GameDev/SDL/jade-engine/include/BoxSprite.h Source File</title>
+<title>jade-engine: D:/GameDev/SDL/Idlefactory/jade-engine/include/BoxSprite.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,14 +89,14 @@ $(document).ready(function(){initNavTree('_box_sprite_8h_source.html',''); initR
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;Sprite.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span>JadeEngine</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_box_sprite_params.html">    7</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_jade_engine_1_1_box_sprite_params.html">BoxSpriteParams</a> : <span class="keyword">public</span> <a class="code" href="struct_jade_engine_1_1_sprite_params.html">SpriteParams</a></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;  {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    int32_t cornerSize;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    int32_t width;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    int32_t height;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Vector2D.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>JadeEngine</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_box_sprite_params.html">    8</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_jade_engine_1_1_box_sprite_params.html">BoxSpriteParams</a> : <span class="keyword">public</span> <a class="code" href="struct_jade_engine_1_1_sprite_params.html">SpriteParams</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    int32_t cornerSize;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_jade_engine_1_1_vector2_d.html">Vector2D_i32</a> size;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  };</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_box_sprite.html">   14</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_box_sprite.html">BoxSprite</a> : <span class="keyword">public</span> <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a></div>
@@ -120,7 +120,8 @@ $(document).ready(function(){initNavTree('_box_sprite_8h_source.html',''); initR
 <div class="ttc" id="aclass_jade_engine_1_1_box_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_box_sprite.html">JadeEngine::BoxSprite</a></div><div class="ttdef"><b>Definition:</b> BoxSprite.h:14</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_box_sprite_html_af0f02a62c40473654ba76cb8768e3f77"><div class="ttname"><a href="class_jade_engine_1_1_box_sprite.html#af0f02a62c40473654ba76cb8768e3f77">JadeEngine::BoxSprite::HasHitTest</a></div><div class="ttdeci">bool HasHitTest() const override</div><div class="ttdef"><b>Definition:</b> BoxSprite.h:21</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:90</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_box_sprite_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_box_sprite_params.html">JadeEngine::BoxSpriteParams</a></div><div class="ttdef"><b>Definition:</b> BoxSprite.h:7</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_box_sprite_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_box_sprite_params.html">JadeEngine::BoxSpriteParams</a></div><div class="ttdef"><b>Definition:</b> BoxSprite.h:8</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_vector2_d_html"><div class="ttname"><a href="class_jade_engine_1_1_vector2_d.html">JadeEngine::Vector2D&lt; int32_t &gt;</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

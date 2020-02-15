@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3d_278',['operator=',['../class_jade_engine_1_1_game.html#a1f575467a763080c6384cb5b5549b7da',1,'JadeEngine::Game']]]
+  ['maketextureunique_282',['MakeTextureUnique',['../class_jade_engine_1_1_sprite.html#aee58241a016930c852f7c3a46e800757',1,'JadeEngine::Sprite']]]
 ];
