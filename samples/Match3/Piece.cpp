@@ -49,38 +49,38 @@ namespace MatchThree
 
     _symbol = GGame.Create<Sprite>(spriteParams);
     _symbol->transform->SetSize(static_cast<int32_t>(transform->GetWidth() * kBackgroundEmptySpacePercentage), static_cast<int32_t>(transform->GetHeight() * kBackgroundEmptySpacePercentage));
-    transform->Attach(_symbol->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_symbol->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     spriteParams.z = params.z-1;
     spriteParams.textureName = kBackgroundTileNormal;
     _background = GGame.Create<Sprite>(spriteParams);
     _background->transform->SetSize(transform->GetSize());
-    transform->Attach(_background->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_background->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     spriteParams.textureName = kBackgroundTileHover;
     _backgroundHovered = GGame.Create<Sprite>(spriteParams);
     _backgroundHovered->transform->SetSize(transform->GetSize());
-    transform->Attach(_backgroundHovered->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_backgroundHovered->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     spriteParams.textureName = kBackgroundTileSelected;
     _backgroundSelected = GGame.Create<Sprite>(spriteParams);
     _backgroundSelected->transform->SetSize(transform->GetSize());
-    transform->Attach(_backgroundSelected->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_backgroundSelected->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     spriteParams.textureName = kBackgroundTileSelectedHover;
     _backgroundSelectedHovered = GGame.Create<Sprite>(spriteParams);
     _backgroundSelectedHovered->transform->SetSize(transform->GetSize());
-    transform->Attach(_backgroundSelectedHovered->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_backgroundSelectedHovered->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     spriteParams.textureName = kBackgroundTileError;
     _backgroundError = GGame.Create<Sprite>(spriteParams);
     _backgroundError->transform->SetSize(transform->GetSize());
-    transform->Attach(_backgroundError->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_backgroundError->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     spriteParams.textureName = kBackgroundTileSelectedMatched;
     _backgroundMatched = GGame.Create<Sprite>(spriteParams);
     _backgroundMatched->transform->SetSize(transform->GetSize());
-    transform->Attach(_backgroundMatched->transform, kZeroVector2D_i32, kAttachmentPoint_Center);
+    transform->Attach(_backgroundMatched->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
 
     Show(true);
   }

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['playscene_279',['PlayScene',['../class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2',1,'JadeEngine::Game']]],
-  ['preupdate_280',['PreUpdate',['../class_jade_engine_1_1_i_scene.html#af30c68be854fa47baa7f00f93121a134',1,'JadeEngine::IScene']]]
+  ['operator_3d_283',['operator=',['../class_jade_engine_1_1_game.html#a1f575467a763080c6384cb5b5549b7da',1,'JadeEngine::Game']]]
 ];

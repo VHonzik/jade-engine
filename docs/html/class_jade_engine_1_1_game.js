@@ -23,6 +23,7 @@ var class_jade_engine_1_1_game =
     [ "GetHoveredSprite", "class_jade_engine_1_1_game.html#a83fd28049a7f27aeb7e93d8de1cf7f45", null ],
     [ "GetKeyBindings", "class_jade_engine_1_1_game.html#ac7f537d8abc48c877510149905b1db3b", null ],
     [ "GetMajorVersion", "class_jade_engine_1_1_game.html#a7e1880937e87a8538806e37b0edc7ecc", null ],
+    [ "GetMiddlePoint", "class_jade_engine_1_1_game.html#ac116f31ca0fee8cd6ba332f24b2a82ea", null ],
     [ "GetMinorVersion", "class_jade_engine_1_1_game.html#a86678877fadd6eae65c08f9e045aea78", null ],
     [ "GetNativeTextureFormats", "class_jade_engine_1_1_game.html#a28d830182fd0022fd996121f7a8efc89", null ],
     [ "GetRenderer", "class_jade_engine_1_1_game.html#aab19a925abfea11e6a83ab2e2c2a62a7", null ],

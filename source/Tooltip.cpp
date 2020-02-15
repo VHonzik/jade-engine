@@ -29,8 +29,7 @@ namespace JadeEngine
     boxParams.spriteSheet = false;
     boxParams.spriteSheetName = "";
     boxParams.cornerSize = params.cornerSize;
-    boxParams.width = params.width + _padding * 2;
-    boxParams.height = 50 + _padding * 2;
+    boxParams.size = { static_cast<int32_t>(params.width + _padding * 2), static_cast<int32_t>(50 + _padding * 2) };
 
     _boxSprite = GGame.Create<BoxSprite>(boxParams);
 

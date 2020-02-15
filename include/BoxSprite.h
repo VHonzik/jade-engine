@@ -1,14 +1,14 @@
 #pragma once
 
 #include "Sprite.h"
+#include "Vector2D.h"
 
 namespace JadeEngine
 {
   struct BoxSpriteParams : public SpriteParams
   {
     int32_t cornerSize;
-    int32_t width;
-    int32_t height;
+    Vector2D_i32 size;
   };
 
   class BoxSprite : public Sprite

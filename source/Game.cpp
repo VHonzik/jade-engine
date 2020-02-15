@@ -164,7 +164,7 @@ namespace JadeEngine
     _currentScene = _persistentScene;
 
     _fpsText = Create<FTC>(kDefaultFPSFTCParams);
-    _fpsText->SetPositon(5, 5);
+    _fpsText->transform->SetPosition(5, 5);
     _fpsText->SetIntValue(0, 0);
 
     _clearColor = initParams.backgroundColor;

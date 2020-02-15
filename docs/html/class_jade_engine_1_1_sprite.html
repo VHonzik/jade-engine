@@ -114,10 +114,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a44b9b1c9a850c60e3b2b4d13d2920332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add532a21e4f42ad7acc4693c69dcbb91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#add532a21e4f42ad7acc4693c69dcbb91">Clean</a> () override</td></tr>
 <tr class="separator:add532a21e4f42ad7acc4693c69dcbb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72ae29ce7c2e8f870570bc817b70154d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#a72ae29ce7c2e8f870570bc817b70154d">Tint</a> (const SDL_Color &amp;tintColor)</td></tr>
+<tr class="memitem:a72ae29ce7c2e8f870570bc817b70154d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#a72ae29ce7c2e8f870570bc817b70154d">Tint</a> (const SDL_Color &amp;tintColor)</td></tr>
 <tr class="separator:a72ae29ce7c2e8f870570bc817b70154d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f851daa954e0a39524b392beddfe37d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#a0f851daa954e0a39524b392beddfe37d">SetAlpha</a> (float alpha)</td></tr>
-<tr class="separator:a0f851daa954e0a39524b392beddfe37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa277f0140c8a1e2ec5d66569f5d014d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#aa277f0140c8a1e2ec5d66569f5d014d5">SetAlpha</a> (const float alpha)</td></tr>
+<tr class="separator:aa277f0140c8a1e2ec5d66569f5d014d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee58241a016930c852f7c3a46e800757"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#aee58241a016930c852f7c3a46e800757">MakeTextureUnique</a> ()</td></tr>
+<tr class="separator:aee58241a016930c852f7c3a46e800757"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6135b610bc8f5ec4c64c2e98877705ce"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#a6135b610bc8f5ec4c64c2e98877705ce">GetAlpha</a> () const</td></tr>
 <tr class="separator:a6135b610bc8f5ec4c64c2e98877705ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb1b4c599ddf235cbdc47c79ee354546"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_sprite.html#adb1b4c599ddf235cbdc47c79ee354546">SetRotation</a> (const double angle)</td></tr>
@@ -410,6 +412,27 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aee58241a016930c852f7c3a46e800757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee58241a016930c852f7c3a46e800757">&#9670;&nbsp;</a></span>MakeTextureUnique()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JadeEngine::Sprite::MakeTextureUnique </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Create a deep-copy of the <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> texture that is not shared with other Sprites using the same texture.</p>
+<p>This operation is necessary for <code><a class="el" href="class_jade_engine_1_1_sprite.html#a72ae29ce7c2e8f870570bc817b70154d">Sprite::Tint</a></code> and <code><a class="el" href="class_jade_engine_1_1_sprite.html#aa277f0140c8a1e2ec5d66569f5d014d5">Sprite::SetAlpha</a></code> and will be called automatically on their first call unless already called by the user.</p>
+<dl class="section warning"><dt>Warning</dt><dd>This is potentially expensive operation as it deep-copying the texture using <code><a class="el" href="class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b">Game::CopyTexture</a></code>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_sprite.html#a72ae29ce7c2e8f870570bc817b70154d">Sprite::Tint</a>, <a class="el" href="class_jade_engine_1_1_sprite.html#aa277f0140c8a1e2ec5d66569f5d014d5">Sprite::SetAlpha</a>, <a class="el" href="class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b">Game::CopyTexture</a> </dd></dl>
+
+</div>
+</div>
 <a id="a44b9b1c9a850c60e3b2b4d13d2920332"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a44b9b1c9a850c60e3b2b4d13d2920332">&#9670;&nbsp;</a></span>Render()</h2>
 
@@ -449,38 +472,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a0f851daa954e0a39524b392beddfe37d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f851daa954e0a39524b392beddfe37d">&#9670;&nbsp;</a></span>SetAlpha()</h2>
+<a id="aa277f0140c8a1e2ec5d66569f5d014d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa277f0140c8a1e2ec5d66569f5d014d5">&#9670;&nbsp;</a></span>SetAlpha()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void JadeEngine::Sprite::SetAlpha </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">const float&#160;</td>
           <td class="paramname"><em>alpha</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Changed the transparency of the sprite.</p>
-<dl class="section warning"><dt>Warning</dt><dd>The first time <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> is tinted or its transparency changed a deep copy of the texture is created which is potentially expensive operation. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The first time <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> is tinted or its transparency changed <code>MakeTextureUnique</code> is called which is potentially expensive operation. Consider calling <code>MakeTextureUnique</code> explicitly during initialization to avoid flickering. </dd>
+<dd>
+Sprite-sheet Sprites are not recommended to be used with SetAlpha. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">alpha</td><td>Transparency alpha value to set. 0 will make the sprite completely invisible, 1 fully opaque. It will be clamped to [0.0f, 1.0f] range. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b">Game::CopyTexture</a>, <a class="el" href="class_jade_engine_1_1_sprite.html#a72ae29ce7c2e8f870570bc817b70154d">Sprite::Tint</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_sprite.html#aee58241a016930c852f7c3a46e800757">Sprite::MakeTextureUnique</a> </dd></dl>
 
 </div>
 </div>
@@ -586,9 +603,6 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void JadeEngine::Sprite::Tint </td>
@@ -598,27 +612,24 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Tint the sprite with a single color.</p>
-<dl class="section warning"><dt>Warning</dt><dd>The first time <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> is tinted or its transparency changed a deep copy of the texture is created which is potentially expensive operation. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The first time <a class="el" href="class_jade_engine_1_1_sprite.html">Sprite</a> is tinted or its transparency changed <code>MakeTextureUnique</code> is called which is potentially expensive operation. Consider calling <code>MakeTextureUnique</code> explicitly during initialization to avoid flickering. </dd>
+<dd>
+Sprite-sheet Sprites are not recommended to be used with SetAlpha. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tintColor</td><td>RGBA 0-255 color that will be used to multiply each pixel of the sprite. Alpha component is ignored. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#aec104d85c91fd1cc2770fe428736c05b">Game::CopyTexture</a>, <a class="el" href="class_jade_engine_1_1_sprite.html#a0f851daa954e0a39524b392beddfe37d">Sprite::SetAlpha</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_sprite.html#aee58241a016930c852f7c3a46e800757">Sprite::MakeTextureUnique</a> </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/GameDev/SDL/jade-engine/include/<a class="el" href="_sprite_8h_source.html">Sprite.h</a></li>
-<li>D:/GameDev/SDL/jade-engine/source/Sprite.cpp</li>
+<li>D:/GameDev/SDL/Idlefactory/jade-engine/include/<a class="el" href="_sprite_8h_source.html">Sprite.h</a></li>
+<li>D:/GameDev/SDL/Idlefactory/jade-engine/source/Sprite.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

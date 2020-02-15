@@ -67,6 +67,7 @@ var hierarchy =
     [ "JadeEngine::Texture", "struct_jade_engine_1_1_texture.html", null ],
     [ "JadeEngine::Time", "class_jade_engine_1_1_time.html", null ],
     [ "JadeEngine::TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", null ],
+    [ "JadeEngine::TransformAttachmentData", "struct_jade_engine_1_1_transform_attachment_data.html", null ],
     [ "JadeEngine::UICamera", "class_jade_engine_1_1_u_i_camera.html", null ],
     [ "JadeEngine::Vector2D< ValueType >", "class_jade_engine_1_1_vector2_d.html", null ],
     [ "JadeEngine::Vector2D< float >", "class_jade_engine_1_1_vector2_d.html", null ],

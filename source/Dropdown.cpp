@@ -32,8 +32,7 @@ namespace JadeEngine
     boxParams.spriteSheet = params.spriteSheet;
     boxParams.spriteSheetName = params.spriteSheetName;
     boxParams.cornerSize = params.cornerSize;
-    boxParams.width = params.width;
-    boxParams.height = params.entryHeight;
+    boxParams.size = { params.width, params.entryHeight};
 
     _box = GGame.Create<BoxSprite>(boxParams);
 
@@ -67,8 +66,7 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _currentEntryText = GGame.Create<Text>(textParams);
-    _currentEntryText->SetHorizontalAlign(kHorizontalAlignment_Left);
-    _currentEntryText->SetVerticalAlign(kVerticalAlignment_Center);
+    _box->transform->Attach(_currentEntryText->transform, kZeroVector2D_i32, kAnchor_leftCenter, kAnchor_leftCenter);
 
     SetPosition(0, 0);
   }
@@ -89,8 +87,7 @@ namespace JadeEngine
 
       _visibleEntriesTexts.push_back(GGame.Create<Text>(textParams));
       auto newEntry = _visibleEntriesTexts[_visibleEntriesTexts.size() - 1];
-      newEntry->SetHorizontalAlign(kHorizontalAlignment_Left);
-      newEntry->SetVerticalAlign(kVerticalAlignment_Center);
+      _box->transform->Attach(newEntry->transform, kZeroVector2D_i32, kAnchor_leftCenter, kAnchor_leftCenter);
     }
   }
 
@@ -193,9 +190,7 @@ namespace JadeEngine
 
       UpdateEntries();
     }
-    else if (_expanded
-      && (hoveredSprite != _box && hoveredSprite != _contractArrowSprite)
-      && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
+    else if (_expanded && (hoveredSprite != _box && hoveredSprite != _contractArrowSprite) && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
     {
       _expanded = false;
       Contract();
@@ -205,7 +200,7 @@ namespace JadeEngine
   void Dropdown::UpdateEntries()
   {
     _currentEntryText->Show(_shown);
-    _currentEntryText->SetPosition(_box->transform->GetX() + _arrowsMargin, _box->transform->GetY() + (_entryHeight / 2));
+    _currentEntryText->transform->SetLocalPosition(_arrowsMargin, _entryHeight / 2);
 
     if (_currentEntry < _entries.size())
     {
@@ -219,7 +214,7 @@ namespace JadeEngine
     for (int32_t i = 0; i < _visibleEntriesTexts.size(); i++)
     {
       _visibleEntriesTexts[i]->Show(_shown && _expanded);
-      _visibleEntriesTexts[i]->SetPosition(_box->transform->GetX() + _arrowsMargin, _box->transform->GetY() + (_entryHeight / 2) + (i+1) * _entryHeight);
+      _visibleEntriesTexts[i]->transform->SetLocalPosition(_arrowsMargin, (_entryHeight / 2) + (i + 1) * _entryHeight);
       if (_visibleEntriesTexts[i]->GetText() != _entries[_scrollOffset + i])
       {
         _visibleEntriesTexts[i]->SetText(_entries[_scrollOffset + i]);

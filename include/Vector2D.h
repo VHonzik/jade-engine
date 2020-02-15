@@ -128,6 +128,8 @@ namespace JadeEngine
   using Vector2D_f32 = Vector2D<float>;
 
   const auto kZeroVector2D_i32 = Vector2D_i32(0, 0);
+  const auto kOneOneVector2D_i32 = Vector2D_i32(1, 1);
+  const auto kOneOneVector2D_f32 = Vector2D_f32(1.0f, 1.0f);
 
   template<typename ValueType>
   class Box

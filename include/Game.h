@@ -265,6 +265,8 @@ namespace JadeEngine
     int32_t GetHalfWidth() const { return GetWidth() / 2; }
     int32_t GetHalfHeight() const { return GetHeight() / 2; }
 
+    Vector2D_i32 GetMiddlePoint() const { return { GetHalfWidth(), GetHalfHeight() }; };
+
     const Sprite* GetHoveredSprite() const { return _hoveredSprite; }
     SDL_Renderer* GetRenderer() { return _renderer; }
     bool IsFullscreen() const { return _fullscreen; }
@@ -296,7 +298,7 @@ namespace JadeEngine
     std::add_pointer_t<Class> Create(const CreationStruct& params)
     {
       const auto& scene = params.layer == kObjectLayer_persistent_ui ? _persistentScene : _currentScene;
-      auto result = _gameObjects[scene].emplace_back(std::make_unique<Class>(params)).get();
+      auto result = _gameObjects[scene].emplace_back(std::move(std::make_unique<Class>(params))).get();
 
       // Some objects benefit from being loaded immediately in order to be positioned correctly in the same frame they were created
       if (result->GetLoadState() == kLoadState_wanted)

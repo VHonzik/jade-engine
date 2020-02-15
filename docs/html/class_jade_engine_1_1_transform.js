@@ -1,7 +1,7 @@
 var class_jade_engine_1_1_transform =
 [
     [ "Transform", "class_jade_engine_1_1_transform.html#ab827b02c57137c34fafd03a3c319bbb3", null ],
-    [ "Attach", "class_jade_engine_1_1_transform.html#a355adf23a84870f463b0b337ab89bf10", null ],
+    [ "Attach", "class_jade_engine_1_1_transform.html#a57101a6e98efd87c54ad15ebc6dcf279", null ],
     [ "Detach", "class_jade_engine_1_1_transform.html#a64a9d3b5f67e599a506e1aaf83f85abb", null ],
     [ "GetBoundingBox", "class_jade_engine_1_1_transform.html#af17ef98c7246de778a18b9b56ffb3d5f", null ],
     [ "GetBox", "class_jade_engine_1_1_transform.html#af87290b526106aaf62d0d636b7d71d4d", null ],
@@ -28,6 +28,8 @@ var class_jade_engine_1_1_transform =
     [ "SetLocalPosition", "class_jade_engine_1_1_transform.html#ac66ad936c965af6d3f38852f5734a655", null ],
     [ "SetPosition", "class_jade_engine_1_1_transform.html#a4d082423f48b53adc2add9b2ee7a947c", null ],
     [ "SetPosition", "class_jade_engine_1_1_transform.html#a78d9aa7b31b7f53306f4d900095c816b", null ],
+    [ "SetPositionAnchor", "class_jade_engine_1_1_transform.html#ac499ac0ac18276082ea6595f822acbaf", null ],
+    [ "SetPositionAnchor", "class_jade_engine_1_1_transform.html#a6ca59e70037267605132dc6744561d0b", null ],
     [ "SetSize", "class_jade_engine_1_1_transform.html#a0d4463754086cff102df6260055000f7", null ],
     [ "SetSize", "class_jade_engine_1_1_transform.html#a2b967d6e79253dcacbdf2baae61e72fa", null ],
     [ "SetWidth", "class_jade_engine_1_1_transform.html#aa658114805ec2c44efafc01e6f8a6139", null ],

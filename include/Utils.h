@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cctype>
 #include <cstdarg>
 #include <iterator>
 #include <utility>
@@ -140,4 +141,31 @@ namespace JadeEngine
       color.a
     };
   }
+
+  inline std::string CamelCaseToSnakeCase(const std::string& camelCase)
+  {
+    std::vector<char> titleSnakeCase;
+    titleSnakeCase.reserve(camelCase.length());
+    for (size_t i = 0; i < camelCase.length(); i++)
+    {
+      if (i == 0)
+      {
+        titleSnakeCase.push_back(std::toupper(camelCase[i]));
+      }
+      else if (std::isupper(camelCase[i]))
+      {
+        titleSnakeCase.push_back(' ');
+        titleSnakeCase.push_back(camelCase[i]);
+      }
+      else
+      {
+        titleSnakeCase.push_back(camelCase[i]);
+      }
+    }
+    titleSnakeCase.push_back('\0');
+
+    return std::string{ titleSnakeCase.data() };
+  }
+
+
 }

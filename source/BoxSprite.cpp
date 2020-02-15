@@ -12,7 +12,7 @@ namespace JadeEngine
     , _scaleX(1)
     , _scaleY(1)
   {
-    transform->SetSize(params.width, params.height);
+    transform->SetSize(params.size);
   }
 
   void BoxSprite::Render(SDL_Renderer* renderer)

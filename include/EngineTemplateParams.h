@@ -132,10 +132,8 @@ namespace JadeEngine
     },
     //int32_t cornerSize;
     7,
-    //int32_t width;
-    510,
-    //int32_t height;
-    400,
+    // Vector2D_i32 size;
+    {510, 400}
   };
 
   const ButtonParams kOptionsSectionTitleButton =

@@ -14,12 +14,12 @@ namespace JadeEngine
     , _color(params.color)
     , _masked(false)
     , _mask{0, 0, 0, 0}
-    , _x(0)
-    , _y(0)
   {
     _z = params.z;
     SetLoadState(kLoadState_wanted);
     _font = GGame.FindFont(params.fontName, params.fontSize);
+
+    transform->Initialize(kZeroVector2D_i32, kZeroVector2D_i32);
 
     assert(_font != nullptr);
   }
@@ -28,8 +28,7 @@ namespace JadeEngine
   {
     if (_text.size() == 0)
     {
-      _width = 0;
-      _height = 0;
+      transform->SetSize(0, 0);
       return kLoadState_done;
     }
 
@@ -42,8 +41,7 @@ namespace JadeEngine
         SDL_ASSERT_SUCCESS(SDL_SetSurfaceAlphaMod(surface, _color.a));
       }
 
-      _width = surface->w;
-      _height = surface->h;
+      transform->SetSize(surface->w, surface->h);
 
       _cachedTexture = SDL_CreateTextureFromSurface(renderer, surface);
       SDL_ASSERT_SUCCESS(SDL_SetTextureBlendMode(_cachedTexture, SDL_BLENDMODE_BLEND));
@@ -53,8 +51,7 @@ namespace JadeEngine
     }
     else
     {
-      _width = 0;
-      _height = 0;
+      transform->SetSize(0, 0);
       return kLoadState_abandoned;
     }
   }
@@ -65,43 +62,11 @@ namespace JadeEngine
     _mask = mask;
   }
 
-  void Text::SetPosition(int32_t x, int32_t y)
-  {
-    _x = x;
-    _y = y;
-  }
-
   void Text::Render(SDL_Renderer* renderer)
   {
     if (_cachedTexture != nullptr)
     {
-      SDL_Rect destination = { 0 , 0 , _width, _height };
-
-      switch (_textHorizontalAlign)
-      {
-      case kHorizontalAlignment_Left:
-        destination.x = _x;
-        break;
-      case kHorizontalAlignment_Center:
-        destination.x = _x - _width / 2;
-        break;
-      case kHorizontalAlignment_Right:
-        destination.x = _x - _width;
-        break;
-      }
-
-      switch (_textVerticalAlign)
-      {
-      case kVerticalAlignment_Top:
-        destination.y = _y;
-        break;
-      case kVerticalAlignment_Center:
-        destination.y = _y - _height / 2;
-        break;
-      case kVerticalAlignment_Bottom:
-        destination.y = _y - _height;
-        break;
-      }
+      SDL_Rect destination = transform->GetBox();
 
       if (_masked)
       {
@@ -119,10 +84,18 @@ namespace JadeEngine
     }
   }
 
-  void Text::SetText(const std::string& text)
+  void Text::SetTextFast(const std::string& text)
   {
     _text = text;
     RemoveCache();
+  }
+
+  void Text::SetText(const std::string& text)
+  {
+    if (_text != text)
+    {
+      SetTextFast(text);
+    }
   }
 
   void Text::SetTextAndColor(const std::string& text, const SDL_Color& color)

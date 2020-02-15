@@ -82,7 +82,9 @@ namespace JadeEngine
   void Sprite::Render(SDL_Renderer* renderer)
   {
     SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
-    SDL_Rect* source = _spriteSheetMasked ? &_spriteSheetMask : nullptr;
+    auto maskCopy = _spriteSheetMask;
+    SDL_Rect* source = _spriteSheetMasked ? &maskCopy : nullptr;
+
     if (_rotated)
     {
       SDL_RenderCopyEx(renderer, _texture, source, &destination, _rotationAngle, nullptr, SDL_FLIP_NONE);
@@ -95,12 +97,7 @@ namespace JadeEngine
 
   void Sprite::Tint(const SDL_Color& tintColor)
   {
-    if (!_textureDescription->isCopy)
-    {
-      _textureDescription = GGame.CopyTexture(_textureDescription, _textureDescription->sampling);
-      _texture = _textureDescription->texture;
-    }
-
+    MakeTextureUnique();
     SDL_SetTextureColorMod(_texture, tintColor.r, tintColor.g, tintColor.b);
   }
 
@@ -137,15 +134,20 @@ namespace JadeEngine
     transform->SetBoundingBox({ 0, 0, _spriteSheetMask.w, _spriteSheetMask.h });
   }
 
-  void Sprite::SetAlpha(float alpha)
+  void Sprite::MakeTextureUnique()
+  {
+    if (!_textureDescription->isCopy)
+    {
+      _textureDescription = GGame.CopyTexture(_textureDescription, _textureDescription->sampling);
+      _texture = _textureDescription->texture;
+    }
+  }
+
+  void Sprite::SetAlpha(const float alpha)
   {
     if (_alpha != Clamp01(alpha))
     {
-      if (!_textureDescription->isCopy)
-      {
-        _textureDescription = GGame.CopyTexture(_textureDescription, _textureDescription->sampling);
-        _texture = _textureDescription->texture;
-      }
+      MakeTextureUnique();
 
       _alpha = Clamp01(alpha);
       auto aplhaMod = static_cast<uint8_t>(_alpha * 255.0f);

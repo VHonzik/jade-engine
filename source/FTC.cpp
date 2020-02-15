@@ -12,13 +12,7 @@ namespace JadeEngine
   FTC::FTC(const FTCParams& params)
     : _defaultColor(params.defaultColor)
     , _format(params.format)
-    , Width(0)
-    , Height(0)
-    , _x(0)
-    , _y(0)
     , _layer(params.layer)
-    , _align(kHorizontalAlignment_Left)
-    , _recalculateWanted(false)
   {
     _z = params.z;
 
@@ -33,6 +27,8 @@ namespace JadeEngine
     _subParams.text = "";
     _subParams.z = params.z;
 
+    transform->Initialize(kZeroVector2D_i32, kZeroVector2D_i32);
+
     Rebuild();
   }
 
@@ -40,7 +36,8 @@ namespace JadeEngine
   {
     for (const auto& text : _texts)
     {
-      text->Clean();
+      if (text->transform->IsAttached()) text->transform->Detach();
+      text->Destroy();
     }
 
     _valueColors.clear();
@@ -80,43 +77,43 @@ namespace JadeEngine
       _texts.push_back(GGame.Create<Text>(params));
     }
 
-    _recalculateWanted = true;
-  }
+    assert(_texts.size() > 0);
+    transform->Attach(_texts[0]->transform);
 
-  void FTC::Update()
-  {
-    if (_recalculateWanted)
+    for (size_t i = 1; i < _texts.size(); i++)
     {
-      Recalculate();
+      _texts[i - 1]->transform->Attach(_texts[i]->transform, kZeroVector2D_i32, kAnchor_rightBottom, kAnchor_leftBottom);
     }
+
+    const auto size = std::accumulate(std::cbegin(_texts), std::cend(_texts), kZeroVector2D_i32, [&](const Vector2D_i32& a, const Text* b)
+    {
+      return Vector2D_i32{ a.x + b->transform->GetWidth(), std::max(a.y ,b->transform->GetHeight()) };
+    });
+    transform->SetSize(size);
   }
 
   void FTC::SetIntValue(const uint32_t index, const int32_t value)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetText(std::to_string(value));
-    _recalculateWanted = true;
   }
 
   void FTC::SetStringValue(const uint32_t index, const std::string& value)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetText(value);
-    _recalculateWanted = true;
   }
 
   void FTC::SetFloatValue(const uint32_t index, const float value)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetText(std::to_string(value));
-    _recalculateWanted = true;
   }
 
   void FTC::SetValueColor(const uint32_t index, const SDL_Color& color)
   {
     const auto textIndex = _valueIndex[index];
     _texts[textIndex]->SetColor(color);
-    _recalculateWanted = true;
   }
 
   void FTC::Show(bool shown)
@@ -128,44 +125,5 @@ namespace JadeEngine
     {
       text->Show(isShown);
     }
-  }
-
-  void FTC::SetHorizontalAlign(const HorizontalAlignment align)
-  {
-    for (auto& text : _texts)
-    {
-      text->SetHorizontalAlign(align);
-    }
-  }
-
-  void FTC::SetVerticalAlign(const VerticalAlignment align)
-  {
-    for (auto& text : _texts)
-    {
-      text->SetVerticalAlign(align);
-    }
-  }
-
-  void FTC::SetPositon(int32_t x, int32_t y)
-  {
-    _x = x;
-    _y = y;
-    _recalculateWanted = true;
-  }
-
-  void FTC::Recalculate()
-  {
-    Width = 0;
-    Height = 0;
-
-    for (uint32_t i = 0; i < _texts.size(); i++)
-    {
-      auto& text = _texts[i];
-      text->SetPosition(i == 0 ? _x : _texts[i - 1]->GetX() + _texts[i - 1]->GetWidth(), _y);
-      Width += text->GetWidth();
-      Height = std::max(Height, text->GetHeight());
-    }
-
-    _recalculateWanted = false;
   }
 }
