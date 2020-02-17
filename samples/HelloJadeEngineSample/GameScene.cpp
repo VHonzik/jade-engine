@@ -10,7 +10,7 @@ namespace HelloJadeEngine
   void GameScene::Start()
   {
     TextParams params;
-    params.layer = kObjectLayer_ui;
+    params.layer = kObjectLayer_UI;
     params.fontName = kVeraFont;
     params.fontSize = 64;
     params.text = "Hello Jade Engine!";

@@ -32,9 +32,9 @@ namespace
 
   const std::string kScalingSDLHintNames[3] =
   {
-    "nearest", // kTextureSampling_neareast
-    "linear", // kTextureSampling_linear
-    "best", // kTextureSampling_anisotropic
+    "nearest", // kTextureSampling_Neareast
+    "linear", // kTextureSampling_Linear
+    "best", // kTextureSampling_Anisotropic
   };
 }
 
@@ -137,7 +137,7 @@ namespace JadeEngine
         kDefaultTextureName,
         format,
         false,
-        kTextureSampling_anisotropic
+        kTextureSampling_Anisotropic
       };
 
       _textures[kDefaultTextureName] = std::make_shared<Texture>(texture);
@@ -417,7 +417,7 @@ namespace JadeEngine
       name,
       format,
       false,
-      kTextureSampling_neareast
+      kTextureSampling_Neareast
     );
 
     return true;
@@ -611,7 +611,7 @@ namespace JadeEngine
   {
     for (auto& gameObject : _gameObjects[scene])
     {
-      if (gameObject->GetLoadState() == kLoadState_wanted)
+      if (gameObject->GetLoadState() == kLoadState_Wanted)
       {
         gameObject->SetLoadState(gameObject->Load(_renderer));
       }
@@ -622,7 +622,7 @@ namespace JadeEngine
   {
     for (auto& gameObject : _gameObjects[scene])
     {
-      if (gameObject->GetLoadState() == kLoadState_done)
+      if (gameObject->GetLoadState() == kLoadState_Done)
       {
         gameObject->Update();
       }
@@ -633,7 +633,7 @@ namespace JadeEngine
   {
     for (auto& gameObject : _gameObjects[scene])
     {
-      if (gameObject->GetLoadState() == kLoadState_done)
+      if (gameObject->GetLoadState() == kLoadState_Done)
       {
         gameObject->transform->Update();
       }

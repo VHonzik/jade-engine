@@ -7,6 +7,7 @@
 namespace JadeEngine
 {
   class Button;
+  class TransformGroup;
 
   class MainMenuScene : public IScene
   {
@@ -22,6 +23,7 @@ namespace JadeEngine
     Button* _playButton;
     Button* _optionsButton;
     Button* _quitButton;
+    TransformGroup* _buttonGroup;
 
     int32_t _playSceneId;
     bool    _playSceneSet;

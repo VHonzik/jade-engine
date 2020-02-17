@@ -17,6 +17,7 @@ var class_jade_engine_1_1_game =
     [ "GetCurrentDisplayMode", "class_jade_engine_1_1_game.html#ab903c502510435323bd4e4e0d39a9ba8", null ],
     [ "GetDisplayModes", "class_jade_engine_1_1_game.html#a97ab41ce0c5e4b8abb19a1665c9e3d94", null ],
     [ "GetHalfHeight", "class_jade_engine_1_1_game.html#aa7f44532414ce646ee84f51202bfc721", null ],
+    [ "GetHalfSize", "class_jade_engine_1_1_game.html#af21c5e532d97329e1a8e6396246c8eb4", null ],
     [ "GetHalfWidth", "class_jade_engine_1_1_game.html#add6b3dffd389656adfd6053a38a5b151", null ],
     [ "GetHashVersion", "class_jade_engine_1_1_game.html#a14bf5974c60e198d6ef4af21b75103bd", null ],
     [ "GetHeight", "class_jade_engine_1_1_game.html#afff01b334dbdd17a18488630f7981578", null ],

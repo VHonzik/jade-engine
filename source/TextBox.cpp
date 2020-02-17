@@ -16,7 +16,7 @@ namespace JadeEngine
     , _x(0)
     , _y(0)
   {
-    SetLoadState(kLoadState_wanted);
+    SetLoadState(kLoadState_Wanted);
     _z = params.z;
     _font = GGame.FindFont(params.fontName, params.fontSize);
     assert(_font != nullptr);
@@ -28,7 +28,7 @@ namespace JadeEngine
     {
       _width = 0;
       _height = 0;
-      return kLoadState_done;
+      return kLoadState_Done;
     }
 
     auto surface = TTF_RenderText_Blended_Wrapped(_font, _text.c_str(), _color, _width);
@@ -45,12 +45,12 @@ namespace JadeEngine
       _cachedTexture = SDL_CreateTextureFromSurface(renderer, surface);
       SDL_FreeSurface(surface);
 
-      return _cachedTexture != nullptr ? kLoadState_done : kLoadState_abandoned;
+      return _cachedTexture != nullptr ? kLoadState_Done : kLoadState_Abandoned;
     }
     else
     {
       _height = 0;
-      return kLoadState_abandoned;
+      return kLoadState_Abandoned;
     }
   }
 
@@ -72,7 +72,7 @@ namespace JadeEngine
   {
     SDL_DestroyTexture(_cachedTexture);
     _cachedTexture = nullptr;
-    SetLoadState(kLoadState_wanted);
+    SetLoadState(kLoadState_Wanted);
   }
 
   void TextBox::SetPosition(int32_t x, int32_t y)

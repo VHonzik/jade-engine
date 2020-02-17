@@ -21,21 +21,21 @@ namespace JadeEngine
 
     @see IGameObject::Load
     */
-    kLoadState_wanted,
+    kLoadState_Wanted,
 
     /**
     The %game object's resources were successfully loaded or there were no resources to load.
 
     The object is operating normally, its Update function is called every frame.
     */
-    kLoadState_done,
+    kLoadState_Done,
 
     /**
     There was an error in loading the %game object's resources and the load process was abandoned.
 
     This usually implies a non-recoverable state and %game object should be cleaned up and destroyed. The Update function is suspended.
     */
-    kLoadState_abandoned,
+    kLoadState_Abandoned,
   };
 
   /**
@@ -83,7 +83,7 @@ namespace JadeEngine
     */
     IGameObject()
       : transform(std::make_shared<Transform>())
-      , _loadState(kLoadState_done)
+      , _loadState(kLoadState_Done)
       , _shown(true)
       , _z(0)
       , _destructionWanted(false)
@@ -108,7 +108,7 @@ namespace JadeEngine
     virtual void Clean() {};
 
     /**
-    Triggered every frame when GetLoadState function returns `kLoadState_wanted` to allow resources, such as textures, to be loaded.
+    Triggered every frame when GetLoadState function returns `kLoadState_Wanted` to allow resources, such as textures, to be loaded.
 
     The trigger order is the following: IScene::PreUpdate -> IGameObject::Load -> IGameObject::Update -> IScene::Update -> IGameObject::Load -> IGameObject::Render.
 

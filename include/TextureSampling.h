@@ -10,14 +10,14 @@ namespace JadeEngine
     /**
     Nearest pixel sampling. Corresponds to SDL2 "nearest" SDL_HINT_RENDER_SCALE_QUALITY.
     */
-    kTextureSampling_neareast,
+    kTextureSampling_Neareast,
     /**
     Linear filtering. Corresponds to SDL2 "linear" SDL_HINT_RENDER_SCALE_QUALITY.
     */
-    kTextureSampling_linear,
+    kTextureSampling_Linear,
     /**
     Anisotropic filtering. Corresponds to SDL2 "best" SDL_HINT_RENDER_SCALE_QUALITY.
     */
-    kTextureSampling_anisotropic
+    kTextureSampling_Anisotropic
   };
 }

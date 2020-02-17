@@ -42,8 +42,8 @@ namespace JadeEngine
   {
     if (position != _position)
     {
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_centerPosition);
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_position);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_CenterPosition);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_Position);
       _position = position;
       _centerPosition = _position + _size / 2;
       _transformationBox = { _position, _size };
@@ -64,8 +64,8 @@ namespace JadeEngine
   {
     if (centerPosition != _centerPosition)
     {
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_centerPosition);
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_position);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_CenterPosition);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_Position);
       _centerPosition = centerPosition;
       _position = _centerPosition - _size / 2;
       _transformationBox = { _position, _size };
@@ -84,11 +84,11 @@ namespace JadeEngine
 
   void Transform::SetPositionAnchor(const Vector2D_i32& position, const Anchor& point)
   {
-    if (point == kAnchor_center)
+    if (point == kAnchor_Center)
     {
       SetCenterPosition(position);
     }
-    else if (point == kAnchor_leftTop)
+    else if (point == kAnchor_LeftTop)
     {
       SetPosition(position);
     }
@@ -96,28 +96,28 @@ namespace JadeEngine
     Vector2D_i32 destination = position;
     switch (point)
     {
-    case kAnchor_center:
-    case kAnchor_centerBottom:
-    case kAnchor_centerTop:
+    case kAnchor_Center:
+    case kAnchor_CenterBottom:
+    case kAnchor_CenterTop:
       destination.x -= GetWidth() / 2;
       break;
-    case kAnchor_rightBottom:
-    case kAnchor_rightCenter:
-    case kAnchor_rightTop:
+    case kAnchor_RightBottom:
+    case kAnchor_RightCenter:
+    case kAnchor_RightTop:
       destination.x -= GetWidth();
       break;
     }
 
     switch (point)
     {
-    case kAnchor_center:
-    case kAnchor_leftCenter:
-    case kAnchor_rightCenter:
+    case kAnchor_Center:
+    case kAnchor_LeftCenter:
+    case kAnchor_RightCenter:
       destination.y -= GetHeight() / 2;
       break;
-    case kAnchor_centerBottom:
-    case kAnchor_leftBottom:
-    case kAnchor_rightBottom:
+    case kAnchor_CenterBottom:
+    case kAnchor_LeftBottom:
+    case kAnchor_RightBottom:
       destination.y -= GetHeight();
       break;
     }
@@ -144,8 +144,8 @@ namespace JadeEngine
   {
     if (size != _size)
     {
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_centerPosition);
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_size);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_CenterPosition);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_Size);
       _size = size;
       _centerPosition = _position + _size / 2;
       _transformationBox = { _position, _size };
@@ -158,10 +158,10 @@ namespace JadeEngine
       if (!_boundingBoxSet)
       {
         _boundingBox.size = size;
-        _dirtyFlagsCurrentFrame.set(kDirtyFlag_boundingBox);
+        _dirtyFlagsCurrentFrame.set(kDirtyFlag_BoundingBox);
       }
 
-      if (IsAttached() && _attachmentData.childAnchor != kAnchor_leftTop)
+      if (IsAttached() && _attachmentData.childAnchor != kAnchor_LeftTop)
       {
         OnAttachedPositionChange();
       }
@@ -173,7 +173,7 @@ namespace JadeEngine
     _boundingBoxSet = true;
     if (box.position != _boundingBox.position || box.size != _boundingBox.size)
     {
-      _dirtyFlagsCurrentFrame.set(kDirtyFlag_boundingBox);
+      _dirtyFlagsCurrentFrame.set(kDirtyFlag_BoundingBox);
       _boundingBox.position = box.position;
       _boundingBox.size = box.size;
     }
@@ -214,34 +214,34 @@ namespace JadeEngine
 
     switch (_attachmentData.parentAnchor)
     {
-    case kAnchor_center:
-    case kAnchor_centerBottom:
-    case kAnchor_centerTop:
+    case kAnchor_Center:
+    case kAnchor_CenterBottom:
+    case kAnchor_CenterTop:
       destination.x = _parent->GetCenterX();
       break;
-    case kAnchor_rightBottom:
-    case kAnchor_rightCenter:
-    case kAnchor_rightTop:
+    case kAnchor_RightBottom:
+    case kAnchor_RightCenter:
+    case kAnchor_RightTop:
       destination.x = _parent->GetX() + _parent->GetWidth();
       break;
     }
 
     switch (_attachmentData.parentAnchor)
     {
-    case kAnchor_center:
-    case kAnchor_leftCenter:
-    case kAnchor_rightCenter:
+    case kAnchor_Center:
+    case kAnchor_LeftCenter:
+    case kAnchor_RightCenter:
       destination.y = _parent->GetCenterY();
       break;
-    case kAnchor_centerBottom:
-    case kAnchor_leftBottom:
-    case kAnchor_rightBottom:
+    case kAnchor_CenterBottom:
+    case kAnchor_LeftBottom:
+    case kAnchor_RightBottom:
       destination.y = _parent->GetY() + _parent->GetHeight();
       break;
     }
 
     // Special case where we want to use SetCenterPosition
-    if (_attachmentData.childAnchor == kAnchor_center)
+    if (_attachmentData.childAnchor == kAnchor_Center)
     {
       SetCenterPosition(destination + _attachmentData.localPosition);
     }
@@ -251,28 +251,28 @@ namespace JadeEngine
 
       switch (_attachmentData.childAnchor)
       {
-      case kAnchor_center:
-      case kAnchor_centerBottom:
-      case kAnchor_centerTop:
+      case kAnchor_Center:
+      case kAnchor_CenterBottom:
+      case kAnchor_CenterTop:
         topLeftOffset.x = -GetWidth() / 2;
         break;
-      case kAnchor_rightBottom:
-      case kAnchor_rightCenter:
-      case kAnchor_rightTop:
+      case kAnchor_RightBottom:
+      case kAnchor_RightCenter:
+      case kAnchor_RightTop:
         topLeftOffset.x = -GetWidth();
         break;
       }
 
       switch (_attachmentData.childAnchor)
       {
-      case kAnchor_center:
-      case kAnchor_leftCenter:
-      case kAnchor_rightCenter:
+      case kAnchor_Center:
+      case kAnchor_LeftCenter:
+      case kAnchor_RightCenter:
         topLeftOffset.y = -GetHeight() / 2;
         break;
-      case kAnchor_centerBottom:
-      case kAnchor_leftBottom:
-      case kAnchor_rightBottom:
+      case kAnchor_CenterBottom:
+      case kAnchor_LeftBottom:
+      case kAnchor_RightBottom:
         topLeftOffset.y = -GetHeight();
         break;
       }
@@ -311,7 +311,7 @@ namespace JadeEngine
 
   bool Transform::IsDirty(const DirtyFlag flag) const
   {
-    assert(flag != kDirtyFlag_count);
+    assert(flag != kDirtyFlag_Count);
     return _dirtyFlags[flag];
   }
 

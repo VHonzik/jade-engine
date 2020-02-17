@@ -1,6 +1,5 @@
 #include "MainMenuScene.h"
 
-#include "AlignedGroup.h"
 #include "Audio.h"
 #include "BoxSprite.h"
 #include "Button.h"
@@ -9,6 +8,7 @@
 #include "EngineTemplateParams.h"
 #include "Game.h"
 #include "Settings.h"
+#include "TransformGroup.h"
 
 #include <sstream>
 
@@ -25,8 +25,8 @@ namespace JadeEngine
 
   void MainMenuScene::ApplyDisplayModeFromSettings()
   {
-    auto width = GSettings.Get<int32_t>(kSettingsIDs_resolutionWidth);
-    auto height = GSettings.Get<int32_t>(kSettingsIDs_resolutionHeight);
+    auto width = GSettings.Get<int32_t>(kSettingsIDs_ResolutionWidth);
+    auto height = GSettings.Get<int32_t>(kSettingsIDs_ResolutionHeight);
 
     const auto& modes = GGame.GetDisplayModes();
     for (int32_t i = 0; i < modes.size(); i++)
@@ -39,7 +39,7 @@ namespace JadeEngine
       }
     }
 
-    auto fullscreen = GSettings.Get<bool>(kSettingsIDs_fullScreen);
+    auto fullscreen = GSettings.Get<bool>(kSettingsIDs_FullScreen);
     GGame.SetFullscreen(fullscreen);
   }
 
@@ -56,7 +56,7 @@ namespace JadeEngine
     copyrightParams.text = stream.str();
 
     auto copyright = GGame.Create<Text>(copyrightParams);
-    copyright->transform->SetPositionAnchor(GGame.GetWidth() - 5, GGame.GetHeight() - 5, kAnchor_rightBottom);
+    copyright->transform->SetPositionAnchor(GGame.GetWidth() - 5, GGame.GetHeight() - 5, kAnchor_RightBottom);
 
     auto buttonParams = kMainMenuBlueButton;
 
@@ -72,11 +72,15 @@ namespace JadeEngine
     buttonParams.height = 50;
     _quitButton = GGame.Create<Button>(buttonParams);
 
-    AlignedGroup group(kGroupDirection_Vertical, kHorizontalAlignment_Center,
-      kVerticalAlignment_Center, 30, GGame.GetHalfWidth(), GGame.GetHalfHeight());
-    group.AddVA(_playButton, _optionsButton, _quitButton);
+    TransformGroupParams groupParams;
+    groupParams.layer = kObjectLayer_UI;
+    groupParams.spacing = 30;
+    groupParams.direction = kGroupDirection_Vertical;
+    groupParams.alignment = kVerticalAlignment_Center;
 
-    //GAudio.SwitchMusic("fantasyTitleMusic", true);
+    _buttonGroup = GGame.Create<TransformGroup>(groupParams);
+    _buttonGroup->Add({ _playButton, _optionsButton, _quitButton });
+    _buttonGroup->transform->SetCenterPosition(GGame.GetMiddlePoint());
 
     GGame.SetCursor("cursorGauntlet");
   }

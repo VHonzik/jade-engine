@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: D:/GameDev/SDL/Idlefactory/jade-engine/include/EngineSettings.h Source File</title>
+<title>jade-engine: include/EngineSettings.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -96,28 +96,28 @@ $(document).ready(function(){initNavTree('_engine_settings_8h_source.html',''); 
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  <span class="keyword">enum</span> SettingsIDs</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    kSettingsIDs_musicVolume,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    kSettingsIDs_soundVolume,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    kSettingsIDs_MusicVolume,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    kSettingsIDs_SoundVolume,</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    kSettingsIDs_fullScreen,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    kSettingsIDs_resolutionWidth,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    kSettingsIDs_resolutionHeight,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    kSettingsIDS_engineEnd</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    kSettingsIDs_FullScreen,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    kSettingsIDs_ResolutionWidth,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    kSettingsIDs_ResolutionHeight,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    kSettingsIDS_EngineEnd</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  };</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="keyword">namespace </span>detail</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">const</span> std::vector&lt;SettingsEntry&gt; kEngineSettings =</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      SettingsEntry::Create(kSettingsIDs_musicVolume, 0.5f,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      SettingsEntry::Create(kSettingsIDs_MusicVolume, 0.5f,</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      <span class="stringliteral">&quot;Music volume. Goes from 0.0 to 1.0, 0.0 being completely silent.&quot;</span>),</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      SettingsEntry::Create(kSettingsIDs_soundVolume, 0.5f,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      SettingsEntry::Create(kSettingsIDs_SoundVolume, 0.5f,</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      <span class="stringliteral">&quot;Sounds volume. Goes from 0.0 to 1.0, 0.0 being completely silent.&quot;</span>),</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      SettingsEntry::Create(kSettingsIDs_fullScreen, <span class="keyword">false</span>,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      SettingsEntry::Create(kSettingsIDs_FullScreen, <span class="keyword">false</span>,</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <span class="stringliteral">&quot;Fullscreen mode.&quot;</span>),</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      SettingsEntry::Create(kSettingsIDs_resolutionWidth, 1280,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      SettingsEntry::Create(kSettingsIDs_ResolutionWidth, 1280,</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <span class="stringliteral">&quot;Wanted resolution width. Minimum width is 800.&quot;</span>),</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      SettingsEntry::Create(kSettingsIDs_resolutionHeight, 720,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      SettingsEntry::Create(kSettingsIDs_ResolutionHeight, 720,</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      <span class="stringliteral">&quot;Wanted resolution height. Minimum height is 600.&quot;</span>),</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div>

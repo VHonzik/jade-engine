@@ -14,7 +14,7 @@ namespace JadeEngine
 
     To explain screen coordinates, imagine %game object with X,Y coordinates of 10,10. In UI layer its top-left corner will be 10,10 pixels from top-left corner of the game window.
     */
-    kObjectLayer_ui,
+    kObjectLayer_UI,
 
     /**
     Game objects that are created in World layer belong to the currently active scene and are rendered in world coordinates.
@@ -25,13 +25,13 @@ namespace JadeEngine
 
     @see WorldCamera
     */
-    kObjectLayer_world,
+    kObjectLayer_World,
 
     /**
-    Similarly to `kObjectLayer_ui` %game objects created in `kObjectLayer_persistent_ui` are rendered in screen coordinates but they belong to singleton persistent scene.
+    Similarly to `kObjectLayer_UI` %game objects created in `kObjectLayer_Persistent_UI` are rendered in screen coordinates but they belong to singleton persistent scene.
 
     Game objects in persistent scene are always rendered and updated.
     */
-    kObjectLayer_persistent_ui,
+    kObjectLayer_Persistent_UI,
   };
 }

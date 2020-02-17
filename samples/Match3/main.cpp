@@ -27,8 +27,7 @@ int32_t main(int32_t argc, char* argv[])
     game.AddScene(kSampleScene_GameScene, std::make_shared<GameScene>());
     game.SetCursor(kCursorPointer);
 
-    //game.PlayScene(kScene_PoweredByJadeEngine);
-    game.PlayScene(kSampleScene_GameScene);
+    game.PlayScene(kScene_PoweredByJadeEngine);
     game.Start();
   }
   game.CleanUp();

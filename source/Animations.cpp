@@ -10,7 +10,7 @@ namespace JadeEngine
 {
 
   PulseAnimation::PulseAnimation()
-    : _state(kPulseAnimationState_uinitialized)
+    : _state(kPulseAnimationState_Uinitialized)
     , _waitingForStop(false)
     , _currentSpeed(0.0f)
   {
@@ -25,16 +25,16 @@ namespace JadeEngine
   {
     for (auto& entry : _entries)
     {
-      if (cycleStart && entry.state == kPulseAnimationState_waitingForSynchronization)
+      if (cycleStart && entry.state == kPulseAnimationState_WaitingForSynchronization)
       {
         entry.state = state;
       }
-      else if (entry.state != kPulseAnimationState_waitingForSynchronization)
+      else if (entry.state != kPulseAnimationState_WaitingForSynchronization)
       {
         entry.state = state;
       }
 
-      if (state == kPulseAnimationState_stopped)
+      if (state == kPulseAnimationState_Stopped)
       {
         entry.gameObject->transform->SetSize(entry.startingSize.Convert<int32_t>());
       }
@@ -46,13 +46,13 @@ namespace JadeEngine
     assert(params.relativeFinalSize != 1.0f);
 
     _params = params;
-    SetState(kPulseAnimationState_stopped);
-    SetStateEntries(kPulseAnimationState_stopped, false);
+    SetState(kPulseAnimationState_Stopped);
+    SetStateEntries(kPulseAnimationState_Stopped, false);
 
     const bool startContracting = _params.relativeFinalSize < 1.0f;
-    _initialState = startContracting ? kPulseAnimationState_contracting : kPulseAnimationState_expanding;
-    _minRelativeSize = _initialState == kPulseAnimationState_contracting ? _params.relativeFinalSize : 1.0f;
-    _maxRelativeSize = _initialState == kPulseAnimationState_contracting ? 1.0f : _params.relativeFinalSize;
+    _initialState = startContracting ? kPulseAnimationState_Contracting : kPulseAnimationState_Expanding;
+    _minRelativeSize = _initialState == kPulseAnimationState_Contracting ? _params.relativeFinalSize : 1.0f;
+    _maxRelativeSize = _initialState == kPulseAnimationState_Contracting ? 1.0f : _params.relativeFinalSize;
 
     if (_params.startImmidiatelly)
     {
@@ -62,18 +62,18 @@ namespace JadeEngine
 
   void PulseAnimation::Start()
   {
-    assert(_state != kPulseAnimationState_uinitialized);
+    assert(_state != kPulseAnimationState_Uinitialized);
 
-    if (_state == kPulseAnimationState_stopped)
+    if (_state == kPulseAnimationState_Stopped)
     {
       SetState(_initialState);
       SetStateEntries(_initialState, true);
-      _currentSpeed = _initialState == kPulseAnimationState_contracting ? _params.contractStartingSpeed : _params.expandStartingSpeed;
+      _currentSpeed = _initialState == kPulseAnimationState_Contracting ? _params.contractStartingSpeed : _params.expandStartingSpeed;
       _currentRelativeSize = 1.0f;
     }
     else
     {
-      assert(_state == kPulseAnimationState_paused);
+      assert(_state == kPulseAnimationState_Paused);
       SetState(_beforePauseState);
       SetStateEntries(_beforePauseState, false);
     }
@@ -81,31 +81,31 @@ namespace JadeEngine
 
   void PulseAnimation::Pause()
   {
-    assert(_state != kPulseAnimationState_uinitialized);
+    assert(_state != kPulseAnimationState_Uinitialized);
     _beforePauseState = _state;
-    SetState(kPulseAnimationState_paused);
-    SetStateEntries(kPulseAnimationState_paused, false);
+    SetState(kPulseAnimationState_Paused);
+    SetStateEntries(kPulseAnimationState_Paused, false);
   }
 
   void PulseAnimation::Stop()
   {
-    assert(_state != kPulseAnimationState_uinitialized);
+    assert(_state != kPulseAnimationState_Uinitialized);
     _waitingForStop = true;
   }
 
   void PulseAnimation::StopImmidiately()
   {
-    assert(_state != kPulseAnimationState_uinitialized);
-    SetState(kPulseAnimationState_stopped);
-    SetStateEntries(kPulseAnimationState_stopped, false);
+    assert(_state != kPulseAnimationState_Uinitialized);
+    SetState(kPulseAnimationState_Stopped);
+    SetStateEntries(kPulseAnimationState_Stopped, false);
   }
 
   void PulseAnimation::Update()
   {
-    if (_state == kPulseAnimationState_uinitialized) return;
+    if (_state == kPulseAnimationState_Uinitialized) return;
     if (_entries.size() == 0) return;
 
-    if (_state == kPulseAnimationState_expanding)
+    if (_state == kPulseAnimationState_Expanding)
     {
       const auto moveResult = MoveTowardsDone(_currentRelativeSize, _maxRelativeSize, _currentSpeed * GTime.deltaTime);
       _currentRelativeSize = moveResult.first;
@@ -120,22 +120,22 @@ namespace JadeEngine
 
       if (moveResult.second)
       {
-        const bool newCycle = _initialState == kPulseAnimationState_contracting;
+        const bool newCycle = _initialState == kPulseAnimationState_Contracting;
 
         if (_waitingForStop && newCycle)
         {
-          SetState(kPulseAnimationState_stopped);
-          SetStateEntries(kPulseAnimationState_stopped, false);
+          SetState(kPulseAnimationState_Stopped);
+          SetStateEntries(kPulseAnimationState_Stopped, false);
         }
         else
         {
           _currentSpeed = _params.contractStartingSpeed;
-          SetState(kPulseAnimationState_contracting);
-          SetStateEntries(kPulseAnimationState_contracting, newCycle);
+          SetState(kPulseAnimationState_Contracting);
+          SetStateEntries(kPulseAnimationState_Contracting, newCycle);
         }
       }
     }
-    else if (_state == kPulseAnimationState_contracting)
+    else if (_state == kPulseAnimationState_Contracting)
     {
       const auto moveResult = MoveTowardsDone(_currentRelativeSize, _minRelativeSize, _currentSpeed * GTime.deltaTime);
       _currentRelativeSize = moveResult.first;
@@ -151,25 +151,25 @@ namespace JadeEngine
 
       if (moveResult.second)
       {
-        const bool newCycle = _initialState == kPulseAnimationState_expanding;
+        const bool newCycle = _initialState == kPulseAnimationState_Expanding;
 
         if (_waitingForStop && newCycle)
         {
-          SetState(kPulseAnimationState_stopped);
-          SetStateEntries(kPulseAnimationState_stopped, false);
+          SetState(kPulseAnimationState_Stopped);
+          SetStateEntries(kPulseAnimationState_Stopped, false);
         }
         else
         {
           _currentSpeed = _params.expandStartingSpeed;
-          SetState(kPulseAnimationState_expanding);
-          SetStateEntries(kPulseAnimationState_expanding, newCycle);
+          SetState(kPulseAnimationState_Expanding);
+          SetStateEntries(kPulseAnimationState_Expanding, newCycle);
         }
       }
     }
 
     for (auto& entry : _entries)
     {
-      if (entry.state == kPulseAnimationState_contracting || entry.state == kPulseAnimationState_expanding)
+      if (entry.state == kPulseAnimationState_Contracting || entry.state == kPulseAnimationState_Expanding)
       {
         const auto desiredSize = Interpolate(entry.startingSize, entry.finalSize, (_currentRelativeSize - _minRelativeSize) / (_maxRelativeSize - _minRelativeSize));
         entry.gameObject->transform->SetSize(desiredSize.Convert<int32_t>());
@@ -186,10 +186,10 @@ namespace JadeEngine
 
     if (found != std::cend(_entries)) return;
 
-    auto state = kPulseAnimationState_waitingForSynchronization;
-    if (_state == kPulseAnimationState_uinitialized)
+    auto state = kPulseAnimationState_WaitingForSynchronization;
+    if (_state == kPulseAnimationState_Uinitialized)
     {
-      state = kPulseAnimationState_uinitialized;
+      state = kPulseAnimationState_Uinitialized;
     }
 
     const auto startingSize = gameObject->transform->GetSize().Convert<float>();

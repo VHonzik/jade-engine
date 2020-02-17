@@ -1,7 +1,5 @@
 var hierarchy =
 [
-    [ "JadeEngine::AlignedGrid", "class_jade_engine_1_1_aligned_grid.html", null ],
-    [ "JadeEngine::AlignedGroup", "class_jade_engine_1_1_aligned_group.html", null ],
     [ "JadeEngine::Audio", "class_jade_engine_1_1_audio.html", null ],
     [ "JadeEngine::Box< ValueType >", "class_jade_engine_1_1_box.html", null ],
     [ "JadeEngine::Box< int32_t >", "class_jade_engine_1_1_box.html", null ],
@@ -39,7 +37,8 @@ var hierarchy =
       ] ],
       [ "JadeEngine::Text", "class_jade_engine_1_1_text.html", null ],
       [ "JadeEngine::TextBox", "class_jade_engine_1_1_text_box.html", null ],
-      [ "JadeEngine::Tooltip", "class_jade_engine_1_1_tooltip.html", null ]
+      [ "JadeEngine::Tooltip", "class_jade_engine_1_1_tooltip.html", null ],
+      [ "JadeEngine::TransformGroup", "class_jade_engine_1_1_transform_group.html", null ]
     ] ],
     [ "JadeEngine::Input", "class_jade_engine_1_1_input.html", null ],
     [ "JadeEngine::IScene", "class_jade_engine_1_1_i_scene.html", [
@@ -67,7 +66,7 @@ var hierarchy =
     [ "JadeEngine::Texture", "struct_jade_engine_1_1_texture.html", null ],
     [ "JadeEngine::Time", "class_jade_engine_1_1_time.html", null ],
     [ "JadeEngine::TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", null ],
-    [ "JadeEngine::TransformAttachmentData", "struct_jade_engine_1_1_transform_attachment_data.html", null ],
+    [ "JadeEngine::TransformGroupParams", "struct_jade_engine_1_1_transform_group_params.html", null ],
     [ "JadeEngine::UICamera", "class_jade_engine_1_1_u_i_camera.html", null ],
     [ "JadeEngine::Vector2D< ValueType >", "class_jade_engine_1_1_vector2_d.html", null ],
     [ "JadeEngine::Vector2D< float >", "class_jade_engine_1_1_vector2_d.html", null ],

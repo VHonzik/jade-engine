@@ -9,7 +9,7 @@ namespace JadeEngine
 
   Scene is a high-level building block of a game in Jade engine. It is a collection of %game objects that are updated and rendered at the same time, and usually contains logic that operates on those %game objects.
 
-  All %game objects created while a scene is active, such as during it's Start() function will be considered part of that scene and will stop being updated and rendered when a new scene is played. Exception to that are objects created with kObjectLayer_persistent_ui ObjectLayer which are always rendered and updated.
+  All %game objects created while a scene is active, such as during it's Start() function will be considered part of that scene and will stop being updated and rendered when a new scene is played. Exception to that are objects created with kObjectLayer_Persistent_UI ObjectLayer which are always rendered and updated.
 
   All scenes must inherit from IScene and can override the public virtual functions in order receive callbacks from the Jade engine.
 

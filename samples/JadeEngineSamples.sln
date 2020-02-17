@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloJadeEngineSample", "He
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Match3", "Match3\Match3.vcxproj", "{1039617D-B73D-42B8-9F8B-952B8E49AC89}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameObjectsShowcase", "GameObjectsShowcase\GameObjectsShowcase.vcxproj", "{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,12 @@ Global
 		{1039617D-B73D-42B8-9F8B-952B8E49AC89}.Release|x64.ActiveCfg = Release|x64
 		{1039617D-B73D-42B8-9F8B-952B8E49AC89}.Release|x64.Build.0 = Release|x64
 		{1039617D-B73D-42B8-9F8B-952B8E49AC89}.Release|x86.ActiveCfg = Release|x64
+		{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}.Debug|x64.ActiveCfg = Debug|x64
+		{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}.Debug|x64.Build.0 = Debug|x64
+		{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}.Debug|x86.ActiveCfg = Debug|x64
+		{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}.Release|x64.ActiveCfg = Release|x64
+		{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}.Release|x64.Build.0 = Release|x64
+		{1D9A4C93-A6F6-4E10-ACBD-3D9857947ADA}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

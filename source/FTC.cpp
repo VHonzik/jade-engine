@@ -82,7 +82,7 @@ namespace JadeEngine
 
     for (size_t i = 1; i < _texts.size(); i++)
     {
-      _texts[i - 1]->transform->Attach(_texts[i]->transform, kZeroVector2D_i32, kAnchor_rightBottom, kAnchor_leftBottom);
+      _texts[i - 1]->transform->Attach(_texts[i]->transform, kZeroVector2D_i32, kAnchor_RightBottom, kAnchor_LeftBottom);
     }
 
     const auto size = std::accumulate(std::cbegin(_texts), std::cend(_texts), kZeroVector2D_i32, [&](const Vector2D_i32& a, const Text* b)

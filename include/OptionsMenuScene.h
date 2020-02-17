@@ -2,8 +2,6 @@
 
 #include "IScene.h"
 
-#include "AlignedGroup.h"
-
 #include <array>
 #include <vector>
 #include <unordered_map>
@@ -15,6 +13,7 @@ namespace JadeEngine
   class Text;
   class Checkbox;
   class Dropdown;
+  class TransformGroup;
 
   class OptionsMenuScene : public IScene
   {
@@ -32,13 +31,13 @@ namespace JadeEngine
 
     Button* _backButton;
 
-    AlignedGroup _slidersRow;
+    TransformGroup* _slidersRow;
     Slider* _musicVolume;
     Text* _musicVolumeDescription;
     Slider* _soundVolume;
     Text* _soundVolumeDescription;
 
-    AlignedGroup _keybindColumn;
+    TransformGroup* _keybindColumn;
     std::vector<Text*> _keybindingDescription;
     std::vector<Button*> _keybindingButtons;
     std::vector<int32_t> _keybindingSettingsIds;

@@ -22,8 +22,8 @@ namespace JadeEngine
     _musicChannelActive = 0;
     _musicChannelOld = 1;
 
-    SetMusicVolume(GSettings.Get<float>(kSettingsIDs_musicVolume));
-    SetSoundVolume(GSettings.Get<float>(kSettingsIDs_soundVolume));
+    SetMusicVolume(GSettings.Get<float>(kSettingsIDs_MusicVolume));
+    SetSoundVolume(GSettings.Get<float>(kSettingsIDs_SoundVolume));
 
     return true;
   }

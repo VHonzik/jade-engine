@@ -25,7 +25,7 @@ namespace JadeEngine
       })
     , _cachedTextTexture(nullptr)
   {
-    SetLoadState(kLoadState_wanted);
+    SetLoadState(kLoadState_Wanted);
 
     _font = GGame.FindFont(params.fontName, params.fontSize);
     assert(_font != nullptr);
@@ -55,7 +55,7 @@ namespace JadeEngine
   {
     if (_text.size() == 0)
     {
-      return kLoadState_done;
+      return kLoadState_Done;
     }
 
     auto surface = TTF_RenderText_Blended_Wrapped(_font, _text.c_str(), kWhiteColor, transform->GetWidth());
@@ -102,22 +102,22 @@ namespace JadeEngine
 
         SDL_SetRenderTarget(renderer, nullptr);
 
-        return kLoadState_done;
+        return kLoadState_Done;
       }
       else
       {
-        return kLoadState_abandoned;
+        return kLoadState_Abandoned;
       }
     }
     else
     {
-      return kLoadState_abandoned;
+      return kLoadState_Abandoned;
     }
   }
 
   void TextSprite::Render(SDL_Renderer* renderer)
   {
-    SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
+    SDL_Rect destination = _layer == kObjectLayer_World ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
 
     SDL_Rect* source = _spriteSheetMasked ? &_spriteSheetMask : nullptr;
     if (_rotated)

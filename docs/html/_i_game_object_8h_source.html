@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: D:/GameDev/SDL/Idlefactory/jade-engine/include/IGameObject.h Source File</title>
+<title>jade-engine: include/IGameObject.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,11 +99,11 @@ $(document).ready(function(){initNavTree('_i_game_object_8h_source.html',''); in
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keyword">enum</span> LoadState</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    kLoadState_wanted,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    kLoadState_Wanted,</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    kLoadState_done,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    kLoadState_Done,</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    kLoadState_abandoned,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    kLoadState_Abandoned,</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  };</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_i_game_object.html">   78</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_jade_engine_1_1_i_game_object.html">IGameObject</a></div>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('_i_game_object_8h_source.html',''); in
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_i_game_object.html#a87729ae5661f5da9f0df51bb1a4450be">   84</a></span>&#160;    <a class="code" href="class_jade_engine_1_1_i_game_object.html#a87729ae5661f5da9f0df51bb1a4450be">IGameObject</a>()</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      : <a class="code" href="class_jade_engine_1_1_i_game_object.html#a63969dbb02c171440660ed16a2f7ea1d">transform</a>(std::make_shared&lt;<a class="code" href="class_jade_engine_1_1_transform.html">Transform</a>&gt;())</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      , _loadState(kLoadState_done)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      , _loadState(kLoadState_Done)</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      , _shown(true)</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      , _z(0)</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      , _destructionWanted(false)</div>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('_i_game_object_8h_source.html',''); in
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_jade_engine_1_1_transform_html"><div class="ttname"><a href="class_jade_engine_1_1_transform.html">JadeEngine::Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:142</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_transform_html"><div class="ttname"><a href="class_jade_engine_1_1_transform.html">JadeEngine::Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:147</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html_adf60693a2ea2ced0d5e07ec3120abede"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html#adf60693a2ea2ced0d5e07ec3120abede">JadeEngine::IGameObject::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdef"><b>Definition:</b> IGameObject.h:182</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html_a42ace0512702c595e15e403306106c07"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html#a42ace0512702c595e15e403306106c07">JadeEngine::IGameObject::Show</a></div><div class="ttdeci">virtual void Show(const bool show)</div><div class="ttdef"><b>Definition:</b> IGameObject.h:170</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html_a6c688837a8b3e69a2d42b606702cfa72"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html#a6c688837a8b3e69a2d42b606702cfa72">JadeEngine::IGameObject::DestructionWanted</a></div><div class="ttdeci">bool DestructionWanted() const</div><div class="ttdef"><b>Definition:</b> IGameObject.h:187</div></div>

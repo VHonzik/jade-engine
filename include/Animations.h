@@ -23,12 +23,12 @@ namespace JadeEngine
 
   enum PulseAnimationState
   {
-    kPulseAnimationState_uinitialized,
-    kPulseAnimationState_expanding,
-    kPulseAnimationState_contracting,
-    kPulseAnimationState_stopped,
-    kPulseAnimationState_paused,
-    kPulseAnimationState_waitingForSynchronization,
+    kPulseAnimationState_Uinitialized,
+    kPulseAnimationState_Expanding,
+    kPulseAnimationState_Contracting,
+    kPulseAnimationState_Stopped,
+    kPulseAnimationState_Paused,
+    kPulseAnimationState_WaitingForSynchronization,
   };
 
   struct PulseAnimationEntry

@@ -110,7 +110,7 @@ namespace MatchThree
   {
     _swappedPieces = { nullptr, nullptr };
 
-    if (transform->IsDirty(kDirtyFlag_centerPosition))
+    if (transform->IsDirty(kDirtyFlag_CenterPosition))
     {
       UpdatePiecesPosition();
     }

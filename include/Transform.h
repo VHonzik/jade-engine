@@ -21,27 +21,27 @@ namespace JadeEngine
     /**
     Flag for the transform's position - `Transform::GetPosition`.
     */
-    kDirtyFlag_position,
+    kDirtyFlag_Position,
 
     /**
     Flag for the transform's center position - `Transform::GetCenterPosition`.
     */
-    kDirtyFlag_centerPosition,
+    kDirtyFlag_CenterPosition,
 
     /**
     Flag for the transform's position - `Transform::GetSize`.
     */
-    kDirtyFlag_size,
+    kDirtyFlag_Size,
 
     /**
     Flag for the transform's position - `Transform::GetBoundingBox`.
     */
-    kDirtyFlag_boundingBox,
+    kDirtyFlag_BoundingBox,
 
     /**
     Enumeration count for DirtyFlag. It has no logical meaning and it is not a valid flag for Transform functions.
     */
-    kDirtyFlag_count
+    kDirtyFlag_Count
   };
 
   /**
@@ -58,7 +58,7 @@ namespace JadeEngine
     ║   ║
     ╚═══╝
     */
-    kAnchor_leftTop,
+    kAnchor_LeftTop,
 
     /**
     Center-top of the bounding box.
@@ -66,7 +66,7 @@ namespace JadeEngine
     ║   ║
     ╚═══╝
     */
-    kAnchor_centerTop,
+    kAnchor_CenterTop,
 
     /**
     Right-top corner of the bounding box.
@@ -74,7 +74,7 @@ namespace JadeEngine
     ║   ║
     ╚═══╝
     */
-    kAnchor_rightTop,
+    kAnchor_RightTop,
 
     /**
     Right-center of the bounding box.
@@ -82,7 +82,7 @@ namespace JadeEngine
     ║   *
     ╚═══╝
     */
-    kAnchor_rightCenter,
+    kAnchor_RightCenter,
 
     /**
     Right-bottom corner of the bounding box.
@@ -90,7 +90,7 @@ namespace JadeEngine
     ║   ║
     ╚═══*
     */
-    kAnchor_rightBottom,
+    kAnchor_RightBottom,
 
     /**
     Center-bottom of the bounding box.
@@ -98,7 +98,7 @@ namespace JadeEngine
     ║   ║
     ╚═*═╝
     */
-    kAnchor_centerBottom,
+    kAnchor_CenterBottom,
 
     /**
     Left-bottom corner of the bounding box.
@@ -106,7 +106,7 @@ namespace JadeEngine
     ║   ║
     *═══╝
     */
-    kAnchor_leftBottom,
+    kAnchor_LeftBottom,
 
     /**
     Left-center of the bounding box.
@@ -114,7 +114,7 @@ namespace JadeEngine
     *   ║
     ╚═══╝
     */
-    kAnchor_leftCenter,
+    kAnchor_LeftCenter,
 
     /**
     Center of the bounding box.
@@ -122,17 +122,22 @@ namespace JadeEngine
     ║ * ║
     ╚═══╝
     */
-    kAnchor_center,
+    kAnchor_Center,
   };
 
-  const Anchor kDefaultAnchor = kAnchor_leftTop;
+  const Anchor kDefaultAnchor = kAnchor_LeftTop;
 
-  struct TransformAttachmentData
+  namespace detail
   {
-    Vector2D_i32 localPosition;
-    Anchor parentAnchor;
-    Anchor childAnchor;
-  };
+    struct TransformAttachmentData
+    {
+      Vector2D_i32 localPosition;
+      Anchor parentAnchor;
+      Anchor childAnchor;
+    };
+  }
+
+  using detail::TransformAttachmentData;
 
   /**
   Transform is a %game object's property that specify their position and size in a coordinate system.
@@ -263,7 +268,7 @@ namespace JadeEngine
     /**
     Set the transform x and y position as a vector in pixels.
 
-    This will `kDirtyFlag_position` and `kDirtyFlag_centerPosition` flags to be dirtied until the end of the next frame.
+    This will `kDirtyFlag_Position` and `kDirtyFlag_CenterPosition` flags to be dirtied until the end of the next frame.
     This will cause all children to be immediately moved as well.
 
     @see Transform::Attach, Transform::SetCenterPosition, Transform::GetPosition
@@ -278,7 +283,7 @@ namespace JadeEngine
     /**
     Set the transform's center x and y position as a vector in pixels.
 
-    This will dirty the `kDirtyFlag_position` and `kDirtyFlag_centerPosition` flags for the next frame.
+    This will dirty the `kDirtyFlag_Position` and `kDirtyFlag_CenterPosition` flags for the next frame.
     This will cause all children to be immediately moved as well.
 
     @see Transform::Attach, Transform::SetPosition, Transform::GetCenterPosition
@@ -293,8 +298,8 @@ namespace JadeEngine
     /**
     Set transforms x and y position so that the passed anchor point will be positioned exactly at the passed position as vector in pixels.
 
-    If the `kAnchor_center` is passed this is the same as calling `SetCenterPosition` including dirty flag effects.
-    If the `kAnchor_leftTop` is passed this is the same as calling `SetPosition` including dirty flag effects.
+    If the `kAnchor_Center` is passed this is the same as calling `SetCenterPosition` including dirty flag effects.
+    If the `kAnchor_LeftTop` is passed this is the same as calling `SetPosition` including dirty flag effects.
     Otherwise this will internally call `SetPosition`, including dirty flag effects, with appropriate offset.
 
     @see Anchor, Transform::SetPosition, Transform::SetCenterPosition
@@ -324,8 +329,8 @@ namespace JadeEngine
     Set the width and height of the transform in pixels.
 
     If bounding box was not previously explicitly set (via `Transform::SetBoundingBox`), the bounding box will be resized to make its size match transform's size.
-    This will dirty the `kDirtyFlag_size` and `kDirtyFlag_centerPosition` flags for the next frame. In the case bounding box was modified, `kDirtyFlag_boundingBox` flag will be dirtied as well.
-    This will cause all children to be immediately moved as well unless they were attached with `kAnchor_leftTop` as parent anchor.
+    This will dirty the `kDirtyFlag_Size` and `kDirtyFlag_CenterPosition` flags for the next frame. In the case bounding box was modified, `kDirtyFlag_BoundingBox` flag will be dirtied as well.
+    This will cause all children to be immediately moved as well unless they were attached with `kAnchor_LeftTop` as parent anchor.
 
     @see Transform::SetBoundingBox
     */
@@ -341,7 +346,7 @@ namespace JadeEngine
 
     A bounding box that represents non-empty content of the transform box and its position is relative to the transform x,y.
     The bounding box's size is by default tied to the transform's size until this function is called.
-    This will dirty the `kDirtyFlag_boundingBox` flag for the next frame.
+    This will dirty the `kDirtyFlag_BoundingBox` flag for the next frame.
 
     @see Transform::GetBoundingBox, Transform::SetSize
     */
@@ -407,7 +412,7 @@ namespace JadeEngine
     bool IsDirty(const DirtyFlag flag) const;
 
   private:
-    void OnAttached(const std::shared_ptr<Transform>& parent, const TransformAttachmentData& data);
+    void OnAttached(const std::shared_ptr<Transform>& parent, const detail::TransformAttachmentData& data);
     void OnAttachedPositionChange();
     void OnChildDetached(const std::shared_ptr<Transform>& child);
 
@@ -421,8 +426,8 @@ namespace JadeEngine
     Box_i32 _boundingBox;
     Box_i32 _transformationBox;
 
-    std::bitset<kDirtyFlag_count> _dirtyFlagsCurrentFrame;
-    std::bitset<kDirtyFlag_count> _dirtyFlags;
+    std::bitset<kDirtyFlag_Count> _dirtyFlagsCurrentFrame;
+    std::bitset<kDirtyFlag_Count> _dirtyFlags;
 
     std::shared_ptr<Transform> _parent;
     std::vector<std::shared_ptr<Transform>> _children;

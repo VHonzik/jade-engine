@@ -11,6 +11,7 @@
 #include "Settings.h"
 #include "Slider.h"
 #include "Transform.h"
+#include "TransformGroup.h"
 
 #include <sstream>
 
@@ -22,15 +23,22 @@ namespace JadeEngine
     , _activeSection(0)
     , _activeSectionY(222)
     , _passiveSectionY(224)
-    , _keybindColumn(kGroupDirection_Vertical, kHorizontalAlignment_Center,
-      kVerticalAlignment_Center, 10)
-    , _slidersRow(kGroupDirection_Vertical, kHorizontalAlignment_Center,
-      kVerticalAlignment_Center, 75)
   {
   }
 
   void OptionsMenuScene::Start()
   {
+    TransformGroupParams groupParams;
+    groupParams.layer = kObjectLayer_UI;
+    groupParams.direction = kGroupDirection_Vertical;
+    groupParams.spacing = 10;
+    groupParams.alignment = kVerticalAlignment_Center;
+
+    _keybindColumn = GGame.Create<TransformGroup>(groupParams);
+
+    groupParams.spacing = 75;
+    _slidersRow = GGame.Create<TransformGroup>(groupParams);
+
     auto box = GGame.Create<BoxSprite>(kOptionsGreyPanel);
     box->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
 
@@ -66,11 +74,11 @@ namespace JadeEngine
     textParams.text = "Sound volume: ";
     _soundVolumeDescription = GGame.Create<Text>(textParams);
 
-    _slidersRow.SetPosition(GGame.GetHalfWidth() + 60, GGame.GetHalfHeight());
-    _slidersRow.AddVA(_musicVolume, _soundVolume);
+    _slidersRow->Add({ _musicVolume, _soundVolume });
+    _slidersRow->transform->SetCenterPosition(GGame.GetHalfWidth() + 60, GGame.GetHalfHeight());
 
-    _musicVolumeDescription->transform->SetPositionAnchor(_musicVolume->GetX() - 20, _musicVolume->GetCenterY(), kAnchor_rightCenter);
-    _soundVolumeDescription->transform->SetPositionAnchor(_soundVolume->GetX() - 20, _soundVolume->GetCenterY(), kAnchor_rightCenter);
+    _musicVolumeDescription->transform->SetPositionAnchor(_musicVolume->transform->GetX() - 20, _musicVolume->transform->GetCenterY(), kAnchor_RightCenter);
+    _soundVolumeDescription->transform->SetPositionAnchor(_soundVolume->transform->GetX() - 20, _soundVolume->transform->GetCenterY(), kAnchor_RightCenter);
 
     buttonParams = kMainMenuBlueButton;
     buttonParams.width = 250;
@@ -103,14 +111,13 @@ namespace JadeEngine
       _keybindingSettingsIds.push_back(keybinding.first);
     }
 
-    _keybindColumn.SetPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
-
     const auto lastFirstScreenElement = (_keybindingButtons.size() <= 6 ? std::end(_keybindingButtons) : std::next(std::begin(_keybindingButtons), 6));
-    _keybindColumn.Add(std::begin(_keybindingButtons), lastFirstScreenElement);
+    _keybindColumn->Add(std::begin(_keybindingButtons), lastFirstScreenElement);
+    _keybindColumn->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight());
 
     for (size_t i = 0; i < std::min(_keybindingButtons.size(), size_t{6}); i++)
     {
-      _keybindingDescription[i]->transform->SetPositionAnchor(_keybindingButtons[i]->GetX() - 10,  _keybindingButtons[i]->GetCenterY(), kAnchor_rightCenter);
+      _keybindingDescription[i]->transform->SetPositionAnchor(_keybindingButtons[i]->GetX() - 10,  _keybindingButtons[i]->GetCenterY(), kAnchor_RightCenter);
     }
 
     auto checkboxStyle = kBlueCheckbox;
@@ -123,7 +130,7 @@ namespace JadeEngine
     textParams.text = "Fullscreen:";
     _fullScreenDescription = GGame.Create<Text>(textParams);
     _fullScreenDescription->Show(false);
-    _fullScreenDescription->transform->SetPositionAnchor(_fullScreenCheckbox->GetX() - 20, _fullScreenCheckbox->GetCenterY(), kAnchor_rightCenter);
+    _fullScreenDescription->transform->SetPositionAnchor(_fullScreenCheckbox->GetX() - 20, _fullScreenCheckbox->GetCenterY(), kAnchor_RightCenter);
 
     _resolutionsDropdown = GGame.Create<Dropdown>(kOptionsDropdown);
 
@@ -137,7 +144,7 @@ namespace JadeEngine
 
     _resolutionsDropdown->AddEntries(std::begin(displayModeNames), std::end(displayModeNames));
     _resolutionsDropdown->SetIndex(GGame.GetCurrentDisplayMode());
-    _resolutionsDropdown->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight() -100);
+    _resolutionsDropdown->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight() -100);
     _resolutionsDropdown->Show(false);
   }
 
@@ -191,8 +198,8 @@ namespace JadeEngine
 
     if (_backButton->Released())
     {
-      GSettings.Set(kSettingsIDs_musicVolume, _musicVolume->GetValue());
-      GSettings.Set(kSettingsIDs_soundVolume, _soundVolume->GetValue());
+      GSettings.Set(kSettingsIDs_MusicVolume, _musicVolume->GetValue());
+      GSettings.Set(kSettingsIDs_SoundVolume, _soundVolume->GetValue());
       GGame.PlayScene(kScene_MainMenu);
     }
 
@@ -236,15 +243,15 @@ namespace JadeEngine
     if (_fullScreenCheckbox->Changed())
     {
       GGame.SetFullscreen(_fullScreenCheckbox->Checked());
-      GSettings.Set(kSettingsIDs_fullScreen, _fullScreenCheckbox->Checked());
+      GSettings.Set(kSettingsIDs_FullScreen, _fullScreenCheckbox->Checked());
     }
 
     if (_resolutionsDropdown->Changed())
     {
       const auto& mode = GGame.GetDisplayModes()[_resolutionsDropdown->GetIndex()];
 
-      GSettings.Set(kSettingsIDs_resolutionWidth, mode.width);
-      GSettings.Set(kSettingsIDs_resolutionHeight, mode.height);
+      GSettings.Set(kSettingsIDs_ResolutionWidth, mode.width);
+      GSettings.Set(kSettingsIDs_ResolutionHeight, mode.height);
       GGame.SetDisplayMode(_resolutionsDropdown->GetIndex());
     }
   }

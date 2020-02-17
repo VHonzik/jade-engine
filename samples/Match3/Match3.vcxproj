@@ -78,9 +78,7 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Aligment.h" />
-    <ClInclude Include="..\..\include\AlignedGrid.h" />
-    <ClInclude Include="..\..\include\AlignedGroup.h" />
+    <ClInclude Include="..\..\include\Alignment.h" />
     <ClInclude Include="..\..\include\Animations.h" />
     <ClInclude Include="..\..\include\Audio.h" />
     <ClInclude Include="..\..\include\BoxSprite.h" />
@@ -121,6 +119,7 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClInclude Include="..\..\include\TextureSampling.h" />
     <ClInclude Include="..\..\include\Tooltip.h" />
     <ClInclude Include="..\..\include\Transform.h" />
+    <ClInclude Include="..\..\include\TransformGroup.h" />
     <ClInclude Include="..\..\include\Utils.h" />
     <ClInclude Include="..\..\include\Vector2D.h" />
     <ClInclude Include="GameScene.h" />
@@ -131,7 +130,6 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClInclude Include="ScoreMeter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\AlignedGroup.cpp" />
     <ClCompile Include="..\..\source\Animations.cpp" />
     <ClCompile Include="..\..\source\Audio.cpp" />
     <ClCompile Include="..\..\source\BoxSprite.cpp" />
@@ -142,7 +140,6 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClCompile Include="..\..\source\EngineTime.cpp" />
     <ClCompile Include="..\..\source\FTC.cpp" />
     <ClCompile Include="..\..\source\Game.cpp" />
-    <ClCompile Include="..\..\source\Grid.cpp" />
     <ClCompile Include="..\..\source\Input.cpp" />
     <ClCompile Include="..\..\source\LineBox.cpp" />
     <ClCompile Include="..\..\source\LineGrid.cpp" />
@@ -159,6 +156,7 @@ powershell.exe $(JadeEngineDirectory)\scripts\CopyAssets.ps1 -OutputFolder "$(So
     <ClCompile Include="..\..\source\TextSprite.cpp" />
     <ClCompile Include="..\..\source\Tooltip.cpp" />
     <ClCompile Include="..\..\source\Transform.cpp" />
+    <ClCompile Include="..\..\source\TransformGroup.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Piece.cpp" />

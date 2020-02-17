@@ -35,6 +35,7 @@ namespace JadeEngine
     boxParams.size = { params.width, params.entryHeight};
 
     _box = GGame.Create<BoxSprite>(boxParams);
+    transform->Attach(_box->transform, kZeroVector2D_i32);
 
     SpriteParams spriteParams;
     spriteParams.layer = params.layer;
@@ -44,18 +45,22 @@ namespace JadeEngine
     spriteParams.spriteSheetName = params.spriteSheetName;
 
     _expandArrowSprite = GGame.Create<Sprite>(spriteParams);
+    transform->Attach(_expandArrowSprite->transform, { -_arrowsMargin, 0 }, kAnchor_RightCenter, kAnchor_RightCenter);
 
     spriteParams.textureName = params.contractArrowTexture;
     _contractArrowSprite = GGame.Create<Sprite>(spriteParams);
     _contractArrowSprite->Show(false);
+    transform->Attach(_contractArrowSprite->transform, { -_arrowsMargin, 0 }, kAnchor_RightCenter, kAnchor_RightCenter);
 
     spriteParams.textureName = params.scrollBarTexture;
     _scrollBarSprite = GGame.Create<Sprite>(spriteParams);
     _scrollBarSprite->Show(false);
+    transform->Attach(_scrollBarSprite->transform, { -_scrollBarMargin, 0 }, kAnchor_RightBottom, kAnchor_RightTop);
 
     spriteParams.textureName = params.scrollBarPointTexture;
     _scrollBarPointSprite = GGame.Create<Sprite>(spriteParams);
     _scrollBarPointSprite->Show(false);
+    _scrollBarSprite->transform->Attach(_scrollBarPointSprite->transform, { 0, 0 }, kAnchor_CenterTop, kAnchor_Center);
 
     TextParams textParams;
     textParams.layer = params.layer;
@@ -66,9 +71,10 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _currentEntryText = GGame.Create<Text>(textParams);
-    _box->transform->Attach(_currentEntryText->transform, kZeroVector2D_i32, kAnchor_leftCenter, kAnchor_leftCenter);
+    transform->Attach(_currentEntryText->transform, kZeroVector2D_i32, kAnchor_LeftCenter, kAnchor_LeftCenter);
 
-    SetPosition(0, 0);
+    transform->Initialize(kZeroVector2D_i32, { params.width, _entryHeight });
+    transform->SetPosition(kZeroVector2D_i32);
   }
 
   void Dropdown::AddEntry(std::string text)
@@ -87,7 +93,7 @@ namespace JadeEngine
 
       _visibleEntriesTexts.push_back(GGame.Create<Text>(textParams));
       auto newEntry = _visibleEntriesTexts[_visibleEntriesTexts.size() - 1];
-      _box->transform->Attach(newEntry->transform, kZeroVector2D_i32, kAnchor_leftCenter, kAnchor_leftCenter);
+      transform->Attach(newEntry->transform, kZeroVector2D_i32, kAnchor_LeftCenter, kAnchor_LeftCenter);
     }
   }
 
@@ -140,7 +146,7 @@ namespace JadeEngine
     }
     else if (_expanded && (hoveredSprite == _box || hoveredSprite == _contractArrowSprite) && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
     {
-      auto index = (GInput.GetMouseY() - GetY()) / _entryHeight;
+      auto index = (GInput.GetMouseY() - transform->GetY()) / _entryHeight;
       bool scrollBar = GInput.GetMouseX() > _box->transform->GetX() + _box->transform->GetWidth() - 2 * _scrollBarMargin - _scrollBarPointSprite->transform->GetWidth();
       if (index == 0)
       {
@@ -169,9 +175,9 @@ namespace JadeEngine
     {
       if (GInput.MouseButtonDown(SDL_BUTTON_LEFT))
       {
-        const auto y = Clamp(GInput.GetMouseY(), _scrollBarSprite->transform->GetY(), _scrollBarSprite->transform->GetY() + _scrollBarSprite->transform->GetHeight());
-        _scrollBarPointSprite->transform->SetCenterPosition(_scrollBarSprite->transform->GetCenterX(), y);
-        const auto t = (static_cast<float>(y) - _scrollBarSprite->transform->GetY()) / _scrollBarSprite->transform->GetHeight();
+        const auto y = Clamp(GInput.GetMouseY(), _scrollBarSprite->transform->GetY(), _scrollBarSprite->transform->GetY() + _scrollBarSprite->transform->GetHeight()) - _scrollBarSprite->transform->GetY();
+        _scrollBarPointSprite->transform->SetLocalPosition(0, y);
+        const auto t = static_cast<float>(y) / _scrollBarSprite->transform->GetHeight();
         const auto index = static_cast<int32_t>((_entries.size()-1-_maxVisibleEntries) * t);
         _scrollOffset = index;
         UpdateEntries();
@@ -185,8 +191,8 @@ namespace JadeEngine
     {
       _scrollOffset = Clamp(_scrollOffset + GInput.GetMouseWheelY(), 0, static_cast<int32_t>(_entries.size() - 1 - _maxVisibleEntries));
       const auto t = static_cast<float>(_scrollOffset) / (_entries.size() - 1 - _maxVisibleEntries);
-      const auto y = static_cast<int32_t>(_scrollBarSprite->transform->GetY() + t * _scrollBarSprite->transform->GetHeight());
-      _scrollBarPointSprite->transform->SetCenterPosition(_scrollBarSprite->transform->GetCenterX(), y);
+      const auto y = static_cast<int32_t>(t * _scrollBarSprite->transform->GetHeight());
+      _scrollBarPointSprite->transform->SetLocalPosition(0, y);
 
       UpdateEntries();
     }
@@ -195,12 +201,17 @@ namespace JadeEngine
       _expanded = false;
       Contract();
     }
+
+    if (transform->IsDirty(kDirtyFlag_Position) || transform->IsDirty(kDirtyFlag_CenterPosition))
+    {
+      UpdateEntries();
+    }
   }
 
   void Dropdown::UpdateEntries()
   {
-    _currentEntryText->Show(_shown);
-    _currentEntryText->transform->SetLocalPosition(_arrowsMargin, _entryHeight / 2);
+    _currentEntryText->Show(IsShown());
+    _currentEntryText->transform->SetLocalPosition(_arrowsMargin, 0);
 
     if (_currentEntry < _entries.size())
     {
@@ -213,8 +224,8 @@ namespace JadeEngine
 
     for (int32_t i = 0; i < _visibleEntriesTexts.size(); i++)
     {
-      _visibleEntriesTexts[i]->Show(_shown && _expanded);
-      _visibleEntriesTexts[i]->transform->SetLocalPosition(_arrowsMargin, (_entryHeight / 2) + (i + 1) * _entryHeight);
+      _visibleEntriesTexts[i]->Show(IsShown() && _expanded);
+      _visibleEntriesTexts[i]->transform->SetLocalPosition(_arrowsMargin, (i + 1) * _entryHeight);
       if (_visibleEntriesTexts[i]->GetText() != _entries[_scrollOffset + i])
       {
         _visibleEntriesTexts[i]->SetText(_entries[_scrollOffset + i]);
@@ -232,62 +243,6 @@ namespace JadeEngine
     _contractArrowSprite->Show(isShown && _expanded);
     _scrollBarSprite->Show(isShown && _expanded);
     _scrollBarPointSprite->Show(isShown && _expanded);
-    UpdateEntries();
-  }
-
-  int32_t Dropdown::GetX() const
-  {
-    return _box->transform->GetX();
-  }
-
-  int32_t Dropdown::GetY() const
-  {
-    return _box->transform->GetY();
-  }
-
-  int32_t Dropdown::GetCenterX() const
-  {
-    return _box->transform->GetCenterX();
-  }
-
-  int32_t Dropdown::GetCenterY() const
-  {
-    return _box->transform->GetCenterY();
-  }
-
-  int32_t Dropdown::GetWidth() const
-  {
-    return _box->transform->GetWidth();
-  }
-
-  int32_t Dropdown::GetHeight() const
-  {
-    return _entryHeight;
-  }
-
-  void Dropdown::SetPosition(int32_t x, int32_t y)
-  {
-    _box->transform->SetPosition(x, y);
-    _expandArrowSprite->transform->SetCenterPosition(_box->transform->GetX() + _box->transform->GetWidth() - _expandArrowSprite->transform->GetWidth() / 2 - _arrowsMargin, _box->transform->GetY() + _entryHeight / 2);
-    _contractArrowSprite->transform->SetCenterPosition(_expandArrowSprite->transform->GetCenterX(), _expandArrowSprite->transform->GetCenterY());
-
-    _scrollBarSprite->transform->SetPosition(_box->transform->GetX() + _box->transform->GetWidth() - _scrollBarSprite->transform->GetWidth() - _scrollBarMargin, _box->transform->GetY() + _entryHeight);
-
-    _scrollBarPointSprite->transform->SetCenterPosition(_scrollBarSprite->transform->GetCenterX(), _scrollBarSprite->transform->GetY());
-
-    UpdateEntries();
-  }
-
-  void Dropdown::SetCenterPosition(int32_t x, int32_t y)
-  {
-    _box->transform->SetCenterPosition(x, y);
-    _expandArrowSprite->transform->SetCenterPosition(_box->transform->GetX() + _box->transform->GetWidth() - _expandArrowSprite->transform->GetWidth() / 2 - _arrowsMargin, _box->transform->GetY() + _entryHeight / 2);
-    _contractArrowSprite->transform->SetCenterPosition(_expandArrowSprite->transform->GetCenterX(), _expandArrowSprite->transform->GetCenterY());
-
-    _scrollBarSprite->transform->SetPosition(_box->transform->GetX() + _box->transform->GetWidth() - _scrollBarSprite->transform->GetWidth() - _scrollBarMargin, _box->transform->GetY() + _entryHeight);
-
-    _scrollBarPointSprite->transform->SetCenterPosition(_scrollBarSprite->transform->GetCenterX(), _scrollBarSprite->transform->GetY());
-
     UpdateEntries();
   }
 }

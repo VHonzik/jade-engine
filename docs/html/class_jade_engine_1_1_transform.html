@@ -751,7 +751,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set the bounding box of the transform.</p>
-<p>A bounding box that represents non-empty content of the transform box and its position is relative to the transform x,y. The bounding box's size is by default tied to the transform's size until this function is called. This will dirty the <code>kDirtyFlag_boundingBox</code> flag for the next frame.</p>
+<p>A bounding box that represents non-empty content of the transform box and its position is relative to the transform x,y. The bounding box's size is by default tied to the transform's size until this function is called. This will dirty the <code>kDirtyFlag_BoundingBox</code> flag for the next frame.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_transform.html#af17ef98c7246de778a18b9b56ffb3d5f">Transform::GetBoundingBox</a>, <a class="el" href="class_jade_engine_1_1_transform.html#a2b967d6e79253dcacbdf2baae61e72fa">Transform::SetSize</a> </dd></dl>
 
 </div>
@@ -801,7 +801,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set the transform's center x and y position as a vector in pixels.</p>
-<p>This will dirty the <code>kDirtyFlag_position</code> and <code>kDirtyFlag_centerPosition</code> flags for the next frame. This will cause all children to be immediately moved as well.</p>
+<p>This will dirty the <code>kDirtyFlag_Position</code> and <code>kDirtyFlag_CenterPosition</code> flags for the next frame. This will cause all children to be immediately moved as well.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_transform.html#a57101a6e98efd87c54ad15ebc6dcf279">Transform::Attach</a>, <a class="el" href="class_jade_engine_1_1_transform.html#a78d9aa7b31b7f53306f4d900095c816b">Transform::SetPosition</a>, <a class="el" href="class_jade_engine_1_1_transform.html#a0477994606e97ff0f1146cd473357399">Transform::GetCenterPosition</a> </dd></dl>
 
 </div>
@@ -922,7 +922,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set the transform x and y position as a vector in pixels.</p>
-<p>This will <code>kDirtyFlag_position</code> and <code>kDirtyFlag_centerPosition</code> flags to be dirtied until the end of the next frame. This will cause all children to be immediately moved as well.</p>
+<p>This will <code>kDirtyFlag_Position</code> and <code>kDirtyFlag_CenterPosition</code> flags to be dirtied until the end of the next frame. This will cause all children to be immediately moved as well.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_transform.html#a57101a6e98efd87c54ad15ebc6dcf279">Transform::Attach</a>, <a class="el" href="class_jade_engine_1_1_transform.html#a69e2c06487e0acb87b343434727728eb">Transform::SetCenterPosition</a>, <a class="el" href="class_jade_engine_1_1_transform.html#a2c8819e041aede4f9debd83780c239f1">Transform::GetPosition</a> </dd></dl>
 
 </div>
@@ -988,7 +988,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set transforms x and y position so that the passed anchor point will be positioned exactly at the passed position as vector in pixels.</p>
-<p>If the <code>kAnchor_center</code> is passed this is the same as calling <code>SetCenterPosition</code> including dirty flag effects. If the <code>kAnchor_leftTop</code> is passed this is the same as calling <code>SetPosition</code> including dirty flag effects. Otherwise this will internally call <code>SetPosition</code>, including dirty flag effects, with appropriate offset.</p>
+<p>If the <code>kAnchor_Center</code> is passed this is the same as calling <code>SetCenterPosition</code> including dirty flag effects. If the <code>kAnchor_LeftTop</code> is passed this is the same as calling <code>SetPosition</code> including dirty flag effects. Otherwise this will internally call <code>SetPosition</code>, including dirty flag effects, with appropriate offset.</p>
 <dl class="section see"><dt>See also</dt><dd>Anchor, <a class="el" href="class_jade_engine_1_1_transform.html#a78d9aa7b31b7f53306f4d900095c816b">Transform::SetPosition</a>, <a class="el" href="class_jade_engine_1_1_transform.html#a69e2c06487e0acb87b343434727728eb">Transform::SetCenterPosition</a> </dd></dl>
 
 </div>
@@ -1038,7 +1038,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set the width and height of the transform in pixels.</p>
-<p>If bounding box was not previously explicitly set (via <code><a class="el" href="class_jade_engine_1_1_transform.html#a8d18a28962c18d2480f6a008ccc2bf48">Transform::SetBoundingBox</a></code>), the bounding box will be resized to make its size match transform's size. This will dirty the <code>kDirtyFlag_size</code> and <code>kDirtyFlag_centerPosition</code> flags for the next frame. In the case bounding box was modified, <code>kDirtyFlag_boundingBox</code> flag will be dirtied as well. This will cause all children to be immediately moved as well unless they were attached with <code>kAnchor_leftTop</code> as parent anchor.</p>
+<p>If bounding box was not previously explicitly set (via <code><a class="el" href="class_jade_engine_1_1_transform.html#a8d18a28962c18d2480f6a008ccc2bf48">Transform::SetBoundingBox</a></code>), the bounding box will be resized to make its size match transform's size. This will dirty the <code>kDirtyFlag_Size</code> and <code>kDirtyFlag_CenterPosition</code> flags for the next frame. In the case bounding box was modified, <code>kDirtyFlag_BoundingBox</code> flag will be dirtied as well. This will cause all children to be immediately moved as well unless they were attached with <code>kAnchor_LeftTop</code> as parent anchor.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_transform.html#a8d18a28962c18d2480f6a008ccc2bf48">Transform::SetBoundingBox</a> </dd></dl>
 
 </div>
@@ -1083,8 +1083,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/GameDev/SDL/Idlefactory/jade-engine/include/<a class="el" href="_transform_8h_source.html">Transform.h</a></li>
-<li>D:/GameDev/SDL/Idlefactory/jade-engine/source/Transform.cpp</li>
+<li>include/<a class="el" href="_transform_8h_source.html">Transform.h</a></li>
+<li>source/Transform.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

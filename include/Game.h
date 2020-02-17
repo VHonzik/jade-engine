@@ -200,7 +200,7 @@ namespace JadeEngine
     /**
     Signal the game to switch to fullscreen or windowed mode.
 
-    It is advised to also update kSettingsIDs_fullScreen settings value if this change is meant to persist across sessions. The actually change happens as the very first thing next game loop tick.
+    It is advised to also update kSettingsIDs_FullScreen settings value if this change is meant to persist across sessions. The actually change happens as the very first thing next game loop tick.
 
     @param fullscreen Whether the game should be in fullscreen mode or not. Nothing happens if it's currently already in the desired mode.
     @code
@@ -265,7 +265,8 @@ namespace JadeEngine
     int32_t GetHalfWidth() const { return GetWidth() / 2; }
     int32_t GetHalfHeight() const { return GetHeight() / 2; }
 
-    Vector2D_i32 GetMiddlePoint() const { return { GetHalfWidth(), GetHalfHeight() }; };
+    Vector2D_i32 GetHalfSize() const { return { GetHalfWidth(), GetHalfHeight() }; };
+    Vector2D_i32 GetMiddlePoint() const { return GetHalfSize(); };
 
     const Sprite* GetHoveredSprite() const { return _hoveredSprite; }
     SDL_Renderer* GetRenderer() { return _renderer; }
@@ -281,7 +282,7 @@ namespace JadeEngine
 
     The object must inherit from IGameObject interface.
 
-    The object will belong to the current scene unless kObjectLayer_persistent_ui is specified in which case it will belong to special persistent scene.
+    The object will belong to the current scene unless kObjectLayer_Persistent_UI is specified in which case it will belong to special persistent scene.
 
     When creating large amount of objects consider doing so between GGame.StartBatchCreate() and GGame.EndBatchCreate() block.
 
@@ -297,11 +298,11 @@ namespace JadeEngine
     template<typename Class, typename CreationStruct>
     std::add_pointer_t<Class> Create(const CreationStruct& params)
     {
-      const auto& scene = params.layer == kObjectLayer_persistent_ui ? _persistentScene : _currentScene;
+      const auto& scene = params.layer == kObjectLayer_Persistent_UI ? _persistentScene : _currentScene;
       auto result = _gameObjects[scene].emplace_back(std::move(std::make_unique<Class>(params))).get();
 
       // Some objects benefit from being loaded immediately in order to be positioned correctly in the same frame they were created
-      if (result->GetLoadState() == kLoadState_wanted)
+      if (result->GetLoadState() == kLoadState_Wanted)
       {
         result->SetLoadState(result->Load(_renderer));
       }

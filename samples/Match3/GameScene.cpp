@@ -16,7 +16,7 @@ namespace MatchThree
     _score = 0;
 
     PiecesGridParams piecesGridParams;
-    piecesGridParams.layer = kObjectLayer_ui;
+    piecesGridParams.layer = kObjectLayer_UI;
     piecesGridParams.columns = 14;
     piecesGridParams.rows = 8;
     piecesGridParams.pieceWidth = 50;
@@ -28,7 +28,7 @@ namespace MatchThree
     _grid = GGame.Create<PiecesGrid>(piecesGridParams);
 
     ScoreMeterParams scoreParams;
-    scoreParams.layer = kObjectLayer_ui;
+    scoreParams.layer = kObjectLayer_UI;
     scoreParams.width = 180;
     scoreParams.height = 180;
     scoreParams.z = 0;

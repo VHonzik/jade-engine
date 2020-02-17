@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: D:/GameDev/SDL/Idlefactory/jade-engine/include/Game.h Source File</title>
+<title>jade-engine: include/Game.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -153,163 +153,164 @@ $(document).ready(function(){initNavTree('_game_8h_source.html',''); initResizab
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    int32_t GetHalfWidth()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> GetWidth() / 2; }</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    int32_t GetHalfHeight()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> GetHeight() / 2; }</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    Vector2D_i32 GetMiddlePoint()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> { GetHalfWidth(), GetHalfHeight() }; };</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keyword">const</span> Sprite* GetHoveredSprite()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _hoveredSprite; }</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    SDL_Renderer* GetRenderer() { <span class="keywordflow">return</span> _renderer; }</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordtype">bool</span> IsFullscreen()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _fullscreen; }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordtype">void</span> SetDisplayMode(<span class="keyword">const</span> int32_t index);</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keyword">const</span> int32_t GetCurrentDisplayMode()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _currentMode; }</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keyword">const</span> std::vector&lt;DisplayModeInfo&gt;&amp; GetDisplayModes()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _displayModes; }</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    Vector2D_i32 GetHalfSize()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> { GetHalfWidth(), GetHalfHeight() }; };</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    Vector2D_i32 GetMiddlePoint()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> GetHalfSize(); };</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keyword">const</span> Sprite* GetHoveredSprite()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _hoveredSprite; }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    SDL_Renderer* GetRenderer() { <span class="keywordflow">return</span> _renderer; }</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keywordtype">bool</span> IsFullscreen()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _fullscreen; }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keywordtype">void</span> SetDisplayMode(<span class="keyword">const</span> int32_t index);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keyword">const</span> int32_t GetCurrentDisplayMode()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _currentMode; }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keyword">const</span> std::vector&lt;DisplayModeInfo&gt;&amp; GetDisplayModes()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _displayModes; }</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Class, <span class="keyword">typename</span> CreationStruct&gt;</div>
-<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">  298</a></span>&#160;    std::add_pointer_t&lt;Class&gt; <a class="code" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">Create</a>(<span class="keyword">const</span> CreationStruct&amp; params)</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    {</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      <span class="keyword">const</span> <span class="keyword">auto</span>&amp; scene = params.layer == kObjectLayer_persistent_ui ? _persistentScene : _currentScene;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="keyword">auto</span> result = _gameObjects[scene].emplace_back(std::move(std::make_unique&lt;Class&gt;(params))).get();</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      <span class="comment">// Some objects benefit from being loaded immediately in order to be positioned correctly in the same frame they were created</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <span class="keywordflow">if</span> (result-&gt;GetLoadState() == kLoadState_wanted)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        result-&gt;SetLoadState(result-&gt;Load(_renderer));</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;      }</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      <span class="keywordflow">if</span> constexpr (std::is_base_of_v&lt;Sprite, Class&gt;)</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      {</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        _sprites.insert(result);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;      }</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;      <span class="keywordflow">if</span> (!_batchCreate) SortGameObjectsRendering(scene);</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>std::add_pointer_t&lt;Class&gt;<span class="keyword">&gt;</span>(result);</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordtype">void</span> StartBatchCreate() { _batchCreate = <span class="keyword">true</span>; }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordtype">void</span> EndBatchCreate();</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keyword">const</span> SpriteSheetDescription* GetSpriteSheetDescription(<span class="keyword">const</span> std::string&amp; name)</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    {</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      <span class="keyword">const</span> <span class="keyword">auto</span> result = _spriteSheets.find(name);</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      <span class="keywordflow">return</span> result != std::end(_spriteSheets) ? &amp;result-&gt;second : <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordtype">void</span> SetKeybinding(<span class="keyword">const</span> int32_t settingsId, <span class="keyword">const</span> int32_t newValue);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keyword">const</span> std::unordered_map&lt;int32_t, KeyBindingDescription&gt;&amp; GetKeyBindings()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _keybindings; }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    int32_t GeyKeyFromKeybind(<span class="keyword">const</span> int32_t keybindSettingId);</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    int32_t            GetMajorVersion()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> _majorVersion; }</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    int32_t            GetMinorVersion()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> _minorVersion; }</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keyword">const</span> std::string&amp; GetHashVersion()<span class="keyword">   const </span>{ <span class="keywordflow">return</span> _hashVersion; }</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    int32_t            GetCopyrightYear()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _copyrightYear; }</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keyword">const</span> std::string&amp; GetAuthor()<span class="keyword">        const </span>{ <span class="keywordflow">return</span> _author; }</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keywordtype">void</span> SetVersion(<span class="keyword">const</span> int32_t major, <span class="keyword">const</span> int32_t minor, <span class="keyword">const</span> std::string&amp; hash);</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordtype">void</span> SetCopyrightYear(<span class="keyword">const</span> int32_t year);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordtype">void</span> SetAuthor(<span class="keyword">const</span> std::string&amp; author);</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160; </div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    uint32_t GetNativeTextureFormats()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _nativeTextureFormats; };</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    TTF_Font* FindFont(<span class="keyword">const</span> std::string&amp; fontName, <span class="keyword">const</span> uint32_t size) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    std::shared_ptr&lt;Texture&gt; FindTexture(<span class="keyword">const</span> std::string&amp; textureName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    std::shared_ptr&lt;Texture&gt; CopyTexture(<span class="keyword">const</span> std::shared_ptr&lt;Texture&gt;&amp; textureDesc, <span class="keyword">const</span> TextureSampling sampling);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keywordtype">void</span> DestroyCopyTexture(SDL_Texture* texture);</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    std::string AssetPathToAbsolute(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName);</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="keywordtype">void</span> CollectDisplayModes();</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="keywordtype">bool</span> CreateSolidColorTexture(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> int32_t width, <span class="keyword">const</span> int32_t height, <span class="keyword">const</span> SDL_Color&amp; color);</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordtype">void</span> DestroyGameObjects();</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordtype">void</span> GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle&amp; boundingBox, std::vector&lt;bool&gt;&amp; hitArray, <span class="keywordtype">bool</span> hitsRequired);</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    std::string HashSolidColorTexture(<span class="keyword">const</span> uint32_t width, <span class="keyword">const</span> uint32_t height, <span class="keyword">const</span> SDL_Color&amp; color);</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordtype">void</span> InitializeSettings(<span class="keyword">const</span> GameInitParams&amp; initParams);</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    Sprite* GameObjectToSprite(IGameObject* gameObject);</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="keywordtype">bool</span> LoadAssets(<span class="keyword">const</span> GameInitParams&amp; initParams);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordtype">bool</span> LoadCursor(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* textureFile, int32_t centerX, int32_t centerY);</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keywordtype">bool</span> LoadFont(<span class="keyword">const</span> std::vector&lt;uint32_t&gt;&amp; sizes, <span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* fontFile);</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordtype">bool</span> LoadSpritesheet(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* textureFile, <span class="keyword">const</span> <span class="keywordtype">char</span>* sheetFile, <span class="keyword">const</span> TextureSampling sampling);</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keywordtype">bool</span> LoadTexture(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* textureFile, <span class="keyword">const</span> <span class="keywordtype">bool</span> hitsRequired, <span class="keyword">const</span> TextureSampling sampling);</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordtype">void</span> PlayScene(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordtype">void</span> RenderGameObjects(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordtype">void</span> SetHoveredSprite(Sprite* sprite);</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">void</span> SortGameObjectsRendering(<span class="keyword">const</span> std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordtype">void</span> Update();</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keywordtype">void</span> LoadGameObjects(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordtype">void</span> HoverSprites(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordtype">void</span> UpdateGameObjects(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordtype">void</span> UpdateGameObjectsTransforms(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keywordtype">void</span> UpdateKeybindings();</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordtype">void</span> DestroyGameObject(IGameObject* gameObject);</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160; </div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    SDL_Window* _window;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    SDL_Renderer* _renderer;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    uint32_t _nativeTextureFormats;</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    SDL_Texture* _nativeRenderBuffer;</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    std::shared_ptr&lt;IScene&gt; _currentScene;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    std::shared_ptr&lt;IScene&gt; _persistentScene;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    std::unordered_map&lt;int32_t, std::shared_ptr&lt;IScene&gt;&gt; _scenes;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    std::unordered_map&lt;std::shared_ptr&lt;IScene&gt;, std::vector&lt;std::unique_ptr&lt;IGameObject&gt;&gt;&gt; _gameObjects;</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    std::unordered_set&lt;IGameObject*&gt; _sprites;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    std::unordered_map&lt;std::string, FontDescription&gt; _fonts;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    std::unordered_map&lt;std::string, std::shared_ptr&lt;Texture&gt;&gt; _textures;</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    std::vector&lt;std::shared_ptr&lt;Texture&gt;&gt; _textureCopies;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    std::unordered_map&lt;std::string, CursorDescription&gt; _cursors;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    std::unordered_map&lt;std::string, SpriteSheetDescription&gt; _spriteSheets;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160; </div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    std::vector&lt;Sprite*&gt; _possibleSprites;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    Sprite* _hoveredSprite;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    SDL_Color _clearColor;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    FTC* _fpsText;</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <span class="keywordtype">float</span> _fpsTimer;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordtype">int</span> _fpsCount;</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    std::mt19937 _re;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordtype">bool</span> _quit;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    int32_t _renderResolutionWidth;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    int32_t _renderResolutionHeight;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160; </div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    Rectangle _scaledBufferRect;</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    Rectangle _windowBufferRect;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keywordtype">bool</span> _fullscreen;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordtype">bool</span> _fullscreenChangedWanted;</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160; </div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    int32_t _currentMode;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    std::vector&lt;DisplayModeInfo&gt; _displayModes;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    std::unordered_map&lt;int32_t, KeyBindingDescription&gt; _keybindings;</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160; </div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="keywordtype">bool</span> _batchCreate;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160; </div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    int32_t     _majorVersion;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    int32_t     _minorVersion;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    std::string _hashVersion;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160; </div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    std::string _author;</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    int32_t     _copyrightYear;</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    std::filesystem::path _executablePath;</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  };</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160; </div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  <span class="keyword">extern</span> Game GGame;</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;}</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Class, <span class="keyword">typename</span> CreationStruct&gt;</div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">  299</a></span>&#160;    std::add_pointer_t&lt;Class&gt; <a class="code" href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">Create</a>(<span class="keyword">const</span> CreationStruct&amp; params)</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="keyword">const</span> <span class="keyword">auto</span>&amp; scene = params.layer == kObjectLayer_Persistent_UI ? _persistentScene : _currentScene;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      <span class="keyword">auto</span> result = _gameObjects[scene].emplace_back(std::move(std::make_unique&lt;Class&gt;(params))).get();</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <span class="comment">// Some objects benefit from being loaded immediately in order to be positioned correctly in the same frame they were created</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      <span class="keywordflow">if</span> (result-&gt;GetLoadState() == kLoadState_Wanted)</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        result-&gt;SetLoadState(result-&gt;Load(_renderer));</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      <span class="keywordflow">if</span> constexpr (std::is_base_of_v&lt;Sprite, Class&gt;)</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;      {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        _sprites.insert(result);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;      }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;      <span class="keywordflow">if</span> (!_batchCreate) SortGameObjectsRendering(scene);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>std::add_pointer_t&lt;Class&gt;<span class="keyword">&gt;</span>(result);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    }</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordtype">void</span> StartBatchCreate() { _batchCreate = <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordtype">void</span> EndBatchCreate();</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keyword">const</span> SpriteSheetDescription* GetSpriteSheetDescription(<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      <span class="keyword">const</span> <span class="keyword">auto</span> result = _spriteSheets.find(name);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      <span class="keywordflow">return</span> result != std::end(_spriteSheets) ? &amp;result-&gt;second : <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordtype">void</span> SetKeybinding(<span class="keyword">const</span> int32_t settingsId, <span class="keyword">const</span> int32_t newValue);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keyword">const</span> std::unordered_map&lt;int32_t, KeyBindingDescription&gt;&amp; GetKeyBindings()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _keybindings; }</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    int32_t GeyKeyFromKeybind(<span class="keyword">const</span> int32_t keybindSettingId);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    int32_t            GetMajorVersion()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> _majorVersion; }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    int32_t            GetMinorVersion()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> _minorVersion; }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keyword">const</span> std::string&amp; GetHashVersion()<span class="keyword">   const </span>{ <span class="keywordflow">return</span> _hashVersion; }</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    int32_t            GetCopyrightYear()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _copyrightYear; }</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keyword">const</span> std::string&amp; GetAuthor()<span class="keyword">        const </span>{ <span class="keywordflow">return</span> _author; }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordtype">void</span> SetVersion(<span class="keyword">const</span> int32_t major, <span class="keyword">const</span> int32_t minor, <span class="keyword">const</span> std::string&amp; hash);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordtype">void</span> SetCopyrightYear(<span class="keyword">const</span> int32_t year);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keywordtype">void</span> SetAuthor(<span class="keyword">const</span> std::string&amp; author);</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    uint32_t GetNativeTextureFormats()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _nativeTextureFormats; };</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    TTF_Font* FindFont(<span class="keyword">const</span> std::string&amp; fontName, <span class="keyword">const</span> uint32_t size) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160; </div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    std::shared_ptr&lt;Texture&gt; FindTexture(<span class="keyword">const</span> std::string&amp; textureName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    std::shared_ptr&lt;Texture&gt; CopyTexture(<span class="keyword">const</span> std::shared_ptr&lt;Texture&gt;&amp; textureDesc, <span class="keyword">const</span> TextureSampling sampling);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="keywordtype">void</span> DestroyCopyTexture(SDL_Texture* texture);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    std::string AssetPathToAbsolute(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="keywordtype">void</span> CollectDisplayModes();</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordtype">bool</span> CreateSolidColorTexture(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> int32_t width, <span class="keyword">const</span> int32_t height, <span class="keyword">const</span> SDL_Color&amp; color);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordtype">void</span> DestroyGameObjects();</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keywordtype">void</span> GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle&amp; boundingBox, std::vector&lt;bool&gt;&amp; hitArray, <span class="keywordtype">bool</span> hitsRequired);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    std::string HashSolidColorTexture(<span class="keyword">const</span> uint32_t width, <span class="keyword">const</span> uint32_t height, <span class="keyword">const</span> SDL_Color&amp; color);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keywordtype">void</span> InitializeSettings(<span class="keyword">const</span> GameInitParams&amp; initParams);</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    Sprite* GameObjectToSprite(IGameObject* gameObject);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordtype">bool</span> LoadAssets(<span class="keyword">const</span> GameInitParams&amp; initParams);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keywordtype">bool</span> LoadCursor(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* textureFile, int32_t centerX, int32_t centerY);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordtype">bool</span> LoadFont(<span class="keyword">const</span> std::vector&lt;uint32_t&gt;&amp; sizes, <span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* fontFile);</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keywordtype">bool</span> LoadSpritesheet(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* textureFile, <span class="keyword">const</span> <span class="keywordtype">char</span>* sheetFile, <span class="keyword">const</span> TextureSampling sampling);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordtype">bool</span> LoadTexture(<span class="keyword">const</span> <span class="keywordtype">char</span>* assetName, <span class="keyword">const</span> <span class="keywordtype">char</span>* textureFile, <span class="keyword">const</span> <span class="keywordtype">bool</span> hitsRequired, <span class="keyword">const</span> TextureSampling sampling);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordtype">void</span> PlayScene(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordtype">void</span> RenderGameObjects(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">void</span> SetHoveredSprite(Sprite* sprite);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordtype">void</span> SortGameObjectsRendering(<span class="keyword">const</span> std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keywordtype">void</span> Update();</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordtype">void</span> LoadGameObjects(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordtype">void</span> HoverSprites(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordtype">void</span> UpdateGameObjects(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keywordtype">void</span> UpdateGameObjectsTransforms(std::shared_ptr&lt;IScene&gt;&amp; scene);</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordtype">void</span> UpdateKeybindings();</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="keywordtype">void</span> DestroyGameObject(IGameObject* gameObject);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    SDL_Window* _window;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    SDL_Renderer* _renderer;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    uint32_t _nativeTextureFormats;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    SDL_Texture* _nativeRenderBuffer;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160; </div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    std::shared_ptr&lt;IScene&gt; _currentScene;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    std::shared_ptr&lt;IScene&gt; _persistentScene;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    std::unordered_map&lt;int32_t, std::shared_ptr&lt;IScene&gt;&gt; _scenes;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160; </div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    std::unordered_map&lt;std::shared_ptr&lt;IScene&gt;, std::vector&lt;std::unique_ptr&lt;IGameObject&gt;&gt;&gt; _gameObjects;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    std::unordered_set&lt;IGameObject*&gt; _sprites;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    std::unordered_map&lt;std::string, FontDescription&gt; _fonts;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    std::unordered_map&lt;std::string, std::shared_ptr&lt;Texture&gt;&gt; _textures;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    std::vector&lt;std::shared_ptr&lt;Texture&gt;&gt; _textureCopies;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    std::unordered_map&lt;std::string, CursorDescription&gt; _cursors;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    std::unordered_map&lt;std::string, SpriteSheetDescription&gt; _spriteSheets;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    std::vector&lt;Sprite*&gt; _possibleSprites;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    Sprite* _hoveredSprite;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    SDL_Color _clearColor;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    FTC* _fpsText;</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordtype">float</span> _fpsTimer;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="keywordtype">int</span> _fpsCount;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    std::mt19937 _re;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160; </div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordtype">bool</span> _quit;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    int32_t _renderResolutionWidth;</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    int32_t _renderResolutionHeight;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160; </div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    Rectangle _scaledBufferRect;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    Rectangle _windowBufferRect;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160; </div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordtype">bool</span> _fullscreen;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordtype">bool</span> _fullscreenChangedWanted;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    int32_t _currentMode;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    std::vector&lt;DisplayModeInfo&gt; _displayModes;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160; </div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    std::unordered_map&lt;int32_t, KeyBindingDescription&gt; _keybindings;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <span class="keywordtype">bool</span> _batchCreate;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160; </div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    int32_t     _majorVersion;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    int32_t     _minorVersion;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    std::string _hashVersion;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160; </div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    std::string _author;</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    int32_t     _copyrightYear;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160; </div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    std::filesystem::path _executablePath;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;  };</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;  <span class="keyword">extern</span> Game GGame;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_jade_engine_1_1_game_html"><div class="ttname"><a href="class_jade_engine_1_1_game.html">JadeEngine::Game</a></div><div class="ttdef"><b>Definition:</b> Game.h:28</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html">JadeEngine::GameInitParams</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:279</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:298</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:299</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:90</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_game_html_ad3096660b7e86746b1f9f89856a21600"><div class="ttname"><a href="class_jade_engine_1_1_game.html#ad3096660b7e86746b1f9f89856a21600">JadeEngine::Game::End</a></div><div class="ttdeci">void End()</div><div class="ttdef"><b>Definition:</b> Game.h:198</div></div>
 <!-- start footer part -->

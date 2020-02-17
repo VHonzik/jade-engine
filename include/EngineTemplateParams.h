@@ -13,7 +13,7 @@ namespace JadeEngine
   const TextParams kVera16LightGrey =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string fontName;
     kVeraFont,
     //uint32_t fontSize;
@@ -29,7 +29,7 @@ namespace JadeEngine
   const TextParams kVera1650Grey =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string fontName;
     kVeraFont,
     //uint32_t fontSize;
@@ -45,7 +45,7 @@ namespace JadeEngine
   const TextParams kVeraBold1650Grey =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string fontName;
     kVeraFontBold,
     //uint32_t fontSize;
@@ -61,7 +61,7 @@ namespace JadeEngine
   const TextParams kVeraBold1250Grey =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string fontName;
     kVeraFontBold,
     //uint32_t fontSize;
@@ -77,7 +77,7 @@ namespace JadeEngine
   const ButtonParams kMainMenuBlueButton =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string textureNormal;
     "blue_button09.png",
     //std::string texturePressed;
@@ -120,7 +120,7 @@ namespace JadeEngine
   {
     {
       //ObjectLayer layer;
-      kObjectLayer_ui,
+      kObjectLayer_UI,
       //std::string textureName;
       "grey_panel.png",
       //int32_t z;
@@ -139,7 +139,7 @@ namespace JadeEngine
   const ButtonParams kOptionsSectionTitleButton =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string textureNormal;
     "grey_panel.png",
     //std::string texturePressed;
@@ -182,7 +182,7 @@ namespace JadeEngine
   const SliderParams kOptionsSlider =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string font;
     kVeraFontBold,
     //uint32_t fontSize;
@@ -208,7 +208,7 @@ namespace JadeEngine
     //std::string spriteSheetName;
     kJadeEngineUISpritesheet,
     //int32_t z;
-    1,
+    10,
     //float initialValue;
     0,
   };
@@ -216,7 +216,7 @@ namespace JadeEngine
   const ButtonParams kOptionsKeybindButton =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string textureNormal;
     "grey_button10.png",
     //std::string texturePressed;
@@ -259,7 +259,7 @@ namespace JadeEngine
   const CheckboxParams kBlueCheckbox =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string checkedTexture;
     "blue_boxCheckmark.png",
     //std::string emptyTexture;
@@ -277,7 +277,7 @@ namespace JadeEngine
   const DropdownParams kOptionsDropdown =
   {
     //ObjectLayer layer;
-    kObjectLayer_ui,
+    kObjectLayer_UI,
     //std::string boxTexture;
     "dropdown_button.png",
     //int32_t cornerSize;

@@ -20,7 +20,7 @@ namespace JadeEngine
   void LineStrip::Render(SDL_Renderer* renderer)
   {
     SDL_SetRenderDrawColor(renderer, _color.r, _color.g, _color.b, _color.a);
-    if (_layer == kObjectLayer_world)
+    if (_layer == kObjectLayer_World)
     {
       std::vector<SDL_Point> transformedPoints;
       std::transform(std::cbegin(_points), std::cend(_points), std::back_inserter(transformedPoints),
@@ -55,7 +55,7 @@ namespace JadeEngine
 
   void LineStrip::Update()
   {
-    if (transform->IsDirty(kDirtyFlag_centerPosition))
+    if (transform->IsDirty(kDirtyFlag_CenterPosition))
     {
       UpdatePoints();
     }

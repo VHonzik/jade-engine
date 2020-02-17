@@ -37,19 +37,7 @@ namespace JadeEngine
 
     void Update() override;
 
-    void SetPosition(uint32_t x, uint32_t y);
-    void SetCenterPosition(uint32_t x, uint32_t y);
-
     void Show(const bool shown) override;
-
-    int32_t GetX() const;
-    int32_t GetY() const;
-
-    int32_t GetCenterX() const;
-    int32_t GetCenterY() const;
-
-    int32_t GetWidth() const;
-    int32_t GetHeight() const;
 
     float GetValue() const { return _value; }
     bool Changed() const { return _valueChanged; }

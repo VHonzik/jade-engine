@@ -99,19 +99,20 @@ Inheritance diagram for JadeEngine::IGameObject:</div>
  <div class="center">
   <img src="class_jade_engine_1_1_i_game_object.png" usemap="#JadeEngine::IGameObject_map" alt=""/>
   <map id="JadeEngine::IGameObject_map" name="JadeEngine::IGameObject_map">
-<area href="class_jade_engine_1_1_button.html" alt="JadeEngine::Button" shape="rect" coords="167,56,324,80"/>
-<area href="class_jade_engine_1_1_checkbox.html" alt="JadeEngine::Checkbox" shape="rect" coords="167,112,324,136"/>
-<area href="class_jade_engine_1_1_dropdown.html" alt="JadeEngine::Dropdown" shape="rect" coords="167,168,324,192"/>
-<area href="class_jade_engine_1_1_f_t_c.html" alt="JadeEngine::FTC" shape="rect" coords="167,224,324,248"/>
-<area href="class_jade_engine_1_1_line_box.html" alt="JadeEngine::LineBox" shape="rect" coords="167,280,324,304"/>
-<area href="class_jade_engine_1_1_line_grid.html" alt="JadeEngine::LineGrid" shape="rect" coords="167,336,324,360"/>
-<area href="class_jade_engine_1_1_line_strip.html" alt="JadeEngine::LineStrip" shape="rect" coords="167,392,324,416"/>
-<area href="class_jade_engine_1_1_progress_bar.html" alt="JadeEngine::ProgressBar" shape="rect" coords="167,448,324,472"/>
-<area href="class_jade_engine_1_1_slider.html" alt="JadeEngine::Slider" shape="rect" coords="167,504,324,528"/>
-<area href="class_jade_engine_1_1_sprite.html" alt="JadeEngine::Sprite" shape="rect" coords="167,560,324,584"/>
-<area href="class_jade_engine_1_1_text.html" alt="JadeEngine::Text" shape="rect" coords="167,616,324,640"/>
-<area href="class_jade_engine_1_1_text_box.html" alt="JadeEngine::TextBox" shape="rect" coords="167,672,324,696"/>
-<area href="class_jade_engine_1_1_tooltip.html" alt="JadeEngine::Tooltip" shape="rect" coords="167,728,324,752"/>
+<area href="class_jade_engine_1_1_button.html" alt="JadeEngine::Button" shape="rect" coords="187,56,364,80"/>
+<area href="class_jade_engine_1_1_checkbox.html" alt="JadeEngine::Checkbox" shape="rect" coords="187,112,364,136"/>
+<area href="class_jade_engine_1_1_dropdown.html" alt="JadeEngine::Dropdown" shape="rect" coords="187,168,364,192"/>
+<area href="class_jade_engine_1_1_f_t_c.html" alt="JadeEngine::FTC" shape="rect" coords="187,224,364,248"/>
+<area href="class_jade_engine_1_1_line_box.html" alt="JadeEngine::LineBox" shape="rect" coords="187,280,364,304"/>
+<area href="class_jade_engine_1_1_line_grid.html" alt="JadeEngine::LineGrid" shape="rect" coords="187,336,364,360"/>
+<area href="class_jade_engine_1_1_line_strip.html" alt="JadeEngine::LineStrip" shape="rect" coords="187,392,364,416"/>
+<area href="class_jade_engine_1_1_progress_bar.html" alt="JadeEngine::ProgressBar" shape="rect" coords="187,448,364,472"/>
+<area href="class_jade_engine_1_1_slider.html" alt="JadeEngine::Slider" shape="rect" coords="187,504,364,528"/>
+<area href="class_jade_engine_1_1_sprite.html" alt="JadeEngine::Sprite" shape="rect" coords="187,560,364,584"/>
+<area href="class_jade_engine_1_1_text.html" alt="JadeEngine::Text" shape="rect" coords="187,616,364,640"/>
+<area href="class_jade_engine_1_1_text_box.html" alt="JadeEngine::TextBox" shape="rect" coords="187,672,364,696"/>
+<area href="class_jade_engine_1_1_tooltip.html" alt="JadeEngine::Tooltip" shape="rect" coords="187,728,364,752"/>
+<area href="class_jade_engine_1_1_transform_group.html" alt="JadeEngine::TransformGroup" shape="rect" coords="187,784,364,808"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -402,7 +403,7 @@ int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_z</b></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Triggered every frame when GetLoadState function returns <code>kLoadState_wanted</code> to allow resources, such as textures, to be loaded.</p>
+<p>Triggered every frame when GetLoadState function returns <code>kLoadState_Wanted</code> to allow resources, such as textures, to be loaded.</p>
 <p>The trigger order is the following: <a class="el" href="class_jade_engine_1_1_i_scene.html#af30c68be854fa47baa7f00f93121a134">IScene::PreUpdate</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d">IGameObject::Load</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_scene.html#ab266e0d901d24ba70571b5e9013c3846">IScene::Update</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a79dabcc837625bb9e6e53e96bd45710d">IGameObject::Load</a> -&gt; <a class="el" href="class_jade_engine_1_1_i_game_object.html#a80999ad66d2319ae747e2c56bf1d3d74">IGameObject::Render</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -413,7 +414,7 @@ int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_z</b></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The function must return the load state that reflects the result of the load operation. It will be used in SetLoadState function by the <a class="el" href="class_jade_engine_1_1_game.html">Game</a> class.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_i_game_object.html#adc2d4e9eb739b445281bd7f8aac59c8b">GetLoadState</a> </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_text_sprite.html#a375129af8cd458c1cf614a5e8b3569d7">JadeEngine::TextSprite</a>, <a class="el" href="class_jade_engine_1_1_text.html#ad11bbec82a194f42a36f0d4fe78158f6">JadeEngine::Text</a>, and <a class="el" href="class_jade_engine_1_1_text_box.html#a671cd9b54ab0e261cc8fbb88cf9d47e5">JadeEngine::TextBox</a>.</p>
+<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_text_sprite.html#a375129af8cd458c1cf614a5e8b3569d7">JadeEngine::TextSprite</a>, <a class="el" href="class_jade_engine_1_1_text_box.html#a671cd9b54ab0e261cc8fbb88cf9d47e5">JadeEngine::TextBox</a>, and <a class="el" href="class_jade_engine_1_1_text.html#ad11bbec82a194f42a36f0d4fe78158f6">JadeEngine::Text</a>.</p>
 
 </div>
 </div>
@@ -450,7 +451,7 @@ int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_z</b></td></tr>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_i_game_object.html#a4f428fdabe78440afa3fb7d3ed7e6f7c">IGameObject::Update</a>, LoadState, <a class="el" href="class_jade_engine_1_1_i_game_object.html#a356f513227a5e930149f4cb88be7cde5">IGameObject::IsShown</a> </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_sprite.html#a44b9b1c9a850c60e3b2b4d13d2920332">JadeEngine::Sprite</a>, <a class="el" href="class_jade_engine_1_1_line_strip.html#a65173c8842f72d6359dc81a9dad7eef4">JadeEngine::LineStrip</a>, <a class="el" href="class_jade_engine_1_1_text_sprite.html#a78ea14404ec71a07fb9122447f8ac335">JadeEngine::TextSprite</a>, <a class="el" href="class_jade_engine_1_1_text.html#abb6e58a8431a44404edb03234a83971a">JadeEngine::Text</a>, <a class="el" href="class_jade_engine_1_1_text_box.html#a1225559b6471af7b529976cc8fd317f8">JadeEngine::TextBox</a>, and <a class="el" href="class_jade_engine_1_1_box_sprite.html#a0b53b36459165cb532a28a7ca54fa13e">JadeEngine::BoxSprite</a>.</p>
+<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_sprite.html#a44b9b1c9a850c60e3b2b4d13d2920332">JadeEngine::Sprite</a>, <a class="el" href="class_jade_engine_1_1_line_strip.html#a65173c8842f72d6359dc81a9dad7eef4">JadeEngine::LineStrip</a>, <a class="el" href="class_jade_engine_1_1_text_sprite.html#a78ea14404ec71a07fb9122447f8ac335">JadeEngine::TextSprite</a>, <a class="el" href="class_jade_engine_1_1_text_box.html#a1225559b6471af7b529976cc8fd317f8">JadeEngine::TextBox</a>, <a class="el" href="class_jade_engine_1_1_text.html#abb6e58a8431a44404edb03234a83971a">JadeEngine::Text</a>, and <a class="el" href="class_jade_engine_1_1_box_sprite.html#a0b53b36459165cb532a28a7ca54fa13e">JadeEngine::BoxSprite</a>.</p>
 
 </div>
 </div>
@@ -566,7 +567,7 @@ int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>_z</b></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/GameDev/SDL/Idlefactory/jade-engine/include/<a class="el" href="_i_game_object_8h_source.html">IGameObject.h</a></li>
+<li>include/<a class="el" href="_i_game_object_8h_source.html">IGameObject.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

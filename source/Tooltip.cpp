@@ -39,7 +39,7 @@ namespace JadeEngine
 
   void Tooltip::Update()
   {
-    if (!_textPreloaded && _textBox->GetLoadState() == kLoadState_done)
+    if (!_textPreloaded && _textBox->GetLoadState() == kLoadState_Done)
     {
       _textPreloaded = true;
       const auto previousHeight = _boxSprite->transform->GetHeight();

@@ -11,7 +11,7 @@ namespace JadeEngine
 {
   const FTCParams kDefaultFPSFTCParams = {
     //ObjectLayer layer;
-    kObjectLayer_persistent_ui,
+    kObjectLayer_Persistent_UI,
     //std::string fontName;
     kKennyFontSquare,
     //uint32_t fontSize;
@@ -25,7 +25,7 @@ namespace JadeEngine
   const auto kDefaultFontSizes = decltype(GameInitParams::fontSizes){ 12, 16, 24, 32, 64 };
 
   const auto kDefaultTextures = decltype(GameInitParams::textures){
-    { kJadeEngineLogoTexture, "assets/jadeEngineLogo.png", false, kTextureSampling_anisotropic},
+    { kJadeEngineLogoTexture, "assets/jadeEngineLogo.png", false, kTextureSampling_Anisotropic},
   };
 
   const auto kDefaultFonts = decltype(GameInitParams::fonts){
@@ -44,7 +44,7 @@ namespace JadeEngine
   };
 
   const auto kDefaultSpritesheets = decltype(GameInitParams::spritesheets){
-    { kJadeEngineUISpritesheet, "assets/engineUI.png", "assets/engineUI.json", kTextureSampling_anisotropic },
+    { kJadeEngineUISpritesheet, "assets/engineUI.png", "assets/engineUI.json", kTextureSampling_Anisotropic },
   };
 
   const auto kDefaultKeybindings = decltype(GameInitParams::keybindings){

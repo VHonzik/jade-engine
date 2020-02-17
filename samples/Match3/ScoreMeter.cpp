@@ -48,7 +48,7 @@ namespace MatchThree
     {
       lineStripParams.initialPoints = { kZeroVector2D_i32, CreateRegularPolygonVertex(kPieceType_Count, _maxEnergyDisplayedRadius, i) };
       _energyLines[i] = GGame.Create<LineStrip>(lineStripParams);
-      transform->Attach(_energyLines[i]->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
+      transform->Attach(_energyLines[i]->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
     }
 
     lineStripParams.z = _z + 1;
@@ -56,9 +56,9 @@ namespace MatchThree
     CreateRegularPolygonVertices(lineStripParams.initialPoints, kPieceType_Count, _minEnergyDisplayedRadius);
     _energySpiderChart = GGame.Create<LineStrip>(lineStripParams);
 
-    transform->Attach(_fullEnergyBorder->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
-    transform->Attach(_thresholdEnergyBorder->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
-    transform->Attach(_energySpiderChart->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
+    transform->Attach(_fullEnergyBorder->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
+    transform->Attach(_thresholdEnergyBorder->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
+    transform->Attach(_energySpiderChart->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
 
     SpriteParams spriteParams;
     spriteParams.layer = _layer;
@@ -72,7 +72,7 @@ namespace MatchThree
       const auto position = CreateRegularPolygonVertex(kPieceType_Count, _maxEnergyDisplayedRadius, i);
       _energySymbols[i] = GGame.Create<Sprite>(spriteParams);
       _energySymbols[i]->transform->SetSize(20, 20);
-      transform->Attach(_energySymbols[i]->transform, position, kAnchor_center, kAnchor_center);
+      transform->Attach(_energySymbols[i]->transform, position, kAnchor_Center, kAnchor_Center);
     }
 
     TextParams textParams;
@@ -84,7 +84,7 @@ namespace MatchThree
     textParams.z = params.z;
 
     _text = GGame.Create<Text>(textParams);
-    transform->Attach(_text->transform, kZeroVector2D_i32, kAnchor_center, kAnchor_center);
+    transform->Attach(_text->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
 
     PulseAnimationParams pulseParams;
     pulseParams.expandStartingSpeed = 1.0f;
@@ -169,7 +169,7 @@ namespace MatchThree
         if (_energy[i] >= kThresholdEnergy)
         {
           _energySymbolsPulse.Register(_energySymbols[i]);
-          if (_energySymbolsPulse.GetState() == kPulseAnimationState_stopped)
+          if (_energySymbolsPulse.GetState() == kPulseAnimationState_Stopped)
           {
             _energySymbolsPulse.Start();
           }

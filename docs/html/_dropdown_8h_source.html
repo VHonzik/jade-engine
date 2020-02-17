@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>jade-engine: D:/GameDev/SDL/Idlefactory/jade-engine/include/Dropdown.h Source File</title>
+<title>jade-engine: include/Dropdown.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -142,62 +142,50 @@ $(document).ready(function(){initNavTree('_dropdown_8h_source.html',''); initRes
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      UpdateEntries();</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> SetPosition(int32_t x, int32_t y);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> SetCenterPosition(int32_t x, int32_t y);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_dropdown.html#a6fb13b9851dfd86616a528e80ffde05d">Show</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_dropdown.html#a6fb13b9851dfd86616a528e80ffde05d">Show</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> shown) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> Changed()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _changed; }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    int32_t GetIndex()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _currentEntry; }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    int32_t GetX() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    int32_t GetY() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    int32_t GetCenterX() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    int32_t GetCenterY() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> SetIndex(int32_t index);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> AddEntry(std::string text);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> UpdateEntries();</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    int32_t GetWidth() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    int32_t GetHeight() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> Expand();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> Contract();</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> Changed()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _changed; }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    int32_t GetIndex()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _currentEntry; }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> SetIndex(int32_t index);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> AddEntry(std::string text);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> UpdateEntries();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> Expand();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> Contract();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="class_jade_engine_1_1_box_sprite.html">BoxSprite</a>* _box;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _expandArrowSprite;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _contractArrowSprite;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _scrollBarSprite;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _scrollBarPointSprite;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    int32_t _maxVisibleEntries;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    int32_t _entryHeight;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    int32_t _arrowsMargin;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    int32_t _scrollBarMargin;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::string _fontName;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    uint32_t _fontSize;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    SDL_Color _fontColor;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="class_jade_engine_1_1_text.html">Text</a>* _currentEntryText;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    int32_t _currentEntry;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::vector&lt;Text*&gt; _visibleEntriesTexts;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    std::vector&lt;std::string&gt; _entries;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    ObjectLayer _layer;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">bool</span> _scrolling;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    int32_t _scrollOffset;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">bool</span> _expanded;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">bool</span> _changed;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  };</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="class_jade_engine_1_1_box_sprite.html">BoxSprite</a>* _box;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _expandArrowSprite;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _contractArrowSprite;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _scrollBarSprite;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_jade_engine_1_1_sprite.html">Sprite</a>* _scrollBarPointSprite;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    int32_t _maxVisibleEntries;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    int32_t _entryHeight;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    int32_t _arrowsMargin;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    int32_t _scrollBarMargin;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::string _fontName;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    uint32_t _fontSize;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    SDL_Color _fontColor;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_jade_engine_1_1_text.html">Text</a>* _currentEntryText;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    int32_t _currentEntry;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::vector&lt;Text*&gt; _visibleEntriesTexts;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::vector&lt;std::string&gt; _entries;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    ObjectLayer _layer;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> _scrolling;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    int32_t _scrollOffset;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">bool</span> _expanded;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">bool</span> _changed;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  };</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_jade_engine_1_1_i_game_object_html"><div class="ttname"><a href="class_jade_engine_1_1_i_game_object.html">JadeEngine::IGameObject</a></div><div class="ttdef"><b>Definition:</b> IGameObject.h:78</div></div>
@@ -205,9 +193,9 @@ $(document).ready(function(){initNavTree('_dropdown_8h_source.html',''); initRes
 <div class="ttc" id="aclass_jade_engine_1_1_sprite_html"><div class="ttname"><a href="class_jade_engine_1_1_sprite.html">JadeEngine::Sprite</a></div><div class="ttdef"><b>Definition:</b> Sprite.h:90</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_dropdown_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_dropdown_params.html">JadeEngine::DropdownParams</a></div><div class="ttdef"><b>Definition:</b> Dropdown.h:17</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_dropdown_html"><div class="ttname"><a href="class_jade_engine_1_1_dropdown.html">JadeEngine::Dropdown</a></div><div class="ttdef"><b>Definition:</b> Dropdown.h:39</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_dropdown_html_abcc3aa9aa227f5869f26c16936e2a128"><div class="ttname"><a href="class_jade_engine_1_1_dropdown.html#abcc3aa9aa227f5869f26c16936e2a128">JadeEngine::Dropdown::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdef"><b>Definition:</b> Dropdown.cpp:131</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_dropdown_html_a6fb13b9851dfd86616a528e80ffde05d"><div class="ttname"><a href="class_jade_engine_1_1_dropdown.html#a6fb13b9851dfd86616a528e80ffde05d">JadeEngine::Dropdown::Show</a></div><div class="ttdeci">void Show(const bool shown) override</div><div class="ttdef"><b>Definition:</b> Dropdown.cpp:225</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_text_html"><div class="ttname"><a href="class_jade_engine_1_1_text.html">JadeEngine::Text</a></div><div class="ttdef"><b>Definition:</b> Text.h:23</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_dropdown_html_abcc3aa9aa227f5869f26c16936e2a128"><div class="ttname"><a href="class_jade_engine_1_1_dropdown.html#abcc3aa9aa227f5869f26c16936e2a128">JadeEngine::Dropdown::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdef"><b>Definition:</b> Dropdown.cpp:137</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_dropdown_html_a6fb13b9851dfd86616a528e80ffde05d"><div class="ttname"><a href="class_jade_engine_1_1_dropdown.html#a6fb13b9851dfd86616a528e80ffde05d">JadeEngine::Dropdown::Show</a></div><div class="ttdeci">void Show(const bool shown) override</div><div class="ttdef"><b>Definition:</b> Dropdown.cpp:236</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_text_html"><div class="ttname"><a href="class_jade_engine_1_1_text.html">JadeEngine::Text</a></div><div class="ttdef"><b>Definition:</b> Text.h:22</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

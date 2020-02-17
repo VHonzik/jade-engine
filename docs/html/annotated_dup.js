@@ -1,8 +1,6 @@
 var annotated_dup =
 [
     [ "JadeEngine", null, [
-      [ "AlignedGrid", "class_jade_engine_1_1_aligned_grid.html", "class_jade_engine_1_1_aligned_grid" ],
-      [ "AlignedGroup", "class_jade_engine_1_1_aligned_group.html", "class_jade_engine_1_1_aligned_group" ],
       [ "Audio", "class_jade_engine_1_1_audio.html", "class_jade_engine_1_1_audio" ],
       [ "Box", "class_jade_engine_1_1_box.html", "class_jade_engine_1_1_box" ],
       [ "BoxSprite", "class_jade_engine_1_1_box_sprite.html", "class_jade_engine_1_1_box_sprite" ],
@@ -60,7 +58,8 @@ var annotated_dup =
       [ "Tooltip", "class_jade_engine_1_1_tooltip.html", "class_jade_engine_1_1_tooltip" ],
       [ "TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", "struct_jade_engine_1_1_tooltip_params" ],
       [ "Transform", "class_jade_engine_1_1_transform.html", "class_jade_engine_1_1_transform" ],
-      [ "TransformAttachmentData", "struct_jade_engine_1_1_transform_attachment_data.html", "struct_jade_engine_1_1_transform_attachment_data" ],
+      [ "TransformGroup", "class_jade_engine_1_1_transform_group.html", "class_jade_engine_1_1_transform_group" ],
+      [ "TransformGroupParams", "struct_jade_engine_1_1_transform_group_params.html", "struct_jade_engine_1_1_transform_group_params" ],
       [ "UICamera", "class_jade_engine_1_1_u_i_camera.html", "class_jade_engine_1_1_u_i_camera" ],
       [ "Vector2D", "class_jade_engine_1_1_vector2_d.html", "class_jade_engine_1_1_vector2_d" ],
       [ "WorldCamera", "class_jade_engine_1_1_world_camera.html", "class_jade_engine_1_1_world_camera" ]

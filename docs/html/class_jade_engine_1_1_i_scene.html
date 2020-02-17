@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for Scene classes.</p>
 <p>Scene is a high-level building block of a game in Jade engine. It is a collection of game objects that are updated and rendered at the same time, and usually contains logic that operates on those game objects.</p>
-<p>All game objects created while a scene is active, such as during it's <a class="el" href="class_jade_engine_1_1_i_scene.html#a7ed19ba6e313cc5128b91edc4ad70206">Start()</a> function will be considered part of that scene and will stop being updated and rendered when a new scene is played. Exception to that are objects created with kObjectLayer_persistent_ui ObjectLayer which are always rendered and updated.</p>
+<p>All game objects created while a scene is active, such as during it's <a class="el" href="class_jade_engine_1_1_i_scene.html#a7ed19ba6e313cc5128b91edc4ad70206">Start()</a> function will be considered part of that scene and will stop being updated and rendered when a new scene is played. Exception to that are objects created with kObjectLayer_Persistent_UI ObjectLayer which are always rendered and updated.</p>
 <p>All scenes must inherit from <a class="el" href="class_jade_engine_1_1_i_scene.html">IScene</a> and can override the public virtual functions in order receive callbacks from the Jade engine.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">Game::AddScene</a>, <a class="el" href="class_jade_engine_1_1_game.html#a5be00dfbc890e6245b49e44f8e06a7f2">Game::PlayScene</a></dd></dl>
 <p>Template for new scene: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;IScene.h&quot;</span></div>
@@ -294,7 +294,7 @@ Public Member Functions</h2></td></tr>
 <div class="line">}</div>
 </div><!-- fragment --> </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_options_menu_scene.html#a3cf916dfacf1432d6e1dbef50dff2dba">JadeEngine::OptionsMenuScene</a>, <a class="el" href="class_jade_engine_1_1_powered_by_jade_engine_scene.html#ade9fd0d065fb9688bb613363a19312e5">JadeEngine::PoweredByJadeEngineScene</a>, and <a class="el" href="class_jade_engine_1_1_main_menu_scene.html#a1bba4af25923e1df11bbb778073c947b">JadeEngine::MainMenuScene</a>.</p>
+<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_options_menu_scene.html#a3cf916dfacf1432d6e1dbef50dff2dba">JadeEngine::OptionsMenuScene</a>, <a class="el" href="class_jade_engine_1_1_main_menu_scene.html#a1bba4af25923e1df11bbb778073c947b">JadeEngine::MainMenuScene</a>, and <a class="el" href="class_jade_engine_1_1_powered_by_jade_engine_scene.html#ade9fd0d065fb9688bb613363a19312e5">JadeEngine::PoweredByJadeEngineScene</a>.</p>
 
 </div>
 </div>
@@ -343,17 +343,17 @@ Public Member Functions</h2></td></tr>
 <div class="line">}</div>
 </div><!-- fragment --> </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_options_menu_scene.html#ad3e3728c6c70c0dbbcfe1ded515f2bab">JadeEngine::OptionsMenuScene</a>, <a class="el" href="class_jade_engine_1_1_powered_by_jade_engine_scene.html#a64339cbc7c4fcbb645935f6eb0830e60">JadeEngine::PoweredByJadeEngineScene</a>, and <a class="el" href="class_jade_engine_1_1_main_menu_scene.html#a85d5ad3a681864bd0dc4eca8ab5971e4">JadeEngine::MainMenuScene</a>.</p>
+<p>Reimplemented in <a class="el" href="class_jade_engine_1_1_options_menu_scene.html#ad3e3728c6c70c0dbbcfe1ded515f2bab">JadeEngine::OptionsMenuScene</a>, <a class="el" href="class_jade_engine_1_1_main_menu_scene.html#a85d5ad3a681864bd0dc4eca8ab5971e4">JadeEngine::MainMenuScene</a>, and <a class="el" href="class_jade_engine_1_1_powered_by_jade_engine_scene.html#a64339cbc7c4fcbb645935f6eb0830e60">JadeEngine::PoweredByJadeEngineScene</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/GameDev/SDL/Idlefactory/jade-engine/include/<a class="el" href="_i_scene_8h_source.html">IScene.h</a></li>
+<li>include/<a class="el" href="_i_scene_8h_source.html">IScene.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_jade_engine_1_1_i_scene_html"><div class="ttname"><a href="class_jade_engine_1_1_i_scene.html">JadeEngine::IScene</a></div><div class="ttdef"><b>Definition:</b> IScene.h:33</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:298</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:299</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_i_scene_html_a7ed19ba6e313cc5128b91edc4ad70206"><div class="ttname"><a href="class_jade_engine_1_1_i_scene.html#a7ed19ba6e313cc5128b91edc4ad70206">JadeEngine::IScene::Start</a></div><div class="ttdeci">virtual void Start()</div><div class="ttdef"><b>Definition:</b> IScene.h:60</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_i_scene_html_ab266e0d901d24ba70571b5e9013c3846"><div class="ttname"><a href="class_jade_engine_1_1_i_scene.html#ab266e0d901d24ba70571b5e9013c3846">JadeEngine::IScene::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> IScene.h:103</div></div>
 <!-- start footer part -->

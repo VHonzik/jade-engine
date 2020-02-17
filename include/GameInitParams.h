@@ -184,7 +184,7 @@ namespace JadeEngine
     /*
     Unique identification for key-binding in the settings file.
 
-    It is recommended to create an enum with settings IDs starting at kSettingsIDS_engineEnd + 0.
+    It is recommended to create an enum with settings IDs starting at kSettingsIDS_EngineEnd + 0.
 
     @see SettingsIDs
     */

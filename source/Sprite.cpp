@@ -75,13 +75,13 @@ namespace JadeEngine
     transform->Initialize(0, 0, texture->width, texture->height);
     transform->SetBoundingBox(texture->boundingBox);
     _z = z;
-    SetLoadState(kLoadState_done);
+    SetLoadState(kLoadState_Done);
     assert(_textureDescription);
   }
 
   void Sprite::Render(SDL_Renderer* renderer)
   {
-    SDL_Rect destination = _layer == kObjectLayer_world ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
+    SDL_Rect destination = _layer == kObjectLayer_World ? GWorldCamera.WorldToScreen(transform) : transform->GetBox();
     auto maskCopy = _spriteSheetMask;
     SDL_Rect* source = _spriteSheetMasked ? &maskCopy : nullptr;
 

@@ -15,7 +15,19 @@ namespace JadeEngine
     , _minMaxYMargin(params.minMaxYMargin)
     , _slidingOffset(0)
     , _slidingReleased(false)
+    , _value (Clamp01(params.initialValue))
   {
+    SpriteParams spriteParams;
+    spriteParams.layer = params.layer;
+    spriteParams.textureName = params.axisTexture;
+    spriteParams.z = params.z - 2;
+    spriteParams.spriteSheet = params.spriteSheet;
+    spriteParams.spriteSheetName = params.spriteSheetName;
+
+    _axis = GGame.Create<Sprite>(spriteParams);
+    _axis->transform->SetWidth(params.width);
+    transform->Attach(_axis->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
+
     TextParams textParams;
     textParams.layer = params.layer;
     textParams.fontName = params.font;
@@ -25,32 +37,29 @@ namespace JadeEngine
     textParams.z = params.z;
 
     _minTitle = GGame.Create<Text>(textParams);
+    _axis->transform->Attach(_minTitle->transform, { 0, _minMaxYMargin }, kAnchor_LeftCenter, kAnchor_Center);
 
     textParams.text = params.maxTitle;
     _maxTitle = GGame.Create<Text>(textParams);
-
-    SpriteParams spriteParams;
-    spriteParams.layer = params.layer;
-    spriteParams.textureName = params.axisTexture;
-    spriteParams.z = params.z;
-    spriteParams.spriteSheet = params.spriteSheet;
-    spriteParams.spriteSheetName = params.spriteSheetName;
-
-    _axis = GGame.Create<Sprite>(spriteParams);
-    _axis->transform->SetWidth(params.width);
+    _axis->transform->Attach(_maxTitle->transform, { 0, _minMaxYMargin }, kAnchor_RightCenter, kAnchor_Center);
 
     spriteParams.textureName = params.axisEndTexture;
-    spriteParams.z = params.z + 1;
+    spriteParams.z = params.z - 1;
     _axisLEnd = GGame.Create<Sprite>(spriteParams);
+    _axis->transform->Attach(_axisLEnd->transform, kZeroVector2D_i32, kAnchor_LeftCenter, kAnchor_Center);
     _axisREnd = GGame.Create<Sprite>(spriteParams);
+    _axis->transform->Attach(_axisREnd->transform, kZeroVector2D_i32, kAnchor_RightCenter, kAnchor_Center);
 
     spriteParams.textureName = params.pointerTexture;
-    spriteParams.z = params.z + 2;
+    spriteParams.z = params.z;
     _pointer = GGame.Create<Sprite>(spriteParams);
+    _axis->transform->Attach(_pointer->transform, { static_cast<int32_t>(_axis->transform->GetWidth() * _value), 0}, kAnchor_LeftCenter, kAnchor_Center);
 
-    _value = Clamp01(params.initialValue);
+    const auto width = _minTitle->transform->GetWidth() / 2 + _axis->transform->GetWidth() + _maxTitle->transform->GetWidth() / 2;
+    const auto height = _minMaxYMargin + std::max(_minTitle->transform->GetHeight(), _maxTitle->transform->GetHeight()) / 2 + _axis->transform->GetHeight() / 2;
+    transform->Initialize(kZeroVector2D_i32, { width, height });
 
-    SetPosition(0, 0);
+    transform->SetPosition(0, 0);
   }
 
   void Slider::Update()
@@ -79,65 +88,15 @@ namespace JadeEngine
 
     if (_sliding)
     {
-      const auto pos = Clamp(GInput.GetMouseX() - _slidingOffset, _axisLEnd->transform->GetCenterX(), _axisREnd->transform->GetCenterX());
+      const auto pos = Clamp(GInput.GetMouseX() - _slidingOffset, _axis->transform->GetX(), _axis->transform->GetX() + _axis->transform->GetWidth());
       const auto prevValue = _value;
 
-      _value = static_cast<float>(Clamp01(static_cast<float>(pos - _axisLEnd->transform->GetCenterX()) / static_cast<float>(_axisREnd->transform->GetCenterX() - _axisLEnd->transform->GetCenterX())));
+      _value = static_cast<float>(Clamp01(static_cast<float>(pos - _axis->transform->GetX()) / static_cast<float>(_axis->transform->GetWidth())));
 
       _valueChanged = prevValue != _value;
 
-      _pointer->transform->SetCenterPosition(pos, _pointer->transform->GetCenterY());
+      _pointer->transform->SetLocalPosition({ static_cast<int32_t>(_axis->transform->GetWidth() * _value), 0 });
     }
-  }
-
-  int32_t Slider::GetX() const
-  {
-    return _axis->transform->GetX();
-  }
-
-  int32_t Slider::GetY() const
-  {
-    return _axis->transform->GetCenterY();
-  }
-
-  int32_t Slider::GetCenterX() const
-  {
-    return _axis->transform->GetCenterX();
-  }
-
-  int32_t Slider::GetCenterY() const
-  {
-    return _axis->transform->GetCenterY();
-  }
-
-  int32_t Slider::GetWidth() const
-  {
-    return (_maxTitle->transform->GetX() + _maxTitle->transform->GetWidth()) - _minTitle->transform->GetX();
-  }
-
-  int32_t Slider::GetHeight() const
-  {
-    return (_maxTitle->transform->GetY() + _maxTitle->transform->GetHeight()) - _pointer->transform->GetY();
-  }
-
-  void Slider::SetPosition(uint32_t x, uint32_t y)
-  {
-    _axis->transform->SetPosition(x, y);
-    _axisLEnd->transform->SetCenterPosition(x, _axis->transform->GetCenterY());
-    _axisREnd->transform->SetCenterPosition(x + _width, _axis->transform->GetCenterY());
-    _pointer->transform->SetCenterPosition(x + static_cast<int32_t>(_value * _width), _axis->transform->GetCenterY());
-    _minTitle->transform->SetPositionAnchor(x, y + _minMaxYMargin, kAnchor_leftCenter);
-    _maxTitle->transform->SetPositionAnchor(x + _width, y + _minMaxYMargin, kAnchor_leftCenter);
-  }
-
-  void Slider::SetCenterPosition(uint32_t x, uint32_t y)
-  {
-    _pointer->transform->SetCenterPosition(x + static_cast<int32_t>((_value - 0.5f) * _width), y);
-    _axis->transform->SetCenterPosition(x, y);
-    _axisLEnd->transform->SetCenterPosition(x - _width / 2, y);
-    _axisREnd->transform->SetCenterPosition(x + _width / 2, y);
-    _minTitle->transform->SetPositionAnchor(x - _width / 2, y + _minMaxYMargin, kAnchor_leftCenter);
-    _maxTitle->transform->SetPositionAnchor(x + _width / 2, y + _minMaxYMargin, kAnchor_leftCenter);
   }
 
   void Slider::Show(bool shown)

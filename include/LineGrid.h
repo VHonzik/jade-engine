@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Aligment.h"
+#include "Alignment.h"
 #include "IGameObject.h"
 #include "ObjectLayer.h"
+#include "Transform.h"
 
 #include <SDL_pixels.h>
 #include <vector>
@@ -13,14 +14,14 @@ namespace JadeEngine
 
   struct LineGridParams
   {
-    ObjectLayer           layer;
-    int32_t               width;
-    int32_t               height;
-    int32_t               gridSize;
-    HorizontalAlignment   horizontalAlignment;
-    VerticalAlignment     verticalAlignment;
-    SDL_Color             color;
-    int32_t               z;
+    ObjectLayer layer;
+    int32_t     width;
+    int32_t     height;
+    int32_t     gridSize;
+    HorizontalAlignment horizontalAlignment;
+    VerticalAlignment verticalAlignment;
+    SDL_Color   color;
+    int32_t     z;
   };
 
   class LineGrid : public IGameObject

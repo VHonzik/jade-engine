@@ -1,8 +1,6 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
-    [ "Aligment.h", "_aligment_8h_source.html", null ],
-    [ "AlignedGrid.h", "_aligned_grid_8h_source.html", null ],
-    [ "AlignedGroup.h", "_aligned_group_8h_source.html", null ],
+    [ "Alignment.h", "_alignment_8h_source.html", null ],
     [ "Animations.h", "_animations_8h_source.html", null ],
     [ "Audio.h", "_audio_8h_source.html", null ],
     [ "BoxSprite.h", "_box_sprite_8h_source.html", null ],
@@ -51,6 +49,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "TextureSampling.h", "_texture_sampling_8h_source.html", null ],
     [ "Tooltip.h", "_tooltip_8h_source.html", null ],
     [ "Transform.h", "_transform_8h_source.html", null ],
+    [ "TransformGroup.h", "_transform_group_8h_source.html", null ],
     [ "Utils.h", "_utils_8h_source.html", null ],
     [ "Vector2D.h", "_vector2_d_8h_source.html", null ]
 ];

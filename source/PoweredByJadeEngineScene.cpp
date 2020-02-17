@@ -28,7 +28,7 @@ namespace JadeEngine
   void PoweredByJadeEngineScene::Start()
   {
     TextParams textParams;
-    textParams.layer = kObjectLayer_ui;
+    textParams.layer = kObjectLayer_UI;
     textParams.fontName = kVeraFontBold;
     textParams.fontSize = 32;
     textParams.text = "Powered by Jade Engine";
@@ -37,10 +37,10 @@ namespace JadeEngine
     textParams.z = 0;
 
     _text = GGame.Create<Text>(textParams);
-    _text->transform->SetPositionAnchor(GGame.GetHalfWidth(), GGame.GetHeight() - 50, kAnchor_centerBottom);
+    _text->transform->SetPositionAnchor(GGame.GetHalfWidth(), GGame.GetHeight() - 50, kAnchor_CenterBottom);
 
     TextSpriteParams textSpriteParams;
-    textSpriteParams.layer = kObjectLayer_ui;
+    textSpriteParams.layer = kObjectLayer_UI;
     textSpriteParams.textureName = kJadeEngineLogoTexture;
     textSpriteParams.z = 0;
     textSpriteParams.spriteSheet = false;
