@@ -19,7 +19,7 @@ namespace JadeEngine
   Template to copy:
   @code
   LineStripParams lineStripParams;
-  lineStripParams.layer = kObjectLayer_ui;
+  lineStripParams.layer = kObjectLayer_UI;
   lineStripParams.initialPoints = {kZeroVector2D_i32, {1.0f, 0.0f}};
   lineStripParams.z = 0;
   lineStripParams.color = kLighterDarkGreyColor;

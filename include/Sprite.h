@@ -26,7 +26,7 @@ namespace JadeEngine
   Template to copy:
   @code
   SpriteParams spriteParams;
-  spriteParams.layer = kObjectLayer_ui;
+  spriteParams.layer = kObjectLayer_UI;
   spriteParams.textureName = "someTexture.png";
   spriteParams.z = 0;
   spriteParams.spriteSheet = false;

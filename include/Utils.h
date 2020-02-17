@@ -142,6 +142,16 @@ namespace JadeEngine
     };
   }
 
+  inline bool operator==(const SDL_Color& lhs, const SDL_Color& rhs)
+  {
+    return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b && lhs.a == rhs.a;
+  }
+
+  inline bool operator!=(const SDL_Color& lhs, const SDL_Color& rhs)
+  {
+    return !(lhs == rhs);
+  }
+
   inline std::string CamelCaseToSnakeCase(const std::string& camelCase)
   {
     std::vector<char> titleSnakeCase;

@@ -132,7 +132,7 @@ namespace JadeEngine
     }
 
     const auto hoveredSprite = GGame.GetHoveredSprite();
-    _hovered = hoveredSprite == _normalSprite || hoveredSprite == _hoveredSprite;
+    _hovered = hoveredSprite == _normalSprite || (_hoveredSprite != nullptr && hoveredSprite == _hoveredSprite);
 
     if (!_disabled && !_down && _hovered && GInput.MouseButtonPressed(SDL_BUTTON_LEFT))
     {

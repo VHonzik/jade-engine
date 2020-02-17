@@ -19,7 +19,7 @@ namespace JadeEngine
   Template to copy:
   @code
   ButtonParams buttonParams;
-  buttonParams.layer = kObjectLayer_ui;
+  buttonParams.layer = kObjectLayer_UI;
   buttonParams.textureNormal = "blue_button09.png";
   buttonParams.texturePressed = "blue_button10.png";
   buttonParams.textureDisabled = "grey_button11.png";
