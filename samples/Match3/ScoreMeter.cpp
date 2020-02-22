@@ -275,6 +275,8 @@ namespace MatchThree
         _wantedScore = *score;
         _displayedScore = _wantedScore;
         _currentScore = static_cast<float>(_wantedScore);
+        _text->SetText(std::to_string(static_cast<int32_t>(std::floor(_displayedScore))));
+        UpdateEnergySpiderChart();
       }
     }
   }

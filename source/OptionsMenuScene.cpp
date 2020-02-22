@@ -123,13 +123,13 @@ namespace JadeEngine
     checkboxStyle.checked = GGame.IsFullscreen();
     _fullScreenCheckbox = GGame.Create<Checkbox>(checkboxStyle);
     _fullScreenCheckbox->Show(false);
-    _fullScreenCheckbox->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight() - 150);
+    _fullScreenCheckbox->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight() - 150);
 
     textParams = kVeraBold1650Grey;
     textParams.text = "Fullscreen:";
     _fullScreenDescription = GGame.Create<Text>(textParams);
     _fullScreenDescription->Show(false);
-    _fullScreenDescription->transform->SetPositionAnchor(_fullScreenCheckbox->GetX() - 20, _fullScreenCheckbox->GetCenterY(), kAnchor_RightCenter);
+    _fullScreenCheckbox->transform->Attach(_fullScreenCheckbox->transform, { -20, 0 }, kAnchor_LeftCenter, kAnchor_RightCenter);
 
     _resolutionsDropdown = GGame.Create<Dropdown>(kOptionsDropdown);
 
