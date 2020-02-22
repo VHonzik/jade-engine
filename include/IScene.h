@@ -109,9 +109,22 @@ namespace JadeEngine
 
     /**
     Set this scene as initialized, i.e. next GGame.PlayScene will now longer trigger Start().
+    @warning Used internally by the Jade Engine and there is very little reason to call this as a user.
     */
-    void SetInitialized(bool initialized) { _initialized = initialized; }
+    void SetInitialized(const bool initialized) { _initialized = initialized; }
+
+    /**
+    Returns whether this scene is currently active, i.e. its Update() is being called every frame.
+    */
+    bool GetActive() const { return _active; }
+
+    /**
+    Set this scene as active, i.e. its Update() will being called every frame.
+    @warning Used internally by the Jade Engine and there is very little reason to call this as a user.
+    */
+    void SetActive(const bool active) { _active = active; }
   private:
     bool _initialized = false;
+    bool _active = false;
   };
 }

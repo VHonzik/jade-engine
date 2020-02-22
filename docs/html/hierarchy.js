@@ -40,6 +40,7 @@ var hierarchy =
       [ "JadeEngine::Tooltip", "class_jade_engine_1_1_tooltip.html", null ],
       [ "JadeEngine::TransformGroup", "class_jade_engine_1_1_transform_group.html", null ]
     ] ],
+    [ "JadeEngine::IGameSaveListener", "class_jade_engine_1_1_i_game_save_listener.html", null ],
     [ "JadeEngine::Input", "class_jade_engine_1_1_input.html", null ],
     [ "JadeEngine::IScene", "class_jade_engine_1_1_i_scene.html", [
       [ "JadeEngine::MainMenuScene", "class_jade_engine_1_1_main_menu_scene.html", null ],
@@ -49,13 +50,13 @@ var hierarchy =
     [ "JadeEngine::LineBoxParams", "struct_jade_engine_1_1_line_box_params.html", null ],
     [ "JadeEngine::LineGridParams", "struct_jade_engine_1_1_line_grid_params.html", null ],
     [ "JadeEngine::LineStripParams", "struct_jade_engine_1_1_line_strip_params.html", null ],
+    [ "JadeEngine::Persistence", "class_jade_engine_1_1_persistence.html", null ],
     [ "JadeEngine::ProgressBarColor", "struct_jade_engine_1_1_progress_bar_color.html", null ],
     [ "JadeEngine::ProgressBarParams", "struct_jade_engine_1_1_progress_bar_params.html", null ],
     [ "JadeEngine::PulseAnimation", "class_jade_engine_1_1_pulse_animation.html", null ],
     [ "JadeEngine::PulseAnimationEntry", "struct_jade_engine_1_1_pulse_animation_entry.html", null ],
     [ "JadeEngine::PulseAnimationParams", "struct_jade_engine_1_1_pulse_animation_params.html", null ],
-    [ "JadeEngine::Settings", "class_jade_engine_1_1_settings.html", null ],
-    [ "JadeEngine::SettingsEntry", "class_jade_engine_1_1_settings_entry.html", null ],
+    [ "JadeEngine::SettingEntry", "class_jade_engine_1_1_setting_entry.html", null ],
     [ "JadeEngine::SliderParams", "struct_jade_engine_1_1_slider_params.html", null ],
     [ "JadeEngine::SpriteParams", "struct_jade_engine_1_1_sprite_params.html", [
       [ "JadeEngine::BoxSpriteParams", "struct_jade_engine_1_1_box_sprite_params.html", null ]
@@ -67,6 +68,12 @@ var hierarchy =
     [ "JadeEngine::Time", "class_jade_engine_1_1_time.html", null ],
     [ "JadeEngine::TooltipParams", "struct_jade_engine_1_1_tooltip_params.html", null ],
     [ "JadeEngine::TransformGroupParams", "struct_jade_engine_1_1_transform_group_params.html", null ],
+    [ "TypedSetting< ScopedEnum, ScopedEnumValue >", "struct_typed_setting.html", null ],
+    [ "JadeEngine::TypedSetting< Setting, Setting::FullScreen >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_full_screen_01_4.html", null ],
+    [ "JadeEngine::TypedSetting< Setting, Setting::MusicVolume >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_music_volume_01_4.html", null ],
+    [ "JadeEngine::TypedSetting< Setting, Setting::ResolutionHeight >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_resolution_height_01_4.html", null ],
+    [ "JadeEngine::TypedSetting< Setting, Setting::ResolutionWidth >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_resolution_width_01_4.html", null ],
+    [ "JadeEngine::TypedSetting< Setting, Setting::SoundVolume >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_sound_volume_01_4.html", null ],
     [ "JadeEngine::UICamera", "class_jade_engine_1_1_u_i_camera.html", null ],
     [ "JadeEngine::Vector2D< ValueType >", "class_jade_engine_1_1_vector2_d.html", null ],
     [ "JadeEngine::Vector2D< float >", "class_jade_engine_1_1_vector2_d.html", null ],

@@ -24,19 +24,19 @@ var NAVTREE =
 [
   [ "jade-engine", "index.html", [
     [ "jade-engine Introduction", "index.html", [
-      [ "Getting started", "index.html#autotoc_md2", [
-        [ "Prerequisites", "index.html#autotoc_md3", null ],
-        [ "Set-up", "index.html#autotoc_md4", null ],
-        [ "Usage", "index.html#autotoc_md5", null ]
+      [ "Getting started", "index.html#autotoc_md0", [
+        [ "Prerequisites", "index.html#autotoc_md1", null ],
+        [ "Set-up", "index.html#autotoc_md2", null ],
+        [ "Usage", "index.html#autotoc_md3", null ]
       ] ]
     ] ],
     [ "Installation guide", "installationpage.html", [
-      [ "Adding Jade Engine to a new project and compiling minimalistic sample", "installationpage.html#autotoc_md6", [
-        [ "Create Empty Visual Studio project", "installationpage.html#autotoc_md7", null ],
-        [ "Add Jade Engine as git submodule", "installationpage.html#autotoc_md8", null ],
-        [ "Add Jade Engine header and source files to the project", "installationpage.html#autotoc_md9", null ],
-        [ "Add Jade Engine property files to the project", "installationpage.html#autotoc_md10", null ],
-        [ "Add main.cpp and initialize Jade Engine", "installationpage.html#autotoc_md11", null ]
+      [ "Adding Jade Engine to a new project and compiling minimalistic sample", "installationpage.html#autotoc_md4", [
+        [ "Create Empty Visual Studio project", "installationpage.html#autotoc_md5", null ],
+        [ "Add Jade Engine as git submodule", "installationpage.html#autotoc_md6", null ],
+        [ "Add Jade Engine header and source files to the project", "installationpage.html#autotoc_md7", null ],
+        [ "Add Jade Engine property files to the project", "installationpage.html#autotoc_md8", null ],
+        [ "Add main.cpp and initialize Jade Engine", "installationpage.html#autotoc_md9", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -58,8 +58,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"class_jade_engine_1_1_options_menu_scene.html",
-"struct_jade_engine_1_1_button_params.html#a9b8c5da30d18c8b2e6500f9d22e229b3"
+"class_jade_engine_1_1_persistence.html#a3a4ae103f04863f271e3f75722dcee65",
+"struct_jade_engine_1_1_button_params.html#adbcbce51cc6defd84adbb26c1df0e3d0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

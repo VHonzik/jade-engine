@@ -164,78 +164,80 @@ $(document).ready(function(){initNavTree('_game_init_params_8h_source.html','');
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">/*</span></div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">    Unique identification for key-binding in the settings file.</span></div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">    It is recommended to create an enum with settings IDs starting at kSettingsIDS_EngineEnd + 0.</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">    It is recommended to create an enum with settings IDs starting at Setting::EngineEnd + 0.</span></div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">    @see SettingsIDs</span></div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    int32_t     settingsId;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    int32_t settingsId;</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#a7ea2a37eae51a1ee4fdaa4ba85e0ffa2">  200</a></span>&#160;    std::string <a class="code" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#a7ea2a37eae51a1ee4fdaa4ba85e0ffa2">settingsDescription</a>;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">    Default key code for the key-binding.</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">    Uses SDL2 key codes enumeration of type SDL_Keycode (typedef of int32_t), see SDL_keycode.h.</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    int32_t     defaultKey;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  };</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  <span class="comment">/*</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">  Parameters for initialization of a new game instance.</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">  Usage:</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">  @code</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">  #include &quot;Game.h&quot;</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">  #include &quot;GameInitParams.h&quot;</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">  // Assuming we have filled GameInitParams variable kGameInitParams, see bellow for template</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">  auto&amp; game = GGame;</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">  if (game.Initialize(kGameInitParams))</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">  {</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">    // Add scenes, play one, start, etc.</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">  }</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment">  @endcode</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">  Template:</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">  @code</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">  const GameInitParams kGameInitParams = {</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">    // uint32_t renderingResolutionWidth;</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">    1280,</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">    //uint32_t renderingResolutionHeight;</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">    720,</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">    //std::string windowName;</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">    &quot;JadeEngineGame v0.1&quot;,</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">    //std::string appName;</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">    &quot;JadeEngineGame&quot;,</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">    //std::vector&lt;uint32_t&gt; fontSizes;</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">    {24, 32},</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">    //SDL_Color backgroundColor;</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">    { 12, 16, 24, 32 },</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsTextureEntry&gt; textures;</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment">    {</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment">      { kSomeTextureID,     &quot;assets/someTexture.png&quot;, false},</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">    },</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsFontEntry&gt; fonts;</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">    {</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">      { kSomeFontID,        &quot;assets/someFont.ttf&quot; },</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">    },</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsSoundEntry&gt; sounds;</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">    {</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">      { kSomeSoundID,       &quot;assets/someSound.wav&quot;},</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">    },</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsCursorEntry&gt; cursors;</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">    {</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">      { kSomeCursorID,      &quot;assets/someCursor.png&quot;, 9, 9 },</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">    },</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsSpriteSheetEntry&gt; spritesheets;</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">    {</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">      { kSomeSpritesheetID, &quot;assets/someSpriteSheet.png&quot;, &quot;assets/someSpriteSheet.json&quot; },</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">    },</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsKeyBindingEntry&gt; keybindings;</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">    {</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">      { &quot;Keybinding 1&quot;, kCustomSettingsEnum_Keybinding1, &quot;Keybinding for X. Uses internal engine key identifier, see https://wiki.libsdl.org/SDL_Keycode.&quot;, SDLK_v},</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#abca400bd232526aa602daf259117cf77">  198</a></span>&#160;    std::string <a class="code" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#abca400bd232526aa602daf259117cf77">settingsKey</a>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">    Default key code for the key-binding.</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">    Uses SDL2 key codes enumeration of type SDL_Keycode (typedef of int32_t), see SDL_keycode.h.</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    int32_t defaultKey;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  };</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <span class="comment">/*</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">  Parameters for initialization of a new game instance.</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">  Usage:</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">  @code</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">  #include &quot;Game.h&quot;</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">  #include &quot;GameInitParams.h&quot;</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">  // Assuming we have filled GameInitParams variable kGameInitParams, see bellow for template</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">  auto&amp; game = GGame;</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">  if (game.Initialize(kGameInitParams))</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">  {</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">    // Add scenes, play one, start, etc.</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">  }</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">  @endcode</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">  Template:</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">  @code</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">  const GameInitParams kGameInitParams = {</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">    // uint32_t renderingResolutionWidth;</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">    1280,</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">    //uint32_t renderingResolutionHeight;</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">    720,</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">    //std::string windowName;</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">    &quot;JadeEngineGame v0.1&quot;,</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">    //std::string appName;</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">    &quot;JadeEngineGame&quot;,</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">    //std::vector&lt;uint32_t&gt; fontSizes;</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">    {24, 32},</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">    //SDL_Color backgroundColor;</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">    { 12, 16, 24, 32 },</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsTextureEntry&gt; textures;</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">      { kSomeTextureID,     &quot;assets/someTexture.png&quot;, false},</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsFontEntry&gt; fonts;</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">      { kSomeFontID,        &quot;assets/someFont.ttf&quot; },</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsSoundEntry&gt; sounds;</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">      { kSomeSoundID,       &quot;assets/someSound.wav&quot;},</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsCursorEntry&gt; cursors;</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">      { kSomeCursorID,      &quot;assets/someCursor.png&quot;, 9, 9 },</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsSpriteSheetEntry&gt; spritesheets;</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">      { kSomeSpritesheetID, &quot;assets/someSpriteSheet.png&quot;, &quot;assets/someSpriteSheet.json&quot; },</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">    //std::vector&lt;GameInitParamsKeyBindingEntry&gt; keybindings;</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment">      { &quot;Keybinding 1&quot;, kCustomSettingsEnum_Keybinding1, &quot;keybinding1&quot;, SDLK_v},</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">    },</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">    //bool settingPersistenceEnabled;</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">    true,</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">    //std::string author;</span></div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">    &quot;Vaclav Honzik&quot;,</span></div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">    //int32_t copyrightYear;</span></div>
@@ -275,28 +277,29 @@ $(document).ready(function(){initNavTree('_game_init_params_8h_source.html','');
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
 <div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">  386</a></span>&#160;    std::vector&lt;GameInitParamsKeyBindingEntry&gt; <a class="code" href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">keybindings</a>;</div>
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
-<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">  393</a></span>&#160;    std::string <a class="code" href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">author</a>;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
-<div class="line"><a name="l00398"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">  398</a></span>&#160;    int32_t <a class="code" href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">copyrightYear</a>;</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
-<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a">  409</a></span>&#160;    int32_t <a class="code" href="struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a">majorVersion</a>;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
-<div class="line"><a name="l00420"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980">  420</a></span>&#160;    int32_t <a class="code" href="struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980">minorVersion</a>;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
-<div class="line"><a name="l00429"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#aa1cb1dba770bc22507c85b90e3d5de63">  429</a></span>&#160;    std::string <a class="code" href="struct_jade_engine_1_1_game_init_params.html#aa1cb1dba770bc22507c85b90e3d5de63">hashVersion</a>;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;  };</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;}</div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#a31e49f9f07103bb422b5371cdaca96ee">  395</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_jade_engine_1_1_game_init_params.html#a31e49f9f07103bb422b5371cdaca96ee">settingPersistenceEnabled</a>;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160; </div>
+<div class="line"><a name="l00402"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">  402</a></span>&#160;    std::string <a class="code" href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">author</a>;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160; </div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">  407</a></span>&#160;    int32_t <a class="code" href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">copyrightYear</a>;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00418"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a">  418</a></span>&#160;    int32_t <a class="code" href="struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a">majorVersion</a>;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00429"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980">  429</a></span>&#160;    int32_t <a class="code" href="struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980">minorVersion</a>;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
+<div class="line"><a name="l00438"></a><span class="lineno"><a class="line" href="struct_jade_engine_1_1_game_init_params.html#aa1cb1dba770bc22507c85b90e3d5de63">  438</a></span>&#160;    std::string <a class="code" href="struct_jade_engine_1_1_game_init_params.html#aa1cb1dba770bc22507c85b90e3d5de63">hashVersion</a>;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;  };</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a01105bfb47e85c9d6047efeedb8c2f33"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a01105bfb47e85c9d6047efeedb8c2f33">JadeEngine::GameInitParams::renderingResolutionWidth</a></div><div class="ttdeci">uint32_t renderingResolutionWidth</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:287</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_sound_entry_html_a4fb48dcfedea6d68109af1df51d6ee6d"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_sound_entry.html#a4fb48dcfedea6d68109af1df51d6ee6d">JadeEngine::GameInitParamsSoundEntry::fileLocation</a></div><div class="ttdeci">std::string fileLocation</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:97</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_key_binding_entry_html_a7ea2a37eae51a1ee4fdaa4ba85e0ffa2"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#a7ea2a37eae51a1ee4fdaa4ba85e0ffa2">JadeEngine::GameInitParamsKeyBindingEntry::settingsDescription</a></div><div class="ttdeci">std::string settingsDescription</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:200</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a558886d8d131ce5a3df042cbc0f0b661"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a558886d8d131ce5a3df042cbc0f0b661">JadeEngine::GameInitParams::fonts</a></div><div class="ttdeci">std::vector&lt; GameInitParamsFontEntry &gt; fonts</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:347</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a9f6f45c4136f81698e2bdaee069a75e1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a9f6f45c4136f81698e2bdaee069a75e1">JadeEngine::GameInitParams::cursors</a></div><div class="ttdeci">std::vector&lt; GameInitParamsCursorEntry &gt; cursors</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:365</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a25041f3e6cd6d3293c0efdfc4931e774"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">JadeEngine::GameInitParams::keybindings</a></div><div class="ttdeci">std::vector&lt; GameInitParamsKeyBindingEntry &gt; keybindings</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:386</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_afd75d40e5dc99dd0e2593780fa03d980"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980">JadeEngine::GameInitParams::minorVersion</a></div><div class="ttdeci">int32_t minorVersion</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:420</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_afd75d40e5dc99dd0e2593780fa03d980"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#afd75d40e5dc99dd0e2593780fa03d980">JadeEngine::GameInitParams::minorVersion</a></div><div class="ttdeci">int32_t minorVersion</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:429</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a36b8247500eaa29cf4a4b2b268428164"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a36b8247500eaa29cf4a4b2b268428164">JadeEngine::GameInitParams::backgroundColor</a></div><div class="ttdeci">SDL_Color backgroundColor</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:326</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a00ac59aefd7a0707807691f16c6397b1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">JadeEngine::GameInitParams::author</a></div><div class="ttdeci">std::string author</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:393</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a00ac59aefd7a0707807691f16c6397b1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">JadeEngine::GameInitParams::author</a></div><div class="ttdeci">std::string author</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:402</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a3a09c60d9bbab34e20aa926e2b1a8de1"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a3a09c60d9bbab34e20aa926e2b1a8de1">JadeEngine::GameInitParams::sounds</a></div><div class="ttdeci">std::vector&lt; GameInitParamsSoundEntry &gt; sounds</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:356</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_cursor_entry_html_ac5efa5989c535f8ce26442c48c45f152"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_cursor_entry.html#ac5efa5989c535f8ce26442c48c45f152">JadeEngine::GameInitParamsCursorEntry::fileLocation</a></div><div class="ttdeci">std::string fileLocation</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:117</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_cursor_entry_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_cursor_entry.html">JadeEngine::GameInitParamsCursorEntry</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:103</div></div>
@@ -308,8 +311,10 @@ $(document).ready(function(){initNavTree('_game_init_params_8h_source.html','');
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_acf3b37f4e81c01b53b51aca19228da6b"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#acf3b37f4e81c01b53b51aca19228da6b">JadeEngine::GameInitParams::spritesheets</a></div><div class="ttdeci">std::vector&lt; GameInitParamsSpriteSheetEntry &gt; spritesheets</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:377</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_sprite_sheet_entry_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_sprite_sheet_entry.html">JadeEngine::GameInitParamsSpriteSheetEntry</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:139</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_sound_entry_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_sound_entry.html">JadeEngine::GameInitParamsSoundEntry</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:83</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_aa1cb1dba770bc22507c85b90e3d5de63"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#aa1cb1dba770bc22507c85b90e3d5de63">JadeEngine::GameInitParams::hashVersion</a></div><div class="ttdeci">std::string hashVersion</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:429</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_key_binding_entry_html_abca400bd232526aa602daf259117cf77"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#abca400bd232526aa602daf259117cf77">JadeEngine::GameInitParamsKeyBindingEntry::settingsKey</a></div><div class="ttdeci">std::string settingsKey</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:198</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_aa1cb1dba770bc22507c85b90e3d5de63"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#aa1cb1dba770bc22507c85b90e3d5de63">JadeEngine::GameInitParams::hashVersion</a></div><div class="ttdeci">std::string hashVersion</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:438</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_key_binding_entry_html_ab10a6f9c995ded55d49b8548ac551c57"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#ab10a6f9c995ded55d49b8548ac551c57">JadeEngine::GameInitParamsKeyBindingEntry::uiDescription</a></div><div class="ttdeci">std::string uiDescription</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:182</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a31e49f9f07103bb422b5371cdaca96ee"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a31e49f9f07103bb422b5371cdaca96ee">JadeEngine::GameInitParams::settingPersistenceEnabled</a></div><div class="ttdeci">bool settingPersistenceEnabled</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:395</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_texture_entry_html_a74b0fec5d2ca6d594f730ae7a6999ae6"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_texture_entry.html#a74b0fec5d2ca6d594f730ae7a6999ae6">JadeEngine::GameInitParamsTextureEntry::fileLocation</a></div><div class="ttdeci">std::string fileLocation</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:36</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_cursor_entry_html_aa665f4cbaecfacbe6e9672ed619375f9"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_cursor_entry.html#aa665f4cbaecfacbe6e9672ed619375f9">JadeEngine::GameInitParamsCursorEntry::assetName</a></div><div class="ttdeci">std::string assetName</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:110</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_texture_entry_html_a8216b165f4f29ebfe9262e0b1202bf6e"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_texture_entry.html#a8216b165f4f29ebfe9262e0b1202bf6e">JadeEngine::GameInitParamsTextureEntry::generateHitMap</a></div><div class="ttdeci">bool generateHitMap</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:48</div></div>
@@ -322,11 +327,11 @@ $(document).ready(function(){initNavTree('_game_init_params_8h_source.html','');
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_font_entry_html_a74222a20c089442824c52ed61b8e73bc"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_font_entry.html#a74222a20c089442824c52ed61b8e73bc">JadeEngine::GameInitParamsFontEntry::fileLocation</a></div><div class="ttdeci">std::string fileLocation</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:77</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_font_entry_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_font_entry.html">JadeEngine::GameInitParamsFontEntry</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:63</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_acb625092c03e92eece2d539b0c97fc2f"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#acb625092c03e92eece2d539b0c97fc2f">JadeEngine::GameInitParams::textures</a></div><div class="ttdeci">std::vector&lt; GameInitParamsTextureEntry &gt; textures</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:335</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a510153248aff78c3d9b0fd43986b7ab5"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">JadeEngine::GameInitParams::copyrightYear</a></div><div class="ttdeci">int32_t copyrightYear</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:398</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a510153248aff78c3d9b0fd43986b7ab5"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">JadeEngine::GameInitParams::copyrightYear</a></div><div class="ttdeci">int32_t copyrightYear</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:407</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_sprite_sheet_entry_html_ab9c02d1c69add9fca61465aa8ecb010c"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_sprite_sheet_entry.html#ab9c02d1c69add9fca61465aa8ecb010c">JadeEngine::GameInitParamsSpriteSheetEntry::sheetJSONFileLocation</a></div><div class="ttdeci">std::string sheetJSONFileLocation</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:160</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_sprite_sheet_entry_html_a9c4bed75950b006110e0e44d6cc87197"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_sprite_sheet_entry.html#a9c4bed75950b006110e0e44d6cc87197">JadeEngine::GameInitParamsSpriteSheetEntry::assetName</a></div><div class="ttdeci">std::string assetName</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:146</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_texture_entry_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params_texture_entry.html">JadeEngine::GameInitParamsTextureEntry</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:22</div></div>
-<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_ac12a975607f30500746075069036654a"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a">JadeEngine::GameInitParams::majorVersion</a></div><div class="ttdeci">int32_t majorVersion</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:409</div></div>
+<div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_ac12a975607f30500746075069036654a"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#ac12a975607f30500746075069036654a">JadeEngine::GameInitParams::majorVersion</a></div><div class="ttdeci">int32_t majorVersion</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:418</div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html_a9a616c8f4c9a63a07857811a5a79bbbb"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html#a9a616c8f4c9a63a07857811a5a79bbbb">JadeEngine::GameInitParams::renderingResolutionHeight</a></div><div class="ttdeci">uint32_t renderingResolutionHeight</div><div class="ttdef"><b>Definition:</b> GameInitParams.h:294</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

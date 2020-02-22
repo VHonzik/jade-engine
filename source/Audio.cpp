@@ -1,8 +1,7 @@
 #include "Audio.h"
 
+#include "Persistence.h"
 #include "Utils.h"
-#include "Settings.h"
-#include "EngineSettings.h"
 
 #include <SDL_mixer.h>
 
@@ -22,8 +21,8 @@ namespace JadeEngine
     _musicChannelActive = 0;
     _musicChannelOld = 1;
 
-    SetMusicVolume(GSettings.Get<float>(kSettingsIDs_MusicVolume));
-    SetSoundVolume(GSettings.Get<float>(kSettingsIDs_SoundVolume));
+    SetMusicVolume(GPersistence.GetSettingTyped<Setting::MusicVolume>());
+    SetSoundVolume(GPersistence.GetSettingTyped<Setting::SoundVolume>());
 
     return true;
   }

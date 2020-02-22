@@ -200,7 +200,7 @@ namespace JadeEngine
     /**
     Signal the game to switch to fullscreen or windowed mode.
 
-    It is advised to also update kSettingsIDs_FullScreen settings value if this change is meant to persist across sessions. The actually change happens as the very first thing next game loop tick.
+    It is advised to also update Setting::FullScreen settings value if this change is meant to persist across sessions. The actual change happens as the very first thing next game loop tick.
 
     @param fullscreen Whether the game should be in fullscreen mode or not. Nothing happens if it's currently already in the desired mode.
     @code
@@ -208,7 +208,7 @@ namespace JadeEngine
       if (_fullScreenCheckbox->Changed())
       {
         GGame.SetFullscreen(_fullScreenCheckbox->Checked());
-        GSettings.Set(kSettingsIDs_fullScreen, _fullScreenCheckbox->Checked());
+        GPersistence.SetSettingTyped<Setting::FullScreen>(_fullScreenCheckbox->Checked());
       }
     @endcode
     */
@@ -387,7 +387,7 @@ namespace JadeEngine
     void GetBoundingBoxAndHitArray(SDL_Surface* surface, Rectangle& boundingBox, std::vector<bool>& hitArray, bool hitsRequired);
     uint32_t GetPixel(SDL_Surface* surface, int32_t x, int32_t y);
     std::string HashSolidColorTexture(const uint32_t width, const uint32_t height, const SDL_Color& color);
-    void InitializeSettings(const GameInitParams& initParams);
+    void RegisterKeybindings(const GameInitParams& initParams);
     Sprite* GameObjectToSprite(IGameObject* gameObject);
     bool LoadAssets(const GameInitParams& initParams);
     bool LoadCursor(const char* assetName, const char* textureFile, int32_t centerX, int32_t centerY);

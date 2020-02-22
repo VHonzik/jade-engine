@@ -184,27 +184,25 @@ namespace JadeEngine
     /*
     Unique identification for key-binding in the settings file.
 
-    It is recommended to create an enum with settings IDs starting at kSettingsIDS_EngineEnd + 0.
+    It is recommended to create an enum with settings IDs starting at Setting::EngineEnd + 0.
 
     @see SettingsIDs
     */
-    int32_t     settingsId;
+    int32_t settingsId;
 
     /**
-    String stored in settings file for this key-binding.
+    String key stored in the settings file for this key-binding.
 
-    It is recommended for this to be a brief description of what action the key-binding represent along with following text:
-    "Uses internal engine key identifier, see https://wiki.libsdl.org/SDL_Keycode."
-    The goal is that the settings file is a human-friendly place should the need ever arise.
+    It has to be unique within all other key-bindings and all other settings.
     */
-    std::string settingsDescription;
+    std::string settingsKey;
 
     /*
     Default key code for the key-binding.
 
     Uses SDL2 key codes enumeration of type SDL_Keycode (typedef of int32_t), see SDL_keycode.h.
     */
-    int32_t     defaultKey;
+    int32_t defaultKey;
   };
 
   /*
@@ -261,8 +259,10 @@ namespace JadeEngine
     },
     //std::vector<GameInitParamsKeyBindingEntry> keybindings;
     {
-      { "Keybinding 1", kCustomSettingsEnum_Keybinding1, "Keybinding for X. Uses internal engine key identifier, see https://wiki.libsdl.org/SDL_Keycode.", SDLK_v},
+      { "Keybinding 1", kCustomSettingsEnum_Keybinding1, "keybinding1", SDLK_v},
     },
+    //bool settingPersistenceEnabled;
+    true,
     //std::string author;
     "Vaclav Honzik",
     //int32_t copyrightYear;
@@ -303,8 +303,8 @@ namespace JadeEngine
     /**
     String representing the game name used for the settings file name.
 
-    Will be used in file operations and should be a valid file name for the targeted system.
-    Note the settings file location is subject to the jade-engine and extension will appended to it.
+    Will be used in file operations and should be a valid file and folder name for the targeted system.
+    Note the jade-engine will create a folder with this name in AppData for Windows and create settings file with the same name there.
     */
     std::string appName;
 
@@ -384,6 +384,15 @@ namespace JadeEngine
     @see GameInitParamsKeyBindingEntry
     */
     std::vector<GameInitParamsKeyBindingEntry> keybindings;
+
+    /**
+    Whether setting values will be persist between sessions.
+
+    If set to `true` the game will create a setting file in AppData.
+
+    @see Persistence
+    */
+    bool settingPersistenceEnabled;
 
     /**
     Name of person or organization behind the game.

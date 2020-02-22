@@ -36,6 +36,8 @@ const GameInitParams kSampleInitParams = {
   //std::vector<GameInitParamsKeyBindingEntry> keybindings;
   {
   },
+  //bool settingPersistenceEnabled;
+  false,
   //std::string author;
   "Vaclav Honzik",
   //int32_t copyrightYear;

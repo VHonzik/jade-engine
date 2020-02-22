@@ -814,14 +814,14 @@ template&lt;typename Class , typename CreationStruct &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Signal the game to switch to fullscreen or windowed mode.</p>
-<p>It is advised to also update kSettingsIDs_FullScreen settings value if this change is meant to persist across sessions. The actually change happens as the very first thing next game loop tick.</p>
+<p>It is advised to also update Setting::FullScreen settings value if this change is meant to persist across sessions. The actual change happens as the very first thing next game loop tick.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fullscreen</td><td>Whether the game should be in fullscreen mode or not. Nothing happens if it's currently already in the desired mode. <div class="fragment"><div class="line"><span class="comment">// Assuming we have created a Checkbox _fullScreenCheckbox</span></div>
 <div class="line"><span class="keywordflow">if</span> (_fullScreenCheckbox-&gt;Changed())</div>
 <div class="line">{</div>
 <div class="line">  GGame.<a class="code" href="class_jade_engine_1_1_game.html#a7bbe2c09304b3d8095cda961dd204e65">SetFullscreen</a>(_fullScreenCheckbox-&gt;Checked());</div>
-<div class="line">  GSettings.Set(kSettingsIDs_fullScreen, _fullScreenCheckbox-&gt;Checked());</div>
+<div class="line">  GPersistence.SetSettingTyped&lt;Setting::FullScreen&gt;(_fullScreenCheckbox-&gt;Checked());</div>
 <div class="line">}</div>
 </div><!-- fragment --> </td></tr>
   </table>
@@ -871,10 +871,10 @@ template&lt;typename Class , typename CreationStruct &gt; </div>
 </div><!-- doc-content -->
 <div class="ttc" id="a_game_init_params_8h_html"><div class="ttname"><a href="_game_init_params_8h.html">GameInitParams.h</a></div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_game_html_af2041d0179d7ebe493d46f0fbf1af5cd"><div class="ttname"><a href="class_jade_engine_1_1_game.html#af2041d0179d7ebe493d46f0fbf1af5cd">JadeEngine::Game::Create</a></div><div class="ttdeci">std::add_pointer_t&lt; Class &gt; Create(const CreationStruct &amp;params)</div><div class="ttdef"><b>Definition:</b> Game.h:299</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_aaafe4a71f22367decda8796b6272c2bc"><div class="ttname"><a href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">JadeEngine::Game::AddScene</a></div><div class="ttdeci">void AddScene(const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</div><div class="ttdef"><b>Definition:</b> Game.cpp:506</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_a44e715fe08d13c6bed62d1d47d7b0b51"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a44e715fe08d13c6bed62d1d47d7b0b51">JadeEngine::Game::CleanUp</a></div><div class="ttdeci">void CleanUp()</div><div class="ttdef"><b>Definition:</b> Game.cpp:534</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_a7bbe2c09304b3d8095cda961dd204e65"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a7bbe2c09304b3d8095cda961dd204e65">JadeEngine::Game::SetFullscreen</a></div><div class="ttdeci">void SetFullscreen(const bool fullscreen)</div><div class="ttdef"><b>Definition:</b> Game.cpp:792</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_a4aab440f8cd521303b89bd3e5392578a"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a4aab440f8cd521303b89bd3e5392578a">JadeEngine::Game::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> Game.cpp:757</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_aaafe4a71f22367decda8796b6272c2bc"><div class="ttname"><a href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">JadeEngine::Game::AddScene</a></div><div class="ttdeci">void AddScene(const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</div><div class="ttdef"><b>Definition:</b> Game.cpp:505</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_a44e715fe08d13c6bed62d1d47d7b0b51"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a44e715fe08d13c6bed62d1d47d7b0b51">JadeEngine::Game::CleanUp</a></div><div class="ttdeci">void CleanUp()</div><div class="ttdef"><b>Definition:</b> Game.cpp:538</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_a7bbe2c09304b3d8095cda961dd204e65"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a7bbe2c09304b3d8095cda961dd204e65">JadeEngine::Game::SetFullscreen</a></div><div class="ttdeci">void SetFullscreen(const bool fullscreen)</div><div class="ttdef"><b>Definition:</b> Game.cpp:798</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_a4aab440f8cd521303b89bd3e5392578a"><div class="ttname"><a href="class_jade_engine_1_1_game.html#a4aab440f8cd521303b89bd3e5392578a">JadeEngine::Game::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition:</b> Game.cpp:763</div></div>
 <div class="ttc" id="aclass_jade_engine_1_1_game_html_ad3096660b7e86746b1f9f89856a21600"><div class="ttname"><a href="class_jade_engine_1_1_game.html#ad3096660b7e86746b1f9f89856a21600">JadeEngine::Game::End</a></div><div class="ttdeci">void End()</div><div class="ttdef"><b>Definition:</b> Game.h:198</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

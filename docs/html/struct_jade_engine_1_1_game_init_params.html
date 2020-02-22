@@ -116,6 +116,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:acf3b37f4e81c01b53b51aca19228da6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25041f3e6cd6d3293c0efdfc4931e774"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html">GameInitParamsKeyBindingEntry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params.html#a25041f3e6cd6d3293c0efdfc4931e774">keybindings</a></td></tr>
 <tr class="separator:a25041f3e6cd6d3293c0efdfc4931e774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31e49f9f07103bb422b5371cdaca96ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params.html#a31e49f9f07103bb422b5371cdaca96ee">settingPersistenceEnabled</a></td></tr>
+<tr class="separator:a31e49f9f07103bb422b5371cdaca96ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00ac59aefd7a0707807691f16c6397b1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params.html#a00ac59aefd7a0707807691f16c6397b1">author</a></td></tr>
 <tr class="separator:a00ac59aefd7a0707807691f16c6397b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a510153248aff78c3d9b0fd43986b7ab5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params.html#a510153248aff78c3d9b0fd43986b7ab5">copyrightYear</a></td></tr>
@@ -140,7 +142,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>String representing the game name used for the settings file name.</p>
-<p>Will be used in file operations and should be a valid file name for the targeted system. Note the settings file location is subject to the jade-engine and extension will appended to it. </p>
+<p>Will be used in file operations and should be a valid file and folder name for the targeted system. Note the jade-engine will create a folder with this name in AppData for Windows and create settings file with the same name there. </p>
 
 </div>
 </div>
@@ -340,6 +342,23 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Width in pixels of "rendering" resolution that will be used to draw all game objects.</p>
 <p>What is presented on the screen is potentially scaled version of that depending on the user chosen "display" resolution. All assets should be targeting this rendering resolution. </p>
+
+</div>
+</div>
+<a id="a31e49f9f07103bb422b5371cdaca96ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31e49f9f07103bb422b5371cdaca96ee">&#9670;&nbsp;</a></span>settingPersistenceEnabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool JadeEngine::GameInitParams::settingPersistenceEnabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Whether setting values will be persist between sessions.</p>
+<p>If set to <code>true</code> the game will create a setting file in AppData.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_jade_engine_1_1_persistence.html">Persistence</a> </dd></dl>
 
 </div>
 </div>

@@ -13,7 +13,6 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "EngineDataTypes.h", "_engine_data_types_8h_source.html", null ],
     [ "EngineDefaultInitParams.h", "_engine_default_init_params_8h_source.html", null ],
     [ "EngineResourcesDescriptions.h", "_engine_resources_descriptions_8h_source.html", null ],
-    [ "EngineSettings.h", "_engine_settings_8h_source.html", null ],
     [ "EngineTemplateParams.h", "_engine_template_params_8h_source.html", null ],
     [ "EngineTime.h", "_engine_time_8h_source.html", null ],
     [ "FTC.h", "_f_t_c_8h_source.html", null ],
@@ -36,10 +35,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "MainMenuScene.h", "_main_menu_scene_8h_source.html", null ],
     [ "ObjectLayer.h", "_object_layer_8h_source.html", null ],
     [ "OptionsMenuScene.h", "_options_menu_scene_8h_source.html", null ],
+    [ "Persistence.h", "_persistence_8h_source.html", null ],
     [ "PoweredByJadeEngineScene.h", "_powered_by_jade_engine_scene_8h_source.html", null ],
     [ "ProgressBar.h", "_progress_bar_8h_source.html", null ],
-    [ "Settings.h", "_settings_8h_source.html", null ],
-    [ "SettingsFile.h", "_settings_file_8h_source.html", null ],
     [ "Slider.h", "_slider_8h_source.html", null ],
     [ "Sprite.h", "_sprite_8h_source.html", null ],
     [ "Text.h", "_text_8h_source.html", null ],
@@ -50,6 +48,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Tooltip.h", "_tooltip_8h_source.html", null ],
     [ "Transform.h", "_transform_8h_source.html", null ],
     [ "TransformGroup.h", "_transform_group_8h_source.html", null ],
+    [ "TypedSetting.h", "_typed_setting_8h_source.html", null ],
     [ "Utils.h", "_utils_8h_source.html", null ],
     [ "Vector2D.h", "_vector2_d_8h_source.html", null ]
 ];

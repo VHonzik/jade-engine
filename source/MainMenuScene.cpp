@@ -4,10 +4,9 @@
 #include "BoxSprite.h"
 #include "Button.h"
 #include "EngineConstants.h"
-#include "EngineSettings.h"
 #include "EngineTemplateParams.h"
 #include "Game.h"
-#include "Settings.h"
+#include "Persistence.h"
 #include "TransformGroup.h"
 
 #include <sstream>
@@ -25,8 +24,8 @@ namespace JadeEngine
 
   void MainMenuScene::ApplyDisplayModeFromSettings()
   {
-    auto width = GSettings.Get<int32_t>(kSettingsIDs_ResolutionWidth);
-    auto height = GSettings.Get<int32_t>(kSettingsIDs_ResolutionHeight);
+    auto width = GPersistence.GetSettingTyped<Setting::ResolutionWidth>();
+    auto height = GPersistence.GetSettingTyped<Setting::ResolutionHeight>();
 
     const auto& modes = GGame.GetDisplayModes();
     for (int32_t i = 0; i < modes.size(); i++)
@@ -39,7 +38,7 @@ namespace JadeEngine
       }
     }
 
-    auto fullscreen = GSettings.Get<bool>(kSettingsIDs_FullScreen);
+    auto fullscreen = GPersistence.GetSettingTyped<Setting::FullScreen>();
     GGame.SetFullscreen(fullscreen);
   }
 

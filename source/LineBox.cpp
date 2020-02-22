@@ -7,7 +7,6 @@
 namespace JadeEngine
 {
   LineBox::LineBox(const LineBoxParams& params)
-    : _rect{0, 0, params.width, params.height}
   {
     LineStripParams stripParams;
     stripParams.layer = params.layer;
@@ -16,12 +15,19 @@ namespace JadeEngine
     stripParams.z = params.z;
 
     _strip = GGame.Create<LineStrip>(stripParams);
+    transform->Initialize(kZeroVector2D_i32, params.size);
+    UpdatePoints();
+    transform->Attach(_strip->transform, kZeroVector2D_i32, kAnchor_Center, kAnchor_Center);
 
     Show(true);
   }
 
   void LineBox::Update()
   {
+    if (transform->IsDirty(kDirtyFlag_Size))
+    {
+      UpdatePoints();
+    }
   }
 
   void LineBox::Show(bool shown)
@@ -29,51 +35,15 @@ namespace JadeEngine
     IGameObject::Show(shown);
     const auto isShown = IsShown();
 
-    _strip->Show(isShown && _rect.w >= 2 && _rect.h >= 2);
-  }
-
-  void LineBox::SetPosition(int32_t x, int32_t y)
-  {
-    _rect = { x, y, _rect.w, _rect.h };
-    UpdatePoints();
-  }
-
-  void LineBox::SetCenterPosition(int32_t x, int32_t y)
-  {
-    _rect = { x - _rect.w / 2, y - _rect.h / 2, _rect.w, _rect.h };
-    UpdatePoints();
-  }
-
-  void LineBox::SetWidth(const int32_t width)
-  {
-    _rect = { _rect.x, _rect.y, width, _rect.h };
-    UpdatePoints();
-  }
-
-  void LineBox::SetHeight(const int32_t height)
-  {
-    _rect = { _rect.x, _rect.y, _rect.w, height };
-    UpdatePoints();
-  }
-
-  void LineBox::SetStartEnd(const int32_t startX, const int32_t startY, const int32_t endX, const int32_t endY)
-  {
-    const auto minX = std::min(startX, endX);
-    const auto minY = std::min(startY, endY);
-
-    const auto maxX = std::max(startX, endX);
-    const auto maxY = std::max(startY, endY);
-
-    _rect = { minX, minY, maxX - minX, maxY - minY };
-    UpdatePoints();
+    _strip->Show(isShown && transform->GetSize().w > 2 && transform->GetSize().h > 2);
   }
 
   void LineBox::UpdatePoints()
   {
-    if (_rect.w >= 2 && _rect.h >= 2)
+    if (transform->GetSize().w > 2 && transform->GetSize().h > 2)
     {
-      _strip->SetPoints({{_rect.x, _rect.y}, {_rect.x + _rect.w, _rect.y}, {_rect.x + _rect.w, _rect.y + _rect.h},
-        {_rect.x, _rect.y + _rect.h}, {_rect.x, _rect.y + _rect.h}, {_rect.x, _rect.y}});
+      const auto sizeHalf = transform->GetSize() / 2;
+      _strip->SetPoints({ sizeHalf * Vector2D_i32{-1, -1}, sizeHalf * Vector2D_i32{1, -1}, sizeHalf * Vector2D_i32{1, 1}, sizeHalf * Vector2D_i32{-1, 1}, sizeHalf * Vector2D_i32{-1, -1} });
     }
     else
     {

@@ -5,10 +5,9 @@
 #include "Checkbox.h"
 #include "Dropdown.h"
 #include "EngineTemplateParams.h"
-#include "EngineSettings.h"
 #include "Game.h"
 #include "Input.h"
-#include "Settings.h"
+#include "Persistence.h"
 #include "Slider.h"
 #include "Transform.h"
 #include "TransformGroup.h"
@@ -124,13 +123,13 @@ namespace JadeEngine
     checkboxStyle.checked = GGame.IsFullscreen();
     _fullScreenCheckbox = GGame.Create<Checkbox>(checkboxStyle);
     _fullScreenCheckbox->Show(false);
-    _fullScreenCheckbox->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight() - 150);
+    _fullScreenCheckbox->transform->SetCenterPosition(GGame.GetHalfWidth(), GGame.GetHalfHeight() - 150);
 
     textParams = kVeraBold1650Grey;
     textParams.text = "Fullscreen:";
     _fullScreenDescription = GGame.Create<Text>(textParams);
     _fullScreenDescription->Show(false);
-    _fullScreenDescription->transform->SetPositionAnchor(_fullScreenCheckbox->GetX() - 20, _fullScreenCheckbox->GetCenterY(), kAnchor_RightCenter);
+    _fullScreenCheckbox->transform->Attach(_fullScreenCheckbox->transform, { -20, 0 }, kAnchor_LeftCenter, kAnchor_RightCenter);
 
     _resolutionsDropdown = GGame.Create<Dropdown>(kOptionsDropdown);
 
@@ -198,8 +197,8 @@ namespace JadeEngine
 
     if (_backButton->Released())
     {
-      GSettings.Set(kSettingsIDs_MusicVolume, _musicVolume->GetValue());
-      GSettings.Set(kSettingsIDs_SoundVolume, _soundVolume->GetValue());
+      GPersistence.SetSettingTyped<Setting::MusicVolume>(_musicVolume->GetValue());
+      GPersistence.SetSettingTyped<Setting::SoundVolume>(_soundVolume->GetValue());
       GGame.PlayScene(kScene_MainMenu);
     }
 
@@ -243,15 +242,16 @@ namespace JadeEngine
     if (_fullScreenCheckbox->Changed())
     {
       GGame.SetFullscreen(_fullScreenCheckbox->Checked());
-      GSettings.Set(kSettingsIDs_FullScreen, _fullScreenCheckbox->Checked());
+      GPersistence.SetSettingTyped<Setting::FullScreen>(_fullScreenCheckbox->Checked());
     }
 
     if (_resolutionsDropdown->Changed())
     {
       const auto& mode = GGame.GetDisplayModes()[_resolutionsDropdown->GetIndex()];
 
-      GSettings.Set(kSettingsIDs_ResolutionWidth, mode.width);
-      GSettings.Set(kSettingsIDs_ResolutionHeight, mode.height);
+      GPersistence.SetSettingTyped<Setting::ResolutionWidth>(mode.width);
+      GPersistence.SetSettingTyped<Setting::ResolutionHeight>(mode.height);
+
       GGame.SetDisplayMode(_resolutionsDropdown->GetIndex());
     }
   }
