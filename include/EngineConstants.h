@@ -1,5 +1,7 @@
 #pragma once
 
+#include "TypedSetting.h"
+
 #include <cmath>
 #include <inttypes.h>
 #include <SDL_pixels.h>
@@ -48,4 +50,22 @@ namespace JadeEngine
   const int32_t kDefaultMaxResolutionFraction = 8;
 
   const auto kFPI = std::acos(-1.0f);
+
+  using SettingID = int32_t;
+
+  enum class Setting : SettingID
+  {
+    MusicVolume,
+    SoundVolume,
+    FullScreen,
+    ResolutionWidth,
+    ResolutionHeight,
+    EngineEnd
+  };
+
+  template<> struct TypedSetting<Setting, Setting::MusicVolume> { using type = float; };
+  template<> struct TypedSetting<Setting, Setting::SoundVolume> { using type = float; };
+  template<> struct TypedSetting<Setting, Setting::FullScreen> { using type = bool; };
+  template<> struct TypedSetting<Setting, Setting::ResolutionWidth> { using type = uint32_t; };
+  template<> struct TypedSetting<Setting, Setting::ResolutionHeight> { using type = uint32_t; };
 }

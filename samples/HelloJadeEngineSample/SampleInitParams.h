@@ -43,9 +43,17 @@ namespace HelloJadeEngine
     //std::vector<GameInitParamsKeyBindingEntry> keybindings;
     {
     },
+    //bool settingPersistenceEnabled;
+    false,
     //std::string author;
     "Vaclav Honzik",
     //int32_t copyrightYear;
     2020,
+    //int32_t majorVersion;
+    0,
+    //int32_t minorVersion;
+    1,
+    //std::string hashVersion;
+    "4b825dc6"
   };
 }

@@ -7,13 +7,12 @@
 #include "Camera.h"
 #include "Dropdown.h"
 #include "EngineDefaultInitParams.h"
-#include "EngineSettings.h"
 #include "EngineTime.h"
 #include "FTC.h"
 #include "GameInitParams.h"
 #include "IScene.h"
 #include "Input.h"
-#include "Settings.h"
+#include "Persistence.h"
 #include "Slider.h"
 #include "Sprite.h"
 #include "Text.h"
@@ -61,7 +60,7 @@ namespace JadeEngine
   {
     _executablePath = std::filesystem::weakly_canonical(std::filesystem::path(argv[0])).parent_path();
 
-    InitializeSettings(initParams);
+    RegisterKeybindings(initParams);
 
     _renderResolutionWidth  = initParams.renderingResolutionWidth;
     _renderResolutionHeight = initParams.renderingResolutionHeight;
@@ -143,7 +142,7 @@ namespace JadeEngine
       _textures[kDefaultTextureName] = std::make_shared<Texture>(texture);
     }
 
-    if (!GSettings.Init(initParams.appName))
+    if (!GPersistence.Initialize(initParams.appName, initParams.settingPersistenceEnabled))
     {
       return false;
     }
@@ -511,11 +510,16 @@ namespace JadeEngine
 
   void Game::PlayScene(std::shared_ptr<IScene>& scene)
   {
-    _currentScene = scene;
-    if (!_currentScene->GetInitialized())
+    if (_currentScene != scene)
     {
-      _currentScene->SetInitialized(true);
-      _currentScene->Start();
+      _currentScene->SetActive(false);
+      _currentScene = scene;
+      if (!_currentScene->GetInitialized())
+      {
+        _currentScene->SetInitialized(true);
+        _currentScene->Start();
+      }
+      _currentScene->SetActive(true);
     }
   }
 
@@ -751,6 +755,8 @@ namespace JadeEngine
 
     SDL_RenderPresent(_renderer);
 
+    GPersistence.Update();
+
     GInput.AfterUpdate();
   }
 
@@ -763,7 +769,7 @@ namespace JadeEngine
       Update();
     }
 
-    GSettings.WriteSettings();
+    GPersistence.WriteSettings();
   }
 
   bool Game::RandomBool()
@@ -1021,19 +1027,17 @@ namespace JadeEngine
   {
     for (auto& keybinding : _keybindings)
     {
-      keybinding.second.key = GSettings.Get<int>(keybinding.first);
+      keybinding.second.key = GPersistence.GetSetting<int32_t>(keybinding.first);
     }
   }
 
-  void Game::InitializeSettings(const GameInitParams& initParams)
+  void Game::RegisterKeybindings(const GameInitParams& initParams)
   {
-    GSettings.RegisterAll(std::begin(kEngineSettings), std::end(kEngineSettings));
-
-    std::vector<SettingsEntry> keybindingsSettings;
+    std::vector<SettingEntry> keybindingSettings;
 
     for (const auto& keybinding : initParams.keybindings)
     {
-      keybindingsSettings.emplace_back(SettingsEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsDescription));
+      keybindingSettings.emplace_back(SettingEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsKey));
 
       KeyBindingDescription keybindDescription;
       keybindDescription.uiDescription = keybinding.uiDescription;
@@ -1044,7 +1048,7 @@ namespace JadeEngine
 
     for (const auto& keybinding : kDefaultKeybindings)
     {
-      keybindingsSettings.emplace_back(SettingsEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsDescription));
+      keybindingSettings.emplace_back(SettingEntry::Create(keybinding.settingsId, keybinding.defaultKey, keybinding.settingsKey));
 
       KeyBindingDescription keybindDescription;
       keybindDescription.uiDescription = keybinding.uiDescription;
@@ -1053,12 +1057,12 @@ namespace JadeEngine
       _keybindings[keybinding.settingsId] = keybindDescription;
     }
 
-    GSettings.RegisterAll(std::begin(keybindingsSettings), std::end(keybindingsSettings));
+    GPersistence.RegisterSettings(std::begin(keybindingSettings), std::end(keybindingSettings));
   }
 
   void Game::SetKeybinding(const int32_t settingsId, const int32_t newValue)
   {
-    GSettings.Set(settingsId, newValue);
+    GPersistence.SetSetting(settingsId, newValue);
     UpdateKeybindings();
   }
 

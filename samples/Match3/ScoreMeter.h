@@ -3,6 +3,7 @@
 #include "Animations.h"
 #include "IGameObject.h"
 #include "ObjectLayer.h"
+#include "Persistence.h"
 #include "SampleConstants.h"
 #include "Vector2D.h"
 
@@ -39,7 +40,7 @@ namespace MatchThree
     PieceType     type;
   };
 
-  class ScoreMeter : public IGameObject
+  class ScoreMeter : public IGameObject, public IGameSaveListener
   {
   public:
     ScoreMeter(const ScoreMeterParams& params);
@@ -47,6 +48,10 @@ namespace MatchThree
     void Update() override;
     bool IsPieceTypeCharged(const PieceType type) const;
     void ResetPieceTypeEnergy(const PieceType type);
+
+    void GameSaveLoaded(const json& save) override;
+    void GameSaveWriteRequested(json& save) override;
+    GameSaveAutoSaveRequestReply GameSaveAutoSaveRequest() override;
   private:
     Vector2D_i32 CreateRegularPolygonVertex(const int32_t sides, const float radius, const size_t index);
     void CreateRegularPolygonVertices(std::vector<Vector2D_i32>& vertices, const int32_t sides, const float radius);
@@ -71,6 +76,7 @@ namespace MatchThree
     bool _scoreChanged;
 
     std::array<float, kPieceType_Count> _energy;
+    bool _gameSaveDirty;
 
     float _maxEnergyDisplayedRadius;
     float _minEnergyDisplayedRadius;

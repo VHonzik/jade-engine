@@ -25,6 +25,7 @@ namespace MatchThree
     , _displayedScore(0)
     , _layer(params.layer)
     , _scoreChanged(false)
+    , _gameSaveDirty(false)
   {
     _z = params.z;
     transform->Initialize(0, 0, params.width, params.height);
@@ -99,6 +100,8 @@ namespace MatchThree
     _energySymbolsPulse.Initialize(pulseParams);
 
     std::fill(std::begin(_energy), std::end(_energy), kMinEnergy);
+
+    GPersistence.RegisterGameSaveListener(this);
   }
 
   Vector2D_i32 ScoreMeter::CreateRegularPolygonVertex(const int32_t sides, const float radius, const size_t index)
@@ -162,6 +165,7 @@ namespace MatchThree
     {
       _wantedScore += 1;
       _scoreChanged = true;
+      _gameSaveDirty = true;
 
       for (size_t i = 0; i < kPieceType_Count; i++)
       {
@@ -251,6 +255,40 @@ namespace MatchThree
     _energy[type] = kMinEnergy;
     _energySymbolsPulse.Unregister(_energySymbols[type]);
     UpdateEnergySpiderChart();
+    _gameSaveDirty = true;
   }
 
+  void ScoreMeter::GameSaveLoaded(const json& save)
+  {
+    if (const auto root = save.find("scoreMeter"); root != save.end())
+    {
+      if (const auto energy = root->find("energy"); energy != root->end())
+      {
+        for (size_t type = 0; type < kPieceType_Count; type++)
+        {
+          _energy[type] = (*energy)[type];
+        }
+      }
+
+      if (const auto score = root->find("score"); score != root->end())
+      {
+        _wantedScore = *score;
+        _displayedScore = _wantedScore;
+        _currentScore = static_cast<float>(_wantedScore);
+      }
+    }
+  }
+
+  void ScoreMeter::GameSaveWriteRequested(json& save)
+  {
+    _gameSaveDirty = false;
+    auto& root = save["scoreMeter"];
+    root["energy"] = _energy;
+    root["score"] = _currentScore;
+  }
+
+  GameSaveAutoSaveRequestReply ScoreMeter::GameSaveAutoSaveRequest()
+  {
+    return _gameSaveDirty ? kGameSaveAutoSaveRequestReply_Changed : kGameSaveAutoSaveRequestReply_NotChanged;
+  }
 }

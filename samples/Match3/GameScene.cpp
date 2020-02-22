@@ -1,6 +1,7 @@
 #include "GameScene.h"
 
 #include "EngineConstants.h"
+#include "Input.h"
 #include "FTC.h"
 #include "Game.h"
 #include "PiecesGrid.h"
@@ -35,6 +36,9 @@ namespace MatchThree
 
     _scoreMeter = GGame.Create<ScoreMeter>(scoreParams);
     _scoreMeter->transform->SetCenterPosition(GGame.GetHalfWidth(), 110);
+
+    GPersistence.RegisterGameSaveListener(this);
+    GPersistence.StartAutoSaveRequest(60.0f);
   }
 
   void GameScene::Update()
@@ -56,5 +60,28 @@ namespace MatchThree
       }
       _grid->ResetMatches();
     }
+
+    if (GInput.KeybindPressed(SampleKeybinding::ExitToMenu))
+    {
+      GGame.PlayScene(kScene_MainMenu);
+    }
+  }
+
+
+  void GameScene::GameSaveStateChange(const GameSaveState previousState, const GameSaveState newState)
+  {
+    if (newState == kGameSaveState_Found)
+    {
+      GPersistence.LoadGameSave();
+    }
+    else if (newState == kGameSaveState_NotFound)
+    {
+      GPersistence.WriteGameSave();
+    }
+  }
+
+  GameSaveAutoSaveRequestReply GameScene::GameSaveAutoSaveRequest()
+  {
+    return GetActive() ? kGameSaveAutoSaveRequestReply_NotChanged : kGameSaveAutoSaveRequestReply_Block;
   }
 }

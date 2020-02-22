@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IScene.h"
+#include "Persistence.h"
 
 #include <vector>
 #include <cstdint>
@@ -17,11 +18,15 @@ namespace MatchThree
   class PiecesGrid;
   class ScoreMeter;
 
-  class GameScene : public IScene
+  class GameScene : public IScene, public IGameSaveListener
   {
   public:
     void Start() override;
     void Update() override;
+
+    void GameSaveStateChange(const GameSaveState previousState, const GameSaveState newState) override;
+    GameSaveAutoSaveRequestReply GameSaveAutoSaveRequest() override;
+
   private:
     PiecesGrid* _grid;
     ScoreMeter* _scoreMeter;

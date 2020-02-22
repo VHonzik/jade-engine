@@ -92,9 +92,9 @@
     <ClCompile Include="..\..\source\LineStrip.cpp" />
     <ClCompile Include="..\..\source\MainMenuScene.cpp" />
     <ClCompile Include="..\..\source\OptionsMenuScene.cpp" />
+    <ClCompile Include="..\..\source\Persistence.cpp" />
     <ClCompile Include="..\..\source\PoweredByJadeEngineScene.cpp" />
     <ClCompile Include="..\..\source\ProgressBar.cpp" />
-    <ClCompile Include="..\..\source\Settings.cpp" />
     <ClCompile Include="..\..\source\Slider.cpp" />
     <ClCompile Include="..\..\source\Sprite.cpp" />
     <ClCompile Include="..\..\source\Text.cpp" />
@@ -120,7 +120,6 @@
     <ClInclude Include="..\..\include\EngineDataTypes.h" />
     <ClInclude Include="..\..\include\EngineDefaultInitParams.h" />
     <ClInclude Include="..\..\include\EngineResourcesDescriptions.h" />
-    <ClInclude Include="..\..\include\EngineSettings.h" />
     <ClInclude Include="..\..\include\EngineTemplateParams.h" />
     <ClInclude Include="..\..\include\EngineTime.h" />
     <ClInclude Include="..\..\include\FTC.h" />
@@ -135,10 +134,9 @@
     <ClInclude Include="..\..\include\MainMenuScene.h" />
     <ClInclude Include="..\..\include\ObjectLayer.h" />
     <ClInclude Include="..\..\include\OptionsMenuScene.h" />
+    <ClInclude Include="..\..\include\Persistence.h" />
     <ClInclude Include="..\..\include\PoweredByJadeEngineScene.h" />
     <ClInclude Include="..\..\include\ProgressBar.h" />
-    <ClInclude Include="..\..\include\Settings.h" />
-    <ClInclude Include="..\..\include\SettingsFile.h" />
     <ClInclude Include="..\..\include\Slider.h" />
     <ClInclude Include="..\..\include\Sprite.h" />
     <ClInclude Include="..\..\include\Text.h" />
@@ -149,6 +147,7 @@
     <ClInclude Include="..\..\include\Tooltip.h" />
     <ClInclude Include="..\..\include\Transform.h" />
     <ClInclude Include="..\..\include\TransformGroup.h" />
+    <ClInclude Include="..\..\include\TypedSetting.h" />
     <ClInclude Include="..\..\include\Utils.h" />
     <ClInclude Include="..\..\include\Vector2D.h" />
     <ClInclude Include="SampleGameScene.h" />

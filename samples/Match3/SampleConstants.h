@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineConstants.h"
+#include "TypedSetting.h"
 #include "Vector2D.h"
 
 #include <array>
@@ -65,4 +66,11 @@ namespace MatchThree
     kPieceColor_WhitePentagon,  //WhitePentagon
     kPieceColor_YellowStar,     //YellowStar
   };
+
+  enum class SampleKeybinding : int
+  {
+    ExitToMenu = static_cast<int>(Setting::EngineEnd)
+  };
+
+  template<> struct TypedSetting<SampleKeybinding, SampleKeybinding::ExitToMenu> { using type = int32_t; };
 }

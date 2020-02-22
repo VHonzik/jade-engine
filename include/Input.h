@@ -26,6 +26,18 @@ namespace JadeEngine
     bool KeybindDown(const int32_t keybind);
     bool KeybindPressed(const int32_t keybind);
 
+    template <typename T>
+    bool KeybindPressed(const T keybind)
+    {
+      return KeybindPressed(static_cast<int32_t>(keybind));
+    }
+
+    template <typename T>
+    bool KeybindDown(const T keybind)
+    {
+      return KeybindDown(static_cast<int32_t>(keybind));
+    }
+
     bool MouseButtonDown(int32_t key);
     bool MouseButtonPressed(int32_t key);
 
