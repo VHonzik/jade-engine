@@ -90,29 +90,29 @@ $(document).ready(function(){initNavTree('installationpage.html',''); initResiza
 <p>In order to make set-up as easy as possible, Visual Studio Property Files are included and the following guide uses git submodule to quickly add Jade Engine into a new project.</p>
 <p>Note that the following instructions were created with Visual Studio 2017 and therefore might need to be changed for a different Visual Studio version.</p>
 <p>Note that the instructions will be using Git from command line but the steps should be easily translated to your favorite Git client.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Adding Jade Engine to a new project and compiling minimalistic sample</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Create Empty Visual Studio project</h2>
 <p>With Visual Studio open, go to <code>File &gt; New &gt; Project...</code> pick <code>Visual C++ &gt; Empty Project</code>, choose project name - in my case JadeEngineSample - and location and check <code>Create new Git repository</code> (alternatively you can do <code>git init</code> yourself).</p>
 <p><img src="images/create_vs_project.PNG" alt="Creating Empty VS project" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Add Jade Engine as git submodule</h2>
 <p>Open the chosen location in Git and type following:</p>
 <div class="fragment"><div class="line">git submodule add https://github.com/VHonzik/jade-engine.git</div>
 </div><!-- fragment --><p><img src="images/add_submodule.PNG" alt="Add Jade Engine as submodule" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Add Jade Engine header and source files to the project</h2>
 <p>Next, back in Visual Studio, we will add the Jade Engine source files and headers to our project. We recommend creating a filter for Jade Engine files but that step is optional.</p>
 <p>In <code>Solution Explorer</code> (if you don't see this window go to <code>View &gt; Solution Explorer</code>) right click on <code>Header Files</code> filter, select <code>Add &gt; New Filter</code> and name it <code>JadeEngine</code>. Right click on the newly created filter and select <code>Add &gt; Existing Item...</code>, navigate to <code>jade-engine\include</code>, select all files (Ctrl+A) and click <code>Add</code>.</p>
 <p>Repeat similar process for source files: In <code>Solution Explorer</code> right click on <code>Source Files</code> filter, select <code>Add &gt; New Filter</code> and name it <code>JadeEngine</code>. Right click on the newly created filter and select <code>Add &gt; Existing Item...</code>, navigate to <code>jade-engine\source</code>, select all files (Ctrl+A) and click <code>Add</code>.</p>
 <p><img src="images/add_files.PNG" alt="Add Jade Engine files to the project" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Add Jade Engine property files to the project</h2>
 <p>In <code>Property Manager</code> (if you don't see this window go to <code>View &gt; Other Windows &gt; Property Manager</code>) navigate to <code>JadeEngineSample &gt; Debug | x64</code>, right click and select <code>Add Existing Property Sheet...</code>. Locate <code>jade-engine\JadeEngineLocationSubmodule.props</code> and click <code>Open</code>. Repeat the same process for <code>jade-engine\JadeEngineDebug.props</code>.</p>
 <p>In <code>Property Manager</code> navigate to <code>JadeEngineSample &gt; Release | x64</code> and repeat the above process for <code>jade-engine\JadeEngineLocationSubmodule.props</code> followed by <code>jade-engine\adeEngineRelease.props</code>.</p>
 <p><img src="images/properties_files.PNG" alt="Add Jade Engine Properties files to the project" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Add main.cpp and initialize Jade Engine</h2>
 <p>Switch <code>Solution Platform</code> to x64 as Jade Engine is only intended to compile in x64 configuration.</p>
 <p>Back in <code>Solution Explorer</code> right click on <code>Source Files</code> filter, select <code>Add &gt; New Item...</code>, name it <code>main.cpp</code> and click <code>Add</code>.</p>
@@ -147,7 +147,7 @@ Add main.cpp and initialize Jade Engine</h2>
 </div><!-- doc-content -->
 <div class="ttc" id="a_game_init_params_8h_html"><div class="ttname"><a href="_game_init_params_8h.html">GameInitParams.h</a></div></div>
 <div class="ttc" id="astruct_jade_engine_1_1_game_init_params_html"><div class="ttname"><a href="struct_jade_engine_1_1_game_init_params.html">JadeEngine::GameInitParams</a></div><div class="ttdef"><b>Definition:</b> GameInitParams.h:279</div></div>
-<div class="ttc" id="aclass_jade_engine_1_1_game_html_aaafe4a71f22367decda8796b6272c2bc"><div class="ttname"><a href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">JadeEngine::Game::AddScene</a></div><div class="ttdeci">void AddScene(const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</div><div class="ttdef"><b>Definition:</b> Game.cpp:506</div></div>
+<div class="ttc" id="aclass_jade_engine_1_1_game_html_aaafe4a71f22367decda8796b6272c2bc"><div class="ttname"><a href="class_jade_engine_1_1_game.html#aaafe4a71f22367decda8796b6272c2bc">JadeEngine::Game::AddScene</a></div><div class="ttdeci">void AddScene(const int32_t id, const std::shared_ptr&lt; IScene &gt; &amp;scene)</div><div class="ttdef"><b>Definition:</b> Game.cpp:505</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

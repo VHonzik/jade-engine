@@ -115,8 +115,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab266e0d901d24ba70571b5e9013c3846"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeea80b018550bd0cc7351e66c680a95"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_scene.html#afeea80b018550bd0cc7351e66c680a95">GetInitialized</a> () const</td></tr>
 <tr class="separator:afeea80b018550bd0cc7351e66c680a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2726b7adfb472575c9a306c576f0d35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_scene.html#ac2726b7adfb472575c9a306c576f0d35">SetInitialized</a> (bool initialized)</td></tr>
-<tr class="separator:ac2726b7adfb472575c9a306c576f0d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ba0d62b670f1525cb155ed342d59c11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_scene.html#a3ba0d62b670f1525cb155ed342d59c11">SetInitialized</a> (const bool initialized)</td></tr>
+<tr class="separator:a3ba0d62b670f1525cb155ed342d59c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc07b0bc08654f35c59aa2eb4f12d8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_scene.html#affc07b0bc08654f35c59aa2eb4f12d8b">GetActive</a> () const</td></tr>
+<tr class="separator:affc07b0bc08654f35c59aa2eb4f12d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ce74cbb257ed8661354813f50dca86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_jade_engine_1_1_i_scene.html#a52ce74cbb257ed8661354813f50dca86">SetActive</a> (const bool active)</td></tr>
+<tr class="separator:a52ce74cbb257ed8661354813f50dca86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for Scene classes.</p>
@@ -135,6 +139,32 @@ Public Member Functions</h2></td></tr>
 <div class="line">  <span class="keywordtype">void</span> <a class="code" href="class_jade_engine_1_1_i_scene.html#ab266e0d901d24ba70571b5e9013c3846">Update</a>() <span class="keyword">override</span>;</div>
 <div class="line">};</div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="affc07b0bc08654f35c59aa2eb4f12d8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc07b0bc08654f35c59aa2eb4f12d8b">&#9670;&nbsp;</a></span>GetActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool JadeEngine::IScene::GetActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns whether this scene is currently active, i.e. its <a class="el" href="class_jade_engine_1_1_i_scene.html#ab266e0d901d24ba70571b5e9013c3846">Update()</a> is being called every frame. </p>
+
+</div>
+</div>
 <a id="afeea80b018550bd0cc7351e66c680a95"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afeea80b018550bd0cc7351e66c680a95">&#9670;&nbsp;</a></span>GetInitialized()</h2>
 
@@ -190,8 +220,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2726b7adfb472575c9a306c576f0d35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2726b7adfb472575c9a306c576f0d35">&#9670;&nbsp;</a></span>SetInitialized()</h2>
+<a id="a52ce74cbb257ed8661354813f50dca86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ce74cbb257ed8661354813f50dca86">&#9670;&nbsp;</a></span>SetActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JadeEngine::IScene::SetActive </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>active</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set this scene as active, i.e. its <a class="el" href="class_jade_engine_1_1_i_scene.html#ab266e0d901d24ba70571b5e9013c3846">Update()</a> will being called every frame. </p><dl class="section warning"><dt>Warning</dt><dd>Used internally by the Jade Engine and there is very little reason to call this as a user. </dd></dl>
+
+</div>
+</div>
+<a id="a3ba0d62b670f1525cb155ed342d59c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ba0d62b670f1525cb155ed342d59c11">&#9670;&nbsp;</a></span>SetInitialized()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,7 +259,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void JadeEngine::IScene::SetInitialized </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>initialized</em></td><td>)</td>
           <td></td>
         </tr>
@@ -213,7 +270,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set this scene as initialized, i.e. next GGame.PlayScene will now longer trigger <a class="el" href="class_jade_engine_1_1_i_scene.html#a7ed19ba6e313cc5128b91edc4ad70206">Start()</a>. </p>
+<p>Set this scene as initialized, i.e. next GGame.PlayScene will now longer trigger <a class="el" href="class_jade_engine_1_1_i_scene.html#a7ed19ba6e313cc5128b91edc4ad70206">Start()</a>. </p><dl class="section warning"><dt>Warning</dt><dd>Used internally by the Jade Engine and there is very little reason to call this as a user. </dd></dl>
 
 </div>
 </div>

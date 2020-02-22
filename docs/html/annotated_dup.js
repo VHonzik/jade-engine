@@ -24,6 +24,7 @@ var annotated_dup =
       [ "GameInitParamsSpriteSheetEntry", "struct_jade_engine_1_1_game_init_params_sprite_sheet_entry.html", "struct_jade_engine_1_1_game_init_params_sprite_sheet_entry" ],
       [ "GameInitParamsTextureEntry", "struct_jade_engine_1_1_game_init_params_texture_entry.html", "struct_jade_engine_1_1_game_init_params_texture_entry" ],
       [ "IGameObject", "class_jade_engine_1_1_i_game_object.html", "class_jade_engine_1_1_i_game_object" ],
+      [ "IGameSaveListener", "class_jade_engine_1_1_i_game_save_listener.html", "class_jade_engine_1_1_i_game_save_listener" ],
       [ "Input", "class_jade_engine_1_1_input.html", "class_jade_engine_1_1_input" ],
       [ "IScene", "class_jade_engine_1_1_i_scene.html", "class_jade_engine_1_1_i_scene" ],
       [ "LineBox", "class_jade_engine_1_1_line_box.html", "class_jade_engine_1_1_line_box" ],
@@ -34,6 +35,7 @@ var annotated_dup =
       [ "LineStripParams", "struct_jade_engine_1_1_line_strip_params.html", "struct_jade_engine_1_1_line_strip_params" ],
       [ "MainMenuScene", "class_jade_engine_1_1_main_menu_scene.html", "class_jade_engine_1_1_main_menu_scene" ],
       [ "OptionsMenuScene", "class_jade_engine_1_1_options_menu_scene.html", "class_jade_engine_1_1_options_menu_scene" ],
+      [ "Persistence", "class_jade_engine_1_1_persistence.html", "class_jade_engine_1_1_persistence" ],
       [ "PoweredByJadeEngineScene", "class_jade_engine_1_1_powered_by_jade_engine_scene.html", "class_jade_engine_1_1_powered_by_jade_engine_scene" ],
       [ "ProgressBar", "class_jade_engine_1_1_progress_bar.html", "class_jade_engine_1_1_progress_bar" ],
       [ "ProgressBarColor", "struct_jade_engine_1_1_progress_bar_color.html", "struct_jade_engine_1_1_progress_bar_color" ],
@@ -41,8 +43,7 @@ var annotated_dup =
       [ "PulseAnimation", "class_jade_engine_1_1_pulse_animation.html", "class_jade_engine_1_1_pulse_animation" ],
       [ "PulseAnimationEntry", "struct_jade_engine_1_1_pulse_animation_entry.html", "struct_jade_engine_1_1_pulse_animation_entry" ],
       [ "PulseAnimationParams", "struct_jade_engine_1_1_pulse_animation_params.html", "struct_jade_engine_1_1_pulse_animation_params" ],
-      [ "Settings", "class_jade_engine_1_1_settings.html", "class_jade_engine_1_1_settings" ],
-      [ "SettingsEntry", "class_jade_engine_1_1_settings_entry.html", "class_jade_engine_1_1_settings_entry" ],
+      [ "SettingEntry", "class_jade_engine_1_1_setting_entry.html", "class_jade_engine_1_1_setting_entry" ],
       [ "Slider", "class_jade_engine_1_1_slider.html", "class_jade_engine_1_1_slider" ],
       [ "SliderParams", "struct_jade_engine_1_1_slider_params.html", "struct_jade_engine_1_1_slider_params" ],
       [ "Sprite", "class_jade_engine_1_1_sprite.html", "class_jade_engine_1_1_sprite" ],
@@ -60,11 +61,17 @@ var annotated_dup =
       [ "Transform", "class_jade_engine_1_1_transform.html", "class_jade_engine_1_1_transform" ],
       [ "TransformGroup", "class_jade_engine_1_1_transform_group.html", "class_jade_engine_1_1_transform_group" ],
       [ "TransformGroupParams", "struct_jade_engine_1_1_transform_group_params.html", "struct_jade_engine_1_1_transform_group_params" ],
+      [ "TypedSetting< Setting, Setting::FullScreen >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_full_screen_01_4.html", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_full_screen_01_4" ],
+      [ "TypedSetting< Setting, Setting::MusicVolume >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_music_volume_01_4.html", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_music_volume_01_4" ],
+      [ "TypedSetting< Setting, Setting::ResolutionHeight >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_resolution_height_01_4.html", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_resolution_height_01_4" ],
+      [ "TypedSetting< Setting, Setting::ResolutionWidth >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_resolution_width_01_4.html", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_resolution_width_01_4" ],
+      [ "TypedSetting< Setting, Setting::SoundVolume >", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_sound_volume_01_4.html", "struct_jade_engine_1_1_typed_setting_3_01_setting_00_01_setting_1_1_sound_volume_01_4" ],
       [ "UICamera", "class_jade_engine_1_1_u_i_camera.html", "class_jade_engine_1_1_u_i_camera" ],
       [ "Vector2D", "class_jade_engine_1_1_vector2_d.html", "class_jade_engine_1_1_vector2_d" ],
       [ "WorldCamera", "class_jade_engine_1_1_world_camera.html", "class_jade_engine_1_1_world_camera" ]
     ] ],
     [ "std", null, [
       [ "hash< JadeEngine::DisplayModeInfo >", "structstd_1_1hash_3_01_jade_engine_1_1_display_mode_info_01_4.html", "structstd_1_1hash_3_01_jade_engine_1_1_display_mode_info_01_4" ]
-    ] ]
+    ] ],
+    [ "TypedSetting", "struct_typed_setting.html", "struct_typed_setting" ]
 ];

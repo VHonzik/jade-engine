@@ -99,8 +99,8 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a3624537153779ba60aeadab6bb1fc3c0"><td class="memItemLeft" align="right" valign="top"><a id="a3624537153779ba60aeadab6bb1fc3c0"></a>
 int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>settingsId</b></td></tr>
 <tr class="separator:a3624537153779ba60aeadab6bb1fc3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ea2a37eae51a1ee4fdaa4ba85e0ffa2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#a7ea2a37eae51a1ee4fdaa4ba85e0ffa2">settingsDescription</a></td></tr>
-<tr class="separator:a7ea2a37eae51a1ee4fdaa4ba85e0ffa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca400bd232526aa602daf259117cf77"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_jade_engine_1_1_game_init_params_key_binding_entry.html#abca400bd232526aa602daf259117cf77">settingsKey</a></td></tr>
+<tr class="separator:abca400bd232526aa602daf259117cf77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a939b750ca92f73dabcb460c8e70193c6"><td class="memItemLeft" align="right" valign="top"><a id="a939b750ca92f73dabcb460c8e70193c6"></a>
 int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>defaultKey</b></td></tr>
 <tr class="separator:a939b750ca92f73dabcb460c8e70193c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,19 +108,19 @@ int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>defaultKey</b></td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parameters for defining a key-binding. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a7ea2a37eae51a1ee4fdaa4ba85e0ffa2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ea2a37eae51a1ee4fdaa4ba85e0ffa2">&#9670;&nbsp;</a></span>settingsDescription</h2>
+<a id="abca400bd232526aa602daf259117cf77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abca400bd232526aa602daf259117cf77">&#9670;&nbsp;</a></span>settingsKey</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string JadeEngine::GameInitParamsKeyBindingEntry::settingsDescription</td>
+          <td class="memname">std::string JadeEngine::GameInitParamsKeyBindingEntry::settingsKey</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>String stored in settings file for this key-binding.</p>
-<p>It is recommended for this to be a brief description of what action the key-binding represent along with following text: "Uses internal engine key identifier, see https://wiki.libsdl.org/SDL_Keycode." The goal is that the settings file is a human-friendly place should the need ever arise. </p>
+<p>String key stored in the settings file for this key-binding.</p>
+<p>It has to be unique within all other key-bindings and all other settings. </p>
 
 </div>
 </div>
