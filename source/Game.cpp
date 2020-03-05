@@ -537,6 +537,13 @@ namespace JadeEngine
 
   void Game::CleanUp()
   {
+    if (GPersistence.GetGameSaveState() == kGameSaveStatus_Loaded || GPersistence.GetGameSaveState() == kGameSaveStatus_Saved)
+    {
+      GPersistence.WriteGameSave();
+    }
+
+    GPersistence.WriteSettings();
+
     for (auto& scene : _scenes)
     {
       for (auto& textObject : _gameObjects[scene.second])
@@ -768,8 +775,6 @@ namespace JadeEngine
     {
       Update();
     }
-
-    GPersistence.WriteSettings();
   }
 
   bool Game::RandomBool()

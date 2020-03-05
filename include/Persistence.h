@@ -15,6 +15,7 @@ namespace JadeEngine
 {
   enum GameSaveState
   {
+    kGameSaveState_Unintialized,
     kGameSaveState_NotFound,
     kGameSaveState_Found,
     kGameSaveStatus_Loaded,

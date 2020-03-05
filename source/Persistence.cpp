@@ -33,7 +33,7 @@ namespace JadeEngine
   }
 
   Persistence::Persistence()
-    : _gameSaveState(kGameSaveState_NotFound)
+    : _gameSaveState(kGameSaveState_Unintialized)
     , _autoSaveFrequency(-1.0f)
     , _autoSaveTimer(0.0f)
     , _settingsPersist(false)
@@ -61,6 +61,8 @@ namespace JadeEngine
 
   bool Persistence::Initialize(const std::string& appName, const bool persistSettings)
   {
+    _settingsPersist = persistSettings;
+
     _storageFolderPath = _appDataPath / appName;
     if (!std::filesystem::exists(_storageFolderPath))
     {
@@ -89,6 +91,10 @@ namespace JadeEngine
     if (std::filesystem::exists(_gameStateFilePath))
     {
       SetGameSaveState(kGameSaveState_Found);
+    }
+    else
+    {
+      SetGameSaveState(kGameSaveState_NotFound);
     }
 
     return true;
@@ -219,6 +225,8 @@ namespace JadeEngine
   void Persistence::WriteGameSave()
   {
     _gameSaveJson.clear();
+
+    GTime.SetLastSaveTime();
 
     for (auto listener : _gameSaveListeners)
     {

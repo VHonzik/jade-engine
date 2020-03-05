@@ -9,7 +9,7 @@ namespace JadeEngine
   TransformGroup::TransformGroup(const TransformGroupParams& params)
     : _alignment(params.alignment)
     , _direction(params.direction)
-    , _spacing(params.spacing)
+    , _defaultSpacing(params.spacing)
     , _parentAnchor(ParentAnchor(_direction, _alignment))
     , _childAnchor(ChildAnchor(_direction, _alignment))
   {
@@ -18,7 +18,12 @@ namespace JadeEngine
 
   void TransformGroup::Add(IGameObject* element)
   {
-    Add(element->transform);
+    Add(element, _defaultSpacing);
+  }
+
+  void TransformGroup::Add(IGameObject* element, int32_t elementSpacing)
+  {
+    Add(element->transform, elementSpacing);
     Align();
   }
 
@@ -102,6 +107,11 @@ namespace JadeEngine
 
   void TransformGroup::Add(const std::shared_ptr<Transform>& elementTransform)
   {
+    Add(elementTransform, _defaultSpacing);
+  }
+
+  void TransformGroup::Add(const std::shared_ptr<Transform>& elementTransform, const int32_t spacing)
+  {
     _elements.push_back(elementTransform);
     if (_elements.size() == 1)
     {
@@ -114,11 +124,11 @@ namespace JadeEngine
       switch (_direction)
       {
       case kGroupDirection_Vertical:
-        offset.y = _spacing;
+        offset.y = spacing;
         break;
       default:
         assert(_direction == kGroupDirection_Horizontal);
-        offset.x = _spacing;
+        offset.x = spacing;
         break;
       }
       _elements[_elements.size()-2]->Attach(elementTransform, offset, _parentAnchor, _childAnchor);
@@ -162,5 +172,11 @@ namespace JadeEngine
       break;
       }
     }
+  }
+
+  bool TransformGroup::Contains(IGameObject* element) const
+  {
+    assert(element != nullptr);
+    return std::find(std::cbegin(_elements), std::cend(_elements), element->transform) != std::end(_elements);
   }
 }
