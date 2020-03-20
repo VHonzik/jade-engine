@@ -160,6 +160,12 @@ namespace JadeEngine
     return _alpha;
   }
 
+  double Sprite::GetRotation() const
+  {
+    assert(_rotated);
+    return _rotationAngle;
+  }
+
   void Sprite::SetRotation(const double angle)
   {
     _rotated = true;

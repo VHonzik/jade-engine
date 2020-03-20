@@ -157,6 +157,13 @@ namespace JadeEngine
     void SetRotation(const double angle);
 
     /**
+    Return the current rotation of the sprite in degrees.
+
+    @see Sprite::SetRotation
+    */
+    double GetRotation() const;
+
+    /**
     Perform a hit test, returning whether a pixel of the sprite is not empty (not completely transparent, alpha > 0).
 
     @pre The texture used by the sprite was initialized with hit map. You can use HasHitTest() to confirm so.

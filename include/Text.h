@@ -30,6 +30,7 @@ namespace JadeEngine
     void SetTextFast(const std::string& text);
     void SetTextAndColor(const std::string& text, const SDL_Color& color);
     void SetColor(const SDL_Color& color);
+    void SetColorFast(const SDL_Color& color);
     void SetMask(const Rectangle& mask);
 
     void Clean() override;

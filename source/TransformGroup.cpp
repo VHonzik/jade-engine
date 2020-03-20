@@ -107,16 +107,29 @@ namespace JadeEngine
 
   void TransformGroup::Add(const std::shared_ptr<Transform>& elementTransform)
   {
-    Add(elementTransform, _defaultSpacing);
+    Add(elementTransform, _elements.size() == 0 ? 0 : _defaultSpacing);
   }
 
   void TransformGroup::Add(const std::shared_ptr<Transform>& elementTransform, const int32_t spacing)
   {
     _elements.push_back(elementTransform);
+    _spacing.push_back(spacing);
     if (_elements.size() == 1)
     {
       // The first element is not attached to any other but instead to the TransformGroup::transform so use _childAnchor for parentAnchor as well
-      transform->Attach(elementTransform, kZeroVector2D_i32, _childAnchor, _childAnchor);
+      Vector2D_i32 offset = kZeroVector2D_i32;
+      switch (_direction)
+      {
+      case kGroupDirection_Vertical:
+        offset.y = spacing;
+        break;
+      default:
+        assert(_direction == kGroupDirection_Horizontal);
+        offset.x = spacing;
+        break;
+      }
+
+      transform->Attach(elementTransform, offset, _childAnchor, _childAnchor);
     }
     else
     {
@@ -178,5 +191,18 @@ namespace JadeEngine
   {
     assert(element != nullptr);
     return std::find(std::cbegin(_elements), std::cend(_elements), element->transform) != std::end(_elements);
+  }
+
+  Vector2D_i32 TransformGroup::GetElementSize(const size_t index)
+  {
+    assert(index < Size());
+    return _elements[index]->GetSize();
+  }
+
+  int32_t TransformGroup::GetElementSpacing(const size_t index)
+  {
+    assert(index < Size());
+    assert(Size() == _spacing.size());
+    return _spacing[index];
   }
 }

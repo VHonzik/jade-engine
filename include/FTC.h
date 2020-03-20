@@ -29,6 +29,11 @@ namespace JadeEngine
     void SetIntValue(const uint32_t index, const int32_t value);
     void SetStringValue(const uint32_t index, const std::string& value);
     void SetFloatValue(const uint32_t index, const float value);
+
+    void SetIntValueFast(const uint32_t index, const int32_t value);
+    void SetStringValueFast(const uint32_t index, const std::string& value);
+    void SetFloatValueFast(const uint32_t index, const float value);
+
     void SetValueColor(const uint32_t index, const SDL_Color& color);
 
   private:

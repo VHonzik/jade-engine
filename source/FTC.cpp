@@ -92,6 +92,24 @@ namespace JadeEngine
     transform->SetSize(size);
   }
 
+  void FTC::SetIntValueFast(const uint32_t index, const int32_t value)
+  {
+    const auto textIndex = _valueIndex[index];
+    _texts[textIndex]->SetTextFast(std::to_string(value));
+  }
+
+  void FTC::SetStringValueFast(const uint32_t index, const std::string& value)
+  {
+    const auto textIndex = _valueIndex[index];
+    _texts[textIndex]->SetTextFast(value);
+  }
+
+  void FTC::SetFloatValueFast(const uint32_t index, const float value)
+  {
+    const auto textIndex = _valueIndex[index];
+    _texts[textIndex]->SetTextFast(std::to_string(value));
+  }
+
   void FTC::SetIntValue(const uint32_t index, const int32_t value)
   {
     const auto textIndex = _valueIndex[index];

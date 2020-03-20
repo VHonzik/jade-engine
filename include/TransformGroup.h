@@ -40,6 +40,9 @@ namespace JadeEngine
     }
 
     bool Contains(IGameObject* element) const;
+    size_t Size() const { return _elements.size(); };
+    Vector2D_i32 GetElementSize(const size_t index);
+    int32_t GetElementSpacing(const size_t index);
 
   private:
     void Add(const std::shared_ptr<Transform>& elementTransform);

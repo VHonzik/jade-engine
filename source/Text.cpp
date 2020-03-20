@@ -107,6 +107,14 @@ namespace JadeEngine
 
   void Text::SetColor(const SDL_Color& color)
   {
+    if (_color != color)
+    {
+      SetColorFast(color);
+    }
+  }
+
+  void Text::SetColorFast(const SDL_Color& color)
+  {
     _color = color;
     RemoveCache();
   }
